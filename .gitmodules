@@ -1,0 +1,6 @@
+[submodule "Godai"]
+	path = Godai
+	url = https://github.com/jonathanrainer/Godai
+[submodule "Gouram"]
+	path = Gouram
+	url = https://github.com/jonathanrainer/Gouram.git
