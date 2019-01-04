@@ -4,3 +4,6 @@
 [submodule "Gouram"]
 	path = Gouram
 	url = https://github.com/jonathanrainer/Gouram.git
+[submodule "core2axi"]
+	path = core2axi
+	url = https://github.com/jonathanrainer/core2axi
