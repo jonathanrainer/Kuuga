@@ -1,0 +1,448 @@
+﻿<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<bd:repository xmlns:bd="http://www.xilinx.com/bd" bd:BoundaryCRC="0x99EAC15B65B90D9C" bd:device="xc7vx485tffg1761-2" bd:synthFlowMode="Hierarchical" bd:tool_version="2018.2" bd:top="axi_verifier" bd:version="1.00.a">
+
+  <spirit:component xmlns:spirit="http://www.spiritconsortium.org/XMLSchema/SPIRIT/1685-2009">
+    <spirit:vendor>xilinx.com</spirit:vendor>
+    <spirit:library>BlockDiagram</spirit:library>
+    <spirit:name>axi_verifier</spirit:name>
+    <spirit:version>1.00.a</spirit:version>
+    <spirit:parameters>
+      <spirit:parameter>
+        <spirit:name>isTop</spirit:name>
+        <spirit:value spirit:format="bool" spirit:resolve="immediate">true</spirit:value>
+      </spirit:parameter>
+    </spirit:parameters>
+    <spirit:busInterfaces>
+      <spirit:busInterface>
+        <spirit:name>CLK.CLK_100MHZ</spirit:name>
+        <spirit:displayName>Clk</spirit:displayName>
+        <spirit:description>Clock</spirit:description>
+        <spirit:busType spirit:library="signal" spirit:name="clock" spirit:vendor="xilinx.com" spirit:version="1.0"/>
+        <spirit:abstractionType spirit:library="signal" spirit:name="clock_rtl" spirit:vendor="xilinx.com" spirit:version="1.0"/>
+        <spirit:slave/>
+        <spirit:portMaps>
+          <spirit:portMap>
+            <spirit:logicalPort>
+              <spirit:name>CLK</spirit:name>
+            </spirit:logicalPort>
+            <spirit:physicalPort>
+              <spirit:name>clk_100MHz</spirit:name>
+            </spirit:physicalPort>
+          </spirit:portMap>
+        </spirit:portMaps>
+        <spirit:parameters>
+          <spirit:parameter>
+            <spirit:name>FREQ_HZ</spirit:name>
+            <spirit:value>100000000</spirit:value>
+          </spirit:parameter>
+        </spirit:parameters>
+      </spirit:busInterface>
+      <spirit:busInterface>
+        <spirit:name>RST.RESET_RTL</spirit:name>
+        <spirit:displayName>Reset</spirit:displayName>
+        <spirit:description>Reset</spirit:description>
+        <spirit:busType spirit:library="signal" spirit:name="reset" spirit:vendor="xilinx.com" spirit:version="1.0"/>
+        <spirit:abstractionType spirit:library="signal" spirit:name="reset_rtl" spirit:vendor="xilinx.com" spirit:version="1.0"/>
+        <spirit:slave/>
+        <spirit:portMaps>
+          <spirit:portMap>
+            <spirit:logicalPort>
+              <spirit:name>RST</spirit:name>
+            </spirit:logicalPort>
+            <spirit:physicalPort>
+              <spirit:name>reset_rtl</spirit:name>
+            </spirit:physicalPort>
+          </spirit:portMap>
+        </spirit:portMaps>
+        <spirit:parameters>
+          <spirit:parameter>
+            <spirit:name>POLARITY</spirit:name>
+            <spirit:value>ACTIVE_LOW</spirit:value>
+          </spirit:parameter>
+        </spirit:parameters>
+      </spirit:busInterface>
+      <spirit:busInterface>
+        <spirit:name>DATA.TRACE_DATA</spirit:name>
+        <spirit:displayName>Data</spirit:displayName>
+        <spirit:description>Data</spirit:description>
+        <spirit:busType spirit:library="signal" spirit:name="data" spirit:vendor="xilinx.com" spirit:version="1.0"/>
+        <spirit:abstractionType spirit:library="signal" spirit:name="data_rtl" spirit:vendor="xilinx.com" spirit:version="1.0"/>
+        <spirit:slave/>
+        <spirit:portMaps>
+          <spirit:portMap>
+            <spirit:logicalPort>
+              <spirit:name>DATA</spirit:name>
+            </spirit:logicalPort>
+            <spirit:physicalPort>
+              <spirit:name>trace_data</spirit:name>
+            </spirit:physicalPort>
+          </spirit:portMap>
+        </spirit:portMaps>
+        <spirit:parameters/>
+      </spirit:busInterface>
+    </spirit:busInterfaces>
+    <spirit:model>
+      <spirit:views>
+        <spirit:view>
+          <spirit:name>BlockDiagram</spirit:name>
+          <spirit:envIdentifier>:vivado.xilinx.com:</spirit:envIdentifier>
+          <spirit:hierarchyRef spirit:library="BlockDiagram" spirit:name="axi_verifier_imp" spirit:vendor="xilinx.com" spirit:version="1.00.a"/>
+        </spirit:view>
+      </spirit:views>
+      <spirit:ports>
+        <spirit:port>
+          <spirit:name>clk_100MHz</spirit:name>
+          <spirit:wire>
+            <spirit:direction>in</spirit:direction>
+          </spirit:wire>
+        </spirit:port>
+        <spirit:port>
+          <spirit:name>reset_rtl</spirit:name>
+          <spirit:wire>
+            <spirit:direction>in</spirit:direction>
+          </spirit:wire>
+        </spirit:port>
+        <spirit:port>
+          <spirit:name>trace_data</spirit:name>
+          <spirit:wire>
+            <spirit:direction>out</spirit:direction>
+            <spirit:vector>
+              <spirit:left>608</spirit:left>
+              <spirit:right>0</spirit:right>
+            </spirit:vector>
+          </spirit:wire>
+        </spirit:port>
+      </spirit:ports>
+    </spirit:model>
+  </spirit:component>
+
+  <spirit:design xmlns:spirit="http://www.spiritconsortium.org/XMLSchema/SPIRIT/1685-2009">
+    <spirit:vendor>xilinx.com</spirit:vendor>
+    <spirit:library>BlockDiagram</spirit:library>
+    <spirit:name>axi_verifier_imp</spirit:name>
+    <spirit:version>1.00.a</spirit:version>
+    <spirit:componentInstances>
+      <spirit:componentInstance>
+        <spirit:instanceName>Core2AXI_0</spirit:instanceName>
+        <spirit:componentRef spirit:library="Kuuga" spirit:name="Core2AXI" spirit:vendor="jonathan-rainer.com" spirit:version="1.0"/>
+        <spirit:configurableElementValues>
+          <spirit:configurableElementValue spirit:referenceId="bd:xciName">axi_verifier_Core2AXI_0_0</spirit:configurableElementValue>
+          <spirit:configurableElementValue spirit:referenceId="C_M_TARGET_SLAVE_BASE_ADDR">0x00000000</spirit:configurableElementValue>
+        </spirit:configurableElementValues>
+      </spirit:componentInstance>
+      <spirit:componentInstance>
+        <spirit:instanceName>Core2AXI_1</spirit:instanceName>
+        <spirit:componentRef spirit:library="Kuuga" spirit:name="Core2AXI" spirit:vendor="jonathan-rainer.com" spirit:version="1.0"/>
+        <spirit:configurableElementValues>
+          <spirit:configurableElementValue spirit:referenceId="bd:xciName">axi_verifier_Core2AXI_1_0</spirit:configurableElementValue>
+          <spirit:configurableElementValue spirit:referenceId="C_M_TARGET_SLAVE_BASE_ADDR">0x00000000</spirit:configurableElementValue>
+        </spirit:configurableElementValues>
+      </spirit:componentInstance>
+      <spirit:componentInstance>
+        <spirit:instanceName>Godai_0</spirit:instanceName>
+        <spirit:componentRef spirit:library="Kuuga" spirit:name="Godai" spirit:vendor="jonathan-rainer.com" spirit:version="1.0"/>
+        <spirit:configurableElementValues>
+          <spirit:configurableElementValue spirit:referenceId="bd:xciName">axi_verifier_Godai_0_0</spirit:configurableElementValue>
+        </spirit:configurableElementValues>
+      </spirit:componentInstance>
+      <spirit:componentInstance>
+        <spirit:instanceName>axi_vip_0</spirit:instanceName>
+        <spirit:componentRef spirit:library="ip" spirit:name="axi_vip" spirit:vendor="xilinx.com" spirit:version="1.1"/>
+        <spirit:configurableElementValues>
+          <spirit:configurableElementValue spirit:referenceId="bd:xciName">axi_verifier_axi_vip_0_0</spirit:configurableElementValue>
+          <spirit:configurableElementValue spirit:referenceId="INTERFACE_MODE">SLAVE</spirit:configurableElementValue>
+        </spirit:configurableElementValues>
+      </spirit:componentInstance>
+      <spirit:componentInstance>
+        <spirit:instanceName>axi_vip_1</spirit:instanceName>
+        <spirit:componentRef spirit:library="ip" spirit:name="axi_vip" spirit:vendor="xilinx.com" spirit:version="1.1"/>
+        <spirit:configurableElementValues>
+          <spirit:configurableElementValue spirit:referenceId="bd:xciName">axi_verifier_axi_vip_1_0</spirit:configurableElementValue>
+          <spirit:configurableElementValue spirit:referenceId="INTERFACE_MODE">SLAVE</spirit:configurableElementValue>
+        </spirit:configurableElementValues>
+      </spirit:componentInstance>
+      <spirit:componentInstance>
+        <spirit:instanceName>proc_sys_reset_0</spirit:instanceName>
+        <spirit:componentRef spirit:library="ip" spirit:name="proc_sys_reset" spirit:vendor="xilinx.com" spirit:version="5.0"/>
+        <spirit:configurableElementValues>
+          <spirit:configurableElementValue spirit:referenceId="bd:xciName">axi_verifier_proc_sys_reset_0_0</spirit:configurableElementValue>
+        </spirit:configurableElementValues>
+      </spirit:componentInstance>
+      <spirit:componentInstance>
+        <spirit:instanceName>xlconstant_0</spirit:instanceName>
+        <spirit:componentRef spirit:library="ip" spirit:name="xlconstant" spirit:vendor="xilinx.com" spirit:version="1.1"/>
+        <spirit:configurableElementValues>
+          <spirit:configurableElementValue spirit:referenceId="bd:xciName">axi_verifier_xlconstant_0_0</spirit:configurableElementValue>
+          <spirit:configurableElementValue spirit:referenceId="CONST_VAL">0</spirit:configurableElementValue>
+        </spirit:configurableElementValues>
+      </spirit:componentInstance>
+      <spirit:componentInstance>
+        <spirit:instanceName>xlconstant_1</spirit:instanceName>
+        <spirit:componentRef spirit:library="ip" spirit:name="xlconstant" spirit:vendor="xilinx.com" spirit:version="1.1"/>
+        <spirit:configurableElementValues>
+          <spirit:configurableElementValue spirit:referenceId="bd:xciName">axi_verifier_xlconstant_1_0</spirit:configurableElementValue>
+          <spirit:configurableElementValue spirit:referenceId="CONST_WIDTH">4</spirit:configurableElementValue>
+          <spirit:configurableElementValue spirit:referenceId="CONST_VAL">0</spirit:configurableElementValue>
+        </spirit:configurableElementValues>
+      </spirit:componentInstance>
+      <spirit:componentInstance>
+        <spirit:instanceName>xlconstant_2</spirit:instanceName>
+        <spirit:componentRef spirit:library="ip" spirit:name="xlconstant" spirit:vendor="xilinx.com" spirit:version="1.1"/>
+        <spirit:configurableElementValues>
+          <spirit:configurableElementValue spirit:referenceId="bd:xciName">axi_verifier_xlconstant_2_0</spirit:configurableElementValue>
+          <spirit:configurableElementValue spirit:referenceId="CONST_WIDTH">32</spirit:configurableElementValue>
+          <spirit:configurableElementValue spirit:referenceId="CONST_VAL">0</spirit:configurableElementValue>
+        </spirit:configurableElementValues>
+      </spirit:componentInstance>
+      <spirit:componentInstance>
+        <spirit:instanceName>Gouram_0</spirit:instanceName>
+        <spirit:componentRef spirit:library="Kuuga" spirit:name="Gouram" spirit:vendor="jonathan-rainer.com" spirit:version="1.0"/>
+        <spirit:configurableElementValues>
+          <spirit:configurableElementValue spirit:referenceId="bd:xciName">axi_verifier_Gouram_0_0</spirit:configurableElementValue>
+        </spirit:configurableElementValues>
+      </spirit:componentInstance>
+    </spirit:componentInstances>
+    <spirit:interconnections>
+      <spirit:interconnection>
+        <spirit:name>Core2AXI_0_M_AXI</spirit:name>
+        <spirit:activeInterface spirit:busRef="M_AXI" spirit:componentRef="Core2AXI_0"/>
+        <spirit:activeInterface spirit:busRef="S_AXI" spirit:componentRef="axi_vip_0"/>
+      </spirit:interconnection>
+      <spirit:interconnection>
+        <spirit:name>Core2AXI_1_M_AXI</spirit:name>
+        <spirit:activeInterface spirit:busRef="M_AXI" spirit:componentRef="Core2AXI_1"/>
+        <spirit:activeInterface spirit:busRef="S_AXI" spirit:componentRef="axi_vip_1"/>
+      </spirit:interconnection>
+    </spirit:interconnections>
+    <spirit:adHocConnections>
+      <spirit:adHocConnection>
+        <spirit:name>Core2AXI_0_data_gnt_o</spirit:name>
+        <spirit:internalPortReference spirit:componentRef="Core2AXI_0" spirit:portRef="data_gnt_o"/>
+        <spirit:internalPortReference spirit:componentRef="Godai_0" spirit:portRef="instr_gnt_i"/>
+        <spirit:internalPortReference spirit:componentRef="Gouram_0" spirit:portRef="instr_grant"/>
+      </spirit:adHocConnection>
+      <spirit:adHocConnection>
+        <spirit:name>Core2AXI_0_data_rdata_o</spirit:name>
+        <spirit:internalPortReference spirit:componentRef="Core2AXI_0" spirit:portRef="data_rdata_o"/>
+        <spirit:internalPortReference spirit:componentRef="Godai_0" spirit:portRef="instr_rdata_i"/>
+        <spirit:internalPortReference spirit:componentRef="Gouram_0" spirit:portRef="instr_rdata"/>
+      </spirit:adHocConnection>
+      <spirit:adHocConnection>
+        <spirit:name>Core2AXI_0_data_rvalid_o</spirit:name>
+        <spirit:internalPortReference spirit:componentRef="Core2AXI_0" spirit:portRef="data_rvalid_o"/>
+        <spirit:internalPortReference spirit:componentRef="Godai_0" spirit:portRef="instr_rvalid_i"/>
+        <spirit:internalPortReference spirit:componentRef="Gouram_0" spirit:portRef="instr_rvalid"/>
+      </spirit:adHocConnection>
+      <spirit:adHocConnection>
+        <spirit:name>Core2AXI_1_data_gnt_o</spirit:name>
+        <spirit:internalPortReference spirit:componentRef="Core2AXI_1" spirit:portRef="data_gnt_o"/>
+        <spirit:internalPortReference spirit:componentRef="Godai_0" spirit:portRef="data_gnt_i"/>
+        <spirit:internalPortReference spirit:componentRef="Gouram_0" spirit:portRef="data_mem_grant"/>
+      </spirit:adHocConnection>
+      <spirit:adHocConnection>
+        <spirit:name>Core2AXI_1_data_rdata_o</spirit:name>
+        <spirit:internalPortReference spirit:componentRef="Core2AXI_1" spirit:portRef="data_rdata_o"/>
+        <spirit:internalPortReference spirit:componentRef="Godai_0" spirit:portRef="data_rdata_i"/>
+      </spirit:adHocConnection>
+      <spirit:adHocConnection>
+        <spirit:name>Core2AXI_1_data_rvalid_o</spirit:name>
+        <spirit:internalPortReference spirit:componentRef="Core2AXI_1" spirit:portRef="data_rvalid_o"/>
+        <spirit:internalPortReference spirit:componentRef="Godai_0" spirit:portRef="data_rvalid_i"/>
+        <spirit:internalPortReference spirit:componentRef="Gouram_0" spirit:portRef="data_mem_rvalid"/>
+      </spirit:adHocConnection>
+      <spirit:adHocConnection>
+        <spirit:name>Godai_0_data_addr_o</spirit:name>
+        <spirit:internalPortReference spirit:componentRef="Godai_0" spirit:portRef="data_addr_o"/>
+        <spirit:internalPortReference spirit:componentRef="Core2AXI_1" spirit:portRef="data_addr_i"/>
+        <spirit:internalPortReference spirit:componentRef="Gouram_0" spirit:portRef="data_mem_addr"/>
+      </spirit:adHocConnection>
+      <spirit:adHocConnection>
+        <spirit:name>Godai_0_data_be_o</spirit:name>
+        <spirit:internalPortReference spirit:componentRef="Godai_0" spirit:portRef="data_be_o"/>
+        <spirit:internalPortReference spirit:componentRef="Core2AXI_1" spirit:portRef="data_be_i"/>
+      </spirit:adHocConnection>
+      <spirit:adHocConnection>
+        <spirit:name>Godai_0_data_req_o</spirit:name>
+        <spirit:internalPortReference spirit:componentRef="Godai_0" spirit:portRef="data_req_o"/>
+        <spirit:internalPortReference spirit:componentRef="Core2AXI_1" spirit:portRef="data_req_i"/>
+        <spirit:internalPortReference spirit:componentRef="Gouram_0" spirit:portRef="data_mem_req"/>
+      </spirit:adHocConnection>
+      <spirit:adHocConnection>
+        <spirit:name>Godai_0_data_wdata_o</spirit:name>
+        <spirit:internalPortReference spirit:componentRef="Godai_0" spirit:portRef="data_wdata_o"/>
+        <spirit:internalPortReference spirit:componentRef="Core2AXI_1" spirit:portRef="data_wdata_i"/>
+      </spirit:adHocConnection>
+      <spirit:adHocConnection>
+        <spirit:name>Godai_0_data_we_o</spirit:name>
+        <spirit:internalPortReference spirit:componentRef="Godai_0" spirit:portRef="data_we_o"/>
+        <spirit:internalPortReference spirit:componentRef="Core2AXI_1" spirit:portRef="data_we_i"/>
+      </spirit:adHocConnection>
+      <spirit:adHocConnection>
+        <spirit:name>Godai_0_instr_req_o</spirit:name>
+        <spirit:internalPortReference spirit:componentRef="Godai_0" spirit:portRef="instr_req_o"/>
+        <spirit:internalPortReference spirit:componentRef="Core2AXI_0" spirit:portRef="data_req_i"/>
+        <spirit:internalPortReference spirit:componentRef="Gouram_0" spirit:portRef="instr_req"/>
+      </spirit:adHocConnection>
+      <spirit:adHocConnection>
+        <spirit:name>clk_100MHz_1</spirit:name>
+        <spirit:externalPortReference spirit:portRef="clk_100MHz"/>
+        <spirit:internalPortReference spirit:componentRef="Core2AXI_0" spirit:portRef="M_AXI_ACLK"/>
+        <spirit:internalPortReference spirit:componentRef="Core2AXI_1" spirit:portRef="M_AXI_ACLK"/>
+        <spirit:internalPortReference spirit:componentRef="Godai_0" spirit:portRef="clk"/>
+        <spirit:internalPortReference spirit:componentRef="axi_vip_0" spirit:portRef="aclk"/>
+        <spirit:internalPortReference spirit:componentRef="axi_vip_1" spirit:portRef="aclk"/>
+        <spirit:internalPortReference spirit:componentRef="proc_sys_reset_0" spirit:portRef="slowest_sync_clk"/>
+        <spirit:internalPortReference spirit:componentRef="Gouram_0" spirit:portRef="clk"/>
+      </spirit:adHocConnection>
+      <spirit:adHocConnection>
+        <spirit:name>proc_sys_reset_0_peripheral_aresetn</spirit:name>
+        <spirit:internalPortReference spirit:componentRef="proc_sys_reset_0" spirit:portRef="peripheral_aresetn"/>
+        <spirit:internalPortReference spirit:componentRef="Core2AXI_0" spirit:portRef="M_AXI_ARESETN"/>
+        <spirit:internalPortReference spirit:componentRef="Core2AXI_1" spirit:portRef="M_AXI_ARESETN"/>
+        <spirit:internalPortReference spirit:componentRef="Godai_0" spirit:portRef="rst_n"/>
+        <spirit:internalPortReference spirit:componentRef="axi_vip_0" spirit:portRef="aresetn"/>
+        <spirit:internalPortReference spirit:componentRef="axi_vip_1" spirit:portRef="aresetn"/>
+        <spirit:internalPortReference spirit:componentRef="Gouram_0" spirit:portRef="rst"/>
+      </spirit:adHocConnection>
+      <spirit:adHocConnection>
+        <spirit:name>reset_rtl_1</spirit:name>
+        <spirit:externalPortReference spirit:portRef="reset_rtl"/>
+        <spirit:internalPortReference spirit:componentRef="proc_sys_reset_0" spirit:portRef="ext_reset_in"/>
+      </spirit:adHocConnection>
+      <spirit:adHocConnection>
+        <spirit:name>xlconstant_0_dout</spirit:name>
+        <spirit:internalPortReference spirit:componentRef="xlconstant_0" spirit:portRef="dout"/>
+        <spirit:internalPortReference spirit:componentRef="Core2AXI_0" spirit:portRef="data_we_i"/>
+        <spirit:internalPortReference spirit:componentRef="Godai_0" spirit:portRef="data_err_i"/>
+        <spirit:internalPortReference spirit:componentRef="Gouram_0" spirit:portRef="branch_decision"/>
+      </spirit:adHocConnection>
+      <spirit:adHocConnection>
+        <spirit:name>xlconstant_1_dout</spirit:name>
+        <spirit:internalPortReference spirit:componentRef="xlconstant_1" spirit:portRef="dout"/>
+        <spirit:internalPortReference spirit:componentRef="Core2AXI_0" spirit:portRef="data_be_i"/>
+      </spirit:adHocConnection>
+      <spirit:adHocConnection>
+        <spirit:name>xlconstant_2_dout</spirit:name>
+        <spirit:internalPortReference spirit:componentRef="xlconstant_2" spirit:portRef="dout"/>
+        <spirit:internalPortReference spirit:componentRef="Core2AXI_0" spirit:portRef="data_wdata_i"/>
+        <spirit:internalPortReference spirit:componentRef="Godai_0" spirit:portRef="irq_i"/>
+      </spirit:adHocConnection>
+      <spirit:adHocConnection>
+        <spirit:name>Godai_0_if_busy_o</spirit:name>
+        <spirit:internalPortReference spirit:componentRef="Godai_0" spirit:portRef="if_busy_o"/>
+        <spirit:internalPortReference spirit:componentRef="Gouram_0" spirit:portRef="if_busy"/>
+      </spirit:adHocConnection>
+      <spirit:adHocConnection>
+        <spirit:name>Godai_0_if_ready_o</spirit:name>
+        <spirit:internalPortReference spirit:componentRef="Godai_0" spirit:portRef="if_ready_o"/>
+        <spirit:internalPortReference spirit:componentRef="Gouram_0" spirit:portRef="if_ready"/>
+      </spirit:adHocConnection>
+      <spirit:adHocConnection>
+        <spirit:name>Godai_0_instr_addr_o</spirit:name>
+        <spirit:internalPortReference spirit:componentRef="Godai_0" spirit:portRef="instr_addr_o"/>
+        <spirit:internalPortReference spirit:componentRef="Gouram_0" spirit:portRef="instr_addr"/>
+        <spirit:internalPortReference spirit:componentRef="Core2AXI_0" spirit:portRef="data_addr_i"/>
+      </spirit:adHocConnection>
+      <spirit:adHocConnection>
+        <spirit:name>Godai_0_id_ready_o</spirit:name>
+        <spirit:internalPortReference spirit:componentRef="Godai_0" spirit:portRef="id_ready_o"/>
+        <spirit:internalPortReference spirit:componentRef="Gouram_0" spirit:portRef="id_ready"/>
+      </spirit:adHocConnection>
+      <spirit:adHocConnection>
+        <spirit:name>Godai_0_jump_done_o</spirit:name>
+        <spirit:internalPortReference spirit:componentRef="Godai_0" spirit:portRef="jump_done_o"/>
+        <spirit:internalPortReference spirit:componentRef="Gouram_0" spirit:portRef="jump_done"/>
+      </spirit:adHocConnection>
+      <spirit:adHocConnection>
+        <spirit:name>Godai_0_is_decoding_o</spirit:name>
+        <spirit:internalPortReference spirit:componentRef="Godai_0" spirit:portRef="is_decoding_o"/>
+        <spirit:internalPortReference spirit:componentRef="Gouram_0" spirit:portRef="is_decoding"/>
+      </spirit:adHocConnection>
+      <spirit:adHocConnection>
+        <spirit:name>Godai_0_illegal_instr_o</spirit:name>
+        <spirit:internalPortReference spirit:componentRef="Godai_0" spirit:portRef="illegal_instr_o"/>
+        <spirit:internalPortReference spirit:componentRef="Gouram_0" spirit:portRef="illegal_instruction"/>
+      </spirit:adHocConnection>
+      <spirit:adHocConnection>
+        <spirit:name>Godai_0_wb_ready_o</spirit:name>
+        <spirit:internalPortReference spirit:componentRef="Godai_0" spirit:portRef="wb_ready_o"/>
+        <spirit:internalPortReference spirit:componentRef="Gouram_0" spirit:portRef="wb_ready"/>
+      </spirit:adHocConnection>
+      <spirit:adHocConnection>
+        <spirit:name>Godai_0_ex_ready_o</spirit:name>
+        <spirit:internalPortReference spirit:componentRef="Godai_0" spirit:portRef="ex_ready_o"/>
+        <spirit:internalPortReference spirit:componentRef="Gouram_0" spirit:portRef="ex_ready"/>
+      </spirit:adHocConnection>
+      <spirit:adHocConnection>
+        <spirit:name>Gouram_0_trace_data_o</spirit:name>
+        <spirit:internalPortReference spirit:componentRef="Gouram_0" spirit:portRef="trace_data_o"/>
+        <spirit:externalPortReference spirit:portRef="trace_data"/>
+      </spirit:adHocConnection>
+    </spirit:adHocConnections>
+  </spirit:design>
+
+  <spirit:component xmlns:spirit="http://www.spiritconsortium.org/XMLSchema/SPIRIT/1685-2009">
+    <spirit:vendor>jonathan-rainer.com</spirit:vendor>
+    <spirit:library>Addressing/Core2AXI_0</spirit:library>
+    <spirit:name>Core2AXI</spirit:name>
+    <spirit:version>1.0</spirit:version>
+    <spirit:busInterfaces>
+      <spirit:busInterface>
+        <spirit:name>M_AXI</spirit:name>
+        <spirit:master>
+          <spirit:addressSpaceRef spirit:addressSpaceRef="M_AXI"/>
+        </spirit:master>
+        <spirit:busType spirit:library="interface" spirit:name="aximm" spirit:vendor="xilinx.com" spirit:version="1.0"/>
+        <spirit:abstractionType spirit:library="interface" spirit:name="aximm_rtl" spirit:vendor="xilinx.com" spirit:version="1.0"/>
+      </spirit:busInterface>
+    </spirit:busInterfaces>
+    <spirit:addressSpaces>
+      <spirit:addressSpace>
+        <spirit:name>M_AXI</spirit:name>
+        <spirit:range>4G</spirit:range>
+        <spirit:width>32</spirit:width>
+        <spirit:segments>
+          <spirit:segment>
+            <spirit:name>SEG_axi_vip_0_Reg</spirit:name>
+            <spirit:displayName>/axi_vip_0/S_AXI/Reg</spirit:displayName>
+            <spirit:addressOffset>0x00000000</spirit:addressOffset>
+            <spirit:range>64K</spirit:range>
+          </spirit:segment>
+        </spirit:segments>
+      </spirit:addressSpace>
+    </spirit:addressSpaces>
+  </spirit:component>
+
+  <spirit:component xmlns:spirit="http://www.spiritconsortium.org/XMLSchema/SPIRIT/1685-2009">
+    <spirit:vendor>jonathan-rainer.com</spirit:vendor>
+    <spirit:library>Addressing/Core2AXI_1</spirit:library>
+    <spirit:name>Core2AXI</spirit:name>
+    <spirit:version>1.0</spirit:version>
+    <spirit:busInterfaces>
+      <spirit:busInterface>
+        <spirit:name>M_AXI</spirit:name>
+        <spirit:master>
+          <spirit:addressSpaceRef spirit:addressSpaceRef="M_AXI"/>
+        </spirit:master>
+        <spirit:busType spirit:library="interface" spirit:name="aximm" spirit:vendor="xilinx.com" spirit:version="1.0"/>
+        <spirit:abstractionType spirit:library="interface" spirit:name="aximm_rtl" spirit:vendor="xilinx.com" spirit:version="1.0"/>
+      </spirit:busInterface>
+    </spirit:busInterfaces>
+    <spirit:addressSpaces>
+      <spirit:addressSpace>
+        <spirit:name>M_AXI</spirit:name>
+        <spirit:range>4G</spirit:range>
+        <spirit:width>32</spirit:width>
+        <spirit:segments>
+          <spirit:segment>
+            <spirit:name>SEG_axi_vip_1_Reg</spirit:name>
+            <spirit:displayName>/axi_vip_1/S_AXI/Reg</spirit:displayName>
+            <spirit:addressOffset>0x00000000</spirit:addressOffset>
+            <spirit:range>64K</spirit:range>
+          </spirit:segment>
+        </spirit:segments>
+      </spirit:addressSpace>
+    </spirit:addressSpaces>
+  </spirit:component>
+
+</bd:repository>

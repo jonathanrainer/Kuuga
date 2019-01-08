@@ -1,0 +1,74 @@
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/jonathanrainer/Documents/PhD/Kuuga/work/Kuuga.ip_user_files/bd/axi_verifier/ipshared/511c/rtl/core2axi.sv" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module core2axi
+INFO: [VRFC 10-2263] Analyzing Verilog file "/home/jonathanrainer/Documents/PhD/Kuuga/work/Kuuga.ip_user_files/bd/axi_verifier/ipshared/511c/rtl/core2axi_wrapper.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module core2axi_wrapper
+INFO: [VRFC 10-2263] Analyzing Verilog file "/home/jonathanrainer/Documents/PhD/Kuuga/work/Kuuga.ip_user_files/bd/axi_verifier/ip/axi_verifier_Core2AXI_0_0/sim/axi_verifier_Core2AXI_0_0.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module axi_verifier_Core2AXI_0_0
+INFO: [VRFC 10-2263] Analyzing Verilog file "/home/jonathanrainer/Documents/PhD/Kuuga/work/Kuuga.ip_user_files/bd/axi_verifier/ip/axi_verifier_Core2AXI_1_0/sim/axi_verifier_Core2AXI_1_0.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module axi_verifier_Core2AXI_1_0
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/jonathanrainer/Documents/PhD/Kuuga/work/Kuuga.ip_user_files/bd/axi_verifier/ipshared/96c1/include/riscv_defines.sv" into library xil_defaultlib
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/jonathanrainer/Documents/PhD/Kuuga/work/Kuuga.ip_user_files/bd/axi_verifier/ipshared/96c1/rtl/alu.sv" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module riscv_alu
+INFO: [VRFC 10-311] analyzing module alu_ff
+INFO: [VRFC 10-311] analyzing module alu_popcnt
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/jonathanrainer/Documents/PhD/Kuuga/work/Kuuga.ip_user_files/bd/axi_verifier/ipshared/96c1/rtl/alu_div.sv" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module riscv_alu_div
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/jonathanrainer/Documents/PhD/Kuuga/work/Kuuga.ip_user_files/bd/axi_verifier/ipshared/96c1/rtl/cluster_clock_gating.sv" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module cluster_clock_gating
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/jonathanrainer/Documents/PhD/Kuuga/work/Kuuga.ip_user_files/bd/axi_verifier/ipshared/96c1/rtl/compressed_decoder.sv" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module riscv_compressed_decoder
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/jonathanrainer/Documents/PhD/Kuuga/work/Kuuga.ip_user_files/bd/axi_verifier/ipshared/96c1/rtl/controller.sv" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module riscv_controller
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/jonathanrainer/Documents/PhD/Kuuga/work/Kuuga.ip_user_files/bd/axi_verifier/ipshared/96c1/rtl/cs_registers.sv" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module riscv_cs_registers
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/jonathanrainer/Documents/PhD/Kuuga/work/Kuuga.ip_user_files/bd/axi_verifier/ipshared/96c1/rtl/debug_unit.sv" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module riscv_debug_unit
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/jonathanrainer/Documents/PhD/Kuuga/work/Kuuga.ip_user_files/bd/axi_verifier/ipshared/96c1/rtl/decoder.sv" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module riscv_decoder
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/jonathanrainer/Documents/PhD/Kuuga/work/Kuuga.ip_user_files/bd/axi_verifier/ipshared/96c1/rtl/ex_stage.sv" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module riscv_ex_stage
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/jonathanrainer/Documents/PhD/Kuuga/work/Kuuga.ip_user_files/bd/axi_verifier/ipshared/96c1/rtl/exc_controller.sv" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module riscv_exc_controller
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/jonathanrainer/Documents/PhD/Kuuga/work/Kuuga.ip_user_files/bd/axi_verifier/ipshared/96c1/rtl/hwloop_controller.sv" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module riscv_hwloop_controller
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/jonathanrainer/Documents/PhD/Kuuga/work/Kuuga.ip_user_files/bd/axi_verifier/ipshared/96c1/rtl/hwloop_regs.sv" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module riscv_hwloop_regs
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/jonathanrainer/Documents/PhD/Kuuga/work/Kuuga.ip_user_files/bd/axi_verifier/ipshared/96c1/rtl/id_stage.sv" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module riscv_id_stage
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/jonathanrainer/Documents/PhD/Kuuga/work/Kuuga.ip_user_files/bd/axi_verifier/ipshared/96c1/rtl/if_stage.sv" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module riscv_if_stage
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/jonathanrainer/Documents/PhD/Kuuga/work/Kuuga.ip_user_files/bd/axi_verifier/ipshared/96c1/rtl/load_store_unit.sv" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module riscv_load_store_unit
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/jonathanrainer/Documents/PhD/Kuuga/work/Kuuga.ip_user_files/bd/axi_verifier/ipshared/96c1/rtl/mult.sv" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module riscv_mult
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/jonathanrainer/Documents/PhD/Kuuga/work/Kuuga.ip_user_files/bd/axi_verifier/ipshared/96c1/rtl/prefetch_buffer.sv" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module riscv_fetch_fifo
+INFO: [VRFC 10-311] analyzing module riscv_prefetch_buffer
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/jonathanrainer/Documents/PhD/Kuuga/work/Kuuga.ip_user_files/bd/axi_verifier/ipshared/96c1/rtl/register_file_ff.sv" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module riscv_register_file
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/jonathanrainer/Documents/PhD/Kuuga/work/Kuuga.ip_user_files/bd/axi_verifier/ipshared/96c1/include/riscv_config.sv" into library xil_defaultlib
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/jonathanrainer/Documents/PhD/Kuuga/work/Kuuga.ip_user_files/bd/axi_verifier/ipshared/96c1/rtl/riscv_core.sv" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module riscv_core
+INFO: [VRFC 10-2458] undeclared symbol fetch_valid_o, assumed default net type wire [/home/jonathanrainer/Documents/PhD/Kuuga/work/Kuuga.ip_user_files/bd/axi_verifier/ipshared/96c1/rtl/riscv_core.sv:387]
+INFO: [VRFC 10-2263] Analyzing Verilog file "/home/jonathanrainer/Documents/PhD/Kuuga/work/Kuuga.ip_user_files/bd/axi_verifier/ipshared/96c1/rtl/godai_wrapper.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module godai_wrapper
+INFO: [VRFC 10-2263] Analyzing Verilog file "/home/jonathanrainer/Documents/PhD/Kuuga/work/Kuuga.ip_user_files/bd/axi_verifier/ip/axi_verifier_Godai_0_0/sim/axi_verifier_Godai_0_0.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module axi_verifier_Godai_0_0
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/jonathanrainer/Documents/PhD/Kuuga/work/Kuuga.ip_user_files/bd/axi_verifier/ip/axi_verifier_axi_vip_0_0/sim/axi_verifier_axi_vip_0_0_pkg.sv" into library xil_defaultlib
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/jonathanrainer/Documents/PhD/Kuuga/work/Kuuga.ip_user_files/bd/axi_verifier/ip/axi_verifier_axi_vip_0_0/sim/axi_verifier_axi_vip_0_0.sv" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module axi_verifier_axi_vip_0_0
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/jonathanrainer/Documents/PhD/Kuuga/work/Kuuga.ip_user_files/bd/axi_verifier/ip/axi_verifier_axi_vip_1_0/sim/axi_verifier_axi_vip_1_0_pkg.sv" into library xil_defaultlib
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/jonathanrainer/Documents/PhD/Kuuga/work/Kuuga.ip_user_files/bd/axi_verifier/ip/axi_verifier_axi_vip_1_0/sim/axi_verifier_axi_vip_1_0.sv" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module axi_verifier_axi_vip_1_0
+INFO: [VRFC 10-2263] Analyzing Verilog file "/home/jonathanrainer/Documents/PhD/Kuuga/work/Kuuga.ip_user_files/bd/axi_verifier/ip/axi_verifier_xlconstant_0_0/sim/axi_verifier_xlconstant_0_0.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module axi_verifier_xlconstant_0_0
+INFO: [VRFC 10-2263] Analyzing Verilog file "/home/jonathanrainer/Documents/PhD/Kuuga/work/Kuuga.ip_user_files/bd/axi_verifier/ip/axi_verifier_xlconstant_1_0/sim/axi_verifier_xlconstant_1_0.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module axi_verifier_xlconstant_1_0
+INFO: [VRFC 10-2263] Analyzing Verilog file "/home/jonathanrainer/Documents/PhD/Kuuga/work/Kuuga.ip_user_files/bd/axi_verifier/ip/axi_verifier_xlconstant_2_0/sim/axi_verifier_xlconstant_2_0.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module axi_verifier_xlconstant_2_0
+INFO: [VRFC 10-2263] Analyzing Verilog file "/home/jonathanrainer/Documents/PhD/Kuuga/work/Kuuga.ip_user_files/bd/axi_verifier/sim/axi_verifier.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module axi_verifier
+INFO: [VRFC 10-2263] Analyzing SystemVerilog file "/home/jonathanrainer/Documents/PhD/Kuuga/tb/axi_verifier/axi_verifier_testbench.sv" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module axi_verifier_testbench
+INFO: [VRFC 10-2263] Analyzing Verilog file "/home/jonathanrainer/Documents/PhD/Kuuga/work/Kuuga.sim/sim_1/behav/xsim/glbl.v" into library xil_defaultlib
+INFO: [VRFC 10-311] analyzing module glbl

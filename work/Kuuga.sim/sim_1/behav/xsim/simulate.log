@@ -1,0 +1,8 @@
+Vivado Simulator 2018.2
+Time resolution is 1 ps
+XilinxAXIVIP: Found at Path: axi_verifier_testbench.DUT.axi_vip_0.inst
+XilinxAXIVIP: Found at Path: axi_verifier_testbench.DUT.axi_vip_1.inst
+              820000: Illegal instruction (core 0) at PC 0x00000000:
+              820000: Entering exception routine.
+              900000: Illegal instruction (core 0) at PC 0x00000086:
+              900000: Entering exception routine.
