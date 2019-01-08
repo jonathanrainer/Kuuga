@@ -1,7 +1,0 @@
-Running: xsim.dir/axi_verifier_testbench_behav/xsimk -simmode gui -wdb axi_verifier_testbench_behav.wdb -simrunnum 0 -socket 59037
-Design successfully loaded
-Design Loading Memory Usage: 50412 KB (Peak: 50412 KB)
-Design Loading CPU Usage: 30 ms
-Simulation completed
-Simulation Memory Usage: 149796 KB (Peak: 197684 KB)
-Simulation CPU Usage: 80 ms
