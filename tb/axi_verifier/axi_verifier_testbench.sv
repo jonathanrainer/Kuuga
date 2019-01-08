@@ -30,10 +30,12 @@ module axi_verifier_testbench();
     bit finish_flag;
     
     bit[32-1:0] mem_rd_data;
+    bit[0:608] trace_out;
 
     axi_verifier DUT(
         .clk_100MHz(clk),
-        .reset_rtl(rst_n)
+        .reset_rtl(rst_n),
+        .trace_out(trace_out)
     );
 
     axi_verifier_axi_vip_0_0_slv_mem_t instr_agent;

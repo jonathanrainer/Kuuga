@@ -124,8 +124,9 @@ set bCheckIPsPassed 1
 set bCheckIPs 1
 if { $bCheckIPs == 1 } {
    set list_check_ips "\ 
-jonathan-rainer.com:Kuuga:Core2AXI:1.0\
+jonathan-rainer.com:Kuuga:Core2AXI:1.2\
 jonathan-rainer.com:Kuuga:Godai:1.0\
+jonathan-rainer.com:Kuuga:Gouram:1.1\
 xilinx.com:ip:axi_vip:1.1\
 xilinx.com:ip:proc_sys_reset:5.0\
 xilinx.com:ip:xlconstant:1.1\
@@ -202,21 +203,19 @@ proc create_root_design { parentCell } {
   set_property -dict [ list \
    CONFIG.POLARITY {ACTIVE_LOW} \
  ] $reset_rtl
+  set trace_out [ create_bd_port -dir O -from 608 -to 0 -type data trace_out ]
 
   # Create instance: Core2AXI_0, and set properties
-  set Core2AXI_0 [ create_bd_cell -type ip -vlnv jonathan-rainer.com:Kuuga:Core2AXI:1.0 Core2AXI_0 ]
-  set_property -dict [ list \
-   CONFIG.C_M_TARGET_SLAVE_BASE_ADDR {0x00000000} \
- ] $Core2AXI_0
+  set Core2AXI_0 [ create_bd_cell -type ip -vlnv jonathan-rainer.com:Kuuga:Core2AXI:1.2 Core2AXI_0 ]
 
   # Create instance: Core2AXI_1, and set properties
-  set Core2AXI_1 [ create_bd_cell -type ip -vlnv jonathan-rainer.com:Kuuga:Core2AXI:1.0 Core2AXI_1 ]
-  set_property -dict [ list \
-   CONFIG.C_M_TARGET_SLAVE_BASE_ADDR {0x00000000} \
- ] $Core2AXI_1
+  set Core2AXI_1 [ create_bd_cell -type ip -vlnv jonathan-rainer.com:Kuuga:Core2AXI:1.2 Core2AXI_1 ]
 
   # Create instance: Godai_0, and set properties
   set Godai_0 [ create_bd_cell -type ip -vlnv jonathan-rainer.com:Kuuga:Godai:1.0 Godai_0 ]
+
+  # Create instance: Gouram_0, and set properties
+  set Gouram_0 [ create_bd_cell -type ip -vlnv jonathan-rainer.com:Kuuga:Gouram:1.1 Gouram_0 ]
 
   # Create instance: axi_vip_0, and set properties
   set axi_vip_0 [ create_bd_cell -type ip -vlnv xilinx.com:ip:axi_vip:1.1 axi_vip_0 ]
@@ -232,6 +231,10 @@ proc create_root_design { parentCell } {
 
   # Create instance: proc_sys_reset_0, and set properties
   set proc_sys_reset_0 [ create_bd_cell -type ip -vlnv xilinx.com:ip:proc_sys_reset:5.0 proc_sys_reset_0 ]
+  set_property -dict [ list \
+   CONFIG.RESET_BOARD_INTERFACE {Custom} \
+   CONFIG.USE_BOARD_FLOW {true} \
+ ] $proc_sys_reset_0
 
   # Create instance: xlconstant_0, and set properties
   set xlconstant_0 [ create_bd_cell -type ip -vlnv xilinx.com:ip:xlconstant:1.1 xlconstant_0 ]
@@ -258,21 +261,32 @@ proc create_root_design { parentCell } {
   connect_bd_intf_net -intf_net Core2AXI_1_M_AXI [get_bd_intf_pins Core2AXI_1/M_AXI] [get_bd_intf_pins axi_vip_1/S_AXI]
 
   # Create port connections
-  connect_bd_net -net Core2AXI_0_data_gnt_o [get_bd_pins Core2AXI_0/data_gnt_o] [get_bd_pins Godai_0/instr_gnt_i]
-  connect_bd_net -net Core2AXI_0_data_rdata_o [get_bd_pins Core2AXI_0/data_rdata_o] [get_bd_pins Godai_0/instr_rdata_i]
-  connect_bd_net -net Core2AXI_0_data_rvalid_o [get_bd_pins Core2AXI_0/data_rvalid_o] [get_bd_pins Godai_0/instr_rvalid_i]
-  connect_bd_net -net Core2AXI_1_data_gnt_o [get_bd_pins Core2AXI_1/data_gnt_o] [get_bd_pins Godai_0/data_gnt_i]
+  connect_bd_net -net Core2AXI_0_data_gnt_o [get_bd_pins Core2AXI_0/data_gnt_o] [get_bd_pins Godai_0/instr_gnt_i] [get_bd_pins Gouram_0/instr_grant]
+  connect_bd_net -net Core2AXI_0_data_rdata_o [get_bd_pins Core2AXI_0/data_rdata_o] [get_bd_pins Godai_0/instr_rdata_i] [get_bd_pins Gouram_0/instr_rdata]
+  connect_bd_net -net Core2AXI_0_data_rvalid_o [get_bd_pins Core2AXI_0/data_rvalid_o] [get_bd_pins Godai_0/instr_rvalid_i] [get_bd_pins Gouram_0/instr_rvalid]
+  connect_bd_net -net Core2AXI_1_data_gnt_o [get_bd_pins Core2AXI_1/data_gnt_o] [get_bd_pins Godai_0/data_gnt_i] [get_bd_pins Gouram_0/data_mem_grant]
   connect_bd_net -net Core2AXI_1_data_rdata_o [get_bd_pins Core2AXI_1/data_rdata_o] [get_bd_pins Godai_0/data_rdata_i]
-  connect_bd_net -net Core2AXI_1_data_rvalid_o [get_bd_pins Core2AXI_1/data_rvalid_o] [get_bd_pins Godai_0/data_rvalid_i]
-  connect_bd_net -net Godai_0_data_addr_o [get_bd_pins Core2AXI_1/data_addr_i] [get_bd_pins Godai_0/data_addr_o]
+  connect_bd_net -net Core2AXI_1_data_rvalid_o [get_bd_pins Core2AXI_1/data_rvalid_o] [get_bd_pins Godai_0/data_rvalid_i] [get_bd_pins Gouram_0/data_mem_rvalid]
+  connect_bd_net -net Godai_0_branch_decision_o [get_bd_pins Godai_0/branch_decision_o] [get_bd_pins Gouram_0/branch_decision]
+  connect_bd_net -net Godai_0_branch_req_o [get_bd_pins Godai_0/branch_req_o] [get_bd_pins Gouram_0/branch_req]
+  connect_bd_net -net Godai_0_data_addr_o [get_bd_pins Core2AXI_1/data_addr_i] [get_bd_pins Godai_0/data_addr_o] [get_bd_pins Gouram_0/data_mem_addr]
   connect_bd_net -net Godai_0_data_be_o [get_bd_pins Core2AXI_1/data_be_i] [get_bd_pins Godai_0/data_be_o]
-  connect_bd_net -net Godai_0_data_req_o [get_bd_pins Core2AXI_1/data_req_i] [get_bd_pins Godai_0/data_req_o]
+  connect_bd_net -net Godai_0_data_req_o [get_bd_pins Core2AXI_1/data_req_i] [get_bd_pins Godai_0/data_req_o] [get_bd_pins Gouram_0/data_mem_req]
   connect_bd_net -net Godai_0_data_wdata_o [get_bd_pins Core2AXI_1/data_wdata_i] [get_bd_pins Godai_0/data_wdata_o]
   connect_bd_net -net Godai_0_data_we_o [get_bd_pins Core2AXI_1/data_we_i] [get_bd_pins Godai_0/data_we_o]
-  connect_bd_net -net Godai_0_instr_addr_o [get_bd_pins Core2AXI_0/data_addr_i] [get_bd_pins Godai_0/instr_addr_o]
-  connect_bd_net -net Godai_0_instr_req_o [get_bd_pins Core2AXI_0/data_req_i] [get_bd_pins Godai_0/instr_req_o]
-  connect_bd_net -net clk_100MHz_1 [get_bd_ports clk_100MHz] [get_bd_pins Core2AXI_0/M_AXI_ACLK] [get_bd_pins Core2AXI_1/M_AXI_ACLK] [get_bd_pins Godai_0/clk] [get_bd_pins axi_vip_0/aclk] [get_bd_pins axi_vip_1/aclk] [get_bd_pins proc_sys_reset_0/slowest_sync_clk]
-  connect_bd_net -net proc_sys_reset_0_peripheral_aresetn [get_bd_pins Core2AXI_0/M_AXI_ARESETN] [get_bd_pins Core2AXI_1/M_AXI_ARESETN] [get_bd_pins Godai_0/rst_n] [get_bd_pins axi_vip_0/aresetn] [get_bd_pins axi_vip_1/aresetn] [get_bd_pins proc_sys_reset_0/peripheral_aresetn]
+  connect_bd_net -net Godai_0_ex_ready_o [get_bd_pins Godai_0/ex_ready_o] [get_bd_pins Gouram_0/ex_ready]
+  connect_bd_net -net Godai_0_id_ready_o [get_bd_pins Godai_0/id_ready_o] [get_bd_pins Gouram_0/id_ready]
+  connect_bd_net -net Godai_0_if_busy_o [get_bd_pins Godai_0/if_busy_o] [get_bd_pins Gouram_0/if_busy]
+  connect_bd_net -net Godai_0_if_ready_o [get_bd_pins Godai_0/if_ready_o] [get_bd_pins Gouram_0/if_ready]
+  connect_bd_net -net Godai_0_illegal_instr_o [get_bd_pins Godai_0/illegal_instr_o] [get_bd_pins Gouram_0/illegal_instruction]
+  connect_bd_net -net Godai_0_instr_addr_o [get_bd_pins Core2AXI_0/data_addr_i] [get_bd_pins Godai_0/instr_addr_o] [get_bd_pins Gouram_0/instr_addr]
+  connect_bd_net -net Godai_0_instr_req_o [get_bd_pins Core2AXI_0/data_req_i] [get_bd_pins Godai_0/instr_req_o] [get_bd_pins Gouram_0/instr_req]
+  connect_bd_net -net Godai_0_is_decoding_o [get_bd_pins Godai_0/is_decoding_o] [get_bd_pins Gouram_0/is_decoding]
+  connect_bd_net -net Godai_0_jump_done_o [get_bd_pins Godai_0/jump_done_o] [get_bd_pins Gouram_0/jump_done]
+  connect_bd_net -net Godai_0_wb_ready_o [get_bd_pins Godai_0/wb_ready_o] [get_bd_pins Gouram_0/wb_ready]
+  connect_bd_net -net Gouram_0_trace_data_o [get_bd_ports trace_out] [get_bd_pins Gouram_0/trace_data_o]
+  connect_bd_net -net clk_100MHz_1 [get_bd_ports clk_100MHz] [get_bd_pins Core2AXI_0/M_AXI_ACLK] [get_bd_pins Core2AXI_1/M_AXI_ACLK] [get_bd_pins Godai_0/clk] [get_bd_pins Gouram_0/clk] [get_bd_pins axi_vip_0/aclk] [get_bd_pins axi_vip_1/aclk] [get_bd_pins proc_sys_reset_0/slowest_sync_clk]
+  connect_bd_net -net proc_sys_reset_0_peripheral_aresetn [get_bd_pins Core2AXI_0/M_AXI_ARESETN] [get_bd_pins Core2AXI_1/M_AXI_ARESETN] [get_bd_pins Godai_0/rst_n] [get_bd_pins Gouram_0/rst] [get_bd_pins axi_vip_0/aresetn] [get_bd_pins axi_vip_1/aresetn] [get_bd_pins proc_sys_reset_0/peripheral_aresetn]
   connect_bd_net -net reset_rtl_1 [get_bd_ports reset_rtl] [get_bd_pins proc_sys_reset_0/ext_reset_in]
   connect_bd_net -net xlconstant_0_dout [get_bd_pins Core2AXI_0/data_we_i] [get_bd_pins Godai_0/data_err_i] [get_bd_pins xlconstant_0/dout]
   connect_bd_net -net xlconstant_1_dout [get_bd_pins Core2AXI_0/data_be_i] [get_bd_pins xlconstant_1/dout]

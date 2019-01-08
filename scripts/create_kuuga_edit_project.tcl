@@ -28,5 +28,4 @@ set_property "board_part" "xilinx.com:vc707:part0:1.0" $obj
 set_property "simulator_language" "Mixed" $obj
 set_property "target_language" "Verilog" $obj
 
-# Add in the new Block Diagrams
 source [file join $thisDir block_diagrams axi_verifier.tcl]
