@@ -16,15 +16,19 @@
       </db_ref>
    </db_ref_list>
    <zoom_setting>
-      <ZoomStartTime time="774089880fs"></ZoomStartTime>
-      <ZoomEndTime time="1009975253fs"></ZoomEndTime>
-      <Cursor1Time time="1000000000fs"></Cursor1Time>
+      <ZoomStartTime time="551890000fs"></ZoomStartTime>
+      <ZoomEndTime time="868890001fs"></ZoomEndTime>
+      <Cursor1Time time="641890000fs"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
       <NameColumnWidth column_width="311"></NameColumnWidth>
-      <ValueColumnWidth column_width="111"></ValueColumnWidth>
+      <ValueColumnWidth column_width="317"></ValueColumnWidth>
    </column_width_setting>
    <WVObjectSize size="6" />
+   <wvobject type="array" fp_name="/axi_verifier_testbench/DUT/Gouram_0/inst/gouram/counter">
+      <obj_property name="ElementShortName">counter[31:0]</obj_property>
+      <obj_property name="ObjectShortName">counter[31:0]</obj_property>
+   </wvobject>
    <wvobject type="logic" fp_name="/axi_verifier_testbench/clk">
       <obj_property name="ElementShortName">clk</obj_property>
       <obj_property name="ObjectShortName">clk</obj_property>
@@ -62,168 +66,119 @@
          <obj_property name="ObjectShortName">instr_rdata_i[31:0]</obj_property>
       </wvobject>
    </wvobject>
-   <wvobject type="group" fp_name="group19">
-      <obj_property name="label">Instruction Memory (AXI Protocol)</obj_property>
+   <wvobject type="group" fp_name="group752">
+      <obj_property name="label">Tracing Signals</obj_property>
       <obj_property name="DisplayName">label</obj_property>
-      <wvobject type="array" fp_name="/axi_verifier_testbench/DUT/Core2AXI_0/inst/M_AXI_ARID">
-         <obj_property name="ElementShortName">M_AXI_ARID[0:0]</obj_property>
-         <obj_property name="ObjectShortName">M_AXI_ARID[0:0]</obj_property>
+      <obj_property name="isExpanded"></obj_property>
+      <wvobject type="logic" fp_name="/axi_verifier_testbench/DUT/Gouram_0/if_busy">
+         <obj_property name="ElementShortName">if_busy</obj_property>
+         <obj_property name="ObjectShortName">if_busy</obj_property>
       </wvobject>
-      <wvobject type="array" fp_name="/axi_verifier_testbench/DUT/Core2AXI_0/inst/M_AXI_ARADDR">
-         <obj_property name="ElementShortName">M_AXI_ARADDR[31:0]</obj_property>
-         <obj_property name="ObjectShortName">M_AXI_ARADDR[31:0]</obj_property>
+      <wvobject type="logic" fp_name="/axi_verifier_testbench/DUT/Gouram_0/if_ready">
+         <obj_property name="ElementShortName">if_ready</obj_property>
+         <obj_property name="ObjectShortName">if_ready</obj_property>
       </wvobject>
-      <wvobject type="array" fp_name="/axi_verifier_testbench/DUT/Core2AXI_0/inst/M_AXI_ARLEN">
-         <obj_property name="ElementShortName">M_AXI_ARLEN[7:0]</obj_property>
-         <obj_property name="ObjectShortName">M_AXI_ARLEN[7:0]</obj_property>
+      <wvobject type="logic" fp_name="/axi_verifier_testbench/DUT/Gouram_0/branch_decision">
+         <obj_property name="ElementShortName">branch_decision</obj_property>
+         <obj_property name="ObjectShortName">branch_decision</obj_property>
       </wvobject>
-      <wvobject type="array" fp_name="/axi_verifier_testbench/DUT/Core2AXI_0/inst/M_AXI_ARSIZE">
-         <obj_property name="ElementShortName">M_AXI_ARSIZE[2:0]</obj_property>
-         <obj_property name="ObjectShortName">M_AXI_ARSIZE[2:0]</obj_property>
+      <wvobject type="logic" fp_name="/axi_verifier_testbench/DUT/Gouram_0/instr_req">
+         <obj_property name="ElementShortName">instr_req</obj_property>
+         <obj_property name="ObjectShortName">instr_req</obj_property>
       </wvobject>
-      <wvobject type="array" fp_name="/axi_verifier_testbench/DUT/Core2AXI_0/inst/M_AXI_ARBURST">
-         <obj_property name="ElementShortName">M_AXI_ARBURST[1:0]</obj_property>
-         <obj_property name="ObjectShortName">M_AXI_ARBURST[1:0]</obj_property>
+      <wvobject type="array" fp_name="/axi_verifier_testbench/DUT/Gouram_0/instr_addr">
+         <obj_property name="ElementShortName">instr_addr[31:0]</obj_property>
+         <obj_property name="ObjectShortName">instr_addr[31:0]</obj_property>
       </wvobject>
-      <wvobject type="logic" fp_name="/axi_verifier_testbench/DUT/Core2AXI_0/inst/M_AXI_ARLOCK">
-         <obj_property name="ElementShortName">M_AXI_ARLOCK</obj_property>
-         <obj_property name="ObjectShortName">M_AXI_ARLOCK</obj_property>
+      <wvobject type="logic" fp_name="/axi_verifier_testbench/DUT/Gouram_0/instr_grant">
+         <obj_property name="ElementShortName">instr_grant</obj_property>
+         <obj_property name="ObjectShortName">instr_grant</obj_property>
       </wvobject>
-      <wvobject type="array" fp_name="/axi_verifier_testbench/DUT/Core2AXI_0/inst/M_AXI_ARCACHE">
-         <obj_property name="ElementShortName">M_AXI_ARCACHE[3:0]</obj_property>
-         <obj_property name="ObjectShortName">M_AXI_ARCACHE[3:0]</obj_property>
+      <wvobject type="logic" fp_name="/axi_verifier_testbench/DUT/Gouram_0/instr_rvalid">
+         <obj_property name="ElementShortName">instr_rvalid</obj_property>
+         <obj_property name="ObjectShortName">instr_rvalid</obj_property>
       </wvobject>
-      <wvobject type="array" fp_name="/axi_verifier_testbench/DUT/Core2AXI_0/inst/M_AXI_ARPROT">
-         <obj_property name="ElementShortName">M_AXI_ARPROT[2:0]</obj_property>
-         <obj_property name="ObjectShortName">M_AXI_ARPROT[2:0]</obj_property>
+      <wvobject type="array" fp_name="/axi_verifier_testbench/DUT/Gouram_0/instr_rdata">
+         <obj_property name="ElementShortName">instr_rdata[31:0]</obj_property>
+         <obj_property name="ObjectShortName">instr_rdata[31:0]</obj_property>
       </wvobject>
-      <wvobject type="array" fp_name="/axi_verifier_testbench/DUT/Core2AXI_0/inst/M_AXI_ARUSER">
-         <obj_property name="ElementShortName">M_AXI_ARUSER[-1:0]</obj_property>
-         <obj_property name="ObjectShortName">M_AXI_ARUSER[-1:0]</obj_property>
+      <wvobject type="logic" fp_name="/axi_verifier_testbench/DUT/Gouram_0/id_ready">
+         <obj_property name="ElementShortName">id_ready</obj_property>
+         <obj_property name="ObjectShortName">id_ready</obj_property>
       </wvobject>
-      <wvobject type="array" fp_name="/axi_verifier_testbench/DUT/Core2AXI_0/inst/M_AXI_ARQOS">
-         <obj_property name="ElementShortName">M_AXI_ARQOS[3:0]</obj_property>
-         <obj_property name="ObjectShortName">M_AXI_ARQOS[3:0]</obj_property>
+      <wvobject type="logic" fp_name="/axi_verifier_testbench/DUT/Gouram_0/jump_done">
+         <obj_property name="ElementShortName">jump_done</obj_property>
+         <obj_property name="ObjectShortName">jump_done</obj_property>
       </wvobject>
-      <wvobject type="logic" fp_name="/axi_verifier_testbench/DUT/Core2AXI_0/inst/M_AXI_ARVALID">
-         <obj_property name="ElementShortName">M_AXI_ARVALID</obj_property>
-         <obj_property name="ObjectShortName">M_AXI_ARVALID</obj_property>
+      <wvobject type="logic" fp_name="/axi_verifier_testbench/DUT/Gouram_0/is_decoding">
+         <obj_property name="ElementShortName">is_decoding</obj_property>
+         <obj_property name="ObjectShortName">is_decoding</obj_property>
       </wvobject>
-      <wvobject type="logic" fp_name="/axi_verifier_testbench/DUT/Core2AXI_0/inst/M_AXI_ARREADY">
-         <obj_property name="ElementShortName">M_AXI_ARREADY</obj_property>
-         <obj_property name="ObjectShortName">M_AXI_ARREADY</obj_property>
+      <wvobject type="logic" fp_name="/axi_verifier_testbench/DUT/Gouram_0/illegal_instruction">
+         <obj_property name="ElementShortName">illegal_instruction</obj_property>
+         <obj_property name="ObjectShortName">illegal_instruction</obj_property>
       </wvobject>
-      <wvobject type="array" fp_name="/axi_verifier_testbench/DUT/Core2AXI_0/inst/M_AXI_RID">
-         <obj_property name="ElementShortName">M_AXI_RID[0:0]</obj_property>
-         <obj_property name="ObjectShortName">M_AXI_RID[0:0]</obj_property>
+      <wvobject type="logic" fp_name="/axi_verifier_testbench/DUT/Gouram_0/branch_req">
+         <obj_property name="ElementShortName">branch_req</obj_property>
+         <obj_property name="ObjectShortName">branch_req</obj_property>
       </wvobject>
-      <wvobject type="array" fp_name="/axi_verifier_testbench/DUT/Core2AXI_0/inst/M_AXI_RDATA">
-         <obj_property name="ElementShortName">M_AXI_RDATA[31:0]</obj_property>
-         <obj_property name="ObjectShortName">M_AXI_RDATA[31:0]</obj_property>
+      <wvobject type="logic" fp_name="/axi_verifier_testbench/DUT/Gouram_0/ex_ready">
+         <obj_property name="ElementShortName">ex_ready</obj_property>
+         <obj_property name="ObjectShortName">ex_ready</obj_property>
       </wvobject>
-      <wvobject type="array" fp_name="/axi_verifier_testbench/DUT/Core2AXI_0/inst/M_AXI_RRESP">
-         <obj_property name="ElementShortName">M_AXI_RRESP[1:0]</obj_property>
-         <obj_property name="ObjectShortName">M_AXI_RRESP[1:0]</obj_property>
+      <wvobject type="logic" fp_name="/axi_verifier_testbench/DUT/Gouram_0/data_mem_req">
+         <obj_property name="ElementShortName">data_mem_req</obj_property>
+         <obj_property name="ObjectShortName">data_mem_req</obj_property>
       </wvobject>
-      <wvobject type="logic" fp_name="/axi_verifier_testbench/DUT/Core2AXI_0/inst/M_AXI_RLAST">
-         <obj_property name="ElementShortName">M_AXI_RLAST</obj_property>
-         <obj_property name="ObjectShortName">M_AXI_RLAST</obj_property>
+      <wvobject type="logic" fp_name="/axi_verifier_testbench/DUT/Gouram_0/data_mem_grant">
+         <obj_property name="ElementShortName">data_mem_grant</obj_property>
+         <obj_property name="ObjectShortName">data_mem_grant</obj_property>
       </wvobject>
-      <wvobject type="array" fp_name="/axi_verifier_testbench/DUT/Core2AXI_0/inst/M_AXI_RUSER">
-         <obj_property name="ElementShortName">M_AXI_RUSER[-1:0]</obj_property>
-         <obj_property name="ObjectShortName">M_AXI_RUSER[-1:0]</obj_property>
+      <wvobject type="logic" fp_name="/axi_verifier_testbench/DUT/Gouram_0/data_mem_rvalid">
+         <obj_property name="ElementShortName">data_mem_rvalid</obj_property>
+         <obj_property name="ObjectShortName">data_mem_rvalid</obj_property>
       </wvobject>
-      <wvobject type="logic" fp_name="/axi_verifier_testbench/DUT/Core2AXI_0/inst/M_AXI_RVALID">
-         <obj_property name="ElementShortName">M_AXI_RVALID</obj_property>
-         <obj_property name="ObjectShortName">M_AXI_RVALID</obj_property>
+      <wvobject type="array" fp_name="/axi_verifier_testbench/DUT/Gouram_0/data_mem_addr">
+         <obj_property name="ElementShortName">data_mem_addr[31:0]</obj_property>
+         <obj_property name="ObjectShortName">data_mem_addr[31:0]</obj_property>
       </wvobject>
-      <wvobject type="logic" fp_name="/axi_verifier_testbench/DUT/Core2AXI_0/inst/M_AXI_RREADY">
-         <obj_property name="ElementShortName">M_AXI_RREADY</obj_property>
-         <obj_property name="ObjectShortName">M_AXI_RREADY</obj_property>
+      <wvobject type="logic" fp_name="/axi_verifier_testbench/DUT/Gouram_0/wb_ready">
+         <obj_property name="ElementShortName">wb_ready</obj_property>
+         <obj_property name="ObjectShortName">wb_ready</obj_property>
       </wvobject>
-   </wvobject>
-   <wvobject type="group" fp_name="group74">
-      <obj_property name="label">Instruction Memory (AXI Protocol - VIP End)</obj_property>
-      <obj_property name="DisplayName">label</obj_property>
-      <wvobject type="array" fp_name="/axi_verifier_testbench/DUT/axi_vip_0/inst/IF/ARADDR">
-         <obj_property name="ElementShortName">ARADDR[31:0]</obj_property>
-         <obj_property name="ObjectShortName">ARADDR[31:0]</obj_property>
-      </wvobject>
-      <wvobject type="array" fp_name="/axi_verifier_testbench/DUT/axi_vip_0/inst/IF/ARID">
-         <obj_property name="ElementShortName">ARID[0:0]</obj_property>
-         <obj_property name="ObjectShortName">ARID[0:0]</obj_property>
-      </wvobject>
-      <wvobject type="array" fp_name="/axi_verifier_testbench/DUT/axi_vip_0/inst/IF/ARLEN">
-         <obj_property name="ElementShortName">ARLEN[7:0]</obj_property>
-         <obj_property name="ObjectShortName">ARLEN[7:0]</obj_property>
-      </wvobject>
-      <wvobject type="array" fp_name="/axi_verifier_testbench/DUT/axi_vip_0/inst/IF/ARSIZE">
-         <obj_property name="ElementShortName">ARSIZE[2:0]</obj_property>
-         <obj_property name="ObjectShortName">ARSIZE[2:0]</obj_property>
-      </wvobject>
-      <wvobject type="array" fp_name="/axi_verifier_testbench/DUT/axi_vip_0/inst/IF/ARBURST">
-         <obj_property name="ElementShortName">ARBURST[1:0]</obj_property>
-         <obj_property name="ObjectShortName">ARBURST[1:0]</obj_property>
-      </wvobject>
-      <wvobject type="array" fp_name="/axi_verifier_testbench/DUT/axi_vip_0/inst/IF/ARLOCK">
-         <obj_property name="ElementShortName">ARLOCK[1:0]</obj_property>
-         <obj_property name="ObjectShortName">ARLOCK[1:0]</obj_property>
-      </wvobject>
-      <wvobject type="array" fp_name="/axi_verifier_testbench/DUT/axi_vip_0/inst/IF/ARCACHE">
-         <obj_property name="ElementShortName">ARCACHE[3:0]</obj_property>
-         <obj_property name="ObjectShortName">ARCACHE[3:0]</obj_property>
-      </wvobject>
-      <wvobject type="array" fp_name="/axi_verifier_testbench/DUT/axi_vip_0/inst/IF/ARPROT">
-         <obj_property name="ElementShortName">ARPROT[2:0]</obj_property>
-         <obj_property name="ObjectShortName">ARPROT[2:0]</obj_property>
-      </wvobject>
-      <wvobject type="logic" fp_name="/axi_verifier_testbench/DUT/axi_vip_0/inst/IF/ARVALID">
-         <obj_property name="ElementShortName">ARVALID</obj_property>
-         <obj_property name="ObjectShortName">ARVALID</obj_property>
-      </wvobject>
-      <wvobject type="logic" fp_name="/axi_verifier_testbench/DUT/axi_vip_0/inst/IF/ARREADY">
-         <obj_property name="ElementShortName">ARREADY</obj_property>
-         <obj_property name="ObjectShortName">ARREADY</obj_property>
-      </wvobject>
-      <wvobject type="array" fp_name="/axi_verifier_testbench/DUT/axi_vip_0/inst/IF/ARREGION">
-         <obj_property name="ElementShortName">ARREGION[3:0]</obj_property>
-         <obj_property name="ObjectShortName">ARREGION[3:0]</obj_property>
-      </wvobject>
-      <wvobject type="array" fp_name="/axi_verifier_testbench/DUT/axi_vip_0/inst/IF/ARQOS">
-         <obj_property name="ElementShortName">ARQOS[3:0]</obj_property>
-         <obj_property name="ObjectShortName">ARQOS[3:0]</obj_property>
-      </wvobject>
-      <wvobject type="array" fp_name="/axi_verifier_testbench/DUT/axi_vip_0/inst/IF/ARUSER">
-         <obj_property name="ElementShortName">ARUSER[0:0]</obj_property>
-         <obj_property name="ObjectShortName">ARUSER[0:0]</obj_property>
-      </wvobject>
-      <wvobject type="array" fp_name="/axi_verifier_testbench/DUT/axi_vip_0/inst/IF/RID">
-         <obj_property name="ElementShortName">RID[0:0]</obj_property>
-         <obj_property name="ObjectShortName">RID[0:0]</obj_property>
-      </wvobject>
-      <wvobject type="logic" fp_name="/axi_verifier_testbench/DUT/axi_vip_0/inst/IF/RLAST">
-         <obj_property name="ElementShortName">RLAST</obj_property>
-         <obj_property name="ObjectShortName">RLAST</obj_property>
-      </wvobject>
-      <wvobject type="array" fp_name="/axi_verifier_testbench/DUT/axi_vip_0/inst/IF/RDATA">
-         <obj_property name="ElementShortName">RDATA[31:0]</obj_property>
-         <obj_property name="ObjectShortName">RDATA[31:0]</obj_property>
-      </wvobject>
-      <wvobject type="array" fp_name="/axi_verifier_testbench/DUT/axi_vip_0/inst/IF/RRESP">
-         <obj_property name="ElementShortName">RRESP[1:0]</obj_property>
-         <obj_property name="ObjectShortName">RRESP[1:0]</obj_property>
-      </wvobject>
-      <wvobject type="logic" fp_name="/axi_verifier_testbench/DUT/axi_vip_0/inst/IF/RVALID">
-         <obj_property name="ElementShortName">RVALID</obj_property>
-         <obj_property name="ObjectShortName">RVALID</obj_property>
-      </wvobject>
-      <wvobject type="logic" fp_name="/axi_verifier_testbench/DUT/axi_vip_0/inst/IF/RREADY">
-         <obj_property name="ElementShortName">RREADY</obj_property>
-         <obj_property name="ObjectShortName">RREADY</obj_property>
-      </wvobject>
-      <wvobject type="array" fp_name="/axi_verifier_testbench/DUT/axi_vip_0/inst/IF/RUSER">
-         <obj_property name="ElementShortName">RUSER[0:0]</obj_property>
-         <obj_property name="ObjectShortName">RUSER[0:0]</obj_property>
+      <wvobject type="array" fp_name="/axi_verifier_testbench/trace_out">
+         <obj_property name="ElementShortName">trace_out</obj_property>
+         <obj_property name="ObjectShortName">trace_out</obj_property>
+         <obj_property name="isExpanded"></obj_property>
+         <wvobject type="array" fp_name="/axi_verifier_testbench/trace_out.instruction">
+            <obj_property name="ElementShortName">.instruction[31:0]</obj_property>
+            <obj_property name="ObjectShortName">.instruction[31:0]</obj_property>
+         </wvobject>
+         <wvobject type="array" fp_name="/axi_verifier_testbench/trace_out.addr">
+            <obj_property name="ElementShortName">.addr[31:0]</obj_property>
+            <obj_property name="ObjectShortName">.addr[31:0]</obj_property>
+         </wvobject>
+         <wvobject type="logic" fp_name="/axi_verifier_testbench/trace_out.pass_through">
+            <obj_property name="ElementShortName">.pass_through</obj_property>
+            <obj_property name="ObjectShortName">.pass_through</obj_property>
+         </wvobject>
+         <wvobject type="array" fp_name="/axi_verifier_testbench/trace_out.if_data">
+            <obj_property name="ElementShortName">.if_data</obj_property>
+            <obj_property name="ObjectShortName">.if_data</obj_property>
+            <obj_property name="isExpanded"></obj_property>
+         </wvobject>
+         <wvobject type="array" fp_name="/axi_verifier_testbench/trace_out.id_data">
+            <obj_property name="ElementShortName">.id_data</obj_property>
+            <obj_property name="ObjectShortName">.id_data</obj_property>
+         </wvobject>
+         <wvobject type="array" fp_name="/axi_verifier_testbench/trace_out.ex_data">
+            <obj_property name="ElementShortName">.ex_data</obj_property>
+            <obj_property name="ObjectShortName">.ex_data</obj_property>
+         </wvobject>
+         <wvobject type="array" fp_name="/axi_verifier_testbench/trace_out.wb_data">
+            <obj_property name="ElementShortName">.wb_data</obj_property>
+            <obj_property name="ObjectShortName">.wb_data</obj_property>
+         </wvobject>
       </wvobject>
    </wvobject>
 </wave_config>

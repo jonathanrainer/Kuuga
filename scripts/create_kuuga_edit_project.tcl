@@ -8,6 +8,7 @@ set core2AXICIP	[file join $thisDir .. core2axi cip]
 set simOnlyFiles {}
 lappend simOnlyFiles [file join $thisDir .. tb axi_verifier axi_verifier_testbench.sv]
 lappend simOnlyFiles [file join $thisDir .. wcfg axi_verifier_config.wcfg]
+lappend simOnlyFiles [file join $thisDir .. Gouram include gouram_datatypes.sv]
 
 # Create project 
 create_project -part xc7vx485tffg1761-2  -force Kuuga [file join $workDir]

@@ -22,15 +22,18 @@
 import axi_vip_pkg::*;
 import axi_verifier_axi_vip_0_0_pkg::*;
 import axi_verifier_axi_vip_1_0_pkg::*;
+import gouram_datatypes::*;
 
 module axi_verifier_testbench();
+
+    localparam MEM_SIZE = 34;
 
     logic clk;
     logic rst_n;
     bit finish_flag;
     
     bit[32-1:0] mem_rd_data;
-    bit[0:608] trace_out;
+    trace_format trace_out;
 
     axi_verifier DUT(
         .clk_100MHz(clk),
@@ -40,6 +43,8 @@ module axi_verifier_testbench();
 
     axi_verifier_axi_vip_0_0_slv_mem_t instr_agent;
     axi_verifier_axi_vip_1_0_slv_mem_t data_agent;
+    
+    bit [31:0] mem[MEM_SIZE];
     
     initial 
     begin
@@ -54,15 +59,27 @@ module axi_verifier_testbench();
         data_agent.start_slave();
         // Do some backdoor memory access to set up the program that will be accessed throughout the 
         // test
-        set_instr_mem_default_value_rand();
-        backdoor_instr_mem_write(32'h80, 32'hF81FF06F, 4'b1111);
-        backdoor_instr_mem_read(32'h80, mem_rd_data);
+        mem[0]  = 32'h10000113; // ADDI R0, 0x100, R2
+        mem[1]  = 32'h00100093; // ADDI R0, 0x1, R1
+        mem[2]  = 32'h401101B3; // SUB R2, R1, R3 (R3 := R2 - R1)
+        mem[3]  = 32'h00002283; // LW R0, 0x0, R5
+        mem[4]  = 32'h00402303; // LW R0, 0x4, R6
+        mem[5]  = 32'h06302823; // SW R0, 0x70, R3
+        mem[6]  = 32'h07002E03; // LW R0, 0x70, R28
+        mem[7]  = 32'hF4918067; // JALR R3, -0x48, R0 
+        mem[18] = 32'h026283B3; // MUL R5 R6 R7
+        mem[19] = 32'h0253B433; // Divide R6 R7 R8 (R8 := R7/R6)
+        mem[20] = 32'h006386B3; // ADD R6 R7 R13
+        mem[21] = 32'h0000006F; // Loop on this address
+        mem[32] = 32'hF81FF06F; // Jump to Address 0
+        mem[33] = 32'h0000006F; // Trap Address
+        for (int i = 0; i < MEM_SIZE; i++) backdoor_instr_mem_write(i*4, mem[i], 4'b1111);
         // Set up the device to run
         clk = 0;
         rst_n = 0;
         #50 rst_n = 1;
         finish_flag = 0;
-        #1000 $finish;
+        #3000 $finish;
     end
     
     always
