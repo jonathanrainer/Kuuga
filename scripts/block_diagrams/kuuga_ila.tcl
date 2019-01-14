@@ -1,6 +1,6 @@
 
 ################################################################
-# This is a generated script based on design: axi_verifier
+# This is a generated script based on design: kuuga_ila
 #
 # Though there are limitations about the generated script,
 # the main purpose of this utility is to make learning
@@ -35,7 +35,7 @@ if { [string first $scripts_vivado_version $current_vivado_version] == -1 } {
 ################################################################
 
 # To test this script, run the following commands from Vivado Tcl console:
-# source axi_verifier_script.tcl
+# source kuuga_ila_script.tcl
 
 # If there is no project opened, this script will create a
 # project, but make sure you do not have an existing project
@@ -50,7 +50,7 @@ if { $list_projs eq "" } {
 
 # CHANGE DESIGN NAME HERE
 variable design_name
-set design_name axi_verifier
+set design_name kuuga_ila
 
 # If you do not already have an existing IP Integrator design open,
 # you can create a design using the following command:
@@ -127,8 +127,11 @@ if { $bCheckIPs == 1 } {
 jonathan-rainer.com:Kuuga:Core2AXI:1.2\
 jonathan-rainer.com:Kuuga:Godai:1.0\
 jonathan-rainer.com:Kuuga:Gouram:1.2\
-xilinx.com:ip:axi_vip:1.1\
+xilinx.com:ip:axi_bram_ctrl:4.0\
+xilinx.com:ip:blk_mem_gen:8.4\
+xilinx.com:ip:clk_wiz:6.0\
 xilinx.com:ip:proc_sys_reset:5.0\
+xilinx.com:ip:system_ila:1.1\
 xilinx.com:ip:xlconstant:1.1\
 "
 
@@ -193,23 +196,25 @@ proc create_root_design { parentCell } {
 
 
   # Create interface ports
+  set sys_diff_clock [ create_bd_intf_port -mode Slave -vlnv xilinx.com:interface:diff_clock_rtl:1.0 sys_diff_clock ]
+  set_property -dict [ list \
+   CONFIG.FREQ_HZ {200000000} \
+   ] $sys_diff_clock
 
   # Create ports
-  set clk_100MHz [ create_bd_port -dir I -type clk clk_100MHz ]
+  set reset [ create_bd_port -dir I -type rst reset ]
   set_property -dict [ list \
-   CONFIG.FREQ_HZ {100000000} \
- ] $clk_100MHz
-  set reset_rtl [ create_bd_port -dir I -type rst reset_rtl ]
-  set_property -dict [ list \
-   CONFIG.POLARITY {ACTIVE_LOW} \
- ] $reset_rtl
-  set trace_out [ create_bd_port -dir O -from 608 -to 0 -type data trace_out ]
+   CONFIG.POLARITY {ACTIVE_HIGH} \
+ ] $reset
 
   # Create instance: Core2AXI_Data, and set properties
   set Core2AXI_Data [ create_bd_cell -type ip -vlnv jonathan-rainer.com:Kuuga:Core2AXI:1.2 Core2AXI_Data ]
 
   # Create instance: Core2AXI_Inst, and set properties
   set Core2AXI_Inst [ create_bd_cell -type ip -vlnv jonathan-rainer.com:Kuuga:Core2AXI:1.2 Core2AXI_Inst ]
+  set_property -dict [ list \
+   CONFIG.C_M_AXI_AWUSER_WIDTH {0} \
+ ] $Core2AXI_Inst
 
   # Create instance: Godai_0, and set properties
   set Godai_0 [ create_bd_cell -type ip -vlnv jonathan-rainer.com:Kuuga:Godai:1.0 Godai_0 ]
@@ -217,24 +222,54 @@ proc create_root_design { parentCell } {
   # Create instance: Gouram_0, and set properties
   set Gouram_0 [ create_bd_cell -type ip -vlnv jonathan-rainer.com:Kuuga:Gouram:1.2 Gouram_0 ]
 
-  # Create instance: axi_vip_0, and set properties
-  set axi_vip_0 [ create_bd_cell -type ip -vlnv xilinx.com:ip:axi_vip:1.1 axi_vip_0 ]
+  # Create instance: axi_bram_ctrl_0, and set properties
+  set axi_bram_ctrl_0 [ create_bd_cell -type ip -vlnv xilinx.com:ip:axi_bram_ctrl:4.0 axi_bram_ctrl_0 ]
   set_property -dict [ list \
-   CONFIG.INTERFACE_MODE {SLAVE} \
- ] $axi_vip_0
+   CONFIG.SINGLE_PORT_BRAM {1} \
+ ] $axi_bram_ctrl_0
 
-  # Create instance: axi_vip_1, and set properties
-  set axi_vip_1 [ create_bd_cell -type ip -vlnv xilinx.com:ip:axi_vip:1.1 axi_vip_1 ]
+  # Create instance: axi_bram_ctrl_0_bram, and set properties
+  set axi_bram_ctrl_0_bram [ create_bd_cell -type ip -vlnv xilinx.com:ip:blk_mem_gen:8.4 axi_bram_ctrl_0_bram ]
+
+  # Create instance: axi_bram_ctrl_1, and set properties
+  set axi_bram_ctrl_1 [ create_bd_cell -type ip -vlnv xilinx.com:ip:axi_bram_ctrl:4.0 axi_bram_ctrl_1 ]
   set_property -dict [ list \
-   CONFIG.INTERFACE_MODE {SLAVE} \
- ] $axi_vip_1
+   CONFIG.SINGLE_PORT_BRAM {1} \
+ ] $axi_bram_ctrl_1
+
+  # Create instance: axi_bram_ctrl_1_bram, and set properties
+  set axi_bram_ctrl_1_bram [ create_bd_cell -type ip -vlnv xilinx.com:ip:blk_mem_gen:8.4 axi_bram_ctrl_1_bram ]
+
+  # Create instance: clk_wiz_0, and set properties
+  set clk_wiz_0 [ create_bd_cell -type ip -vlnv xilinx.com:ip:clk_wiz:6.0 clk_wiz_0 ]
+  set_property -dict [ list \
+   CONFIG.CLK_IN1_BOARD_INTERFACE {sys_diff_clock} \
+   CONFIG.RESET_BOARD_INTERFACE {reset} \
+   CONFIG.RESET_PORT {resetn} \
+   CONFIG.RESET_TYPE {ACTIVE_LOW} \
+   CONFIG.USE_BOARD_FLOW {true} \
+ ] $clk_wiz_0
 
   # Create instance: proc_sys_reset_0, and set properties
   set proc_sys_reset_0 [ create_bd_cell -type ip -vlnv xilinx.com:ip:proc_sys_reset:5.0 proc_sys_reset_0 ]
   set_property -dict [ list \
-   CONFIG.RESET_BOARD_INTERFACE {Custom} \
+   CONFIG.RESET_BOARD_INTERFACE {reset} \
    CONFIG.USE_BOARD_FLOW {true} \
  ] $proc_sys_reset_0
+
+  # Create instance: system_ila_0, and set properties
+  set system_ila_0 [ create_bd_cell -type ip -vlnv xilinx.com:ip:system_ila:1.1 system_ila_0 ]
+  set_property -dict [ list \
+   CONFIG.ALL_PROBE_SAME_MU_CNT {1} \
+   CONFIG.C_BRAM_CNT {135.5} \
+   CONFIG.C_DATA_DEPTH {8192} \
+   CONFIG.C_EN_STRG_QUAL {0} \
+   CONFIG.C_MON_TYPE {NATIVE} \
+   CONFIG.C_PROBE0_MU_CNT {1} \
+   CONFIG.C_PROBE0_TYPE {1} \
+   CONFIG.C_PROBE0_WIDTH {609} \
+   CONFIG.C_PROBE_WIDTH_PROPAGATION {MANUAL} \
+ ] $system_ila_0
 
   # Create instance: xlconstant_0, and set properties
   set xlconstant_0 [ create_bd_cell -type ip -vlnv xilinx.com:ip:xlconstant:1.1 xlconstant_0 ]
@@ -257,8 +292,11 @@ proc create_root_design { parentCell } {
  ] $xlconstant_2
 
   # Create interface connections
-  connect_bd_intf_net -intf_net Core2AXI_0_M_AXI [get_bd_intf_pins Core2AXI_Inst/M_AXI] [get_bd_intf_pins axi_vip_0/S_AXI]
-  connect_bd_intf_net -intf_net Core2AXI_1_M_AXI [get_bd_intf_pins Core2AXI_Data/M_AXI] [get_bd_intf_pins axi_vip_1/S_AXI]
+  connect_bd_intf_net -intf_net Core2AXI_Data_M_AXI [get_bd_intf_pins Core2AXI_Data/M_AXI] [get_bd_intf_pins axi_bram_ctrl_0/S_AXI]
+  connect_bd_intf_net -intf_net Core2AXI_Inst_M_AXI [get_bd_intf_pins Core2AXI_Inst/M_AXI] [get_bd_intf_pins axi_bram_ctrl_1/S_AXI]
+  connect_bd_intf_net -intf_net axi_bram_ctrl_0_BRAM_PORTA [get_bd_intf_pins axi_bram_ctrl_0/BRAM_PORTA] [get_bd_intf_pins axi_bram_ctrl_0_bram/BRAM_PORTA]
+  connect_bd_intf_net -intf_net axi_bram_ctrl_1_BRAM_PORTA [get_bd_intf_pins axi_bram_ctrl_1/BRAM_PORTA] [get_bd_intf_pins axi_bram_ctrl_1_bram/BRAM_PORTA]
+  connect_bd_intf_net -intf_net sys_diff_clock_1 [get_bd_intf_ports sys_diff_clock] [get_bd_intf_pins clk_wiz_0/CLK_IN1_D]
 
   # Create port connections
   connect_bd_net -net Core2AXI_0_data_gnt_o [get_bd_pins Core2AXI_Inst/data_gnt_o] [get_bd_pins Godai_0/instr_gnt_i] [get_bd_pins Gouram_0/instr_grant]
@@ -284,17 +322,17 @@ proc create_root_design { parentCell } {
   connect_bd_net -net Godai_0_is_decoding_o [get_bd_pins Godai_0/is_decoding_o] [get_bd_pins Gouram_0/is_decoding]
   connect_bd_net -net Godai_0_jump_done_o [get_bd_pins Godai_0/jump_done_o] [get_bd_pins Gouram_0/jump_done]
   connect_bd_net -net Godai_0_wb_ready_o [get_bd_pins Godai_0/wb_ready_o] [get_bd_pins Gouram_0/wb_ready]
-  connect_bd_net -net Gouram_0_trace_data_o [get_bd_ports trace_out] [get_bd_pins Gouram_0/trace_data_o]
-  connect_bd_net -net clk_100MHz_1 [get_bd_ports clk_100MHz] [get_bd_pins Core2AXI_Data/M_AXI_ACLK] [get_bd_pins Core2AXI_Inst/M_AXI_ACLK] [get_bd_pins Godai_0/clk] [get_bd_pins Gouram_0/clk] [get_bd_pins axi_vip_0/aclk] [get_bd_pins axi_vip_1/aclk] [get_bd_pins proc_sys_reset_0/slowest_sync_clk]
-  connect_bd_net -net proc_sys_reset_0_peripheral_aresetn [get_bd_pins Core2AXI_Data/M_AXI_ARESETN] [get_bd_pins Core2AXI_Inst/M_AXI_ARESETN] [get_bd_pins Godai_0/rst_n] [get_bd_pins Gouram_0/rst] [get_bd_pins axi_vip_0/aresetn] [get_bd_pins axi_vip_1/aresetn] [get_bd_pins proc_sys_reset_0/peripheral_aresetn]
-  connect_bd_net -net reset_rtl_1 [get_bd_ports reset_rtl] [get_bd_pins proc_sys_reset_0/ext_reset_in]
+  connect_bd_net -net Gouram_0_trace_data_o [get_bd_pins Gouram_0/trace_data_o] [get_bd_pins system_ila_0/probe0]
+  connect_bd_net -net clk_100MHz_1 [get_bd_pins Core2AXI_Data/M_AXI_ACLK] [get_bd_pins Core2AXI_Inst/M_AXI_ACLK] [get_bd_pins Godai_0/clk] [get_bd_pins Gouram_0/clk] [get_bd_pins axi_bram_ctrl_0/s_axi_aclk] [get_bd_pins axi_bram_ctrl_1/s_axi_aclk] [get_bd_pins clk_wiz_0/clk_out1] [get_bd_pins proc_sys_reset_0/slowest_sync_clk] [get_bd_pins system_ila_0/clk]
+  connect_bd_net -net proc_sys_reset_0_peripheral_aresetn [get_bd_pins Core2AXI_Data/M_AXI_ARESETN] [get_bd_pins Core2AXI_Inst/M_AXI_ARESETN] [get_bd_pins Godai_0/rst_n] [get_bd_pins Gouram_0/rst] [get_bd_pins axi_bram_ctrl_0/s_axi_aresetn] [get_bd_pins axi_bram_ctrl_1/s_axi_aresetn] [get_bd_pins clk_wiz_0/resetn] [get_bd_pins proc_sys_reset_0/peripheral_aresetn]
+  connect_bd_net -net reset_1 [get_bd_ports reset] [get_bd_pins proc_sys_reset_0/ext_reset_in]
   connect_bd_net -net xlconstant_0_dout [get_bd_pins Core2AXI_Inst/data_we_i] [get_bd_pins Godai_0/data_err_i] [get_bd_pins xlconstant_0/dout]
   connect_bd_net -net xlconstant_1_dout [get_bd_pins Core2AXI_Inst/data_be_i] [get_bd_pins xlconstant_1/dout]
   connect_bd_net -net xlconstant_2_dout [get_bd_pins Core2AXI_Inst/data_wdata_i] [get_bd_pins Godai_0/irq_i] [get_bd_pins xlconstant_2/dout]
 
   # Create address segments
-  create_bd_addr_seg -range 0x00010000 -offset 0x00000000 [get_bd_addr_spaces Core2AXI_Data/M_AXI] [get_bd_addr_segs axi_vip_1/S_AXI/Reg] SEG_axi_vip_1_Reg
-  create_bd_addr_seg -range 0x00010000 -offset 0x00000000 [get_bd_addr_spaces Core2AXI_Inst/M_AXI] [get_bd_addr_segs axi_vip_0/S_AXI/Reg] SEG_axi_vip_0_Reg
+  create_bd_addr_seg -range 0x00004000 -offset 0x00000000 [get_bd_addr_spaces Core2AXI_Data/M_AXI] [get_bd_addr_segs axi_bram_ctrl_0/S_AXI/Mem0] SEG_axi_bram_ctrl_0_Mem0
+  create_bd_addr_seg -range 0x00004000 -offset 0x00000000 [get_bd_addr_spaces Core2AXI_Inst/M_AXI] [get_bd_addr_segs axi_bram_ctrl_1/S_AXI/Mem0] SEG_axi_bram_ctrl_1_Mem0
 
 
   # Restore current instance
@@ -311,4 +349,6 @@ proc create_root_design { parentCell } {
 
 create_root_design ""
 
+
+common::send_msg_id "BD_TCL-1000" "WARNING" "This Tcl script was generated from a block design that has not been validated. It is possible that design <$design_name> may result in errors during validation."
 

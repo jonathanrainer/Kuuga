@@ -79,12 +79,12 @@ module axi_verifier_testbench();
         rst_n = 0;
         #50 rst_n = 1;
         finish_flag = 0;
-        #3000 $finish;
     end
     
     always
     begin
-        #5 clk = ~clk;        
+        #5 clk = ~clk;
+        if (trace_out != null && trace_out.addr == 32'h54) $finish;   
     end  
     
     /*************************************************************************************************
