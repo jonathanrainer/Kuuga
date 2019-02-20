@@ -20,8 +20,8 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 import axi_vip_pkg::*;
-import axi_verifier_axi_vip_0_0_pkg::*;
-import axi_verifier_axi_vip_1_0_pkg::*;
+import axi_verifier_axi_vip_0_1_pkg::*;
+import axi_verifier_axi_vip_1_1_pkg::*;
 import gouram_datatypes::*;
 
 module axi_verifier_testbench();
@@ -41,8 +41,8 @@ module axi_verifier_testbench();
         .trace_out(trace_out)
     );
 
-    axi_verifier_axi_vip_0_0_slv_mem_t instr_agent;
-    axi_verifier_axi_vip_1_0_slv_mem_t data_agent;
+    axi_verifier_axi_vip_0_1_slv_mem_t instr_agent;
+    axi_verifier_axi_vip_1_1_slv_mem_t data_agent;
     
     bit [31:0] mem[MEM_SIZE];
     
@@ -70,7 +70,8 @@ module axi_verifier_testbench();
         mem[18] = 32'h026283B3; // MUL R5 R6 R7
         mem[19] = 32'h0253B433; // Divide R6 R7 R8 (R8 := R7/R6)
         mem[20] = 32'h006386B3; // ADD R6 R7 R13
-        mem[21] = 32'h0000006F; // Loop on this address
+        mem[21] = 32'h06D02C23; // SW R0, 0x74, R13
+        mem[22] = 32'h0000006F; // Loop on this address
         mem[32] = 32'hF81FF06F; // Jump to Address 0
         mem[33] = 32'h0000006F; // Trap Address
         for (int i = 0; i < MEM_SIZE; i++) backdoor_instr_mem_write(i*4, mem[i], 4'b1111);
@@ -84,7 +85,7 @@ module axi_verifier_testbench();
     always
     begin
         #5 clk = ~clk;
-        if (trace_out != null && trace_out.addr == 32'h54) $finish;   
+        if (trace_out != null && trace_out.instruction == 32'h07002e03) $finish;   
     end  
     
     /*************************************************************************************************

@@ -16,16 +16,16 @@
       </db_ref>
    </db_ref_list>
    <zoom_setting>
-      <ZoomStartTime time="551890000fs"></ZoomStartTime>
-      <ZoomEndTime time="868890001fs"></ZoomEndTime>
-      <Cursor1Time time="641890000fs"></Cursor1Time>
+      <ZoomStartTime time="799151337fs"></ZoomStartTime>
+      <ZoomEndTime time="1040169733fs"></ZoomEndTime>
+      <Cursor1Time time="1000000000fs"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
       <NameColumnWidth column_width="311"></NameColumnWidth>
-      <ValueColumnWidth column_width="317"></ValueColumnWidth>
+      <ValueColumnWidth column_width="309"></ValueColumnWidth>
    </column_width_setting>
-   <WVObjectSize size="6" />
-   <wvobject type="array" fp_name="/axi_verifier_testbench/DUT/Gouram_0/inst/gouram/counter">
+   <WVObjectSize size="7" />
+   <wvobject type="array" fp_name="/axi_verifier_testbench/DUT/Gouram/inst/gouram/counter">
       <obj_property name="ElementShortName">counter[31:0]</obj_property>
       <obj_property name="ObjectShortName">counter[31:0]</obj_property>
    </wvobject>
@@ -45,140 +45,72 @@
       <obj_property name="label">Instruction Memory (Core Protocol)</obj_property>
       <obj_property name="DisplayName">label</obj_property>
       <obj_property name="isExpanded"></obj_property>
-      <wvobject type="logic" fp_name="/axi_verifier_testbench/DUT/Godai_0/instr_req_o">
+      <wvobject type="logic" fp_name="/axi_verifier_testbench/DUT/Godai/instr_req_o">
          <obj_property name="ElementShortName">instr_req_o</obj_property>
          <obj_property name="ObjectShortName">instr_req_o</obj_property>
       </wvobject>
-      <wvobject type="logic" fp_name="/axi_verifier_testbench/DUT/Godai_0/instr_gnt_i">
+      <wvobject type="logic" fp_name="/axi_verifier_testbench/DUT/Godai/instr_gnt_i">
          <obj_property name="ElementShortName">instr_gnt_i</obj_property>
          <obj_property name="ObjectShortName">instr_gnt_i</obj_property>
       </wvobject>
-      <wvobject type="logic" fp_name="/axi_verifier_testbench/DUT/Godai_0/instr_rvalid_i">
+      <wvobject type="logic" fp_name="/axi_verifier_testbench/DUT/Godai/instr_rvalid_i">
          <obj_property name="ElementShortName">instr_rvalid_i</obj_property>
          <obj_property name="ObjectShortName">instr_rvalid_i</obj_property>
       </wvobject>
-      <wvobject type="array" fp_name="/axi_verifier_testbench/DUT/Godai_0/instr_addr_o">
+      <wvobject type="array" fp_name="/axi_verifier_testbench/DUT/Godai/instr_addr_o">
          <obj_property name="ElementShortName">instr_addr_o[31:0]</obj_property>
          <obj_property name="ObjectShortName">instr_addr_o[31:0]</obj_property>
       </wvobject>
-      <wvobject type="array" fp_name="/axi_verifier_testbench/DUT/Godai_0/instr_rdata_i">
+      <wvobject type="array" fp_name="/axi_verifier_testbench/DUT/Godai/instr_rdata_i">
          <obj_property name="ElementShortName">instr_rdata_i[31:0]</obj_property>
          <obj_property name="ObjectShortName">instr_rdata_i[31:0]</obj_property>
+      </wvobject>
+   </wvobject>
+   <wvobject type="group" fp_name="group55">
+      <obj_property name="label">Data Memory (Core Protocol)</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <obj_property name="isExpanded"></obj_property>
+      <wvobject type="logic" fp_name="/axi_verifier_testbench/DUT/Core2AXIData/inst/mod/data_req_i">
+         <obj_property name="ElementShortName">data_req_i</obj_property>
+         <obj_property name="ObjectShortName">data_req_i</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/axi_verifier_testbench/DUT/Core2AXIData/inst/mod/data_gnt_o">
+         <obj_property name="ElementShortName">data_gnt_o</obj_property>
+         <obj_property name="ObjectShortName">data_gnt_o</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/axi_verifier_testbench/DUT/Core2AXIData/inst/mod/data_rvalid_o">
+         <obj_property name="ElementShortName">data_rvalid_o</obj_property>
+         <obj_property name="ObjectShortName">data_rvalid_o</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/axi_verifier_testbench/DUT/Core2AXIData/inst/mod/data_addr_i">
+         <obj_property name="ElementShortName">data_addr_i[31:0]</obj_property>
+         <obj_property name="ObjectShortName">data_addr_i[31:0]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/axi_verifier_testbench/DUT/Core2AXIData/inst/mod/data_we_i">
+         <obj_property name="ElementShortName">data_we_i</obj_property>
+         <obj_property name="ObjectShortName">data_we_i</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/axi_verifier_testbench/DUT/Core2AXIData/inst/mod/data_be_i">
+         <obj_property name="ElementShortName">data_be_i[4:0]</obj_property>
+         <obj_property name="ObjectShortName">data_be_i[4:0]</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/axi_verifier_testbench/DUT/Core2AXIData/inst/mod/data_rdata_o">
+         <obj_property name="ElementShortName">data_rdata_o[31:0]</obj_property>
+         <obj_property name="ObjectShortName">data_rdata_o[31:0]</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/axi_verifier_testbench/DUT/Core2AXIData/inst/mod/data_wdata_i">
+         <obj_property name="ElementShortName">data_wdata_i[31:0]</obj_property>
+         <obj_property name="ObjectShortName">data_wdata_i[31:0]</obj_property>
       </wvobject>
    </wvobject>
    <wvobject type="group" fp_name="group752">
       <obj_property name="label">Tracing Signals</obj_property>
       <obj_property name="DisplayName">label</obj_property>
       <obj_property name="isExpanded"></obj_property>
-      <wvobject type="logic" fp_name="/axi_verifier_testbench/DUT/Gouram_0/if_busy">
-         <obj_property name="ElementShortName">if_busy</obj_property>
-         <obj_property name="ObjectShortName">if_busy</obj_property>
-      </wvobject>
-      <wvobject type="logic" fp_name="/axi_verifier_testbench/DUT/Gouram_0/if_ready">
-         <obj_property name="ElementShortName">if_ready</obj_property>
-         <obj_property name="ObjectShortName">if_ready</obj_property>
-      </wvobject>
-      <wvobject type="logic" fp_name="/axi_verifier_testbench/DUT/Gouram_0/branch_decision">
-         <obj_property name="ElementShortName">branch_decision</obj_property>
-         <obj_property name="ObjectShortName">branch_decision</obj_property>
-      </wvobject>
-      <wvobject type="logic" fp_name="/axi_verifier_testbench/DUT/Gouram_0/instr_req">
-         <obj_property name="ElementShortName">instr_req</obj_property>
-         <obj_property name="ObjectShortName">instr_req</obj_property>
-      </wvobject>
-      <wvobject type="array" fp_name="/axi_verifier_testbench/DUT/Gouram_0/instr_addr">
-         <obj_property name="ElementShortName">instr_addr[31:0]</obj_property>
-         <obj_property name="ObjectShortName">instr_addr[31:0]</obj_property>
-      </wvobject>
-      <wvobject type="logic" fp_name="/axi_verifier_testbench/DUT/Gouram_0/instr_grant">
-         <obj_property name="ElementShortName">instr_grant</obj_property>
-         <obj_property name="ObjectShortName">instr_grant</obj_property>
-      </wvobject>
-      <wvobject type="logic" fp_name="/axi_verifier_testbench/DUT/Gouram_0/instr_rvalid">
-         <obj_property name="ElementShortName">instr_rvalid</obj_property>
-         <obj_property name="ObjectShortName">instr_rvalid</obj_property>
-      </wvobject>
-      <wvobject type="array" fp_name="/axi_verifier_testbench/DUT/Gouram_0/instr_rdata">
-         <obj_property name="ElementShortName">instr_rdata[31:0]</obj_property>
-         <obj_property name="ObjectShortName">instr_rdata[31:0]</obj_property>
-      </wvobject>
-      <wvobject type="logic" fp_name="/axi_verifier_testbench/DUT/Gouram_0/id_ready">
-         <obj_property name="ElementShortName">id_ready</obj_property>
-         <obj_property name="ObjectShortName">id_ready</obj_property>
-      </wvobject>
-      <wvobject type="logic" fp_name="/axi_verifier_testbench/DUT/Gouram_0/jump_done">
-         <obj_property name="ElementShortName">jump_done</obj_property>
-         <obj_property name="ObjectShortName">jump_done</obj_property>
-      </wvobject>
-      <wvobject type="logic" fp_name="/axi_verifier_testbench/DUT/Gouram_0/is_decoding">
-         <obj_property name="ElementShortName">is_decoding</obj_property>
-         <obj_property name="ObjectShortName">is_decoding</obj_property>
-      </wvobject>
-      <wvobject type="logic" fp_name="/axi_verifier_testbench/DUT/Gouram_0/illegal_instruction">
-         <obj_property name="ElementShortName">illegal_instruction</obj_property>
-         <obj_property name="ObjectShortName">illegal_instruction</obj_property>
-      </wvobject>
-      <wvobject type="logic" fp_name="/axi_verifier_testbench/DUT/Gouram_0/branch_req">
-         <obj_property name="ElementShortName">branch_req</obj_property>
-         <obj_property name="ObjectShortName">branch_req</obj_property>
-      </wvobject>
-      <wvobject type="logic" fp_name="/axi_verifier_testbench/DUT/Gouram_0/ex_ready">
-         <obj_property name="ElementShortName">ex_ready</obj_property>
-         <obj_property name="ObjectShortName">ex_ready</obj_property>
-      </wvobject>
-      <wvobject type="logic" fp_name="/axi_verifier_testbench/DUT/Gouram_0/data_mem_req">
-         <obj_property name="ElementShortName">data_mem_req</obj_property>
-         <obj_property name="ObjectShortName">data_mem_req</obj_property>
-      </wvobject>
-      <wvobject type="logic" fp_name="/axi_verifier_testbench/DUT/Gouram_0/data_mem_grant">
-         <obj_property name="ElementShortName">data_mem_grant</obj_property>
-         <obj_property name="ObjectShortName">data_mem_grant</obj_property>
-      </wvobject>
-      <wvobject type="logic" fp_name="/axi_verifier_testbench/DUT/Gouram_0/data_mem_rvalid">
-         <obj_property name="ElementShortName">data_mem_rvalid</obj_property>
-         <obj_property name="ObjectShortName">data_mem_rvalid</obj_property>
-      </wvobject>
-      <wvobject type="array" fp_name="/axi_verifier_testbench/DUT/Gouram_0/data_mem_addr">
-         <obj_property name="ElementShortName">data_mem_addr[31:0]</obj_property>
-         <obj_property name="ObjectShortName">data_mem_addr[31:0]</obj_property>
-      </wvobject>
-      <wvobject type="logic" fp_name="/axi_verifier_testbench/DUT/Gouram_0/wb_ready">
-         <obj_property name="ElementShortName">wb_ready</obj_property>
-         <obj_property name="ObjectShortName">wb_ready</obj_property>
-      </wvobject>
       <wvobject type="array" fp_name="/axi_verifier_testbench/trace_out">
          <obj_property name="ElementShortName">trace_out</obj_property>
          <obj_property name="ObjectShortName">trace_out</obj_property>
          <obj_property name="isExpanded"></obj_property>
-         <wvobject type="array" fp_name="/axi_verifier_testbench/trace_out.instruction">
-            <obj_property name="ElementShortName">.instruction[31:0]</obj_property>
-            <obj_property name="ObjectShortName">.instruction[31:0]</obj_property>
-         </wvobject>
-         <wvobject type="array" fp_name="/axi_verifier_testbench/trace_out.addr">
-            <obj_property name="ElementShortName">.addr[31:0]</obj_property>
-            <obj_property name="ObjectShortName">.addr[31:0]</obj_property>
-         </wvobject>
-         <wvobject type="logic" fp_name="/axi_verifier_testbench/trace_out.pass_through">
-            <obj_property name="ElementShortName">.pass_through</obj_property>
-            <obj_property name="ObjectShortName">.pass_through</obj_property>
-         </wvobject>
-         <wvobject type="array" fp_name="/axi_verifier_testbench/trace_out.if_data">
-            <obj_property name="ElementShortName">.if_data</obj_property>
-            <obj_property name="ObjectShortName">.if_data</obj_property>
-            <obj_property name="isExpanded"></obj_property>
-         </wvobject>
-         <wvobject type="array" fp_name="/axi_verifier_testbench/trace_out.id_data">
-            <obj_property name="ElementShortName">.id_data</obj_property>
-            <obj_property name="ObjectShortName">.id_data</obj_property>
-         </wvobject>
-         <wvobject type="array" fp_name="/axi_verifier_testbench/trace_out.ex_data">
-            <obj_property name="ElementShortName">.ex_data</obj_property>
-            <obj_property name="ObjectShortName">.ex_data</obj_property>
-         </wvobject>
-         <wvobject type="array" fp_name="/axi_verifier_testbench/trace_out.wb_data">
-            <obj_property name="ElementShortName">.wb_data</obj_property>
-            <obj_property name="ObjectShortName">.wb_data</obj_property>
-         </wvobject>
       </wvobject>
    </wvobject>
 </wave_config>

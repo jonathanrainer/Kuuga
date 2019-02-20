@@ -37,6 +37,13 @@ if { [string first $scripts_vivado_version $current_vivado_version] == -1 } {
 # To test this script, run the following commands from Vivado Tcl console:
 # source axi_verifier_script.tcl
 
+
+# The design that will be created by this Tcl script contains the following 
+# module references:
+# core2axi_wrapper, core2axi_wrapper, godai_wrapper, gouram_wrapper
+
+# Please add the sources of those modules before sourcing this Tcl script.
+
 # If there is no project opened, this script will create a
 # project, but make sure you do not have an existing project
 # <./myproj/project_1.xpr> in the current working folder.
@@ -124,9 +131,6 @@ set bCheckIPsPassed 1
 set bCheckIPs 1
 if { $bCheckIPs == 1 } {
    set list_check_ips "\ 
-jonathan-rainer.com:Kuuga:Core2AXI:1.2\
-jonathan-rainer.com:Kuuga:Godai:1.0\
-jonathan-rainer.com:Kuuga:Gouram:1.2\
 xilinx.com:ip:axi_vip:1.1\
 xilinx.com:ip:proc_sys_reset:5.0\
 xilinx.com:ip:xlconstant:1.1\
@@ -147,6 +151,34 @@ xilinx.com:ip:xlconstant:1.1\
       set bCheckIPsPassed 0
    }
 
+}
+
+##################################################################
+# CHECK Modules
+##################################################################
+set bCheckModules 1
+if { $bCheckModules == 1 } {
+   set list_check_mods "\ 
+core2axi_wrapper\
+core2axi_wrapper\
+godai_wrapper\
+gouram_wrapper\
+"
+
+   set list_mods_missing ""
+   common::send_msg_id "BD_TCL-006" "INFO" "Checking if the following modules exist in the project's sources: $list_check_mods ."
+
+   foreach mod_vlnv $list_check_mods {
+      if { [can_resolve_reference $mod_vlnv] == 0 } {
+         lappend list_mods_missing $mod_vlnv
+      }
+   }
+
+   if { $list_mods_missing ne "" } {
+      catch {common::send_msg_id "BD_TCL-115" "ERROR" "The following module(s) are not found in the project: $list_mods_missing" }
+      common::send_msg_id "BD_TCL-008" "INFO" "Please add source files for the missing module(s) above."
+      set bCheckIPsPassed 0
+   }
 }
 
 if { $bCheckIPsPassed != 1 } {
@@ -203,20 +235,52 @@ proc create_root_design { parentCell } {
   set_property -dict [ list \
    CONFIG.POLARITY {ACTIVE_LOW} \
  ] $reset_rtl
-  set trace_out [ create_bd_port -dir O -from 608 -to 0 -type data trace_out ]
+  set trace_out [ create_bd_port -dir O -from 127 -to 0 -type data trace_out ]
 
-  # Create instance: Core2AXI_Data, and set properties
-  set Core2AXI_Data [ create_bd_cell -type ip -vlnv jonathan-rainer.com:Kuuga:Core2AXI:1.2 Core2AXI_Data ]
-
-  # Create instance: Core2AXI_Inst, and set properties
-  set Core2AXI_Inst [ create_bd_cell -type ip -vlnv jonathan-rainer.com:Kuuga:Core2AXI:1.2 Core2AXI_Inst ]
-
-  # Create instance: Godai_0, and set properties
-  set Godai_0 [ create_bd_cell -type ip -vlnv jonathan-rainer.com:Kuuga:Godai:1.0 Godai_0 ]
-
-  # Create instance: Gouram_0, and set properties
-  set Gouram_0 [ create_bd_cell -type ip -vlnv jonathan-rainer.com:Kuuga:Gouram:1.2 Gouram_0 ]
-
+  # Create instance: Core2AXIData, and set properties
+  set block_name core2axi_wrapper
+  set block_cell_name Core2AXIData
+  if { [catch {set Core2AXIData [create_bd_cell -type module -reference $block_name $block_cell_name] } errmsg] } {
+     catch {common::send_msg_id "BD_TCL-105" "ERROR" "Unable to add referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
+     return 1
+   } elseif { $Core2AXIData eq "" } {
+     catch {common::send_msg_id "BD_TCL-106" "ERROR" "Unable to referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
+     return 1
+   }
+  
+  # Create instance: Core2AXIInstruction, and set properties
+  set block_name core2axi_wrapper
+  set block_cell_name Core2AXIInstruction
+  if { [catch {set Core2AXIInstruction [create_bd_cell -type module -reference $block_name $block_cell_name] } errmsg] } {
+     catch {common::send_msg_id "BD_TCL-105" "ERROR" "Unable to add referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
+     return 1
+   } elseif { $Core2AXIInstruction eq "" } {
+     catch {common::send_msg_id "BD_TCL-106" "ERROR" "Unable to referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
+     return 1
+   }
+  
+  # Create instance: Godai, and set properties
+  set block_name godai_wrapper
+  set block_cell_name Godai
+  if { [catch {set Godai [create_bd_cell -type module -reference $block_name $block_cell_name] } errmsg] } {
+     catch {common::send_msg_id "BD_TCL-105" "ERROR" "Unable to add referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
+     return 1
+   } elseif { $Godai eq "" } {
+     catch {common::send_msg_id "BD_TCL-106" "ERROR" "Unable to referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
+     return 1
+   }
+  
+  # Create instance: Gouram, and set properties
+  set block_name gouram_wrapper
+  set block_cell_name Gouram
+  if { [catch {set Gouram [create_bd_cell -type module -reference $block_name $block_cell_name] } errmsg] } {
+     catch {common::send_msg_id "BD_TCL-105" "ERROR" "Unable to add referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
+     return 1
+   } elseif { $Gouram eq "" } {
+     catch {common::send_msg_id "BD_TCL-106" "ERROR" "Unable to referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
+     return 1
+   }
+  
   # Create instance: axi_vip_0, and set properties
   set axi_vip_0 [ create_bd_cell -type ip -vlnv xilinx.com:ip:axi_vip:1.1 axi_vip_0 ]
   set_property -dict [ list \
@@ -257,44 +321,35 @@ proc create_root_design { parentCell } {
  ] $xlconstant_2
 
   # Create interface connections
-  connect_bd_intf_net -intf_net Core2AXI_0_M_AXI [get_bd_intf_pins Core2AXI_Inst/M_AXI] [get_bd_intf_pins axi_vip_0/S_AXI]
-  connect_bd_intf_net -intf_net Core2AXI_1_M_AXI [get_bd_intf_pins Core2AXI_Data/M_AXI] [get_bd_intf_pins axi_vip_1/S_AXI]
+  connect_bd_intf_net -intf_net Core2AXIData_M_AXI [get_bd_intf_pins Core2AXIData/M_AXI] [get_bd_intf_pins axi_vip_1/S_AXI]
+  connect_bd_intf_net -intf_net Core2AXIInstruction_M_AXI [get_bd_intf_pins Core2AXIInstruction/M_AXI] [get_bd_intf_pins axi_vip_0/S_AXI]
 
   # Create port connections
-  connect_bd_net -net Core2AXI_0_data_gnt_o [get_bd_pins Core2AXI_Inst/data_gnt_o] [get_bd_pins Godai_0/instr_gnt_i] [get_bd_pins Gouram_0/instr_grant]
-  connect_bd_net -net Core2AXI_0_data_rdata_o [get_bd_pins Core2AXI_Inst/data_rdata_o] [get_bd_pins Godai_0/instr_rdata_i] [get_bd_pins Gouram_0/instr_rdata]
-  connect_bd_net -net Core2AXI_0_data_rvalid_o [get_bd_pins Core2AXI_Inst/data_rvalid_o] [get_bd_pins Godai_0/instr_rvalid_i] [get_bd_pins Gouram_0/instr_rvalid]
-  connect_bd_net -net Core2AXI_1_data_gnt_o [get_bd_pins Core2AXI_Data/data_gnt_o] [get_bd_pins Godai_0/data_gnt_i] [get_bd_pins Gouram_0/data_mem_grant]
-  connect_bd_net -net Core2AXI_1_data_rdata_o [get_bd_pins Core2AXI_Data/data_rdata_o] [get_bd_pins Godai_0/data_rdata_i]
-  connect_bd_net -net Core2AXI_1_data_rvalid_o [get_bd_pins Core2AXI_Data/data_rvalid_o] [get_bd_pins Godai_0/data_rvalid_i] [get_bd_pins Gouram_0/data_mem_rvalid]
-  connect_bd_net -net Godai_0_branch_decision_o [get_bd_pins Godai_0/branch_decision_o] [get_bd_pins Gouram_0/branch_decision]
-  connect_bd_net -net Godai_0_branch_req_o [get_bd_pins Godai_0/branch_req_o] [get_bd_pins Gouram_0/branch_req]
-  connect_bd_net -net Godai_0_data_addr_o [get_bd_pins Core2AXI_Data/data_addr_i] [get_bd_pins Godai_0/data_addr_o] [get_bd_pins Gouram_0/data_mem_addr]
-  connect_bd_net -net Godai_0_data_be_o [get_bd_pins Core2AXI_Data/data_be_i] [get_bd_pins Godai_0/data_be_o]
-  connect_bd_net -net Godai_0_data_req_o [get_bd_pins Core2AXI_Data/data_req_i] [get_bd_pins Godai_0/data_req_o] [get_bd_pins Gouram_0/data_mem_req]
-  connect_bd_net -net Godai_0_data_wdata_o [get_bd_pins Core2AXI_Data/data_wdata_i] [get_bd_pins Godai_0/data_wdata_o]
-  connect_bd_net -net Godai_0_data_we_o [get_bd_pins Core2AXI_Data/data_we_i] [get_bd_pins Godai_0/data_we_o]
-  connect_bd_net -net Godai_0_ex_ready_o [get_bd_pins Godai_0/ex_ready_o] [get_bd_pins Gouram_0/ex_ready]
-  connect_bd_net -net Godai_0_id_ready_o [get_bd_pins Godai_0/id_ready_o] [get_bd_pins Gouram_0/id_ready]
-  connect_bd_net -net Godai_0_if_busy_o [get_bd_pins Godai_0/if_busy_o] [get_bd_pins Gouram_0/if_busy]
-  connect_bd_net -net Godai_0_if_ready_o [get_bd_pins Godai_0/if_ready_o] [get_bd_pins Gouram_0/if_ready]
-  connect_bd_net -net Godai_0_illegal_instr_o [get_bd_pins Godai_0/illegal_instr_o] [get_bd_pins Gouram_0/illegal_instruction]
-  connect_bd_net -net Godai_0_instr_addr_o [get_bd_pins Core2AXI_Inst/data_addr_i] [get_bd_pins Godai_0/instr_addr_o] [get_bd_pins Gouram_0/instr_addr]
-  connect_bd_net -net Godai_0_instr_req_o [get_bd_pins Core2AXI_Inst/data_req_i] [get_bd_pins Godai_0/instr_req_o] [get_bd_pins Gouram_0/instr_req]
-  connect_bd_net -net Godai_0_is_decoding_o [get_bd_pins Godai_0/is_decoding_o] [get_bd_pins Gouram_0/is_decoding]
-  connect_bd_net -net Godai_0_jump_done_o [get_bd_pins Godai_0/jump_done_o] [get_bd_pins Gouram_0/jump_done]
-  connect_bd_net -net Godai_0_wb_ready_o [get_bd_pins Godai_0/wb_ready_o] [get_bd_pins Gouram_0/wb_ready]
-  connect_bd_net -net Gouram_0_trace_data_o [get_bd_ports trace_out] [get_bd_pins Gouram_0/trace_data_o]
-  connect_bd_net -net clk_100MHz_1 [get_bd_ports clk_100MHz] [get_bd_pins Core2AXI_Data/M_AXI_ACLK] [get_bd_pins Core2AXI_Inst/M_AXI_ACLK] [get_bd_pins Godai_0/clk] [get_bd_pins Gouram_0/clk] [get_bd_pins axi_vip_0/aclk] [get_bd_pins axi_vip_1/aclk] [get_bd_pins proc_sys_reset_0/slowest_sync_clk]
-  connect_bd_net -net proc_sys_reset_0_peripheral_aresetn [get_bd_pins Core2AXI_Data/M_AXI_ARESETN] [get_bd_pins Core2AXI_Inst/M_AXI_ARESETN] [get_bd_pins Godai_0/rst_n] [get_bd_pins Gouram_0/rst] [get_bd_pins axi_vip_0/aresetn] [get_bd_pins axi_vip_1/aresetn] [get_bd_pins proc_sys_reset_0/peripheral_aresetn]
+  connect_bd_net -net Core2AXIData_data_gnt_o [get_bd_pins Core2AXIData/data_gnt_o] [get_bd_pins Godai/data_gnt_i]
+  connect_bd_net -net Core2AXIData_data_rdata_o [get_bd_pins Core2AXIData/data_rdata_o] [get_bd_pins Godai/data_rdata_i]
+  connect_bd_net -net Core2AXIInstruction_data_gnt_o [get_bd_pins Core2AXIInstruction/data_gnt_o] [get_bd_pins Godai/instr_gnt_i]
+  connect_bd_net -net Core2AXI_0_data_rdata_o [get_bd_pins Core2AXIInstruction/data_rdata_o] [get_bd_pins Godai/instr_rdata_i] [get_bd_pins Gouram/instr_rdata]
+  connect_bd_net -net Core2AXI_0_data_rvalid_o [get_bd_pins Core2AXIInstruction/data_rvalid_o] [get_bd_pins Godai/instr_rvalid_i] [get_bd_pins Gouram/instr_rvalid]
+  connect_bd_net -net Core2AXI_0_data_rvalid_o1 [get_bd_pins Core2AXIData/data_rvalid_o] [get_bd_pins Godai/data_rvalid_i] [get_bd_pins Gouram/data_mem_rvalid]
+  connect_bd_net -net Godai_0_data_addr_o [get_bd_pins Core2AXIData/data_addr_i] [get_bd_pins Godai/data_addr_o] [get_bd_pins Gouram/data_mem_addr]
+  connect_bd_net -net Godai_0_data_req_o [get_bd_pins Core2AXIData/data_req_i] [get_bd_pins Godai/data_req_o] [get_bd_pins Gouram/data_mem_req]
+  connect_bd_net -net Godai_data_be_o [get_bd_pins Core2AXIData/data_be_i] [get_bd_pins Godai/data_be_o]
+  connect_bd_net -net Godai_data_wdata_o [get_bd_pins Core2AXIData/data_wdata_i] [get_bd_pins Godai/data_wdata_o]
+  connect_bd_net -net Godai_data_we_o [get_bd_pins Core2AXIData/data_we_i] [get_bd_pins Godai/data_we_o]
+  connect_bd_net -net Godai_instr_addr_o [get_bd_pins Core2AXIInstruction/data_addr_i] [get_bd_pins Godai/instr_addr_o]
+  connect_bd_net -net Godai_instr_req_o [get_bd_pins Core2AXIInstruction/data_req_i] [get_bd_pins Godai/instr_req_o]
+  connect_bd_net -net Godai_jump_done_o [get_bd_pins Godai/jump_done_o] [get_bd_pins Gouram/jump_done]
+  connect_bd_net -net clk_100MHz_1 [get_bd_ports clk_100MHz] [get_bd_pins Core2AXIData/M_AXI_ACLK] [get_bd_pins Core2AXIInstruction/M_AXI_ACLK] [get_bd_pins Godai/clk] [get_bd_pins Gouram/clk] [get_bd_pins axi_vip_0/aclk] [get_bd_pins axi_vip_1/aclk] [get_bd_pins proc_sys_reset_0/slowest_sync_clk]
+  connect_bd_net -net gouram_wrapper_0_trace_data_o [get_bd_ports trace_out] [get_bd_pins Gouram/trace_data_o]
+  connect_bd_net -net proc_sys_reset_0_peripheral_aresetn [get_bd_pins Core2AXIData/M_AXI_ARESETN] [get_bd_pins Core2AXIInstruction/M_AXI_ARESETN] [get_bd_pins Godai/rst_n] [get_bd_pins Gouram/rst_n] [get_bd_pins axi_vip_0/aresetn] [get_bd_pins axi_vip_1/aresetn] [get_bd_pins proc_sys_reset_0/peripheral_aresetn]
   connect_bd_net -net reset_rtl_1 [get_bd_ports reset_rtl] [get_bd_pins proc_sys_reset_0/ext_reset_in]
-  connect_bd_net -net xlconstant_0_dout [get_bd_pins Core2AXI_Inst/data_we_i] [get_bd_pins Godai_0/data_err_i] [get_bd_pins xlconstant_0/dout]
-  connect_bd_net -net xlconstant_1_dout [get_bd_pins Core2AXI_Inst/data_be_i] [get_bd_pins xlconstant_1/dout]
-  connect_bd_net -net xlconstant_2_dout [get_bd_pins Core2AXI_Inst/data_wdata_i] [get_bd_pins Godai_0/irq_i] [get_bd_pins xlconstant_2/dout]
+  connect_bd_net -net xlconstant_0_dout [get_bd_pins Core2AXIInstruction/data_we_i] [get_bd_pins Godai/data_err_i] [get_bd_pins xlconstant_0/dout]
+  connect_bd_net -net xlconstant_1_dout [get_bd_pins Core2AXIInstruction/data_be_i] [get_bd_pins xlconstant_1/dout]
+  connect_bd_net -net xlconstant_2_dout [get_bd_pins Core2AXIInstruction/data_wdata_i] [get_bd_pins Godai/irq_i] [get_bd_pins xlconstant_2/dout]
 
   # Create address segments
-  create_bd_addr_seg -range 0x00010000 -offset 0x00000000 [get_bd_addr_spaces Core2AXI_Data/M_AXI] [get_bd_addr_segs axi_vip_1/S_AXI/Reg] SEG_axi_vip_1_Reg
-  create_bd_addr_seg -range 0x00010000 -offset 0x00000000 [get_bd_addr_spaces Core2AXI_Inst/M_AXI] [get_bd_addr_segs axi_vip_0/S_AXI/Reg] SEG_axi_vip_0_Reg
+  create_bd_addr_seg -range 0x00010000 -offset 0x00000000 [get_bd_addr_spaces Core2AXIData/M_AXI] [get_bd_addr_segs axi_vip_1/S_AXI/Reg] SEG_axi_vip_1_Reg
+  create_bd_addr_seg -range 0x00010000 -offset 0x00000000 [get_bd_addr_spaces Core2AXIInstruction/M_AXI] [get_bd_addr_segs axi_vip_0/S_AXI/Reg] SEG_axi_vip_0_Reg
 
 
   # Restore current instance
@@ -311,4 +366,6 @@ proc create_root_design { parentCell } {
 
 create_root_design ""
 
+
+common::send_msg_id "BD_TCL-1000" "WARNING" "This Tcl script was generated from a block design that has not been validated. It is possible that design <$design_name> may result in errors during validation."
 
