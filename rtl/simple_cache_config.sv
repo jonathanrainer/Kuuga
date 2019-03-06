@@ -1,8 +1,10 @@
 package cache_def;
     // Data structure for cache tag & data
     
-    parameter int TAGMSB = 31; // Tag MSB
-    parameter int TAGLSB = 14; // Tag LSB
+    parameter int TAGMSB = 15; // Tag MSB
+    parameter int TAGLSB = 4; // Tag LSB
+    parameter int INDEXMSB = 3;
+    parameter int INDEXLSB = 0;
     
     // Data structure for cache tag
     typedef struct packed {
@@ -13,18 +15,18 @@ package cache_def;
     
     // Data structure for cache memory request
     typedef struct {
-        bit [9:0]   index;  // 10-bit index
+        bit [INDEXMSB:INDEXLSB]   index;  // 7-bit index (128 blocks)
         bit         we;     // Write enable
     } cache_req_type;
     
-    // 128-bit cache line data
-    typedef bit [127:0] cache_data_type;
+    // 32-bit cache line data
+    typedef bit [31:0] cache_data_type;
     
     // Data structures for CPU<->Cache Controller Interface
     
     // CPU Request (CPU->Cache Controller)
     typedef struct {
-        bit [31:0] addr;    // 32-bit request addr
+        bit [15:0] addr;    // 16-bit request addr
         bit [31:0] data;    // 32-bit request data (used when write)
         bit rw;             // Request type: 0 = read, 1 = write
         bit valid;          // Request is valid
@@ -34,6 +36,7 @@ package cache_def;
     typedef struct {
         bit [31:0] data;    // 32-bit data
         bit ready;          // Result is ready
+        bit checked;        // Is the result final?
     } cpu_result_type;
     
     //--------------------------------------------------------------------
@@ -41,8 +44,8 @@ package cache_def;
     
     // Memory Request (Cache Controller -> Memory)
     typedef struct {
-        bit [31:0]  addr;   // Request byte addr
-        bit [127:0] data;   // 128-bit request data (used when write)
+        bit [15:0]  addr;   // Request byte addr
+        bit [31:0] data;   // 32-bit request data (used when write)
         bit rw;             // Request Type: 0 = read, 1 write    
         bit valid;          // Request is valid
     } mem_req_type; 

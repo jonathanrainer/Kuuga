@@ -1,216 +1,186 @@
 `timescale 1ns / 1ps
 
-/* Cache: Data Memory, Single Port, 1024 blocks */
-
 import cache_def::*;
 
-module dm_cache_data
+module simple_cache
+#(
+    ADDR_WIDTH = 16,
+    DATA_WIDTH = 32,
+    CACHE_BLOCKS = 128
+)
 (
-    input bit               clk,
-    input cache_req_type    data_req,       // Data Request/Command (RW, Valid etc.)
-    input cache_data_type   data_write,     // Write Port (128-bit line)
-    output cache_data_type  data_read
+
+     // Clock and Reset
+    input logic                             clk_i,
+    input logic                             rst_ni,
+
+    // Core Memory Protocol (Input from Processor)
+    input  logic                            in_data_req_i,
+    output logic                            in_data_gnt_o,
+    output logic                            in_data_rvalid_o,
+    input  logic [ADDR_WIDTH-1:0]           in_data_addr_i,
+    input  logic                            in_data_we_i,
+    input  logic [DATA_WIDTH/8-1:0]         in_data_be_i,
+    output logic [DATA_WIDTH-1:0]           in_data_rdata_o,
+    input  logic [DATA_WIDTH-1:0]           in_data_wdata_i,
+    
+    // Core Memory Protocol (Output to Memory, Used on Cache Miss)
+    output  logic                            out_data_req_o,
+    input   logic                            out_data_gnt_i,
+    input   logic                            out_data_rvalid_i,
+    output  logic [ADDR_WIDTH-1:0]           out_data_addr_o,
+    output  logic                            out_data_we_o,
+    output  logic [DATA_WIDTH/8-1:0]         out_data_be_o,
+    input   logic [DATA_WIDTH-1:0]           out_data_rdata_i,
+    output  logic [DATA_WIDTH-1:0]           out_data_wdata_o
 );
-    cache_data_type data_mem[0:1023];
+
+    bit rst;
+    cpu_req_type cpu_req = '{default: 0};
+    mem_data_type mem_data = '{default: 0};
+    mem_req_type mem_req = '{default: 0};
+    cpu_result_type cpu_res = '{default: 0};
+    
+    bit [ADDR_WIDTH-1:0] cached_addr;
+    bit [DATA_WIDTH-1:0] cached_data;
+
+    assign rst = !rst_ni;
+
+    dm_cache_fsm #(CACHE_BLOCKS) cache_imp(
+        .clk(clk_i),
+        .*
+    );
+    
+    enum bit [2:0] {
+        WAIT_ON_REQ                     =   3'b000,
+        CACHE_HIT_GNT                   =   3'b001,
+        CACHE_HIT_DATA                  =   3'b010,
+        SERVICE_WRITE_BACK_WAIT_GNT     =   3'b011,
+        SERVICE_WRITE_BACK_WAIT_RVALID  =   3'b100,
+        SERVICE_CACHE_MISS              =   3'b101
+    } state;
     
     initial
     begin
-        for (int i = 0; i < 1024; i++) data_mem[i] = '0;
-    end
-endmodule
-
-/* Cache: Tag Memory, Single port, 1024 blocks*/
-
-module dm_cache_tag
-(
-    input bit               clk,
-    input cache_req_type    tag_req,        // Tag Request/Command (RW, Valid etc.)
-    input cache_tag_type    tag_write,      // Write Port
-    output cache_tag_type   tag_read        // Read Port
-);
-    cache_tag_type tag_mem[0:1023];
-    
-    initial
-    begin
-        for (int i = 0; i < 1024; i++) tag_mem[i] = '0;
+        initialise_module();
     end
     
-    assign tag_read = tag_mem[tag_req.index];
     
-    always_ff@(posedge(clk)) 
+    always_ff @(posedge clk_i)
     begin
-        if (tag_req.we) tag_mem[tag_req.index] <= tag_write;
-    end
-    
-endmodule
-    
-/* Cache FSM */
-
-module dm_cache_fsm
-(
-    input bit clk, 
-    input bit rst,
-    input cpu_req_type      cpu_req,    // CPU Request Input (CPU->cache)
-    input mem_data_type     mem_data,   // Memory Response (memory->cache)
-    output mem_req_type     mem_req,    // Memory Request (cache->memory)
-    output cpu_result_type  cpu_res     // Cache Result (cache->CPU)
-);
-
-    /* Write clock */
-    typedef enum {idle, compare_tag, allocate, write_back} cache_state_type;
-    
-    /* FSM state register */
-    cache_state_type    vstate, rstate;
-    
-    /* Interface signals to tag memory*/
-    cache_tag_type  tag_read;   //tag read result
-    cache_tag_type  tag_write;  //tag write data
-    cache_req_type  tag_req;    //tag request
-    
-    /* Interface signals to cache data memory*/
-    cache_data_type data_read;  //cache line read data
-    cache_data_type data_write; //cache line write data
-    cache_req_type  data_req;   //data req
-    
-    /* Temporary variable for cache controller result*/
-    cpu_result_type v_cpu_res;
-    
-    /* Temporary variable for memory controller request*/
-    mem_req_type    v_mem_req;
-    assign mem_req = v_mem_req;     // Connect to output ports
-    assign cpu_res = v_cpu_res;
-    
-    always_comb 
-    begin
-        /*-------------------------Default values for all signals------------*/
-        /* No state change by default */
-        vstate = rstate;
-        v_cpu_res = '{0, 0}; tag_write = '{0, 0, 0};
-    
-        /* Read tag by default */
-        tag_req.we = '0;
-        /*Direct map index for tag */
-        tag_req.index = cpu_req.addr[13:4];
-        
-        /*Read current cache line by default */
-        data_req.we = '0;
-        /*Direct map index for cache data */
-        data_req.index = cpu_req.addr[13:4];
-        
-        /* Modify correct word (32-bit) based on address */
-        data_write = data_read;
-        case(cpu_req.addr[3:2])
-            2'b00:data_write[31:0] = cpu_req.data;
-            2'b01:data_write[63:32] = cpu_req.data;
-            2'b10:data_write[95:64] = cpu_req.data;
-            2'b11:data_write[127:96] = cpu_req.data;
-        endcase
-        
-        /* Read out correct word(32-bit) from cache (to CPU) */
-        case(cpu_req.addr[3:2])
-            2'b00:v_cpu_res.data = data_read[31:0];
-            2'b01:v_cpu_res.data = data_read[63:32];
-            2'b10:v_cpu_res.data = data_read[95:64];
-            2'b11:v_cpu_res.data = data_read[127:96];
-        endcase
-        
-        /* Memory request address (sampled from CPU request) */
-        v_mem_req.addr = cpu_req.addr;
-        /* Memory request data (used in write)*/
-        v_mem_req.data = data_read;
-        v_mem_req.rw = '0;
-    
-        //------------------------------------Cache FSM-------------------------
-    
-        case(rstate)
-            /* Idle state */
-            idle : 
+        if (!rst_ni) initialise_module();
+        unique case (state)
+            WAIT_ON_REQ:
             begin
-                /* If there is a CPU request, then compare cache tag */
-                if (cpu_req.valid) vstate = compare_tag;
-            end 
-            /* Compare_tag state */
-            compare_tag : 
-            begin
-                /* Cache hit (tag match and cache entry is valid) */
-                if (cpu_req.addr[TAGMSB:TAGLSB] == tag_read.tag && tag_read.valid) 
+                mem_data.ready <= 1'b0;
+                assign in_data_rvalid_o = 1'b0;
+                assign in_data_rdata_o = 32'b0;
+                if(in_data_req_i)
                 begin
-                    v_cpu_res.ready = '1;
-                    /* Write hit */
-                    if (cpu_req.rw) 
+                    cpu_req.addr <= in_data_addr_i;
+                    if (in_data_we_i) 
                     begin
-                        /* Read/modify cache line */
-                        tag_req.we = '1; data_req.we = '1;
-                        /* No change in tag*/
-                        tag_write.tag = tag_read.tag;
-                        tag_write.valid = '1;
-                        /* Cache line is dirty */
-                        tag_write.dirty = '1;
+                        cpu_req.data <= in_data_wdata_i;
+                        cpu_req.rw <= 1'b1;
                     end
-                    /*xaction is finished*/
-                    vstate = idle;
-                end
-                /* Cache miss */
-                else 
-                begin
-                    /* Generate new tag */
-                    tag_req.we = '1;
-                    tag_write.valid = '1;
-                    /* New tag */
-                    tag_write.tag = cpu_req.addr[TAGMSB:TAGLSB];
-                    /* Cache line is dirty if write */
-                    tag_write.dirty = cpu_req.rw;
-                    /*Generate memory request on miss */
-                    v_mem_req.valid = '1;
-                    /* Compulsory miss or miss with clean block*/
-                    if (tag_read.valid == 1'b0 || tag_read.dirty == 1'b0) vstate = allocate;
                     else 
                     begin
-                        /* Miss with dirty line*/
-                        /* Write back address*/
-                        v_mem_req.addr = {tag_read.tag, cpu_req.addr[TAGLSB-1:0]};
-                        v_mem_req.rw = '1;
-                        /* Wait till write is completed*/
-                        vstate = write_back;
+                        cpu_req.data <= 32'b0;
+                        cpu_req.rw <= 1'b0;
                     end
+                    cpu_req.valid <= 1'b1;
+                    state <= CACHE_HIT_GNT;     
                 end
             end
-            /* Wait for allocating a new cache line */
-            allocate: 
-            begin 
-                /* Memory controller has responded */
-                if (mem_data.ready) 
-                begin
-                    /* Re-compare tag for write miss (need modify correct word) */
-                    vstate = compare_tag;
-                    data_write = mem_data.data;
-                    /* Update cache line data */
-                    data_req.we = '1;
-                end
-            end
-            /* Wait for writing back dirty cache line */
-            write_back : 
+            CACHE_HIT_GNT:
             begin
-                /* Write back is completed */
-                if (mem_data.ready)
+                if (cpu_res.checked)
                 begin
-                    /* Issue new memory request (allocating a new line) */
-                    v_mem_req.valid = '1;
-                    v_mem_req.rw = '0;
-                    vstate = allocate;
+                    cpu_req.valid <= 1'b0;
+                    if(cpu_res.ready)
+                    begin
+                        assign in_data_gnt_o = 1'b1;
+                        state <= CACHE_HIT_DATA;
+                    end
+                    else if (mem_req.rw) 
+                    begin
+                        cached_addr <= mem_req.addr;
+                        cached_data <= mem_req.data;
+                        state <= SERVICE_WRITE_BACK_WAIT_GNT;
+                    end
+                    else state <= SERVICE_CACHE_MISS;
                 end
             end
-        endcase
+            CACHE_HIT_DATA:
+            begin
+                assign in_data_gnt_o = 1'b0;
+                assign in_data_rvalid_o = 1'b1;
+                if (cpu_req.rw) assign in_data_rdata_o = 32'h00000000;
+                else assign in_data_rdata_o = cpu_res.data;
+                state <= WAIT_ON_REQ;
+            end
+            SERVICE_WRITE_BACK_WAIT_GNT:
+            begin
+                if (mem_req.valid && !out_data_gnt_i)
+                begin
+                    assign out_data_req_o = 1'b1;
+                    assign out_data_addr_o = cached_addr;
+                    assign out_data_we_o = 1'b1;
+                    assign out_data_be_o = 4'hf;
+                    assign out_data_wdata_o = cached_data;
+                end
+                else if (mem_req.valid && out_data_gnt_i)
+                begin
+                    assign out_data_req_o = 1'b0;
+                    assign out_data_addr_o = 1'b0;
+                    assign out_data_we_o = 1'b0;
+                    assign out_data_be_o = 4'h0;
+                    assign out_data_wdata_o = 32'h00000000;
+                    state <= SERVICE_WRITE_BACK_WAIT_RVALID;
+                end
+            end
+            SERVICE_WRITE_BACK_WAIT_RVALID:
+            begin
+                if(out_data_rvalid_i) 
+                begin
+                    mem_data.ready <= 1'b1;
+                    state <= SERVICE_CACHE_MISS;
+                end
+            end
+            SERVICE_CACHE_MISS:
+            begin
+                mem_data.ready <= 1'b0;
+                if(!out_data_rvalid_i) 
+                begin
+                    assign out_data_req_o = in_data_req_i;
+                    assign in_data_gnt_o = out_data_gnt_i;
+                    assign in_data_rvalid_o = out_data_rvalid_i;
+                    assign out_data_addr_o = in_data_addr_i;
+                    assign out_data_we_o = in_data_we_i;
+                    assign out_data_be_o = in_data_be_i;
+                    assign in_data_rdata_o = out_data_rdata_i;
+                    assign out_data_wdata_o = in_data_wdata_i;
+                end
+                else 
+                begin
+                    mem_data.data <= out_data_rdata_i;
+                    mem_data.ready <= 1'b1;
+                    assign out_data_req_o = 1'b0;
+                    assign in_data_gnt_o = 1'b0;
+                    assign in_data_rvalid_o = 1'b0;
+                    assign out_data_addr_o = 16'b0;
+                    assign out_data_we_o = 1'b0;
+                    assign out_data_be_o = 1'b0;
+                    assign in_data_rdata_o = 32'b0;
+                    assign out_data_wdata_o = 32'b0;
+                    state <= WAIT_ON_REQ;
+                end
+            end
+        endcase        
     end
     
-    always_ff @(posedge(clk)) 
-    begin
-        if (rst) rstate <= idle; // Reset to idle state
-        else rstate <= vstate;
-    end
-    
-    /*connect cache tag/data memory*/
-    dm_cache_tag ctag(.*);
-    dm_cache_data cdata(.*);
-    
-    endmodule
+    task initialise_module();
+        state <= WAIT_ON_REQ;
+    endtask
+
+endmodule

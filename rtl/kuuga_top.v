@@ -125,7 +125,7 @@ module kuuga (
          .AUTO_SLEEP_TIME(0),           // DECIMAL
          .BYTE_WRITE_WIDTH_A(32),       // DECIMAL
          .ECC_MODE("no_ecc"),           // String
-         .MEMORY_INIT_FILE("test_data.mem"),     // String
+         .MEMORY_INIT_FILE("test_prog_inst.mem"),     // String
          .MEMORY_INIT_PARAM(""),       // String
          .MEMORY_OPTIMIZATION("false"),  // String
          .MEMORY_PRIMITIVE("block"),     // String
