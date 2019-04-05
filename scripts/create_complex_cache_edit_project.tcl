@@ -30,10 +30,16 @@ foreach {ls dir} $IncludeFileListNames {
 }
 
 lappend rtlFilesFull [file join $thisDir .. rtl standard_cache.sv]
-lappend rtlFilesFull [file join $thisDir .. rtl trace_assisted_cache.sv]
-lappend includeFilesFull [file join $thisDir .. rtl trace_assisted_cache_config.sv]
+lappend rtlFilesFull [file join $thisDir .. rtl enokida.sv]
+lappend includeFilesFull [file join $thisDir .. rtl enokida_config.sv]
+lappend rtlFilesFull [file join $thisDir .. rtl enokida_wrapper.v]
+lappend rtlFilesFull [file join $thisDir .. rtl trace_repository.sv]
+lappend rtlFilesFull [file join $thisDir .. rtl load_store_unit.sv]
 
 set simOnlyFiles {}
+
+lappend simOnlyFiles [file join $thisDir .. tb complex_cache complex_cache_tb.sv]
+lappend simOnlyFiles [file join $thisDir .. wcfg complex_cache_tb_behav.wcfg]
 
 # Create project 
 create_project -part xc7vx485tffg1761-2  -force $projectName [file join $workDir]
@@ -41,7 +47,8 @@ create_project -part xc7vx485tffg1761-2  -force $projectName [file join $workDir
 #add_files -fileset sim_1 $simOnlyFiles
 add_files -norecurse $rtlFilesFull
 add_files -norecurse $includeFilesFull
-#set_property top simple_cache_tb [get_filesets sim_1]
+add_files -norecurse $simOnlyFiles
+set_property top complex_cache_tb [get_filesets sim_1]
 
 # Set the directory path for the new project
 set proj_dir [get_property directory [current_project]]

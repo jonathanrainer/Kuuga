@@ -40,7 +40,7 @@ if { [string first $scripts_vivado_version $current_vivado_version] == -1 } {
 
 # The design that will be created by this Tcl script contains the following 
 # module references:
-# core2axi_wrapper, core2axi_wrapper, godai_wrapper, gouram_wrapper
+# core2axi_wrapper, core2axi_wrapper, enokida_wrapper, godai_wrapper, gouram_wrapper
 
 # Please add the sources of those modules before sourcing this Tcl script.
 
@@ -160,6 +160,7 @@ if { $bCheckModules == 1 } {
    set list_check_mods "\ 
 core2axi_wrapper\
 core2axi_wrapper\
+enokida_wrapper\
 godai_wrapper\
 gouram_wrapper\
 "
@@ -231,7 +232,6 @@ proc create_root_design { parentCell } {
    CONFIG.FREQ_HZ {5000000} \
  ] $clk
   set rst_n [ create_bd_port -dir I -type rst rst_n ]
-  set trace_out [ create_bd_port -dir O -from 127 -to 0 -type data trace_out ]
 
   # Create instance: Core2AXI_Data, and set properties
   set block_name core2axi_wrapper
@@ -261,13 +261,6 @@ proc create_root_design { parentCell } {
    CONFIG.C_M_AXI_ADDR_WIDTH {16} \
  ] $Core2AXI_Instruction
 
-  # Create instance: axi_interconnect_0, and set properties
-  set axi_interconnect_0 [ create_bd_cell -type ip -vlnv xilinx.com:ip:axi_interconnect:2.1 axi_interconnect_0 ]
-  set_property -dict [ list \
-   CONFIG.NUM_MI {1} \
-   CONFIG.NUM_SI {2} \
- ] $axi_interconnect_0
-
   # Create instance: axi_vip_0, and set properties
   set axi_vip_0 [ create_bd_cell -type ip -vlnv xilinx.com:ip:axi_vip:1.1 axi_vip_0 ]
   set_property -dict [ list \
@@ -280,6 +273,17 @@ proc create_root_design { parentCell } {
    CONFIG.INTERFACE_MODE {SLAVE} \
  ] $axi_vip_1
 
+  # Create instance: enokida_wrapper_0, and set properties
+  set block_name enokida_wrapper
+  set block_cell_name enokida_wrapper_0
+  if { [catch {set enokida_wrapper_0 [create_bd_cell -type module -reference $block_name $block_cell_name] } errmsg] } {
+     catch {common::send_msg_id "BD_TCL-105" "ERROR" "Unable to add referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
+     return 1
+   } elseif { $enokida_wrapper_0 eq "" } {
+     catch {common::send_msg_id "BD_TCL-106" "ERROR" "Unable to referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
+     return 1
+   }
+  
   # Create instance: godai_wrapper_0, and set properties
   set block_name godai_wrapper
   set block_cell_name godai_wrapper_0
@@ -327,23 +331,40 @@ proc create_root_design { parentCell } {
  ] $xlconstant_2
 
   # Create interface connections
-  connect_bd_intf_net -intf_net Core2AXI_Data_M_AXI [get_bd_intf_pins Core2AXI_Data/M_AXI] [get_bd_intf_pins axi_interconnect_0/S00_AXI]
+  connect_bd_intf_net -intf_net Core2AXI_Data_LSU_M_AXI [get_bd_intf_pins Core2AXI_Data/M_AXI] [get_bd_intf_pins axi_vip_0/S_AXI]
   connect_bd_intf_net -intf_net Core2AXI_Instruction_M_AXI [get_bd_intf_pins Core2AXI_Instruction/M_AXI] [get_bd_intf_pins axi_vip_1/S_AXI]
-  connect_bd_intf_net -intf_net axi_interconnect_0_M00_AXI [get_bd_intf_pins axi_interconnect_0/M00_AXI] [get_bd_intf_pins axi_vip_0/S_AXI]
 
   # Create port connections
-  connect_bd_net -net Core2AXI_0_data_gnt_o [get_bd_pins Core2AXI_Instruction/data_gnt_o] [get_bd_pins godai_wrapper_0/instr_gnt_i]
+  connect_bd_net -net Core2AXI_0_data_gnt_o [get_bd_pins Core2AXI_Instruction/data_gnt_o] [get_bd_pins godai_wrapper_0/instr_gnt_i] [get_bd_pins gouram_wrapper_0/instr_gnt]
   connect_bd_net -net Core2AXI_0_data_rdata_o [get_bd_pins Core2AXI_Instruction/data_rdata_o] [get_bd_pins godai_wrapper_0/instr_rdata_i] [get_bd_pins gouram_wrapper_0/instr_rdata]
   connect_bd_net -net Core2AXI_0_data_rvalid_o [get_bd_pins Core2AXI_Instruction/data_rvalid_o] [get_bd_pins godai_wrapper_0/instr_rvalid_i] [get_bd_pins gouram_wrapper_0/instr_rvalid]
-  connect_bd_net -net Core2AXI_0_data_rvalid_o1 [get_bd_pins Core2AXI_Data/data_rvalid_o] [get_bd_pins gouram_wrapper_0/data_mem_rvalid]
-  connect_bd_net -net Godai_0_data_addr_o [get_bd_pins Core2AXI_Data/data_addr_i] [get_bd_pins gouram_wrapper_0/data_mem_addr]
-  connect_bd_net -net Godai_0_data_req_o [get_bd_pins Core2AXI_Data/data_req_i] [get_bd_pins gouram_wrapper_0/data_mem_req]
-  connect_bd_net -net Godai_0_instr_addr_o [get_bd_pins Core2AXI_Instruction/data_addr_i] [get_bd_pins godai_wrapper_0/instr_addr_o]
+  connect_bd_net -net Core2AXI_0_data_rvalid_o1 [get_bd_pins Core2AXI_Data/data_rvalid_o] [get_bd_pins enokida_wrapper_0/cache_mem_data_rvalid_i]
+  connect_bd_net -net Core2AXI_Data_LSU_data_gnt_o [get_bd_pins Core2AXI_Data/data_gnt_o] [get_bd_pins enokida_wrapper_0/cache_mem_data_gnt_i]
+  connect_bd_net -net Core2AXI_Data_LSU_data_rdata_o [get_bd_pins Core2AXI_Data/data_rdata_o] [get_bd_pins enokida_wrapper_0/cache_mem_data_rdata_i]
+  connect_bd_net -net Godai_0_instr_addr_o [get_bd_pins Core2AXI_Instruction/data_addr_i] [get_bd_pins godai_wrapper_0/instr_addr_o] [get_bd_pins gouram_wrapper_0/instr_addr]
   connect_bd_net -net Godai_0_instr_req_o [get_bd_pins Core2AXI_Instruction/data_req_i] [get_bd_pins godai_wrapper_0/instr_req_o]
   connect_bd_net -net Godai_0_jump_done_o [get_bd_pins godai_wrapper_0/jump_done_o] [get_bd_pins gouram_wrapper_0/jump_done]
-  connect_bd_net -net clk_100MHz_1 [get_bd_ports clk] [get_bd_pins Core2AXI_Data/M_AXI_ACLK] [get_bd_pins Core2AXI_Instruction/M_AXI_ACLK] [get_bd_pins axi_interconnect_0/ACLK] [get_bd_pins axi_interconnect_0/M00_ACLK] [get_bd_pins axi_interconnect_0/S00_ACLK] [get_bd_pins axi_interconnect_0/S01_ACLK] [get_bd_pins axi_vip_0/aclk] [get_bd_pins axi_vip_1/aclk] [get_bd_pins godai_wrapper_0/clk] [get_bd_pins gouram_wrapper_0/clk]
-  connect_bd_net -net gouram_wrapper_0_trace_data_o [get_bd_ports trace_out] [get_bd_pins gouram_wrapper_0/trace_data_o]
-  connect_bd_net -net proc_sys_reset_0_peripheral_aresetn [get_bd_ports rst_n] [get_bd_pins Core2AXI_Data/M_AXI_ARESETN] [get_bd_pins Core2AXI_Instruction/M_AXI_ARESETN] [get_bd_pins axi_interconnect_0/ARESETN] [get_bd_pins axi_interconnect_0/M00_ARESETN] [get_bd_pins axi_interconnect_0/S00_ARESETN] [get_bd_pins axi_interconnect_0/S01_ARESETN] [get_bd_pins axi_vip_0/aresetn] [get_bd_pins axi_vip_1/aresetn] [get_bd_pins godai_wrapper_0/rst_n] [get_bd_pins gouram_wrapper_0/rst_n]
+  connect_bd_net -net clk_100MHz_1 [get_bd_ports clk] [get_bd_pins Core2AXI_Data/M_AXI_ACLK] [get_bd_pins Core2AXI_Instruction/M_AXI_ACLK] [get_bd_pins axi_vip_0/aclk] [get_bd_pins axi_vip_1/aclk] [get_bd_pins enokida_wrapper_0/clk] [get_bd_pins godai_wrapper_0/clk] [get_bd_pins gouram_wrapper_0/clk]
+  connect_bd_net -net enokida_wrapper_0_cache_mem_lsu_data_addr_o [get_bd_pins Core2AXI_Data/data_addr_i] [get_bd_pins enokida_wrapper_0/cache_mem_data_addr_o]
+  connect_bd_net -net enokida_wrapper_0_cache_mem_lsu_data_be_o [get_bd_pins Core2AXI_Data/data_be_i] [get_bd_pins enokida_wrapper_0/cache_mem_data_be_o]
+  connect_bd_net -net enokida_wrapper_0_cache_mem_lsu_data_req_o [get_bd_pins Core2AXI_Data/data_req_i] [get_bd_pins enokida_wrapper_0/cache_mem_data_req_o]
+  connect_bd_net -net enokida_wrapper_0_cache_mem_lsu_data_wdata_o [get_bd_pins Core2AXI_Data/data_wdata_i] [get_bd_pins enokida_wrapper_0/cache_mem_data_wdata_o]
+  connect_bd_net -net enokida_wrapper_0_cache_mem_lsu_data_we_o [get_bd_pins Core2AXI_Data/data_we_i] [get_bd_pins enokida_wrapper_0/cache_mem_data_we_o]
+  connect_bd_net -net enokida_wrapper_0_proc_cache_data_gnt_o [get_bd_pins enokida_wrapper_0/proc_cache_data_gnt_o] [get_bd_pins godai_wrapper_0/data_gnt_i]
+  connect_bd_net -net enokida_wrapper_0_proc_cache_data_rdata_o [get_bd_pins enokida_wrapper_0/proc_cache_data_rdata_o] [get_bd_pins godai_wrapper_0/data_rdata_i]
+  connect_bd_net -net enokida_wrapper_0_proc_cache_data_rvalid_o [get_bd_pins enokida_wrapper_0/proc_cache_data_rvalid_o] [get_bd_pins godai_wrapper_0/data_rvalid_i] [get_bd_pins gouram_wrapper_0/data_mem_rvalid]
+  connect_bd_net -net godai_wrapper_0_branch_decision_o [get_bd_pins godai_wrapper_0/branch_decision_o] [get_bd_pins gouram_wrapper_0/branch_decision]
+  connect_bd_net -net godai_wrapper_0_data_addr_o [get_bd_pins enokida_wrapper_0/proc_cache_data_addr_i] [get_bd_pins godai_wrapper_0/data_addr_o] [get_bd_pins gouram_wrapper_0/data_mem_addr]
+  connect_bd_net -net godai_wrapper_0_data_be_o [get_bd_pins enokida_wrapper_0/proc_cache_data_be_i] [get_bd_pins godai_wrapper_0/data_be_o]
+  connect_bd_net -net godai_wrapper_0_data_req_o [get_bd_pins enokida_wrapper_0/proc_cache_data_req_i] [get_bd_pins godai_wrapper_0/data_req_o] [get_bd_pins gouram_wrapper_0/data_mem_req]
+  connect_bd_net -net godai_wrapper_0_data_wdata_o [get_bd_pins enokida_wrapper_0/proc_cache_data_wdata_i] [get_bd_pins godai_wrapper_0/data_wdata_o]
+  connect_bd_net -net godai_wrapper_0_data_we_o [get_bd_pins enokida_wrapper_0/proc_cache_data_we_i] [get_bd_pins godai_wrapper_0/data_we_o]
+  connect_bd_net -net godai_wrapper_0_is_decoding_o [get_bd_pins godai_wrapper_0/is_decoding_o] [get_bd_pins gouram_wrapper_0/is_decoding]
+  connect_bd_net -net gouram_wrapper_0_counter [get_bd_pins enokida_wrapper_0/counter] [get_bd_pins gouram_wrapper_0/counter]
+  connect_bd_net -net gouram_wrapper_0_lock [get_bd_pins enokida_wrapper_0/lock] [get_bd_pins gouram_wrapper_0/lock]
+  connect_bd_net -net gouram_wrapper_0_trace_capture_enable [get_bd_pins enokida_wrapper_0/trace_capture_enable] [get_bd_pins gouram_wrapper_0/trace_capture_enable]
+  connect_bd_net -net gouram_wrapper_0_trace_data_o [get_bd_pins enokida_wrapper_0/trace_in] [get_bd_pins gouram_wrapper_0/trace_data_o]
+  connect_bd_net -net proc_sys_reset_0_peripheral_aresetn [get_bd_ports rst_n] [get_bd_pins Core2AXI_Data/M_AXI_ARESETN] [get_bd_pins Core2AXI_Instruction/M_AXI_ARESETN] [get_bd_pins axi_vip_0/aresetn] [get_bd_pins axi_vip_1/aresetn] [get_bd_pins enokida_wrapper_0/rst_n] [get_bd_pins godai_wrapper_0/rst_n] [get_bd_pins gouram_wrapper_0/rst_n]
   connect_bd_net -net xlconstant_0_dout [get_bd_pins Core2AXI_Instruction/data_we_i] [get_bd_pins godai_wrapper_0/data_err_i] [get_bd_pins xlconstant_0/dout]
   connect_bd_net -net xlconstant_1_dout [get_bd_pins Core2AXI_Instruction/data_be_i] [get_bd_pins xlconstant_1/dout]
   connect_bd_net -net xlconstant_2_dout [get_bd_pins Core2AXI_Instruction/data_wdata_i] [get_bd_pins godai_wrapper_0/irq_i] [get_bd_pins xlconstant_2/dout]
