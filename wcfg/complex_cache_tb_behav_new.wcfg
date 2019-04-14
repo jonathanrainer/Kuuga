@@ -18,15 +18,19 @@
       </db_ref>
    </db_ref_list>
    <zoom_setting>
-      <ZoomStartTime time="34197937912fs"></ZoomStartTime>
-      <ZoomEndTime time="34902412418fs"></ZoomEndTime>
-      <Cursor1Time time="34785000000fs"></Cursor1Time>
+      <ZoomStartTime time="34511666666fs"></ZoomStartTime>
+      <ZoomEndTime time="34911666667fs"></ZoomEndTime>
+      <Cursor1Time time="34845000000fs"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
-      <NameColumnWidth column_width="311"></NameColumnWidth>
-      <ValueColumnWidth column_width="246"></ValueColumnWidth>
+      <NameColumnWidth column_width="193"></NameColumnWidth>
+      <ValueColumnWidth column_width="103"></ValueColumnWidth>
    </column_width_setting>
-   <WVObjectSize size="7" />
+   <WVObjectSize size="8" />
+   <wave_markers>
+      <marker label="" time="70155000000" />
+      <marker label="" time="34675000000" />
+   </wave_markers>
    <wvobject type="array" fp_name="/complex_cache_tb/kuuga_inst/complex_cache_test_i/gouram_wrapper_0/inst/gouram/if_tr/counter">
       <obj_property name="ElementShortName">counter[31:0]</obj_property>
       <obj_property name="ObjectShortName">counter[31:0]</obj_property>
@@ -46,6 +50,7 @@
    <wvobject type="group" fp_name="group30">
       <obj_property name="label">Godai</obj_property>
       <obj_property name="DisplayName">label</obj_property>
+      <obj_property name="isExpanded"></obj_property>
       <wvobject type="logic" fp_name="/complex_cache_tb/kuuga_inst/complex_cache_test_i/godai_wrapper_0/inst/clk">
          <obj_property name="ElementShortName">clk</obj_property>
          <obj_property name="ObjectShortName">clk</obj_property>
@@ -73,6 +78,10 @@
       <wvobject type="array" fp_name="/complex_cache_tb/kuuga_inst/complex_cache_test_i/godai_wrapper_0/inst/instr_rdata_i">
          <obj_property name="ElementShortName">instr_rdata_i[31:0]</obj_property>
          <obj_property name="ObjectShortName">instr_rdata_i[31:0]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/complex_cache_tb/kuuga_inst/complex_cache_test_i/godai_wrapper_0/inst/is_decoding_o">
+         <obj_property name="ElementShortName">is_decoding_o</obj_property>
+         <obj_property name="ObjectShortName">is_decoding_o</obj_property>
       </wvobject>
       <wvobject type="logic" fp_name="/complex_cache_tb/kuuga_inst/complex_cache_test_i/godai_wrapper_0/inst/data_req_o">
          <obj_property name="ElementShortName">data_req_o</obj_property>
@@ -122,33 +131,26 @@
          <obj_property name="ElementShortName">branch_decision_o</obj_property>
          <obj_property name="ObjectShortName">branch_decision_o</obj_property>
       </wvobject>
-      <wvobject type="logic" fp_name="/complex_cache_tb/kuuga_inst/complex_cache_test_i/godai_wrapper_0/inst/is_decoding_o">
-         <obj_property name="ElementShortName">is_decoding_o</obj_property>
-         <obj_property name="ObjectShortName">is_decoding_o</obj_property>
+      <wvobject type="logic" fp_name="/complex_cache_tb/kuuga_inst/complex_cache_test_i/godai_wrapper_0/inst/core/if_stage_i/branch_req">
+         <obj_property name="ElementShortName">branch_req</obj_property>
+         <obj_property name="ObjectShortName">branch_req</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/complex_cache_tb/kuuga_inst/complex_cache_test_i/godai_wrapper_0/inst/core/if_stage_i/clear_instr_valid_i">
+         <obj_property name="ElementShortName">clear_instr_valid_i</obj_property>
+         <obj_property name="ObjectShortName">clear_instr_valid_i</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/complex_cache_tb/kuuga_inst/complex_cache_test_i/godai_wrapper_0/inst/core/if_stage_i/pc_set_i">
+         <obj_property name="ElementShortName">pc_set_i</obj_property>
+         <obj_property name="ObjectShortName">pc_set_i</obj_property>
       </wvobject>
    </wvobject>
    <wvobject type="group" fp_name="group4336">
       <obj_property name="label">Enokida</obj_property>
       <obj_property name="DisplayName">label</obj_property>
+      <obj_property name="isExpanded"></obj_property>
       <wvobject type="logic" fp_name="/complex_cache_tb/kuuga_inst/complex_cache_test_i/enokida_wrapper_0/inst/tac/proc_cache_data_req_i">
          <obj_property name="ElementShortName">proc_cache_data_req_i</obj_property>
          <obj_property name="ObjectShortName">proc_cache_data_req_i</obj_property>
-      </wvobject>
-      <wvobject type="array" fp_name="/complex_cache_tb/kuuga_inst/complex_cache_test_i/enokida_wrapper_0/inst/tac/proc_cache_data_addr_i">
-         <obj_property name="ElementShortName">proc_cache_data_addr_i[15:0]</obj_property>
-         <obj_property name="ObjectShortName">proc_cache_data_addr_i[15:0]</obj_property>
-      </wvobject>
-      <wvobject type="logic" fp_name="/complex_cache_tb/kuuga_inst/complex_cache_test_i/enokida_wrapper_0/inst/tac/proc_cache_data_we_i">
-         <obj_property name="ElementShortName">proc_cache_data_we_i</obj_property>
-         <obj_property name="ObjectShortName">proc_cache_data_we_i</obj_property>
-      </wvobject>
-      <wvobject type="array" fp_name="/complex_cache_tb/kuuga_inst/complex_cache_test_i/enokida_wrapper_0/inst/tac/proc_cache_data_be_i">
-         <obj_property name="ElementShortName">proc_cache_data_be_i[3:0]</obj_property>
-         <obj_property name="ObjectShortName">proc_cache_data_be_i[3:0]</obj_property>
-      </wvobject>
-      <wvobject type="array" fp_name="/complex_cache_tb/kuuga_inst/complex_cache_test_i/enokida_wrapper_0/inst/tac/proc_cache_data_wdata_i">
-         <obj_property name="ElementShortName">proc_cache_data_wdata_i[31:0]</obj_property>
-         <obj_property name="ObjectShortName">proc_cache_data_wdata_i[31:0]</obj_property>
       </wvobject>
       <wvobject type="logic" fp_name="/complex_cache_tb/kuuga_inst/complex_cache_test_i/enokida_wrapper_0/inst/tac/proc_cache_data_gnt_o">
          <obj_property name="ElementShortName">proc_cache_data_gnt_o</obj_property>
@@ -158,9 +160,37 @@
          <obj_property name="ElementShortName">proc_cache_data_rvalid_o</obj_property>
          <obj_property name="ObjectShortName">proc_cache_data_rvalid_o</obj_property>
       </wvobject>
+      <wvobject type="logic" fp_name="/complex_cache_tb/kuuga_inst/complex_cache_test_i/enokida_wrapper_0/inst/tac/proc_cache_data_we_i">
+         <obj_property name="ElementShortName">proc_cache_data_we_i</obj_property>
+         <obj_property name="ObjectShortName">proc_cache_data_we_i</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/complex_cache_tb/kuuga_inst/complex_cache_test_i/enokida_wrapper_0/inst/tac/proc_cache_data_be_i">
+         <obj_property name="ElementShortName">proc_cache_data_be_i[3:0]</obj_property>
+         <obj_property name="ObjectShortName">proc_cache_data_be_i[3:0]</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/complex_cache_tb/kuuga_inst/complex_cache_test_i/enokida_wrapper_0/inst/tac/proc_cache_data_addr_i">
+         <obj_property name="ElementShortName">proc_cache_data_addr_i[15:0]</obj_property>
+         <obj_property name="ObjectShortName">proc_cache_data_addr_i[15:0]</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/complex_cache_tb/kuuga_inst/complex_cache_test_i/enokida_wrapper_0/inst/tac/proc_cache_data_wdata_i">
+         <obj_property name="ElementShortName">proc_cache_data_wdata_i[31:0]</obj_property>
+         <obj_property name="ObjectShortName">proc_cache_data_wdata_i[31:0]</obj_property>
+      </wvobject>
       <wvobject type="array" fp_name="/complex_cache_tb/kuuga_inst/complex_cache_test_i/enokida_wrapper_0/inst/tac/proc_cache_data_rdata_o">
          <obj_property name="ElementShortName">proc_cache_data_rdata_o[31:0]</obj_property>
          <obj_property name="ObjectShortName">proc_cache_data_rdata_o[31:0]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/complex_cache_tb/kuuga_inst/complex_cache_test_i/enokida_wrapper_0/inst/tac/cache_mem_data_req_o">
+         <obj_property name="ElementShortName">cache_mem_data_req_o</obj_property>
+         <obj_property name="ObjectShortName">cache_mem_data_req_o</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/complex_cache_tb/kuuga_inst/complex_cache_test_i/enokida_wrapper_0/inst/tac/cache_mem_data_gnt_i">
+         <obj_property name="ElementShortName">cache_mem_data_gnt_i</obj_property>
+         <obj_property name="ObjectShortName">cache_mem_data_gnt_i</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/complex_cache_tb/kuuga_inst/complex_cache_test_i/enokida_wrapper_0/inst/tac/cache_mem_data_rvalid_i">
+         <obj_property name="ElementShortName">cache_mem_data_rvalid_i</obj_property>
+         <obj_property name="ObjectShortName">cache_mem_data_rvalid_i</obj_property>
       </wvobject>
       <wvobject type="array" fp_name="/complex_cache_tb/kuuga_inst/complex_cache_test_i/enokida_wrapper_0/inst/tac/cache_mem_data_addr_o">
          <obj_property name="ElementShortName">cache_mem_data_addr_o[15:0]</obj_property>
@@ -170,21 +200,9 @@
          <obj_property name="ElementShortName">cache_mem_data_be_o[3:0]</obj_property>
          <obj_property name="ObjectShortName">cache_mem_data_be_o[3:0]</obj_property>
       </wvobject>
-      <wvobject type="logic" fp_name="/complex_cache_tb/kuuga_inst/complex_cache_test_i/enokida_wrapper_0/inst/tac/cache_mem_data_gnt_i">
-         <obj_property name="ElementShortName">cache_mem_data_gnt_i</obj_property>
-         <obj_property name="ObjectShortName">cache_mem_data_gnt_i</obj_property>
-      </wvobject>
       <wvobject type="array" fp_name="/complex_cache_tb/kuuga_inst/complex_cache_test_i/enokida_wrapper_0/inst/tac/cache_mem_data_rdata_i">
          <obj_property name="ElementShortName">cache_mem_data_rdata_i[31:0]</obj_property>
          <obj_property name="ObjectShortName">cache_mem_data_rdata_i[31:0]</obj_property>
-      </wvobject>
-      <wvobject type="logic" fp_name="/complex_cache_tb/kuuga_inst/complex_cache_test_i/enokida_wrapper_0/inst/tac/cache_mem_data_req_o">
-         <obj_property name="ElementShortName">cache_mem_data_req_o</obj_property>
-         <obj_property name="ObjectShortName">cache_mem_data_req_o</obj_property>
-      </wvobject>
-      <wvobject type="logic" fp_name="/complex_cache_tb/kuuga_inst/complex_cache_test_i/enokida_wrapper_0/inst/tac/cache_mem_data_rvalid_i">
-         <obj_property name="ElementShortName">cache_mem_data_rvalid_i</obj_property>
-         <obj_property name="ObjectShortName">cache_mem_data_rvalid_i</obj_property>
       </wvobject>
       <wvobject type="array" fp_name="/complex_cache_tb/kuuga_inst/complex_cache_test_i/enokida_wrapper_0/inst/tac/cache_mem_data_wdata_o">
          <obj_property name="ElementShortName">cache_mem_data_wdata_o[31:0]</obj_property>
@@ -197,6 +215,7 @@
       <wvobject type="array" fp_name="/complex_cache_tb/kuuga_inst/complex_cache_test_i/enokida_wrapper_0/inst/tac/trace_in">
          <obj_property name="ElementShortName">trace_in</obj_property>
          <obj_property name="ObjectShortName">trace_in</obj_property>
+         <obj_property name="isExpanded"></obj_property>
       </wvobject>
       <wvobject type="logic" fp_name="/complex_cache_tb/kuuga_inst/complex_cache_test_i/enokida_wrapper_0/inst/tac/trace_capture_enable">
          <obj_property name="ElementShortName">trace_capture_enable</obj_property>
@@ -312,13 +331,31 @@
          <obj_property name="ObjectShortName">v_mem_req</obj_property>
       </wvobject>
       <wvobject type="array" fp_name="/complex_cache_tb/kuuga_inst/complex_cache_test_i/enokida_wrapper_0/inst/tac/standard_cache/ctag/tag_mem">
-         <obj_property name="ElementShortName">tag_mem[0:127]</obj_property>
-         <obj_property name="ObjectShortName">tag_mem[0:127]</obj_property>
+         <obj_property name="ElementShortName">tag_mem[0:63]</obj_property>
+         <obj_property name="ObjectShortName">tag_mem[0:63]</obj_property>
          <obj_property name="isExpanded"></obj_property>
       </wvobject>
       <wvobject type="array" fp_name="/complex_cache_tb/kuuga_inst/complex_cache_test_i/enokida_wrapper_0/inst/tac/standard_cache/cdata/data_mem">
-         <obj_property name="ElementShortName">data_mem[0:127][31:0]</obj_property>
-         <obj_property name="ObjectShortName">data_mem[0:127][31:0]</obj_property>
+         <obj_property name="ElementShortName">data_mem[0:63][31:0]</obj_property>
+         <obj_property name="ObjectShortName">data_mem[0:63][31:0]</obj_property>
+         <obj_property name="isExpanded"></obj_property>
+      </wvobject>
+   </wvobject>
+   <wvobject type="group" fp_name="group351">
+      <obj_property name="label">Result Registers</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <obj_property name="isExpanded"></obj_property>
+      <wvobject type="array" fp_name="/complex_cache_tb/kuuga_inst/complex_cache_test_i/godai_wrapper_0/inst/core/id_stage_i/registers_i/rf_reg[15]">
+         <obj_property name="ElementShortName">[15][31:0]</obj_property>
+         <obj_property name="ObjectShortName">[15][31:0]</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/complex_cache_tb/kuuga_inst/complex_cache_test_i/godai_wrapper_0/inst/core/id_stage_i/registers_i/rf_reg[11]">
+         <obj_property name="ElementShortName">[11][31:0]</obj_property>
+         <obj_property name="ObjectShortName">[11][31:0]</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/complex_cache_tb/kuuga_inst/complex_cache_test_i/godai_wrapper_0/inst/core/id_stage_i/registers_i/rf_reg[10]">
+         <obj_property name="ElementShortName">[10][31:0]</obj_property>
+         <obj_property name="ObjectShortName">[10][31:0]</obj_property>
       </wvobject>
    </wvobject>
 </wave_config>

@@ -41,7 +41,11 @@ module dm_cache_tag
     input bit               clk,
     input cache_req_type    tag_req,        // Tag Request/Command (RW, Valid etc.)
     input cache_tag_type    tag_write,      // Write Port
-    output cache_tag_type   tag_read        // Read Port
+    output cache_tag_type   tag_read,        // Read Port
+    
+    input bit [INDEXMSB-INDEXLSB:0] index_to_check,
+    output bit wb_necessary,
+    output bit indexed_cache_entry_valid
 );
     cache_tag_type tag_mem[0:CACHE_BLOCKS-1];
     
@@ -57,19 +61,27 @@ module dm_cache_tag
         if (tag_req.we) tag_mem[tag_req.index] <= tag_write;
     end
     
+    always_comb
+    begin
+        wb_necessary = !((tag_mem[index_to_check].valid == 1'b0) || (tag_mem[index_to_check].dirty == 1'b0));
+        indexed_cache_entry_valid = tag_mem[index_to_check].valid;
+    end
+    
 endmodule
     
 /* Cache FSM */
 
 module dm_cache_fsm
-#(
-    CACHE_BLOCKS = 128
-)
 (
     input bit clk, 
     input bit rst,
     input cpu_req_type      cpu_req,    // CPU Request Input (CPU->cache)
     input mem_data_type     mem_data,   // Memory Response (memory->cache)
+    
+    input bit [INDEXMSB-INDEXLSB:0] index_to_check,
+    output bit wb_necessary,
+    output bit indexed_cache_entry_valid,
+    
     output mem_req_type     mem_req,    // Memory Request (cache->memory)
     output cpu_result_type  cpu_res     // Cache Result (cache->CPU)
 );
@@ -108,12 +120,12 @@ module dm_cache_fsm
         /* Read tag by default */
         tag_req.we = '0;
         /*Direct map index for tag */
-        tag_req.index = cpu_req.addr[INDEXMSB:INDEXLSB] >> 2;
+        tag_req.index = cpu_req.addr[INDEXMSB:INDEXLSB];
         
         /*Read current cache line by default */
         data_req.we = '0;
         /*Direct map index for cache data */
-        data_req.index = cpu_req.addr[INDEXMSB:INDEXLSB] >> 2;
+        data_req.index = cpu_req.addr[INDEXMSB:INDEXLSB];
         
         /* Modify correct word (32-bit) based on address */
         data_write = data_read;
@@ -222,7 +234,7 @@ module dm_cache_fsm
     end
     
     /*connect cache tag/data memory*/
-    dm_cache_tag #(CACHE_BLOCKS) ctag(.*);
-    dm_cache_data #(CACHE_BLOCKS) cdata(.*);
+    dm_cache_tag #(2**(INDEXMSB-INDEXLSB + 1)) ctag(.*);
+    dm_cache_data #(2**(INDEXMSB-INDEXLSB + 1)) cdata(.*);
     
     endmodule

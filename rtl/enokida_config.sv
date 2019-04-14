@@ -2,8 +2,8 @@ package cache_def;
     // Data structure for cache tag & data
     
     parameter int TAGMSB = 15; // Tag MSB
-    parameter int TAGLSB = 4; // Tag LSB
-    parameter int INDEXMSB = 3;
+    parameter int TAGLSB = 6; // Tag LSB
+    parameter int INDEXMSB = 5;
     parameter int INDEXLSB = 0;
     
     // Data structure for cache tag

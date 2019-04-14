@@ -49,9 +49,10 @@ module complex_cache_tb;
    begin
         #5 clk = ~clk;
         if (clk) sim_counter++;
-        if (sim_counter == 10000) $finish;
-        //if (sim_counter == 32'h4c) $stop;
+        if (sim_counter == 7500) $finish;
+        if (clk && sim_counter == 32'he3c) $stop;
    end
+   
    
    initial 
        begin
@@ -66,8 +67,8 @@ module complex_cache_tb;
            data_agent.start_slave();
            // Do some backdoor memory access to set up the program that will be accessed throughout the 
            // test
-           mem[32] = 32'h2400006f;
-           mem[33] = 32'h27c0006f;
+           mem[32] =  32'h2400006f;
+           mem[33] =  32'h25c0006f;
            mem[128] = 32'hfe010113;
            mem[129] = 32'h00112e23;
            mem[130] = 32'h00812c23;
@@ -122,7 +123,7 @@ module complex_cache_tb;
            mem[179] = 32'h00002083;
            mem[180] = 32'h00010137;
            mem[181] = 32'hf0010113;
-           mem[182] = 32'hD69ff0ef;
+           mem[182] = 32'hf7dff0ef;
            mem[183] = 32'h0040006f;
            mem[184] = 32'h0000006f;
            for (int i = 0; i < MEM_SIZE; i++) 
