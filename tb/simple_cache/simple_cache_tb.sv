@@ -52,7 +52,7 @@ module simple_cache_tb;
    begin
         #5 clk = ~clk;
         if (clk) sim_counter++;
-        if (sim_counter == 1000) $finish;
+        if (sim_counter == 4000) $finish;
    end
    
    initial 
@@ -68,27 +68,65 @@ module simple_cache_tb;
            data_agent.start_slave();
            // Do some backdoor memory access to set up the program that will be accessed throughout the 
            // test
-           mem[0]  = 32'h00402283; // LW R0, 0x4, R5 - CACHE MISS
-           mem[1]  = 32'h00402303; // LW R0, 0x4, R6 - CACHE HIT
-           mem[2]  = 32'h00002303; // LW R0, 0x0, R6 - CACHE MISS
-           mem[3]  = 32'h12330313; // ADDI R6, 0x123, R6   
-           mem[4]  = 32'h00602023; // SW R0, 0x0, R6 - CACHE HIT
-           mem[5]  = 32'h07002383; // LW R0, 0x70, R6 - EVICT 11111234
-           mem[6]  = 32'h00002383; // LW R0, 0x0, R6 - CACHE MISS
-           mem[7]  = 32'h0000006F; // Loop on this Address
-           mem[32] = 32'hF81FF06F; // Jump to Address 0
-           mem[33] = 32'h0000006F; // Trap Address
+           mem[32] =  32'h2400006f;
+           mem[33] =  32'h24c0006f;
+           mem[128] = 32'hfe010113;
+           mem[129] = 32'h00112e23;
+           mem[130] = 32'h00812c23;
+           mem[131] = 32'h02010413;
+           mem[132] = 32'hfea42623;
+           mem[133] = 32'hfec42783;
+           mem[134] = 32'h00079663;
+           mem[135] = 32'h00100793;
+           mem[136] = 32'h0200006f;
+           mem[137] = 32'hfec42783;
+           mem[138] = 32'hfff78793;
+           mem[139] = 32'h00078513;
+           mem[140] = 32'hfd1ff0ef;
+           mem[141] = 32'h00050713;
+           mem[142] = 32'hfec42783;
+           mem[143] = 32'h02f707b3;
+           mem[144] = 32'h00078513;
+           mem[145] = 32'h01c12083;
+           mem[146] = 32'h01812403;
+           mem[147] = 32'h02010113;
+           mem[148] = 32'h00008067;
+           mem[149] = 32'hfe010113;
+           mem[150] = 32'h00112e23;
+           mem[151] = 32'h00812c23;
+           mem[152] = 32'h02010413;
+           mem[153] = 32'hfe042423;
+           mem[154] = 32'h00500793;
+           mem[155] = 32'hfef42223;
+           mem[156] = 32'hfe042623;
+           mem[157] = 32'h0280006f;
+           mem[158] = 32'hfec42503;
+           mem[159] = 32'hf85ff0ef;
+           mem[160] = 32'h00050713;
+           mem[161] = 32'hfe842783;
+           mem[162] = 32'h00e787b3;
+           mem[163] = 32'hfef42423;
+           mem[164] = 32'hfec42783;
+           mem[165] = 32'h00178793;
+           mem[166] = 32'hfef42623;
+           mem[167] = 32'hfe442783;
+           mem[168] = 32'hfec42703;
+           mem[169] = 32'hfce7dae3;
+           mem[170] = 32'hfe842783;
+           mem[171] = 32'h00078513;
+           mem[172] = 32'h01c12083;
+           mem[173] = 32'h01812403;
+           mem[174] = 32'h02010113;
+           mem[175] = 32'h00008067;
+           mem[176] = 32'h00010137;
+           mem[177] = 32'hf0010113;
+           mem[178] = 32'hf8dff0ef;
+           mem[179] = 32'h0040006f;
+           mem[180] = 32'h0000006f;
            for (int i = 0; i < MEM_SIZE; i++) 
            begin
                 if (mem[i] != 32'b0) backdoor_instr_mem_write(i*4, mem[i], 4'b1111);
                 else backdoor_instr_mem_write(i*4, i, 4'b1111);
-           end
-           data_mem[0] = 32'h11111111;
-           data_mem[1] = 32'h10101010;
-           data_mem[28] = 32'h22222222;
-           for (int i = 0; i < MEM_SIZE; i++)
-           begin
-                backdoor_data_mem_write(i*4, data_mem[i], 4'b1111);
            end
            // Set up the device to run
            clk = 0;

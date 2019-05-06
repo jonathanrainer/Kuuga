@@ -23,8 +23,7 @@
 module simple_cache_wrapper
 #(
     ADDR_WIDTH = 16,
-    DATA_WIDTH = 32,
-    CACHE_BLOCKS = 128
+    DATA_WIDTH = 32
 )
 (
      // Clock and Reset
@@ -53,7 +52,7 @@ module simple_cache_wrapper
 );
 
 
-    simple_cache #(ADDR_WIDTH, DATA_WIDTH, CACHE_BLOCKS) cache_inst 
+    simple_cache #(ADDR_WIDTH, DATA_WIDTH) cache_inst 
     (
         clk, rst_n, in_data_req_i, in_data_gnt_o, in_data_rvalid_o,
         in_data_addr_i, in_data_we_i, in_data_be_i, in_data_rdata_o,

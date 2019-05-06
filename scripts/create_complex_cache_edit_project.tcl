@@ -34,7 +34,8 @@ lappend rtlFilesFull [file join $thisDir .. rtl enokida.sv]
 lappend includeFilesFull [file join $thisDir .. rtl enokida_config.sv]
 lappend rtlFilesFull [file join $thisDir .. rtl enokida_wrapper.v]
 lappend rtlFilesFull [file join $thisDir .. rtl trace_repository.sv]
-lappend rtlFilesFull [file join $thisDir .. rtl load_store_unit.sv]
+lappend rtlFilesFull [file join $thisDir .. rtl trace_repository_datatypes.sv]
+
 
 set simOnlyFiles {}
 

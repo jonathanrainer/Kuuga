@@ -23,8 +23,7 @@
 module enokida_wrapper
 #(
     ADDR_WIDTH = 16,
-    DATA_WIDTH = 32,
-    TRACE_ENTRIES = 2048
+    DATA_WIDTH = 32
 )
 (
     input clk,
@@ -57,18 +56,17 @@ module enokida_wrapper
     // Trace Input
     input   [127:0]             trace_in,
     input                       trace_capture_enable,
-    input                       lock,
-    input   [31:0]              counter
+    input                       lock
 );
 
-    enokida #(ADDR_WIDTH, DATA_WIDTH, TRACE_ENTRIES) tac(
+    enokida #(ADDR_WIDTH, DATA_WIDTH) tac(
         clk, rst_n,
         proc_cache_data_req_i, proc_cache_data_addr_i, proc_cache_data_we_i, proc_cache_data_be_i,
         proc_cache_data_wdata_i, proc_cache_data_gnt_o, proc_cache_data_rvalid_o, proc_cache_data_rdata_o,
         cache_mem_data_gnt_i, cache_mem_data_rvalid_i, cache_mem_data_rdata_i,
         cache_mem_data_req_o, cache_mem_data_addr_o, cache_mem_data_we_o,
         cache_mem_data_be_o, cache_mem_data_wdata_o, trace_in,
-        trace_capture_enable, lock, counter
+        trace_capture_enable, lock
     );
 
 endmodule

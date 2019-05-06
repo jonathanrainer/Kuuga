@@ -14,7 +14,7 @@ module dm_cache_data
     input cache_data_type   data_write,     // Write Port (128-bit line)
     output cache_data_type  data_read
 );
-    cache_data_type data_mem[0:CACHE_BLOCKS-1];
+    (* ram_style = "block" *) cache_data_type data_mem[0:CACHE_BLOCKS-1];
     
     initial
     begin
@@ -43,11 +43,11 @@ module dm_cache_tag
     input cache_tag_type    tag_write,      // Write Port
     output cache_tag_type   tag_read,        // Read Port
     
-    input bit [INDEXMSB-INDEXLSB:0] index_to_check,
+    input bit [TAGMSB:0] addr_to_check,
     output bit wb_necessary,
     output bit indexed_cache_entry_valid
 );
-    cache_tag_type tag_mem[0:CACHE_BLOCKS-1];
+    (* ram_style = "block" *) cache_tag_type tag_mem[0:CACHE_BLOCKS-1];
     
     initial
     begin
@@ -63,8 +63,10 @@ module dm_cache_tag
     
     always_comb
     begin
-        wb_necessary = !((tag_mem[index_to_check].valid == 1'b0) || (tag_mem[index_to_check].dirty == 1'b0));
-        indexed_cache_entry_valid = tag_mem[index_to_check].valid;
+        automatic bit [TAGMSB-TAGLSB:0] tag = addr_to_check[TAGMSB:TAGLSB];
+        automatic bit [INDEXMSB-INDEXLSB:0] index = addr_to_check[INDEXMSB:INDEXLSB];
+        wb_necessary = !((tag_mem[index].valid == 1'b0) || (tag_mem[index].dirty == 1'b0));
+        indexed_cache_entry_valid = tag_mem[index].valid && tag_mem[index].tag == tag;
     end
     
 endmodule
@@ -78,7 +80,7 @@ module dm_cache_fsm
     input cpu_req_type      cpu_req,    // CPU Request Input (CPU->cache)
     input mem_data_type     mem_data,   // Memory Response (memory->cache)
     
-    input bit [INDEXMSB-INDEXLSB:0] index_to_check,
+    input bit [TAGMSB:0] addr_to_check,
     output bit wb_necessary,
     output bit indexed_cache_entry_valid,
     
@@ -141,7 +143,7 @@ module dm_cache_fsm
     
         //------------------------------------Cache FSM-------------------------
     
-        case(rstate)
+        unique case(rstate)
             /* Idle state */
             idle : 
             begin

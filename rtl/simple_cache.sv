@@ -5,8 +5,7 @@ import cache_def::*;
 module simple_cache
 #(
     ADDR_WIDTH = 16,
-    DATA_WIDTH = 32,
-    CACHE_BLOCKS = 128
+    DATA_WIDTH = 32
 )
 (
 
@@ -36,28 +35,32 @@ module simple_cache
 );
 
     bit rst;
-    cpu_req_type cpu_req = '{default: 0};
-    mem_data_type mem_data = '{default: 0};
-    mem_req_type mem_req = '{default: 0};
-    cpu_result_type cpu_res = '{default: 0};
+    cpu_req_type cpu_req;
+    mem_data_type mem_data;
+    mem_req_type mem_req;
+    cpu_result_type cpu_res;
     
     bit [ADDR_WIDTH-1:0] cached_addr;
     bit [DATA_WIDTH-1:0] cached_data;
+    
+    bit [INDEXMSB-INDEXLSB:0] index_to_check;
+    bit wb_necessary;
+    bit indexed_cache_entry_valid;
 
     assign rst = !rst_ni;
 
-    dm_cache_fsm #(CACHE_BLOCKS) cache_imp(
+    dm_cache_fsm cache_imp(
         .clk(clk_i),
         .*
     );
     
     enum bit [2:0] {
-        WAIT_ON_REQ                     =   3'b000,
-        CACHE_HIT_GNT                   =   3'b001,
-        CACHE_HIT_DATA                  =   3'b010,
-        SERVICE_WRITE_BACK_WAIT_GNT     =   3'b011,
-        SERVICE_WRITE_BACK_WAIT_RVALID  =   3'b100,
-        SERVICE_CACHE_MISS              =   3'b101
+        WAIT_ON_REQ,
+        CACHE_HIT_GNT,
+        CACHE_HIT_DATA,
+        SERVICE_WRITE_BACK_WAIT_GNT,
+        SERVICE_WRITE_BACK_WAIT_RVALID,
+        SERVICE_CACHE_MISS
     } state;
     
     initial
@@ -73,8 +76,8 @@ module simple_cache
             WAIT_ON_REQ:
             begin
                 mem_data.ready <= 1'b0;
-                assign in_data_rvalid_o = 1'b0;
-                assign in_data_rdata_o = 32'b0;
+                in_data_rvalid_o <= 1'b0;
+                in_data_rdata_o <= 32'b0;
                 if(in_data_req_i)
                 begin
                     cpu_req.addr <= in_data_addr_i;
@@ -99,7 +102,7 @@ module simple_cache
                     cpu_req.valid <= 1'b0;
                     if(cpu_res.ready)
                     begin
-                        assign in_data_gnt_o = 1'b1;
+                        in_data_gnt_o <= 1'b1;
                         state <= CACHE_HIT_DATA;
                     end
                     else if (mem_req.rw) 
@@ -108,34 +111,42 @@ module simple_cache
                         cached_data <= mem_req.data;
                         state <= SERVICE_WRITE_BACK_WAIT_GNT;
                     end
-                    else state <= SERVICE_CACHE_MISS;
+                    else 
+                    begin
+                        out_data_req_o <= in_data_req_i;
+                        out_data_addr_o <= in_data_addr_i;
+                        out_data_we_o <= in_data_we_i;
+                        out_data_be_o <= in_data_be_i;
+                        out_data_wdata_o <= in_data_wdata_i;
+                        state <= SERVICE_CACHE_MISS;
+                    end
                 end
             end
             CACHE_HIT_DATA:
             begin
-                assign in_data_gnt_o = 1'b0;
-                assign in_data_rvalid_o = 1'b1;
-                if (cpu_req.rw) assign in_data_rdata_o = 32'h00000000;
-                else assign in_data_rdata_o = cpu_res.data;
+                in_data_gnt_o <= 1'b0;
+                in_data_rvalid_o <= 1'b1;
+                if (cpu_req.rw) in_data_rdata_o <= 32'h00000000;
+                else in_data_rdata_o <= cpu_res.data;
                 state <= WAIT_ON_REQ;
             end
             SERVICE_WRITE_BACK_WAIT_GNT:
             begin
                 if (mem_req.valid && !out_data_gnt_i)
                 begin
-                    assign out_data_req_o = 1'b1;
-                    assign out_data_addr_o = cached_addr;
-                    assign out_data_we_o = 1'b1;
-                    assign out_data_be_o = 4'hf;
-                    assign out_data_wdata_o = cached_data;
+                    out_data_req_o <= 1'b1;
+                    out_data_addr_o <= cached_addr;
+                    out_data_we_o <= 1'b1;
+                    out_data_be_o <= 4'hf;
+                    out_data_wdata_o <= cached_data;
                 end
                 else if (mem_req.valid && out_data_gnt_i)
                 begin
-                    assign out_data_req_o = 1'b0;
-                    assign out_data_addr_o = 1'b0;
-                    assign out_data_we_o = 1'b0;
-                    assign out_data_be_o = 4'h0;
-                    assign out_data_wdata_o = 32'h00000000;
+                    out_data_req_o <= 1'b0;
+                    out_data_addr_o <= 1'b0;
+                    out_data_we_o <= 1'b0;
+                    out_data_be_o <= 4'h0;
+                    out_data_wdata_o <= 32'h00000000;
                     state <= SERVICE_WRITE_BACK_WAIT_RVALID;
                 end
             end
@@ -144,6 +155,11 @@ module simple_cache
                 if(out_data_rvalid_i) 
                 begin
                     mem_data.ready <= 1'b1;
+                    out_data_req_o <= in_data_req_i;
+                    out_data_addr_o <= in_data_addr_i;
+                    out_data_we_o <= in_data_we_i;
+                    out_data_be_o <= in_data_be_i;
+                    out_data_wdata_o <= in_data_wdata_i;
                     state <= SERVICE_CACHE_MISS;
                 end
             end
@@ -152,27 +168,22 @@ module simple_cache
                 mem_data.ready <= 1'b0;
                 if(!out_data_rvalid_i) 
                 begin
-                    assign out_data_req_o = in_data_req_i;
-                    assign in_data_gnt_o = out_data_gnt_i;
-                    assign in_data_rvalid_o = out_data_rvalid_i;
-                    assign out_data_addr_o = in_data_addr_i;
-                    assign out_data_we_o = in_data_we_i;
-                    assign out_data_be_o = in_data_be_i;
-                    assign in_data_rdata_o = out_data_rdata_i;
-                    assign out_data_wdata_o = in_data_wdata_i;
+                    in_data_gnt_o <= out_data_gnt_i;
+                    in_data_rvalid_o <= out_data_rvalid_i;
+                    in_data_rdata_o <= out_data_rdata_i;
                 end
-                else 
+                else
                 begin
-                    mem_data.data <= out_data_rdata_i;
+                    mem_data.data <= (!out_data_we_o) ? out_data_rdata_i : out_data_wdata_o;
                     mem_data.ready <= 1'b1;
-                    assign out_data_req_o = 1'b0;
-                    assign in_data_gnt_o = 1'b0;
-                    assign in_data_rvalid_o = 1'b0;
-                    assign out_data_addr_o = 16'b0;
-                    assign out_data_we_o = 1'b0;
-                    assign out_data_be_o = 1'b0;
-                    assign in_data_rdata_o = 32'b0;
-                    assign out_data_wdata_o = 32'b0;
+                    out_data_req_o <= 1'b0;
+                    in_data_gnt_o <= 1'b0;
+                    in_data_rvalid_o <= 1'b1;
+                    out_data_addr_o <= 16'b0;
+                    out_data_we_o <= 1'b0;
+                    out_data_be_o <= 1'b0;
+                    in_data_rdata_o <= out_data_rdata_i;
+                    out_data_wdata_o <= 32'b0;
                     state <= WAIT_ON_REQ;
                 end
             end
@@ -181,6 +192,14 @@ module simple_cache
     
     task initialise_module();
         state <= WAIT_ON_REQ;
+        in_data_gnt_o <= 1'b0;
+        in_data_rvalid_o <= 1'b0;
+        in_data_rdata_o <= 32'b0;
+        out_data_req_o <= 1'b0;
+        out_data_addr_o <= 16'b0;
+        out_data_we_o <= 1'b0;
+        out_data_be_o <= 1'b0;
+        out_data_wdata_o <= 32'b0;
     endtask
 
 endmodule

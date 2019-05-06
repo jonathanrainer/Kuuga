@@ -5,8 +5,7 @@ import trace_repository_datatypes::*;
 module enokida
 #(
     ADDR_WIDTH = 16,
-    DATA_WIDTH = 32,
-    TRACE_ENTRIES = 2048
+    DATA_WIDTH = 32
 )
 (
     input bit clk,
@@ -39,22 +38,21 @@ module enokida
     // Trace Input
     input trace_format              trace_in,
     input bit                       trace_capture_enable,
-    input bit                       lock,
-    input integer                   counter
+    input bit                       lock
 );
 
     bit rst;
     assign rst = !rst_n;
     
-    cpu_req_type cpu_req = '{default: 0};
-    mem_data_type mem_data = '{default: 0};
-    mem_req_type mem_req = '{default: 0};
-    cpu_result_type cpu_res = '{default: 0};
+    cpu_req_type cpu_req;
+    mem_data_type mem_data;
+    mem_req_type mem_req;
+    cpu_result_type cpu_res;
     
     bit [ADDR_WIDTH-1:0] cached_addr;
     bit [DATA_WIDTH-1:0] cached_data;
     
-    bit [INDEXMSB-INDEXLSB:0] index_to_check;
+    bit [ADDR_WIDTH-1:0] addr_to_check;
     bit wb_necessary;
     bit indexed_cache_entry_valid;
     
@@ -63,12 +61,8 @@ module enokida
         .*
     );
     
-    integer signed counter_offset = -1;
-    integer req_counter = 0;
-    integer sync_time = 0;
-    
-    trace_format trace_out;
-    trace_format cached_trace = '{default:0};
+    trace_repo_data_entry trace_out;
+    trace_repo_data_entry cached_trace;
     bit [$clog2(TRACE_ENTRIES)-1:0] trace_index_i;
     bit processing_complete;
     bit req;
@@ -85,25 +79,30 @@ module enokida
     bit retired;
     
     bit [ADDR_WIDTH-1:0] addr_in;
-    bit [$clog2(TRACE_ENTRIES)-1:0] index_o;
+    bit signed [$clog2(TRACE_ENTRIES)-1:0] index_o;
     bit get_index;
     bit index_valid;
   
-    trace_repository #(TRACE_ENTRIES, DATA_WIDTH) trace_repo(
+    trace_repository #(DATA_ADDR_WIDTH) trace_repo(
         .trace_req(req),
         .*
     );
     
-    enum bit [3:0] {
+    enum bit [4:0] {
         IDLE,
+        CAPTURE_PHASE_GNT,
+        CAPTURE_PHASE_RVALID,
         MAKE_REQ_TO_CACHE,
         CACHE_HIT_GNT,
         CACHE_HIT_DATA,
+        UPDATE_MAPPING,
         SERVICE_WRITE_BACK_WAIT_GNT,
         SERVICE_WRITE_BACK_WAIT_RVALID,
-        SERVICE_CACHE_MISS_MEM_LOAD,
+        SERVICE_CACHE_MISS_MEM_LOAD_WAIT_GNT,
+        SERVICE_CACHE_MISS_MEM_LOAD_WAIT_RVALID,
         SERVICE_CACHE_MISS_MEM_STORE,
-        SERVICE_CACHE_MISS_TRACE_LOAD,
+        SERVICE_CACHE_MISS_TRACE_LOAD_WAIT_GNT,
+        SERVICE_CACHE_MISS_TRACE_LOAD_WAIT_RVALID,
         SERVICE_CACHE_MISS_TRACE_STORE,
         UPDATE_TRACE_REPO,
         SLEEP
@@ -115,7 +114,7 @@ module enokida
      bit wb_necessary_temp = 0;
      bit prev_signals_saught = 0;
      
-     bit [$clog2(TRACE_ENTRIES)-1:0] mapping_cache_to_trace_index [0 : 2**(INDEXMSB-INDEXLSB + 1) - 1];
+     bit signed [$clog2(TRACE_ENTRIES)-1:0] mapping_cache_to_trace_index [0 : 2**(INDEXMSB-INDEXLSB + 1) - 1];
      
     initial
     begin
@@ -123,12 +122,6 @@ module enokida
     end 
  
     // Trace Executing Part
-    
-    always_ff@(posedge clk)
-    begin
-        if (proc_cache_data_req_i) req_counter <= req_counter+1;
-        else req_counter <= 0;
-    end
     
     always_ff @(posedge clk)
     begin
@@ -140,29 +133,57 @@ module enokida
                 begin
                     if (trace_capture_enable)
                     begin
-                        assign cache_mem_data_req_o = proc_cache_data_req_i;
-                        assign cache_mem_data_addr_o = proc_cache_data_addr_i;
-                        assign cache_mem_data_we_o = proc_cache_data_we_i;
-                        assign cache_mem_data_be_o = proc_cache_data_be_i;
-                        assign cache_mem_data_wdata_o = proc_cache_data_wdata_i;
-                        assign proc_cache_data_gnt_o =  cache_mem_data_gnt_i;
-                        assign proc_cache_data_rvalid_o = cache_mem_data_rvalid_i;
-                        assign proc_cache_data_rdata_o = cache_mem_data_rdata_i;
+                        proc_cache_data_rvalid_o <= 1'b0;
+                        proc_cache_data_gnt_o <= 1'b0;
+                        if (proc_cache_data_req_i && !cache_mem_data_gnt_i)
+                        begin
+                            cache_mem_data_req_o <= 1'b1;
+                            cache_mem_data_addr_o <= proc_cache_data_addr_i;
+                            cache_mem_data_we_o <= proc_cache_data_we_i;
+                            cache_mem_data_be_o <= proc_cache_data_be_i;
+                            cache_mem_data_wdata_o <= proc_cache_data_wdata_i;
+                            state <= CAPTURE_PHASE_GNT;
+                        end
                     end
                     else if (processing_complete) state <= IDLE;
                     else if (lock)
                     begin
-                         assign cache_mem_data_req_o = 1'b0;
-                         assign cache_mem_data_addr_o = 16'b0;
-                         assign cache_mem_data_we_o = 1'b0;
-                         assign cache_mem_data_be_o = 4'b0;
-                         assign cache_mem_data_wdata_o = 32'b0;
-                         assign proc_cache_data_gnt_o =  1'b0;
-                         assign proc_cache_data_rvalid_o = 1'b0;
-                         assign proc_cache_data_rdata_o = 32'b0;
+                         cache_mem_data_req_o <= 1'b0;
+                         cache_mem_data_addr_o <= 16'b0;
+                         cache_mem_data_we_o <= 1'b0;
+                         cache_mem_data_be_o <= 4'b0;
+                         cache_mem_data_wdata_o <= 32'b0;
+                         proc_cache_data_gnt_o <= 1'b0;
+                         proc_cache_data_rvalid_o <= 1'b0;
+                         proc_cache_data_rdata_o <= 32'b0;
                          req <= 1'b1;
                          prev_signals_saught <= 1'b0;
                          state <= MAKE_REQ_TO_CACHE;
+                    end
+                end
+                CAPTURE_PHASE_GNT:
+                begin
+                    if (cache_mem_data_gnt_i) 
+                    begin
+                        cache_mem_data_req_o <= 1'b0; 
+                        proc_cache_data_gnt_o <= 1'b1;
+                        state <= CAPTURE_PHASE_RVALID;
+                        if (cache_mem_data_rvalid_i)
+                        begin
+                            proc_cache_data_rvalid_o <= 1'b1;
+                            proc_cache_data_rdata_o <= cache_mem_data_rdata_i;
+                            state <= IDLE;
+                        end
+                    end
+                end
+                CAPTURE_PHASE_RVALID:
+                begin
+                    proc_cache_data_gnt_o <= 1'b0;
+                    if (cache_mem_data_rvalid_i)
+                    begin
+                        proc_cache_data_rvalid_o <= 1'b1;
+                        proc_cache_data_rdata_o <= cache_mem_data_rdata_i;
+                        state <= IDLE;
                     end
                 end
                 SLEEP:
@@ -174,42 +195,36 @@ module enokida
                 begin
                     req <= 1'b0;
                     mem_data.ready <= 1'b0;
-                    assign proc_cache_data_rvalid_o = 1'b0;
-                    assign proc_cache_data_rdata_o = 32'b0;
+                    proc_cache_data_rvalid_o <= 1'b0;
+                    proc_cache_data_rdata_o <= 32'b0;
                     if ((entry_valid || proc_cache_data_req_i) && !prev_signals_saught)
                     begin
-                        automatic bit [INDEXMSB-INDEXLSB:0] index_from_addr = (proc_cache_data_req_i) ? proc_cache_data_addr_i[INDEXMSB:INDEXLSB] : trace_out.mem_addr[INDEXMSB:INDEXLSB];
-                        index_to_check <= index_from_addr;
-                        trace_index_i <= mapping_cache_to_trace_index[index_from_addr];
+                        addr_to_check <= (proc_cache_data_req_i) ? proc_cache_data_addr_i : trace_out.mem_addr;
+                        trace_index_i <= mapping_cache_to_trace_index[(proc_cache_data_req_i) ? proc_cache_data_addr_i[INDEXMSB:INDEXLSB] : trace_out.mem_addr[INDEXMSB:INDEXLSB]];
                         prev_signals_saught <= 1'b1;
                     end
                     else if (prev_signals_saught)
                     begin
-                        if (counter_offset == -1 && sync_time == 0) sync_time <= trace_out.mem_trans_time_start;
-                        if (sync_time != 0 && counter_offset == -1 && proc_cache_data_req_i) counter_offset <= counter - sync_time - req_counter;
+                        // If it's the case that a memory request is waiting as well then give that priority
+                        if (proc_cache_data_req_i)
+                        begin
+                            // Cancel a request to the Trace Repo if there is one.
+                            cancel <= 1'b1;
+                            cpu_req.addr <= proc_cache_data_addr_i;
+                            cpu_req.rw <= proc_cache_data_we_i;
+                            cpu_req.data <= (proc_cache_data_we_i) ? proc_cache_data_wdata_i : 0;
+                            cpu_req.valid <= 1'b1;
+                            mem_trace_flag <= 1'b0;
+                        end
                         else
                         begin
-                            // If it's the case that a memory request is waiting as well then give that priority
-                            if (proc_cache_data_req_i)
-                            begin
-                                // Cancel a request to the Trace Repo if there is one.
-                                cancel <= 1'b1;
-                                cpu_req.addr <= proc_cache_data_addr_i;
-                                cpu_req.rw <= proc_cache_data_we_i;
-                                cpu_req.data <= (proc_cache_data_we_i) ? proc_cache_data_wdata_i : 0;
-                                cpu_req.valid <= 1'b1;
-                                mem_trace_flag <= 1'b0;
-                            end
-                            else
-                            begin
-                                cpu_req.addr <= trace_out.mem_addr;
-                                cpu_req.rw <= check_store(trace_out.instruction);
-                                cpu_req.data <= 32'b0;
-                                cpu_req.valid <= 1'b1;
-                                mem_trace_flag <= 1'b1;
-                            end
-                            state <= CACHE_HIT_GNT;
+                            cpu_req.addr <= trace_out.mem_addr;
+                            cpu_req.rw <= check_store(trace_out.instruction);
+                            cpu_req.data <= 32'b0;
+                            cpu_req.valid <= 1'b1;
+                            mem_trace_flag <= 1'b1;
                         end
+                        state <= CACHE_HIT_GNT;
                     end
                 end
                 CACHE_HIT_GNT:
@@ -218,13 +233,16 @@ module enokida
                     if (wb_necessary && !retired && !proc_cache_data_req_i) 
                     begin
                         trace_index_i <= mapping_cache_to_trace_index[cpu_req.addr[INDEXMSB:INDEXLSB]];
-                        index_to_check = cpu_req.addr;
+                        addr_to_check <= cpu_req.addr;                        
                         state <= SLEEP;
                     end
-                    if (!cpu_req.rw && indexed_cache_entry_valid && !proc_cache_data_req_i && !wb_necessary) 
+                    if (!cpu_req.rw && indexed_cache_entry_valid && mem_trace_flag && !wb_necessary) 
                     begin
                         processing_flag <= 1'b1;
-                        state <= UPDATE_TRACE_REPO;
+                        if (cpu_res.checked) 
+                        begin
+                            state <= UPDATE_TRACE_REPO;
+                        end
                     end
                     else
                     begin
@@ -234,14 +252,15 @@ module enokida
                             cpu_req.valid <= 1'b0;
                             if(cpu_res.ready)
                             begin
-                                if (proc_cache_data_req_i)
+                                if (!mem_trace_flag)
                                 begin
-                                    assign proc_cache_data_gnt_o = 1'b1;
+                                    proc_cache_data_gnt_o <= 1'b1;
                                     state <= CACHE_HIT_DATA;
                                 end
                                 else
                                 begin
                                     processing_flag = 1'b1;
+                                    mapping_cache_to_trace_index[cpu_req.addr[INDEXMSB:INDEXLSB]] <=  trace_index_o;
                                     state <= UPDATE_TRACE_REPO;
                                 end
                             end
@@ -253,37 +272,52 @@ module enokida
                             end
                             else 
                             begin
-                                if (mem_trace_flag) state <= (check_store((cached_trace.instruction) ? cached_trace.instruction : trace_out.instruction)) ? SERVICE_CACHE_MISS_TRACE_STORE : SERVICE_CACHE_MISS_TRACE_LOAD;
-                                else state <= (proc_cache_data_we_i) ? SERVICE_CACHE_MISS_MEM_STORE : SERVICE_CACHE_MISS_MEM_LOAD;
+                                if (mem_trace_flag) state <= (check_store((cached_trace.instruction) ? cached_trace.instruction : trace_out.instruction)) ? SERVICE_CACHE_MISS_TRACE_STORE : SERVICE_CACHE_MISS_TRACE_LOAD_WAIT_GNT;
+                                else state <= (proc_cache_data_we_i) ? SERVICE_CACHE_MISS_MEM_STORE : SERVICE_CACHE_MISS_MEM_LOAD_WAIT_GNT;
                             end
                         end
                     end
                 end  
                 CACHE_HIT_DATA:
                 begin
-                    assign proc_cache_data_gnt_o = 1'b0;
-                    assign proc_cache_data_rvalid_o = 1'b1;
-                    assign proc_cache_data_rdata_o = (cpu_req.rw) ? 32'h00000000 : cpu_res.data;
+                    proc_cache_data_gnt_o <= 1'b0;
+                    proc_cache_data_rvalid_o <= 1'b1;
+                    proc_cache_data_rdata_o <= (cpu_req.rw) ? 32'h00000000 : cpu_res.data;
                     processing_flag <= 1'b0;
-                    state <= UPDATE_TRACE_REPO;
+                    state <= (mem_trace_flag) ? UPDATE_TRACE_REPO : UPDATE_MAPPING;
+                end
+                UPDATE_MAPPING:
+                begin
+                    proc_cache_data_rvalid_o <= 1'b0;
+                    if (!get_index && !index_valid) 
+                    begin
+                        get_index <= 1'b1;
+                        addr_in <= mem_req.addr;
+                    end
+                    else if (get_index && index_valid)
+                    begin
+                        get_index <= 1'b0;
+                        mapping_cache_to_trace_index[cpu_req.addr[INDEXMSB:INDEXLSB]] <= index_o;
+                        state <= UPDATE_TRACE_REPO;
+                    end
                 end
                 SERVICE_WRITE_BACK_WAIT_GNT:
                 begin
                     if (mem_req.valid && !cache_mem_data_gnt_i)
                     begin
-                        assign cache_mem_data_req_o = 1'b1;
-                        assign cache_mem_data_addr_o = cached_addr;
-                        assign cache_mem_data_we_o = 1'b1;
-                        assign cache_mem_data_be_o = 4'hf;
-                        assign cache_mem_data_wdata_o = cached_data;
+                        cache_mem_data_req_o <= 1'b1;
+                        cache_mem_data_addr_o <= cached_addr;
+                        cache_mem_data_we_o <= 1'b1;
+                        cache_mem_data_be_o <= 4'hf;
+                        cache_mem_data_wdata_o <= cached_data;
                     end
                     else if (mem_req.valid && cache_mem_data_gnt_i)
                     begin
-                        assign cache_mem_data_req_o = 1'b0;
-                        assign cache_mem_data_addr_o = 1'b0;
-                        assign cache_mem_data_we_o = 1'b0;
-                        assign cache_mem_data_be_o = 4'h0;
-                        assign cache_mem_data_wdata_o = 32'h00000000;
+                        cache_mem_data_req_o <= 1'b0;
+                        cache_mem_data_addr_o <= 16'b0;
+                        cache_mem_data_we_o <= 1'b0;
+                        cache_mem_data_be_o <= 4'h0;
+                        cache_mem_data_wdata_o <= 32'h00000000;
                         state <= SERVICE_WRITE_BACK_WAIT_RVALID;
                     end
                 end
@@ -292,52 +326,64 @@ module enokida
                      if(cache_mem_data_rvalid_i)
                      begin
                         mem_data.ready <= 1'b1;
-                        state <= (mem_req.rw) ? SERVICE_CACHE_MISS_MEM_STORE : SERVICE_CACHE_MISS_MEM_LOAD;
+                        if (mem_trace_flag) state <= (cpu_req.rw) ? SERVICE_CACHE_MISS_TRACE_STORE : SERVICE_CACHE_MISS_TRACE_LOAD_WAIT_GNT;
+                        else state <= (cpu_req.rw) ? SERVICE_CACHE_MISS_MEM_STORE : SERVICE_CACHE_MISS_MEM_LOAD_WAIT_GNT;
                      end
                 end
-                SERVICE_CACHE_MISS_MEM_LOAD:
+                SERVICE_CACHE_MISS_MEM_LOAD_WAIT_GNT:
                 begin
                     mem_data.ready <= 1'b0;
-                    if(!cache_mem_data_rvalid_i) 
+                    if(!cache_mem_data_gnt_i && !cache_mem_data_req_o) 
                     begin
-                        assign cache_mem_data_req_o = proc_cache_data_req_i;
-                        assign proc_cache_data_gnt_o = cache_mem_data_gnt_i;
-                        assign proc_cache_data_rvalid_o = cache_mem_data_rvalid_i;
-                        assign cache_mem_data_addr_o = proc_cache_data_addr_i;
-                        assign cache_mem_data_we_o = proc_cache_data_we_i;
-                        assign cache_mem_data_be_o = proc_cache_data_be_i;
-                        assign proc_cache_data_rdata_o = cache_mem_data_rdata_i;
-                        assign cache_mem_data_wdata_o = proc_cache_data_wdata_i;
+                        cache_mem_data_req_o <= proc_cache_data_req_i;
+                        proc_cache_data_gnt_o <= cache_mem_data_gnt_i;
+                        proc_cache_data_rvalid_o <= cache_mem_data_rvalid_i;
+                        cache_mem_data_addr_o <= proc_cache_data_addr_i;
+                        cache_mem_data_we_o <= proc_cache_data_we_i;
+                        cache_mem_data_be_o <= proc_cache_data_be_i;
+                        proc_cache_data_rdata_o <= cache_mem_data_rdata_i;
+                        cache_mem_data_wdata_o <= proc_cache_data_wdata_i;
+                        get_index <= 1'b1;
+                        addr_in <= proc_cache_data_addr_i;
                     end 
-                    else 
+                    else if (cache_mem_data_gnt_i)
                     begin
+                        cache_mem_data_req_o <= 1'b0;
+                        proc_cache_data_gnt_o <= 1'b1;
+                        cache_mem_data_addr_o <= 16'b0;
+                        cache_mem_data_we_o <= 1'b0;
+                        cache_mem_data_be_o <= 1'b0;
+                        state <= SERVICE_CACHE_MISS_MEM_LOAD_WAIT_RVALID;
+                    end 
+                end
+                SERVICE_CACHE_MISS_MEM_LOAD_WAIT_RVALID:
+                begin
+                    proc_cache_data_gnt_o <= 1'b0;
+                    if (cache_mem_data_rvalid_i && index_valid)
+                    begin
+                        get_index <= 1'b0;
+                        proc_cache_data_rvalid_o <= 1'b1;
+                        proc_cache_data_rdata_o <= cache_mem_data_rdata_i;
+                        processing_flag <= 1'b0;
                         mem_data.data <= cache_mem_data_rdata_i;
                         mem_data.ready <= 1'b1;
-                        assign cache_mem_data_req_o = 1'b0;
-                        assign proc_cache_data_gnt_o = 1'b0;
-                        assign proc_cache_data_rvalid_o = 1'b0;
-                        assign cache_mem_data_addr_o = 16'b0;
-                        assign cache_mem_data_we_o = 1'b0;
-                        assign cache_mem_data_be_o = 1'b0;
-                        assign proc_cache_data_rdata_o = 32'b0;
-                        assign cache_mem_data_wdata_o = 32'b0;
-                        processing_flag <= 1'b0;
+                        mapping_cache_to_trace_index[mem_req.addr[INDEXMSB:INDEXLSB]] <= index_o;
                         state <= UPDATE_TRACE_REPO;
-                    end 
+                    end
                 end
                 SERVICE_CACHE_MISS_MEM_STORE:
                 begin
                     if (!get_index && !index_valid) 
                     begin
-                        if (!proc_cache_data_gnt_o) assign proc_cache_data_gnt_o = 1'b1;
+                        if (!proc_cache_data_gnt_o) proc_cache_data_gnt_o <= 1'b1;
                         get_index <= 1'b1;
                         addr_in <= proc_cache_data_addr_i;
                     end
-                    else if (get_index && !index_valid) assign proc_cache_data_gnt_o = 1'b0;
+                    else if (get_index && !index_valid) proc_cache_data_gnt_o <= 1'b0;
                     else 
                     begin
-                        assign proc_cache_data_gnt_o = 1'b0;
-                        assign proc_cache_data_rvalid_o = 1'b1;
+                        proc_cache_data_gnt_o <= 1'b0;
+                        proc_cache_data_rvalid_o <= 1'b1;
                         mem_data.data <= proc_cache_data_wdata_i;
                         mem_data.ready <= 1'b1;
                         mapping_cache_to_trace_index[mem_req.addr[INDEXMSB:INDEXLSB]] <= index_o;
@@ -346,25 +392,33 @@ module enokida
                         state <= UPDATE_TRACE_REPO;
                     end
                 end  
-                SERVICE_CACHE_MISS_TRACE_LOAD:
+                SERVICE_CACHE_MISS_TRACE_LOAD_WAIT_GNT:
                 begin
-                    if (!cache_mem_data_rvalid_i)
+                    mem_data.ready <= 1'b0;
+                    if (!cache_mem_data_gnt_i && !cache_mem_data_req_o)
                     begin
-                        assign cache_mem_data_req_o = 1'b1;
-                        assign cache_mem_data_addr_o = cpu_req.addr;
-                        assign cache_mem_data_we_o = cpu_req.rw;
-                        assign cache_mem_data_be_o = 4'hF;
-                        assign cache_mem_data_wdata_o = cpu_req.data;
+                        cache_mem_data_req_o <= 1'b1;
+                        cache_mem_data_addr_o <= cpu_req.addr;
+                        cache_mem_data_we_o <= cpu_req.rw;
+                        cache_mem_data_be_o <= 4'hF;
+                        cache_mem_data_wdata_o <= cpu_req.data;
                     end
-                    else
+                    else if (cache_mem_data_gnt_i)
+                    begin
+                        cache_mem_data_req_o <= 1'b0;
+                        cache_mem_data_addr_o <= 16'b0;
+                        cache_mem_data_we_o <= 1'b0;
+                        cache_mem_data_be_o <= 4'h0;
+                        cache_mem_data_wdata_o <= 32'b0;
+                        state <= SERVICE_CACHE_MISS_TRACE_LOAD_WAIT_RVALID;
+                    end
+                end
+                SERVICE_CACHE_MISS_TRACE_LOAD_WAIT_RVALID:
+                begin
+                    if (cache_mem_data_rvalid_i)
                     begin
                         mem_data.data <= cache_mem_data_rdata_i;
                         mem_data.ready <= 1'b1;
-                        assign cache_mem_data_req_o = 1'b0;
-                        assign cache_mem_data_addr_o = 16'b0;
-                        assign cache_mem_data_we_o = 0;
-                        assign cache_mem_data_be_o = 4'h0;
-                        assign cache_mem_data_wdata_o = 32'b0;
                         processing_flag <= 1'b1;
                         state <= UPDATE_TRACE_REPO;
                     end
@@ -378,7 +432,7 @@ module enokida
                 end
                 UPDATE_TRACE_REPO:
                 begin
-                    assign proc_cache_data_rvalid_o = 1'b0;
+                    proc_cache_data_rvalid_o <= 1'b0;
                     if(mem_trace_flag) 
                     begin
                         index_done <= trace_index_o;
@@ -388,20 +442,14 @@ module enokida
                     state <= IDLE;
                 end
             endcase
+            if (mark_done && mark_done_valid) mark_done <= 1'b0;
         end
-    end
-    
-    always_comb
-    begin
-        if (mark_done && mark_done_valid) mark_done <= 1'b0;
     end
     
     task initialise_device();
         begin
             state <= IDLE;
             req <= 1'b0;
-            counter_offset <= -1;
-            req_counter <= 0;
             mark_done <= 0;
         end
     endtask
