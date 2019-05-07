@@ -3,19 +3,12 @@ package trace_repository_datatypes;
 import gouram_datatypes::*;
 import cache_def::*;
 
-    parameter int TRACE_INDEXES_STORED = 256;
-    parameter int TRACE_ENTRIES = 2048;
+    parameter int TRACE_ENTRIES = 8192;
 
     typedef struct packed {
 	bit [INSTR_DATA_WIDTH-1:0] instruction;
 	bit [DATA_ADDR_WIDTH-1:0] mem_addr;
     } trace_repo_data_entry;
-
-    typedef struct packed {
-        trace_repo_data_entry trace_entry;
-        bit processing;
-        bit retired;   
-    } trace_repo_entry;
 
     enum bit [1:0] {
         MAKE_REQUEST,
@@ -25,9 +18,14 @@ import cache_def::*;
 
     typedef struct packed {
 	bit [$clog2(TRACE_ENTRIES)-1:0] trace_index;
-	trace_repo_data_entry trace_entry;
-	bit processing;
+  	bit [DATA_ADDR_WIDTH-1:0] mem_addr;
     } active_set_entry;
 
+    typedef struct packed {
+	bit occupied;
+	bit [DATA_ADDR_WIDTH-1:0] mem_addr;
+	bit processing;
+	bit [$clog2(TRACE_ENTRIES)-1:0] trace_index;
+    } cache_tracker_t;
 
 endpackage : trace_repository_datatypes

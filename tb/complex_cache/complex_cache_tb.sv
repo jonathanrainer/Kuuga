@@ -50,7 +50,7 @@ module complex_cache_tb;
         #5 clk = ~clk;
         if (clk) sim_counter++;
         if (sim_counter == 7500) $finish;
-        if (clk && sim_counter == 32'hf6d) $stop;
+        if (clk && sim_counter == 32'h1166) $stop;
    end
    
    

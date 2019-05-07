@@ -63,7 +63,6 @@ module enokida
     
     trace_repo_data_entry trace_out;
     trace_repo_data_entry cached_trace;
-    bit [$clog2(TRACE_ENTRIES)-1:0] trace_index_i;
     bit processing_complete;
     bit req;
     bit cancel;
@@ -74,9 +73,10 @@ module enokida
     bit mark_done;
     bit processing_flag;
     bit mark_done_valid;
+    bit mem_trace_flag;
+    bit [ADDR_WIDTH-1:0] mem_addr; 
     
     bit [$clog2(TRACE_ENTRIES)-1:0] trace_index_o;
-    bit retired;
     
     bit [ADDR_WIDTH-1:0] addr_in;
     bit signed [$clog2(TRACE_ENTRIES)-1:0] index_o;
@@ -107,12 +107,11 @@ module enokida
         UPDATE_TRACE_REPO,
         SLEEP
      } state;
-     
-     // 1 is to indicate the request is coming from the Trace Repo
-     // 0 indicates otherwise
-     bit mem_trace_flag = 0;
+    
      bit wb_necessary_temp = 0;
      bit prev_signals_saught = 0;
+     bit cached_rvalid = 0;
+     bit [DATA_WIDTH-1:0] cached_rdata = 32'b0;
      
      bit signed [$clog2(TRACE_ENTRIES)-1:0] mapping_cache_to_trace_index [0 : 2**(INDEXMSB-INDEXLSB + 1) - 1];
      
@@ -189,22 +188,21 @@ module enokida
                 SLEEP:
                 begin
                     // Continue to sleep unless it's the case that the blocking entry has been retired, or that a memory request starts
-                    if (retired || proc_cache_data_req_i) state <= MAKE_REQ_TO_CACHE;
+                    if (proc_cache_data_req_i) state <= MAKE_REQ_TO_CACHE;
                 end
                 MAKE_REQ_TO_CACHE:
                 begin
-                    req <= 1'b0;
                     mem_data.ready <= 1'b0;
                     proc_cache_data_rvalid_o <= 1'b0;
                     proc_cache_data_rdata_o <= 32'b0;
                     if ((entry_valid || proc_cache_data_req_i) && !prev_signals_saught)
                     begin
                         addr_to_check <= (proc_cache_data_req_i) ? proc_cache_data_addr_i : trace_out.mem_addr;
-                        trace_index_i <= mapping_cache_to_trace_index[(proc_cache_data_req_i) ? proc_cache_data_addr_i[INDEXMSB:INDEXLSB] : trace_out.mem_addr[INDEXMSB:INDEXLSB]];
                         prev_signals_saught <= 1'b1;
                     end
                     else if (prev_signals_saught)
                     begin
+                        req <= 1'b0;
                         // If it's the case that a memory request is waiting as well then give that priority
                         if (proc_cache_data_req_i)
                         begin
@@ -230,9 +228,8 @@ module enokida
                 CACHE_HIT_GNT:
                 begin
                     if (cancelled) cancel <= 1'b0;
-                    if (wb_necessary && !retired && !proc_cache_data_req_i) 
+                    if (wb_necessary && !proc_cache_data_req_i) 
                     begin
-                        trace_index_i <= mapping_cache_to_trace_index[cpu_req.addr[INDEXMSB:INDEXLSB]];
                         addr_to_check <= cpu_req.addr;                        
                         state <= SLEEP;
                     end
@@ -359,13 +356,20 @@ module enokida
                 SERVICE_CACHE_MISS_MEM_LOAD_WAIT_RVALID:
                 begin
                     proc_cache_data_gnt_o <= 1'b0;
-                    if (cache_mem_data_rvalid_i && index_valid)
+                    if (cache_mem_data_rvalid_i) 
                     begin
+                        cached_rvalid <= 1'b1;
+                        cached_rdata <= cache_mem_data_rdata_i;
+                    end
+                    if ((cache_mem_data_rvalid_i || cached_rvalid) && index_valid)
+                    begin
+                        cached_rvalid <= 1'b0;
+                        cached_rdata <= 32'b0;
                         get_index <= 1'b0;
                         proc_cache_data_rvalid_o <= 1'b1;
-                        proc_cache_data_rdata_o <= cache_mem_data_rdata_i;
+                        proc_cache_data_rdata_o <= (cached_rvalid) ? cached_rdata : cache_mem_data_rdata_i;
                         processing_flag <= 1'b0;
-                        mem_data.data <= cache_mem_data_rdata_i;
+                        mem_data.data <= (cached_rvalid) ? cached_rdata : cache_mem_data_rdata_i;
                         mem_data.ready <= 1'b1;
                         mapping_cache_to_trace_index[mem_req.addr[INDEXMSB:INDEXLSB]] <= index_o;
                         state <= UPDATE_TRACE_REPO;
@@ -438,6 +442,7 @@ module enokida
                         index_done <= trace_index_o;
                     end
                     else index_done <= mapping_cache_to_trace_index[mem_req.addr[INDEXMSB:INDEXLSB]];
+                    mem_addr <= mem_req.addr;
                     mark_done <= 1'b1;
                     state <= IDLE;
                 end
