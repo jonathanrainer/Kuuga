@@ -1,6 +1,6 @@
 
 ################################################################
-# This is a generated script based on design: kuuga_full_system_nc
+# This is a generated script based on design: kuuga_no_cache
 #
 # Though there are limitations about the generated script,
 # the main purpose of this utility is to make learning
@@ -35,7 +35,7 @@ if { [string first $scripts_vivado_version $current_vivado_version] == -1 } {
 ################################################################
 
 # To test this script, run the following commands from Vivado Tcl console:
-# source kuuga_full_system_nc_script.tcl
+# source kuuga_no_cache_script.tcl
 
 
 # The design that will be created by this Tcl script contains the following 
@@ -57,7 +57,7 @@ if { $list_projs eq "" } {
 
 # CHANGE DESIGN NAME HERE
 variable design_name
-set design_name kuuga_full_system_nc
+set design_name kuuga_no_cache
 
 # If you do not already have an existing IP Integrator design open,
 # you can create a design using the following command:
@@ -295,20 +295,20 @@ proc create_root_design { parentCell } {
   # Create instance: clk_wiz_0, and set properties
   set clk_wiz_0 [ create_bd_cell -type ip -vlnv xilinx.com:ip:clk_wiz:6.0 clk_wiz_0 ]
   set_property -dict [ list \
-   CONFIG.CLKOUT1_JITTER {280.649} \
-   CONFIG.CLKOUT1_PHASE_ERROR {133.882} \
+   CONFIG.CLKOUT1_JITTER {178.053} \
+   CONFIG.CLKOUT1_PHASE_ERROR {89.971} \
    CONFIG.CLKOUT1_REQUESTED_OUT_FREQ {10} \
    CONFIG.CLKOUT2_JITTER {112.316} \
    CONFIG.CLKOUT2_PHASE_ERROR {89.971} \
    CONFIG.CLKOUT2_REQUESTED_OUT_FREQ {100.000} \
-   CONFIG.CLKOUT2_USED {false} \
+   CONFIG.CLKOUT2_USED {true} \
    CONFIG.CLK_IN1_BOARD_INTERFACE {sys_diff_clock} \
    CONFIG.ENABLE_CLOCK_MONITOR {false} \
-   CONFIG.MMCM_CLKFBOUT_MULT_F {15.625} \
-   CONFIG.MMCM_CLKOUT0_DIVIDE_F {78.125} \
-   CONFIG.MMCM_CLKOUT1_DIVIDE {1} \
-   CONFIG.MMCM_DIVCLK_DIVIDE {4} \
-   CONFIG.NUM_OUT_CLKS {1} \
+   CONFIG.MMCM_CLKFBOUT_MULT_F {5.000} \
+   CONFIG.MMCM_CLKOUT0_DIVIDE_F {100.000} \
+   CONFIG.MMCM_CLKOUT1_DIVIDE {10} \
+   CONFIG.MMCM_DIVCLK_DIVIDE {1} \
+   CONFIG.NUM_OUT_CLKS {2} \
    CONFIG.PRIMITIVE {MMCM} \
    CONFIG.RESET_BOARD_INTERFACE {reset} \
    CONFIG.USE_BOARD_FLOW {true} \
@@ -352,10 +352,21 @@ proc create_root_design { parentCell } {
   set system_ila_0 [ create_bd_cell -type ip -vlnv xilinx.com:ip:system_ila:1.1 system_ila_0 ]
   set_property -dict [ list \
    CONFIG.C_ADV_TRIGGER {true} \
-   CONFIG.C_BRAM_CNT {228} \
+   CONFIG.C_BRAM_CNT {631.5} \
    CONFIG.C_DATA_DEPTH {65536} \
    CONFIG.C_MON_TYPE {NATIVE} \
+   CONFIG.C_NUM_OF_PROBES {22} \
    CONFIG.C_PROBE0_WIDTH {128} \
+   CONFIG.C_PROBE12_WIDTH {4} \
+   CONFIG.C_PROBE13_WIDTH {16} \
+   CONFIG.C_PROBE14_WIDTH {32} \
+   CONFIG.C_PROBE15_WIDTH {16} \
+   CONFIG.C_PROBE17_WIDTH {32} \
+   CONFIG.C_PROBE20_WIDTH {4} \
+   CONFIG.C_PROBE21_WIDTH {32} \
+   CONFIG.C_PROBE4_WIDTH {32} \
+   CONFIG.C_PROBE7_WIDTH {32} \
+   CONFIG.C_PROBE9_WIDTH {16} \
    CONFIG.C_PROBE_WIDTH_PROPAGATION {MANUAL} \
  ] $system_ila_0
 
@@ -385,23 +396,23 @@ proc create_root_design { parentCell } {
   connect_bd_intf_net -intf_net sys_diff_clock_1 [get_bd_intf_ports sys_diff_clock] [get_bd_intf_pins clk_wiz_0/CLK_IN1_D]
 
   # Create port connections
-  connect_bd_net -net Core2AXI_0_data_gnt_o [get_bd_pins Core2AXI_Instruction/data_gnt_o] [get_bd_pins godai_wrapper_0/instr_gnt_i] [get_bd_pins gouram_wrapper_0/instr_gnt]
-  connect_bd_net -net Core2AXI_0_data_rdata_o [get_bd_pins Core2AXI_Instruction/data_rdata_o] [get_bd_pins godai_wrapper_0/instr_rdata_i] [get_bd_pins gouram_wrapper_0/instr_rdata]
-  connect_bd_net -net Core2AXI_0_data_rvalid_o [get_bd_pins Core2AXI_Instruction/data_rvalid_o] [get_bd_pins godai_wrapper_0/instr_rvalid_i] [get_bd_pins gouram_wrapper_0/instr_rvalid]
-  connect_bd_net -net Core2AXI_0_data_rvalid_o1 [get_bd_pins Core2AXI_Data/data_rvalid_o] [get_bd_pins godai_wrapper_0/data_rvalid_i] [get_bd_pins gouram_wrapper_0/data_mem_rvalid]
-  connect_bd_net -net Core2AXI_Data_data_gnt_o [get_bd_pins Core2AXI_Data/data_gnt_o] [get_bd_pins godai_wrapper_0/data_gnt_i]
-  connect_bd_net -net Core2AXI_Data_data_rdata_o [get_bd_pins Core2AXI_Data/data_rdata_o] [get_bd_pins godai_wrapper_0/data_rdata_i]
-  connect_bd_net -net Godai_0_data_addr_o [get_bd_pins Core2AXI_Data/data_addr_i] [get_bd_pins godai_wrapper_0/data_addr_o] [get_bd_pins gouram_wrapper_0/data_mem_addr]
-  connect_bd_net -net Godai_0_data_req_o [get_bd_pins Core2AXI_Data/data_req_i] [get_bd_pins godai_wrapper_0/data_req_o] [get_bd_pins gouram_wrapper_0/data_mem_req]
-  connect_bd_net -net Godai_0_instr_addr_o [get_bd_pins Core2AXI_Instruction/data_addr_i] [get_bd_pins godai_wrapper_0/instr_addr_o] [get_bd_pins gouram_wrapper_0/instr_addr]
-  connect_bd_net -net Godai_0_instr_req_o [get_bd_pins Core2AXI_Instruction/data_req_i] [get_bd_pins godai_wrapper_0/instr_req_o] [get_bd_pins gouram_wrapper_0/instr_req]
+  connect_bd_net -net Core2AXI_0_data_gnt_o [get_bd_pins Core2AXI_Instruction/data_gnt_o] [get_bd_pins godai_wrapper_0/instr_gnt_i] [get_bd_pins gouram_wrapper_0/instr_gnt] [get_bd_pins system_ila_0/probe2]
+  connect_bd_net -net Core2AXI_0_data_rdata_o [get_bd_pins Core2AXI_Instruction/data_rdata_o] [get_bd_pins godai_wrapper_0/instr_rdata_i] [get_bd_pins gouram_wrapper_0/instr_rdata] [get_bd_pins system_ila_0/probe4]
+  connect_bd_net -net Core2AXI_0_data_rvalid_o [get_bd_pins Core2AXI_Instruction/data_rvalid_o] [get_bd_pins godai_wrapper_0/instr_rvalid_i] [get_bd_pins gouram_wrapper_0/instr_rvalid] [get_bd_pins system_ila_0/probe3]
+  connect_bd_net -net Core2AXI_0_data_rvalid_o1 [get_bd_pins Core2AXI_Data/data_rvalid_o] [get_bd_pins godai_wrapper_0/data_rvalid_i] [get_bd_pins gouram_wrapper_0/data_mem_rvalid] [get_bd_pins system_ila_0/probe6]
+  connect_bd_net -net Core2AXI_Data_data_gnt_o [get_bd_pins Core2AXI_Data/data_gnt_o] [get_bd_pins godai_wrapper_0/data_gnt_i] [get_bd_pins system_ila_0/probe5]
+  connect_bd_net -net Core2AXI_Data_data_rdata_o [get_bd_pins Core2AXI_Data/data_rdata_o] [get_bd_pins godai_wrapper_0/data_rdata_i] [get_bd_pins system_ila_0/probe7]
+  connect_bd_net -net Godai_0_data_addr_o [get_bd_pins Core2AXI_Data/data_addr_i] [get_bd_pins godai_wrapper_0/data_addr_o] [get_bd_pins gouram_wrapper_0/data_mem_addr] [get_bd_pins system_ila_0/probe13]
+  connect_bd_net -net Godai_0_data_req_o [get_bd_pins Core2AXI_Data/data_req_i] [get_bd_pins godai_wrapper_0/data_req_o] [get_bd_pins gouram_wrapper_0/data_mem_req] [get_bd_pins system_ila_0/probe10]
+  connect_bd_net -net Godai_0_instr_addr_o [get_bd_pins Core2AXI_Instruction/data_addr_i] [get_bd_pins godai_wrapper_0/instr_addr_o] [get_bd_pins gouram_wrapper_0/instr_addr] [get_bd_pins system_ila_0/probe9]
+  connect_bd_net -net Godai_0_instr_req_o [get_bd_pins Core2AXI_Instruction/data_req_i] [get_bd_pins godai_wrapper_0/instr_req_o] [get_bd_pins gouram_wrapper_0/instr_req] [get_bd_pins system_ila_0/probe8]
   connect_bd_net -net Godai_0_jump_done_o [get_bd_pins godai_wrapper_0/jump_done_o] [get_bd_pins gouram_wrapper_0/jump_done]
-  connect_bd_net -net axi_bram_ctrl_0_bram_addr_a [get_bd_ports inst_bram_addr_a] [get_bd_pins axi_bram_ctrl_0/bram_addr_a]
-  connect_bd_net -net axi_bram_ctrl_0_bram_clk_a [get_bd_ports inst_bram_clk_a] [get_bd_pins axi_bram_ctrl_0/bram_clk_a]
-  connect_bd_net -net axi_bram_ctrl_0_bram_en_a [get_bd_ports inst_bram_en_a] [get_bd_pins axi_bram_ctrl_0/bram_en_a]
-  connect_bd_net -net axi_bram_ctrl_0_bram_rst_a [get_bd_ports inst_bram_rst_a] [get_bd_pins axi_bram_ctrl_0/bram_rst_a]
-  connect_bd_net -net axi_bram_ctrl_0_bram_we_a [get_bd_ports inst_bram_we_a] [get_bd_pins axi_bram_ctrl_0/bram_we_a]
-  connect_bd_net -net axi_bram_ctrl_0_bram_wrdata_a [get_bd_ports inst_bram_wrdata_a] [get_bd_pins axi_bram_ctrl_0/bram_wrdata_a]
+  connect_bd_net -net axi_bram_ctrl_0_bram_addr_a [get_bd_ports inst_bram_addr_a] [get_bd_pins axi_bram_ctrl_0/bram_addr_a] [get_bd_pins system_ila_0/probe15]
+  connect_bd_net -net axi_bram_ctrl_0_bram_clk_a [get_bd_ports inst_bram_clk_a] [get_bd_pins axi_bram_ctrl_0/bram_clk_a] [get_bd_pins system_ila_0/probe16]
+  connect_bd_net -net axi_bram_ctrl_0_bram_en_a [get_bd_ports inst_bram_en_a] [get_bd_pins axi_bram_ctrl_0/bram_en_a] [get_bd_pins system_ila_0/probe18]
+  connect_bd_net -net axi_bram_ctrl_0_bram_rst_a [get_bd_ports inst_bram_rst_a] [get_bd_pins axi_bram_ctrl_0/bram_rst_a] [get_bd_pins system_ila_0/probe19]
+  connect_bd_net -net axi_bram_ctrl_0_bram_we_a [get_bd_ports inst_bram_we_a] [get_bd_pins axi_bram_ctrl_0/bram_we_a] [get_bd_pins system_ila_0/probe20]
+  connect_bd_net -net axi_bram_ctrl_0_bram_wrdata_a [get_bd_ports inst_bram_wrdata_a] [get_bd_pins axi_bram_ctrl_0/bram_wrdata_a] [get_bd_pins system_ila_0/probe17]
   connect_bd_net -net axi_bram_ctrl_1_bram_addr_a [get_bd_ports data_bram_addr_a] [get_bd_pins axi_bram_ctrl_1/bram_addr_a]
   connect_bd_net -net axi_bram_ctrl_1_bram_clk_a [get_bd_ports data_bram_clk_a] [get_bd_pins axi_bram_ctrl_1/bram_clk_a]
   connect_bd_net -net axi_bram_ctrl_1_bram_en_a [get_bd_ports data_bram_en_a] [get_bd_pins axi_bram_ctrl_1/bram_en_a]
@@ -409,17 +420,18 @@ proc create_root_design { parentCell } {
   connect_bd_net -net axi_bram_ctrl_1_bram_we_a [get_bd_ports data_bram_we_a] [get_bd_pins axi_bram_ctrl_1/bram_we_a]
   connect_bd_net -net axi_bram_ctrl_1_bram_wrdata_a [get_bd_ports data_bram_wrdata_a] [get_bd_pins axi_bram_ctrl_1/bram_wrdata_a]
   connect_bd_net -net bram_rddata_a_0_1 [get_bd_ports data_bram_rddata_a] [get_bd_pins axi_bram_ctrl_1/bram_rddata_a]
-  connect_bd_net -net bram_rddata_a_0_2 [get_bd_ports inst_bram_rddata_a] [get_bd_pins axi_bram_ctrl_0/bram_rddata_a]
-  connect_bd_net -net clk_100MHz_1 [get_bd_pins Core2AXI_Data/M_AXI_ACLK] [get_bd_pins Core2AXI_Instruction/M_AXI_ACLK] [get_bd_pins axi_bram_ctrl_0/s_axi_aclk] [get_bd_pins axi_bram_ctrl_1/s_axi_aclk] [get_bd_pins clk_wiz_0/clk_out1] [get_bd_pins godai_wrapper_0/clk] [get_bd_pins gouram_wrapper_0/clk] [get_bd_pins proc_sys_reset_0/slowest_sync_clk] [get_bd_pins system_ila_0/clk]
+  connect_bd_net -net bram_rddata_a_0_2 [get_bd_ports inst_bram_rddata_a] [get_bd_pins axi_bram_ctrl_0/bram_rddata_a] [get_bd_pins system_ila_0/probe21]
+  connect_bd_net -net clk_100MHz_1 [get_bd_pins Core2AXI_Data/M_AXI_ACLK] [get_bd_pins Core2AXI_Instruction/M_AXI_ACLK] [get_bd_pins axi_bram_ctrl_0/s_axi_aclk] [get_bd_pins axi_bram_ctrl_1/s_axi_aclk] [get_bd_pins clk_wiz_0/clk_out1] [get_bd_pins godai_wrapper_0/clk] [get_bd_pins gouram_wrapper_0/clk] [get_bd_pins proc_sys_reset_0/slowest_sync_clk]
+  connect_bd_net -net clk_wiz_0_clk_out2 [get_bd_pins clk_wiz_0/clk_out2] [get_bd_pins system_ila_0/clk]
   connect_bd_net -net godai_wrapper_0_branch_decision_o [get_bd_pins godai_wrapper_0/branch_decision_o] [get_bd_pins gouram_wrapper_0/branch_decision]
   connect_bd_net -net godai_wrapper_0_branch_req_o [get_bd_pins godai_wrapper_0/branch_req_o] [get_bd_pins gouram_wrapper_0/branch_req]
-  connect_bd_net -net godai_wrapper_0_data_be_o [get_bd_pins Core2AXI_Data/data_be_i] [get_bd_pins godai_wrapper_0/data_be_o]
-  connect_bd_net -net godai_wrapper_0_data_wdata_o [get_bd_pins Core2AXI_Data/data_wdata_i] [get_bd_pins godai_wrapper_0/data_wdata_o]
-  connect_bd_net -net godai_wrapper_0_data_we_o [get_bd_pins Core2AXI_Data/data_we_i] [get_bd_pins godai_wrapper_0/data_we_o]
+  connect_bd_net -net godai_wrapper_0_data_be_o [get_bd_pins Core2AXI_Data/data_be_i] [get_bd_pins godai_wrapper_0/data_be_o] [get_bd_pins system_ila_0/probe12]
+  connect_bd_net -net godai_wrapper_0_data_wdata_o [get_bd_pins Core2AXI_Data/data_wdata_i] [get_bd_pins godai_wrapper_0/data_wdata_o] [get_bd_pins system_ila_0/probe14]
+  connect_bd_net -net godai_wrapper_0_data_we_o [get_bd_pins Core2AXI_Data/data_we_i] [get_bd_pins godai_wrapper_0/data_we_o] [get_bd_pins system_ila_0/probe11]
   connect_bd_net -net godai_wrapper_0_is_decoding_o [get_bd_pins godai_wrapper_0/is_decoding_o] [get_bd_pins gouram_wrapper_0/is_decoding]
   connect_bd_net -net godai_wrapper_0_pc_set_o [get_bd_pins godai_wrapper_0/pc_set_o] [get_bd_pins gouram_wrapper_0/pc_set]
   connect_bd_net -net gouram_wrapper_0_trace_data_o [get_bd_pins gouram_wrapper_0/trace_data_o] [get_bd_pins system_ila_0/probe0]
-  connect_bd_net -net proc_sys_reset_0_peripheral_aresetn [get_bd_pins Core2AXI_Data/M_AXI_ARESETN] [get_bd_pins Core2AXI_Instruction/M_AXI_ARESETN] [get_bd_pins axi_bram_ctrl_0/s_axi_aresetn] [get_bd_pins axi_bram_ctrl_1/s_axi_aresetn] [get_bd_pins godai_wrapper_0/rst_n] [get_bd_pins gouram_wrapper_0/rst_n] [get_bd_pins proc_sys_reset_0/peripheral_aresetn]
+  connect_bd_net -net proc_sys_reset_0_peripheral_aresetn [get_bd_pins Core2AXI_Data/M_AXI_ARESETN] [get_bd_pins Core2AXI_Instruction/M_AXI_ARESETN] [get_bd_pins axi_bram_ctrl_0/s_axi_aresetn] [get_bd_pins axi_bram_ctrl_1/s_axi_aresetn] [get_bd_pins godai_wrapper_0/rst_n] [get_bd_pins gouram_wrapper_0/rst_n] [get_bd_pins proc_sys_reset_0/peripheral_aresetn] [get_bd_pins system_ila_0/probe1]
   connect_bd_net -net reset_1 [get_bd_ports reset] [get_bd_pins clk_wiz_0/reset] [get_bd_pins proc_sys_reset_0/ext_reset_in]
   connect_bd_net -net xlconstant_0_dout [get_bd_pins Core2AXI_Instruction/data_we_i] [get_bd_pins godai_wrapper_0/data_err_i] [get_bd_pins xlconstant_0/dout]
   connect_bd_net -net xlconstant_1_dout [get_bd_pins Core2AXI_Instruction/data_be_i] [get_bd_pins xlconstant_1/dout]
@@ -444,6 +456,4 @@ proc create_root_design { parentCell } {
 
 create_root_design ""
 
-
-common::send_msg_id "BD_TCL-1000" "WARNING" "This Tcl script was generated from a block design that has not been validated. It is possible that design <$design_name> may result in errors during validation."
 

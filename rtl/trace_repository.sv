@@ -87,13 +87,15 @@ module trace_repository
                                        // Synchronously resets output port douta to the value specified by
                                        // parameter READ_RESET_VALUE_A.
 
-      .wea(trace_entries_wea_i)                        // WRITE_DATA_WIDTH_A-bit input: Write enable vector for port A input
+      .wea(trace_entries_wea_i),                        // WRITE_DATA_WIDTH_A-bit input: Write enable vector for port A input
                                        // data port dina. 1 bit wide when word-wide writes are used. In
                                        // byte-wide write configurations, each bit controls the writing one
                                        // byte of dina to address addra. For example, to synchronously write
                                        // only bits [15-8] of dina when WRITE_DATA_WIDTH_A is 32, wea would be
                                        // 4'b0010.
-
+      .sleep(1'b0),
+      .injectsbiterra(1'b0),
+      .injectdbiterra(1'b0)
    );
     
     trace_format last_entry;

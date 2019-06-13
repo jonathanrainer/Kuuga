@@ -52,6 +52,7 @@ module simple_cache_tb;
    begin
         #5 clk = ~clk;
         if (clk) sim_counter++;
+        if (sim_counter == 32'h1af) $stop;
         if (sim_counter == 4000) $finish;
    end
    

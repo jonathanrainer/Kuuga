@@ -62,7 +62,6 @@ module enokida
     );
     
     trace_repo_data_entry trace_out;
-    trace_repo_data_entry cached_trace;
     bit processing_complete;
     bit req;
     bit cancel;
@@ -243,7 +242,6 @@ module enokida
                     end
                     else
                     begin
-                        automatic bit cached_trace_present = (cached_trace.instruction != 0);
                         if (cpu_res.checked)
                         begin
                             cpu_req.valid <= 1'b0;
@@ -269,7 +267,7 @@ module enokida
                             end
                             else 
                             begin
-                                if (mem_trace_flag) state <= (check_store((cached_trace.instruction) ? cached_trace.instruction : trace_out.instruction)) ? SERVICE_CACHE_MISS_TRACE_STORE : SERVICE_CACHE_MISS_TRACE_LOAD_WAIT_GNT;
+                                if (mem_trace_flag) state <= (check_store(trace_out.instruction)) ? SERVICE_CACHE_MISS_TRACE_STORE : SERVICE_CACHE_MISS_TRACE_LOAD_WAIT_GNT;
                                 else state <= (proc_cache_data_we_i) ? SERVICE_CACHE_MISS_MEM_STORE : SERVICE_CACHE_MISS_MEM_LOAD_WAIT_GNT;
                             end
                         end
@@ -300,7 +298,7 @@ module enokida
                 end
                 SERVICE_WRITE_BACK_WAIT_GNT:
                 begin
-                    if (mem_req.valid && !cache_mem_data_gnt_i)
+                    if (!cache_mem_data_gnt_i)
                     begin
                         cache_mem_data_req_o <= 1'b1;
                         cache_mem_data_addr_o <= cached_addr;
@@ -308,7 +306,7 @@ module enokida
                         cache_mem_data_be_o <= 4'hf;
                         cache_mem_data_wdata_o <= cached_data;
                     end
-                    else if (mem_req.valid && cache_mem_data_gnt_i)
+                    else if (cache_mem_data_gnt_i)
                     begin
                         cache_mem_data_req_o <= 1'b0;
                         cache_mem_data_addr_o <= 16'b0;

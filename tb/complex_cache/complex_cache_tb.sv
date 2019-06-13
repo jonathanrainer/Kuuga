@@ -31,6 +31,7 @@ module complex_cache_tb;
     integer sim_counter = 0;
     bit reset;
     bit clk;
+    bit test_sig;
     
     bit[32-1:0] mem_rd_data;
     bit [31:0] mem[MEM_SIZE] = '{default: 32'b0};
@@ -44,13 +45,15 @@ module complex_cache_tb;
         .clk(clk)
     );
 
+    assign test_sig = kuuga_inst.complex_cache_test_i.godai_wrapper_0.inst.is_decoding_o && kuuga_inst.complex_cache_test_i.godai_wrapper_0.inst.core.id_stage_i.id_ready_o;
    
    always
    begin
         #5 clk = ~clk;
         if (clk) sim_counter++;
         if (sim_counter == 7500) $finish;
-        if (clk && sim_counter == 32'h1166) $stop;
+        if (clk && sim_counter == 32'h70) $stop;
+        
    end
    
    

@@ -14,7 +14,7 @@ module dm_cache_data
     input cache_data_type   data_write,     // Write Port (128-bit line)
     output cache_data_type  data_read
 );
-    (* ram_style = "block" *) cache_data_type data_mem[0:CACHE_BLOCKS-1];
+    cache_data_type data_mem[0:CACHE_BLOCKS-1];
     
     initial
     begin
@@ -47,7 +47,7 @@ module dm_cache_tag
     output bit wb_necessary,
     output bit indexed_cache_entry_valid
 );
-    (* ram_style = "block" *) cache_tag_type tag_mem[0:CACHE_BLOCKS-1];
+    cache_tag_type tag_mem[0:CACHE_BLOCKS-1];
     
     initial
     begin
@@ -109,8 +109,6 @@ module dm_cache_fsm
     
     /* Temporary variable for memory controller request*/
     mem_req_type    v_mem_req;
-    assign mem_req = v_mem_req;     // Connect to output ports
-    assign cpu_res = v_cpu_res;
     
     always_comb 
     begin
@@ -133,13 +131,14 @@ module dm_cache_fsm
         data_write = data_read;
         data_write = cpu_req.data;
         
-         v_cpu_res.data = data_read;
+        v_cpu_res.data = data_read;
         
         /* Memory request address (sampled from CPU request) */
         v_mem_req.addr = cpu_req.addr;
         /* Memory request data (used in write)*/
         v_mem_req.data = data_read;
         v_mem_req.rw = '0;
+        v_mem_req.valid = '0; 
     
         //------------------------------------Cache FSM-------------------------
     
@@ -227,12 +226,17 @@ module dm_cache_fsm
                 end
             end
         endcase
+        mem_req = v_mem_req;     // Connect to output ports
+        cpu_res = v_cpu_res;
     end
     
     always_ff @(posedge(clk)) 
     begin
         if (rst) rstate <= idle; // Reset to idle state
-        else rstate <= vstate;
+        else 
+        begin
+            rstate <= vstate;
+        end
     end
     
     /*connect cache tag/data memory*/

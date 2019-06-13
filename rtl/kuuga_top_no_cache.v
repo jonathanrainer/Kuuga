@@ -30,9 +30,6 @@ module kuuga_nc (
   input sys_diff_clock_clk_n;
   input sys_diff_clock_clk_p;
 
-  wire reset;
-  wire sys_diff_clock_clk_n;
-  wire sys_diff_clock_clk_p;
   wire inst_clk;
   wire inst_rst;
   wire [31:0] inst_douta;
@@ -80,15 +77,15 @@ module kuuga_nc (
           .AUTO_SLEEP_TIME(0),           // DECIMAL
           .BYTE_WRITE_WIDTH_A(32),       // DECIMAL
           .ECC_MODE("no_ecc"),           // String
-          .MEMORY_INIT_FILE("test_prog_data.mem"),     // String
+          .MEMORY_INIT_FILE("data_dummy_data.mem"),     // String
           .MEMORY_INIT_PARAM(""),       // String
           .MEMORY_OPTIMIZATION("false"),  // String
           .MEMORY_PRIMITIVE("block"),     // String
           .MEMORY_SIZE(1048576),            // DECIMAL
           .MESSAGE_CONTROL(0),           // DECIMAL
           .READ_DATA_WIDTH_A(32),        // DECIMAL
-          .READ_LATENCY_A(2),            // DECIMAL
-          .READ_RESET_VALUE_A("0"),      // String
+          .READ_LATENCY_A(1),            // DECIMAL
+          .READ_RESET_VALUE_A("EE"),      // String
           .USE_MEM_INIT(1),              // DECIMAL
           .WAKEUP_TIME("disable_sleep"), // String
           .WRITE_DATA_WIDTH_A(32),       // DECIMAL
@@ -125,14 +122,14 @@ module kuuga_nc (
          .AUTO_SLEEP_TIME(0),           // DECIMAL
          .BYTE_WRITE_WIDTH_A(32),       // DECIMAL
          .ECC_MODE("no_ecc"),           // String
-         .MEMORY_INIT_FILE("test_prog_inst.mem"),     // String
+         .MEMORY_INIT_FILE("inst_dummy_data.mem"),     // String
          .MEMORY_INIT_PARAM(""),       // String
          .MEMORY_OPTIMIZATION("false"),  // String
          .MEMORY_PRIMITIVE("block"),     // String
          .MEMORY_SIZE(1048576),         // DECIMAL
          .MESSAGE_CONTROL(0),           // DECIMAL
          .READ_DATA_WIDTH_A(32),        // DECIMAL
-         .READ_LATENCY_A(2),            // DECIMAL
+         .READ_LATENCY_A(1),            // DECIMAL
          .READ_RESET_VALUE_A("FF"),      // String
          .USE_MEM_INIT(1),              // DECIMAL
          .WAKEUP_TIME("disable_sleep"), // String

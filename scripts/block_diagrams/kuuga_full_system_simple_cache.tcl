@@ -1,6 +1,6 @@
 
 ################################################################
-# This is a generated script based on design: kuuga_full_system
+# This is a generated script based on design: kuuga_simple_cache
 #
 # Though there are limitations about the generated script,
 # the main purpose of this utility is to make learning
@@ -35,7 +35,7 @@ if { [string first $scripts_vivado_version $current_vivado_version] == -1 } {
 ################################################################
 
 # To test this script, run the following commands from Vivado Tcl console:
-# source kuuga_full_system_script.tcl
+# source kuuga_simple_cache_script.tcl
 
 
 # The design that will be created by this Tcl script contains the following 
@@ -57,7 +57,7 @@ if { $list_projs eq "" } {
 
 # CHANGE DESIGN NAME HERE
 variable design_name
-set design_name kuuga_full_system
+set design_name kuuga_simple_cache
 
 # If you do not already have an existing IP Integrator design open,
 # you can create a design using the following command:
@@ -301,7 +301,7 @@ proc create_root_design { parentCell } {
    CONFIG.CLKOUT1_REQUESTED_OUT_FREQ {10} \
    CONFIG.CLKOUT2_JITTER {112.316} \
    CONFIG.CLKOUT2_PHASE_ERROR {89.971} \
-   CONFIG.CLKOUT2_REQUESTED_OUT_FREQ {100} \
+   CONFIG.CLKOUT2_REQUESTED_OUT_FREQ {100.000} \
    CONFIG.CLKOUT2_USED {false} \
    CONFIG.CLK_IN1_BOARD_INTERFACE {sys_diff_clock} \
    CONFIG.ENABLE_CLOCK_MONITOR {false} \
@@ -464,4 +464,6 @@ proc create_root_design { parentCell } {
 
 create_root_design ""
 
+
+common::send_msg_id "BD_TCL-1000" "WARNING" "This Tcl script was generated from a block design that has not been validated. It is possible that design <$design_name> may result in errors during validation."
 

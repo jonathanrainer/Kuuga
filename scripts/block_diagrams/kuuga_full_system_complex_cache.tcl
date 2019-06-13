@@ -326,10 +326,7 @@ proc create_root_design { parentCell } {
      catch {common::send_msg_id "BD_TCL-106" "ERROR" "Unable to referenced block <$block_name>. Please add the files for ${block_name}'s definition into the project."}
      return 1
    }
-    set_property -dict [ list \
-   CONFIG.TRACE_ENTRIES {4096} \
- ] $enokida_wrapper_0
-
+  
   # Create instance: godai_wrapper_0, and set properties
   set block_name godai_wrapper
   set block_cell_name godai_wrapper_0
@@ -373,6 +370,17 @@ proc create_root_design { parentCell } {
    CONFIG.C_PROBE0_WIDTH {128} \
    CONFIG.C_PROBE_WIDTH_PROPAGATION {MANUAL} \
  ] $system_ila_0
+
+  # Create instance: system_ila_1, and set properties
+  set system_ila_1 [ create_bd_cell -type ip -vlnv xilinx.com:ip:system_ila:1.1 system_ila_1 ]
+  set_property -dict [ list \
+   CONFIG.C_ADV_TRIGGER {true} \
+   CONFIG.C_BRAM_CNT {228} \
+   CONFIG.C_DATA_DEPTH {65536} \
+   CONFIG.C_MON_TYPE {NATIVE} \
+   CONFIG.C_PROBE0_WIDTH {128} \
+   CONFIG.C_PROBE_WIDTH_PROPAGATION {MANUAL} \
+ ] $system_ila_1
 
   # Create instance: xlconstant_0, and set properties
   set xlconstant_0 [ create_bd_cell -type ip -vlnv xilinx.com:ip:xlconstant:1.1 xlconstant_0 ]
@@ -426,7 +434,7 @@ proc create_root_design { parentCell } {
   connect_bd_net -net axi_bram_ctrl_1_bram_wrdata_a [get_bd_ports data_bram_wrdata_a] [get_bd_pins axi_bram_ctrl_1/bram_wrdata_a]
   connect_bd_net -net bram_rddata_a_0_1 [get_bd_ports data_bram_rddata_a] [get_bd_pins axi_bram_ctrl_1/bram_rddata_a]
   connect_bd_net -net bram_rddata_a_0_2 [get_bd_ports inst_bram_rddata_a] [get_bd_pins axi_bram_ctrl_0/bram_rddata_a]
-  connect_bd_net -net clk_100MHz_1 [get_bd_pins Core2AXI_Data/M_AXI_ACLK] [get_bd_pins Core2AXI_Instruction/M_AXI_ACLK] [get_bd_pins axi_bram_ctrl_0/s_axi_aclk] [get_bd_pins axi_bram_ctrl_1/s_axi_aclk] [get_bd_pins clk_wiz_0/clk_out1] [get_bd_pins enokida_wrapper_0/clk] [get_bd_pins godai_wrapper_0/clk] [get_bd_pins gouram_wrapper_0/clk] [get_bd_pins proc_sys_reset_0/slowest_sync_clk] [get_bd_pins system_ila_0/clk]
+  connect_bd_net -net clk_100MHz_1 [get_bd_pins Core2AXI_Data/M_AXI_ACLK] [get_bd_pins Core2AXI_Instruction/M_AXI_ACLK] [get_bd_pins axi_bram_ctrl_0/s_axi_aclk] [get_bd_pins axi_bram_ctrl_1/s_axi_aclk] [get_bd_pins clk_wiz_0/clk_out1] [get_bd_pins enokida_wrapper_0/clk] [get_bd_pins godai_wrapper_0/clk] [get_bd_pins gouram_wrapper_0/clk] [get_bd_pins proc_sys_reset_0/slowest_sync_clk] [get_bd_pins system_ila_0/clk] [get_bd_pins system_ila_1/clk]
   connect_bd_net -net enokida_wrapper_0_cache_mem_data_addr_o [get_bd_pins Core2AXI_Data/data_addr_i] [get_bd_pins enokida_wrapper_0/cache_mem_data_addr_o]
   connect_bd_net -net enokida_wrapper_0_cache_mem_data_be_o [get_bd_pins Core2AXI_Data/data_be_i] [get_bd_pins enokida_wrapper_0/cache_mem_data_be_o]
   connect_bd_net -net enokida_wrapper_0_cache_mem_data_req_o [get_bd_pins Core2AXI_Data/data_req_i] [get_bd_pins enokida_wrapper_0/cache_mem_data_req_o]
@@ -441,10 +449,9 @@ proc create_root_design { parentCell } {
   connect_bd_net -net godai_wrapper_0_data_we_o [get_bd_pins enokida_wrapper_0/proc_cache_data_we_i] [get_bd_pins godai_wrapper_0/data_we_o]
   connect_bd_net -net godai_wrapper_0_is_decoding_o [get_bd_pins godai_wrapper_0/is_decoding_o] [get_bd_pins gouram_wrapper_0/is_decoding]
   connect_bd_net -net godai_wrapper_0_pc_set_o [get_bd_pins godai_wrapper_0/pc_set_o] [get_bd_pins gouram_wrapper_0/pc_set]
-  connect_bd_net -net gouram_wrapper_0_counter [get_bd_pins enokida_wrapper_0/counter] [get_bd_pins gouram_wrapper_0/counter]
   connect_bd_net -net gouram_wrapper_0_lock [get_bd_pins enokida_wrapper_0/lock] [get_bd_pins gouram_wrapper_0/lock]
   connect_bd_net -net gouram_wrapper_0_trace_capture_enable [get_bd_pins enokida_wrapper_0/trace_capture_enable] [get_bd_pins gouram_wrapper_0/trace_capture_enable]
-  connect_bd_net -net gouram_wrapper_0_trace_data_o [get_bd_pins enokida_wrapper_0/trace_in] [get_bd_pins gouram_wrapper_0/trace_data_o] [get_bd_pins system_ila_0/probe0]
+  connect_bd_net -net gouram_wrapper_0_trace_data_o [get_bd_pins enokida_wrapper_0/trace_in] [get_bd_pins gouram_wrapper_0/trace_data_o] [get_bd_pins system_ila_1/probe0]
   connect_bd_net -net proc_sys_reset_0_peripheral_aresetn [get_bd_pins Core2AXI_Data/M_AXI_ARESETN] [get_bd_pins Core2AXI_Instruction/M_AXI_ARESETN] [get_bd_pins axi_bram_ctrl_0/s_axi_aresetn] [get_bd_pins axi_bram_ctrl_1/s_axi_aresetn] [get_bd_pins enokida_wrapper_0/rst_n] [get_bd_pins godai_wrapper_0/rst_n] [get_bd_pins gouram_wrapper_0/rst_n] [get_bd_pins proc_sys_reset_0/peripheral_aresetn]
   connect_bd_net -net reset_1 [get_bd_ports reset] [get_bd_pins clk_wiz_0/reset] [get_bd_pins proc_sys_reset_0/ext_reset_in]
   connect_bd_net -net xlconstant_0_dout [get_bd_pins Core2AXI_Instruction/data_we_i] [get_bd_pins godai_wrapper_0/data_err_i] [get_bd_pins xlconstant_0/dout]
@@ -470,6 +477,4 @@ proc create_root_design { parentCell } {
 
 create_root_design ""
 
-
-common::send_msg_id "BD_TCL-1000" "WARNING" "This Tcl script was generated from a block design that has not been validated. It is possible that design <$design_name> may result in errors during validation."
 

@@ -43,7 +43,7 @@ module simple_cache
     bit [ADDR_WIDTH-1:0] cached_addr;
     bit [DATA_WIDTH-1:0] cached_data;
     
-    bit [INDEXMSB-INDEXLSB:0] index_to_check;
+    bit [ADDR_WIDTH-1:0] addr_to_check;
     bit wb_necessary;
     bit indexed_cache_entry_valid;
 
@@ -132,7 +132,7 @@ module simple_cache
             end
             SERVICE_WRITE_BACK_WAIT_GNT:
             begin
-                if (mem_req.valid && !out_data_gnt_i)
+                if (!out_data_gnt_i)
                 begin
                     out_data_req_o <= 1'b1;
                     out_data_addr_o <= cached_addr;
@@ -140,7 +140,7 @@ module simple_cache
                     out_data_be_o <= 4'hf;
                     out_data_wdata_o <= cached_data;
                 end
-                else if (mem_req.valid && out_data_gnt_i)
+                else if (out_data_gnt_i)
                 begin
                     out_data_req_o <= 1'b0;
                     out_data_addr_o <= 1'b0;
@@ -187,7 +187,8 @@ module simple_cache
                     state <= WAIT_ON_REQ;
                 end
             end
-        endcase        
+        endcase
+        addr_to_check <= '0;        
     end
     
     task initialise_module();
