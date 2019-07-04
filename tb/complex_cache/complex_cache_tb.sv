@@ -70,74 +70,24 @@ module complex_cache_tb;
            data_agent.start_slave();
            // Do some backdoor memory access to set up the program that will be accessed throughout the 
            // test
-           mem[32] =  32'h2400006f;
-           mem[33] =  32'h25c0006f;
-           mem[128] = 32'hfe010113;
-           mem[129] = 32'h00112e23;
-           mem[130] = 32'h00812c23;
-           mem[131] = 32'h02010413;
-           mem[132] = 32'hfea42623;
-           mem[133] = 32'hfec42783;
-           mem[134] = 32'h00079663;
-           mem[135] = 32'h00100793;
-           mem[136] = 32'h0200006f;
-           mem[137] = 32'hfec42783;
-           mem[138] = 32'hfff78793;
-           mem[139] = 32'h00078513;
-           mem[140] = 32'hfd1ff0ef;
-           mem[141] = 32'h00050713;
-           mem[142] = 32'hfec42783;
-           mem[143] = 32'h02f707b3;
-           mem[144] = 32'h00078513;
-           mem[145] = 32'h01c12083;
-           mem[146] = 32'h01812403;
-           mem[147] = 32'h02010113;
-           mem[148] = 32'h00008067;
-           mem[149] = 32'hfe010113;
-           mem[150] = 32'h00112e23;
-           mem[151] = 32'h00812c23;
-           mem[152] = 32'h02010413;
-           mem[153] = 32'hfe042423;
-           mem[154] = 32'h00500793;
-           mem[155] = 32'hfef42223;
-           mem[156] = 32'hfe042623;
-           mem[157] = 32'h0280006f;
-           mem[158] = 32'hfec42503;
-           mem[159] = 32'hf85ff0ef;
-           mem[160] = 32'h00050713;
-           mem[161] = 32'hfe842783;
-           mem[162] = 32'h00e787b3;
-           mem[163] = 32'hfef42423;
-           mem[164] = 32'hfec42783;
-           mem[165] = 32'h00178793;
-           mem[166] = 32'hfef42623;
-           mem[167] = 32'hfe442783;
-           mem[168] = 32'hfec42703;
-           mem[169] = 32'hfce7dae3;
-           mem[170] = 32'hfe842783;
-           mem[171] = 32'h00078513;
-           mem[172] = 32'h01c12083;
-           mem[173] = 32'h01812403;
-           mem[174] = 32'h02010113;
-           mem[175] = 32'h00008067;
-           mem[176] = 32'h00010137;
-           mem[177] = 32'hf0010113;
-           mem[178] = 32'hf8dff0ef;
-           mem[179] = 32'h00002083;
-           mem[180] = 32'h00010137;
-           mem[181] = 32'hf0010113;
-           mem[182] = 32'hf7dff0ef;
-           mem[183] = 32'h0040006f;
-           mem[184] = 32'h0000006f;
+           $readmemh("compress_nc_instruction_memory.mem", mem);
+           $readmemh("compress_nc_data_memory.mem", data_mem);
            for (int i = 0; i < MEM_SIZE; i++) 
            begin
                 if (mem[i] != 32'b0) backdoor_instr_mem_write(i*4, mem[i], 4'b1111);
                 else backdoor_instr_mem_write(i*4, i, 4'b1111);
            end
+           for (int i = 0; i < MEM_SIZE; i++) 
+           begin
+               if (data_mem[i] != 32'b0) backdoor_data_mem_write(i*4, data_mem[i], 4'b1111);
+               else backdoor_data_mem_write(i*4, i, 4'b1111);
+           end 
            // Set up the device to run
            clk = 0;
            reset = 0;
            #50 reset = 1;
+           backdoor_instr_mem_read(16'h12b0, mem_rd_data);
+           $display(mem_rd_data);
        end
    
        /*************************************************************************************************
