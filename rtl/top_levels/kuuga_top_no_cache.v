@@ -20,7 +20,7 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 
-module kuuga_sc (
+module kuuga_nc (
     reset,
     sys_diff_clock_clk_n,
     sys_diff_clock_clk_p
@@ -30,31 +30,34 @@ module kuuga_sc (
   input sys_diff_clock_clk_n;
   input sys_diff_clock_clk_p;
 
-  wire reset;
-  wire sys_diff_clock_clk_n;
-  wire sys_diff_clock_clk_p;
   wire inst_clk;
   wire inst_rst;
   wire [31:0] inst_douta;
-  wire [15:0] inst_addra; 
+  wire [31:0] inst_addra; 
   wire [31:0] inst_dina;
   wire inst_ena;
   wire [3:0] inst_wea;
   wire data_clk;
   wire data_rst;
   wire [31:0] data_douta;
-  wire [15:0] data_addra; 
+  wire [31:0] data_addra; 
   wire [31:0] data_dina;
   wire data_ena;
   wire [3:0] data_wea;
   
-  wire [15:0] bram_inst_word_addr;
-  wire [15:0] bram_data_word_addr;
+  parameter integer BRAM_ADDR_WIDTH = 17;
+  parameter integer BRAM_DATA_WIDTH = 32;
+  parameter [63:0] BRAM_SIZE = 2**BRAM_ADDR_WIDTH * BRAM_DATA_WIDTH;
+  
+  wire [BRAM_ADDR_WIDTH-1:0] bram_inst_word_addr;
+  wire [BRAM_ADDR_WIDTH-1:0] bram_data_word_addr;
   
   assign bram_inst_word_addr = inst_addra >> 2;
   assign bram_data_word_addr = data_addra >> 2;
+  
+  
     
-    kuuga_simple_cache k_top 
+    kuuga_no_cache k_top 
     (   
         .reset(reset),
         .sys_diff_clock_clk_n(sys_diff_clock_clk_n),
@@ -76,7 +79,7 @@ module kuuga_sc (
     );
     
      (* DONT_TOUCH = "true" *) xpm_memory_spram #(
-          .ADDR_WIDTH_A(16),              // DECIMAL
+          .ADDR_WIDTH_A(BRAM_ADDR_WIDTH),              // DECIMAL
           .AUTO_SLEEP_TIME(0),           // DECIMAL
           .BYTE_WRITE_WIDTH_A(32),       // DECIMAL
           .ECC_MODE("no_ecc"),           // String
@@ -84,14 +87,14 @@ module kuuga_sc (
           .MEMORY_INIT_PARAM(""),       // String
           .MEMORY_OPTIMIZATION("false"),  // String
           .MEMORY_PRIMITIVE("block"),     // String
-          .MEMORY_SIZE(1048576),            // DECIMAL
+          .MEMORY_SIZE(BRAM_SIZE),            // DECIMAL
           .MESSAGE_CONTROL(0),           // DECIMAL
-          .READ_DATA_WIDTH_A(32),        // DECIMAL
+          .READ_DATA_WIDTH_A(BRAM_DATA_WIDTH),        // DECIMAL
           .READ_LATENCY_A(1),            // DECIMAL
           .READ_RESET_VALUE_A("EE"),      // String
           .USE_MEM_INIT(1),              // DECIMAL
           .WAKEUP_TIME("disable_sleep"), // String
-          .WRITE_DATA_WIDTH_A(32),       // DECIMAL
+          .WRITE_DATA_WIDTH_A(BRAM_DATA_WIDTH),       // DECIMAL
           .WRITE_MODE_A("read_first")    // String
        )
        xpm_data_mem (
@@ -121,7 +124,7 @@ module kuuga_sc (
        );
        
        (* DONT_TOUCH = "true" *) xpm_memory_spram #(
-         .ADDR_WIDTH_A(16),              // DECIMAL
+         .ADDR_WIDTH_A(BRAM_ADDR_WIDTH),              // DECIMAL
          .AUTO_SLEEP_TIME(0),           // DECIMAL
          .BYTE_WRITE_WIDTH_A(32),       // DECIMAL
          .ECC_MODE("no_ecc"),           // String
@@ -129,14 +132,14 @@ module kuuga_sc (
          .MEMORY_INIT_PARAM(""),       // String
          .MEMORY_OPTIMIZATION("false"),  // String
          .MEMORY_PRIMITIVE("block"),     // String
-         .MEMORY_SIZE(1048576),         // DECIMAL
+         .MEMORY_SIZE(BRAM_SIZE),         // DECIMAL
          .MESSAGE_CONTROL(0),           // DECIMAL
-         .READ_DATA_WIDTH_A(32),        // DECIMAL
+         .READ_DATA_WIDTH_A(BRAM_DATA_WIDTH),        // DECIMAL
          .READ_LATENCY_A(1),            // DECIMAL
          .READ_RESET_VALUE_A("FF"),      // String
          .USE_MEM_INIT(1),              // DECIMAL
          .WAKEUP_TIME("disable_sleep"), // String
-         .WRITE_DATA_WIDTH_A(32),       // DECIMAL
+         .WRITE_DATA_WIDTH_A(BRAM_DATA_WIDTH),       // DECIMAL
          .WRITE_MODE_A("read_first")    // String
       )
       xpm_inst_mem (

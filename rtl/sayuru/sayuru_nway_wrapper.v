@@ -20,7 +20,7 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 
-module simple_cache_wrapper
+module sayuru_nway_wrapper
 #(
     ADDR_WIDTH = 16,
     DATA_WIDTH = 32
@@ -48,17 +48,23 @@ module simple_cache_wrapper
     output                          out_data_we_o,
     output   [DATA_WIDTH/8 - 1:0]   out_data_be_o,
     input    [DATA_WIDTH-1:0]       out_data_rdata_i,
-    output   [DATA_WIDTH-1:0]       out_data_wdata_o
+    output   [DATA_WIDTH-1:0]       out_data_wdata_o,
+    
+    // Performance Counter
+        
+    output [31:0] req_count,
+    output [31:0] hit_count,
+    output [31:0] miss_count
 );
 
 
-    simple_cache #(ADDR_WIDTH, DATA_WIDTH) cache_inst 
+    sayuru_nway #(ADDR_WIDTH, DATA_WIDTH) sayuru 
     (
         clk, rst_n, in_data_req_i, in_data_gnt_o, in_data_rvalid_o,
         in_data_addr_i, in_data_we_i, in_data_be_i, in_data_rdata_o,
         in_data_wdata_i, out_data_req_o, out_data_gnt_i, out_data_rvalid_i,
         out_data_addr_o, out_data_we_o, out_data_be_o, out_data_rdata_i,
-        out_data_wdata_o
+        out_data_wdata_o, req_count, hit_count, miss_count 
     );
 
 endmodule

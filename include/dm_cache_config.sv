@@ -1,10 +1,11 @@
-package cache_def;
+package dm_cache_def;
     // Data structure for cache tag & data
     
-    parameter int TAGMSB = 15; // Tag MSB
+    parameter int TAGMSB = 31; // Tag MSB
     parameter int TAGLSB = 6; // Tag LSB
     parameter int INDEXMSB = 5;
     parameter int INDEXLSB = 0;
+    parameter int CACHE_BLOCKS = 128;
     
     // Data structure for cache tag
     typedef struct packed {
@@ -26,7 +27,7 @@ package cache_def;
     
     // CPU Request (CPU->Cache Controller)
     typedef struct {
-        bit [15:0] addr;    // 16-bit request addr
+        bit [31:0] addr;    // 16-bit request addr
         bit [31:0] data;    // 32-bit request data (used when write)
         bit rw;             // Request type: 0 = read, 1 = write
         bit valid;          // Request is valid
@@ -37,6 +38,7 @@ package cache_def;
         bit [31:0] data;    // 32-bit data
         bit ready;          // Result is ready
         bit checked;        // Is the result final?
+	bit [$clog2(CACHE_BLOCKS)-1:0] cache_index;
     } cpu_result_type;
     
     //--------------------------------------------------------------------
@@ -44,7 +46,7 @@ package cache_def;
     
     // Memory Request (Cache Controller -> Memory)
     typedef struct {
-        bit [15:0]  addr;   // Request byte addr
+        bit [31:0]  addr;   // Request byte addr
         bit [31:0] data;   // 32-bit request data (used when write)
         bit rw;             // Request Type: 0 = read, 1 write    
         bit valid;          // Request is valid

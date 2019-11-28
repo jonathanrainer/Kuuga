@@ -1,7 +1,8 @@
-import trace_repository_datatypes::*;
-import cache_def::*;
+import nway_trace_repository_datatypes::*;
+import nway_cache_def::*;
+import gouram_datatypes::*;
 
-module trace_repository
+module nway_trace_repository
 #(
     DATA_ADDR_WIDTH = 16,
     DATA_DATA_WIDTH = 32,
@@ -14,6 +15,7 @@ module trace_repository
     // Capture Inputs
     input trace_format trace_in,
     input bit trace_capture_enable,
+    input bit trace_ready,
     input bit lock,
     
     // Requests from Enokida
@@ -27,6 +29,7 @@ module trace_repository
     
     // Requests to Mark Entries Done
     input bit [$clog2(TRACE_ENTRIES)-1:0] index_done,
+    input bit [$clog2(CACHE_BLOCKS)-1:0] cache_index,
     input bit mark_done,
     input bit processing_flag,
     input bit mem_trace_flag,
@@ -38,8 +41,6 @@ module trace_repository
     input bit get_index,
     output bit signed [$clog2(TRACE_ENTRIES)-1:0] index_o,
     output bit index_valid
-    
-   
 );
 
     bit [DATA_ADDR_WIDTH + DATA_DATA_WIDTH-1:0] trace_entries_data_o;
@@ -98,10 +99,10 @@ module trace_repository
       .injectdbiterra(1'b0)
    );
     
-    trace_format last_entry;
     bit [$clog2(TRACE_ENTRIES)-1:0] last_addr;
     (* dont_touch = "yes" *) integer signed capture_pointer;
     (* dont_touch = "yes" *) integer signed action_pointer;
+    (* dont_touch = "yes" *) integer signed committed_counter;
     (* dont_touch = "yes" *) integer next_available;
     (* dont_touch = "yes" *) trace_repo_data_entry trace;
     bit trace_valid;
@@ -117,7 +118,8 @@ module trace_repository
     (* dont_touch = "yes" *) bit signed [$clog2(ACTIVE_SET_ENTRIES):0] active_set_processing_pointer;
     (* dont_touch = "yes" *) bit signed [$clog2(ACTIVE_SET_ENTRIES):0] active_set_retired_pointer;
     
-    (* dont_touch = "yes" *) cache_tracker_t cache_tracker [2**(INDEXMSB-INDEXLSB + 1)-1:0];
+    (* dont_touch = "yes" *) cache_tracker_t cache_tracker [CACHE_BLOCKS-1:0];
+    (* dont_touch = "yes" *) bit [$clog2(CACHE_BLOCKS)-(SETMSB+1)-1:0] fifo_tracker [2**(SETMSB+1)-1:0];
     
     initial
     begin
@@ -129,9 +131,8 @@ module trace_repository
         if (!rst_n) initialise_device();
         else if (!lock)
         begin
-            if (trace_capture_enable && (last_entry != trace_in)) 
+            if (trace_capture_enable && trace_ready) 
             begin
-                last_entry <= trace_in;
                 trace_entries_addr_i <= capture_pointer+1;
                 trace_entries_wea_i <= 1'b1;
                 trace_entries_ena_i <= 1'b1;
@@ -149,10 +150,10 @@ module trace_repository
             unique case (state)
                 LISTEN_FOR_REQ:
                 begin
-                    automatic bit trace_ready = (action_pointer + 1 == last_addr) && trace_valid;
-                    if (trace_ready && trace_req) 
+                    automatic bit next_trace_ready = (action_pointer + 1 == last_addr) && trace_valid;
+                    if (next_trace_ready && trace_req) 
                     begin
-                        if (action_pointer == capture_pointer) processing_complete <= 1'b1;
+                        if (committed_counter == capture_pointer+1) processing_complete <= 1'b1;
                         else
                         begin
                             next_available <= action_pointer+1;
@@ -171,7 +172,7 @@ module trace_repository
                     begin
                         entry_valid <= 1'b0;
                         cancelled <= 1'b0;
-                        if (!trace_ready)
+                        if (!next_trace_ready)
                         begin
                             trace_valid <= 1'b0;
                             trace_entries_addr_i <= action_pointer+1;
@@ -236,12 +237,19 @@ module trace_repository
                     active_set_retired_pointer <= (active_set_retired_pointer + 1) % ACTIVE_SET_ENTRIES;
                     if (active_set_retired_pointer == active_set_processing_pointer) active_set_processing_pointer <= (active_set_processing_pointer + 1) % ACTIVE_SET_ENTRIES;
                 end
-                cache_tracker[mem_addr[INDEXMSB:INDEXLSB]].trace_index <= index_done;
-                cache_tracker[mem_addr[INDEXMSB:INDEXLSB]].mem_addr <= mem_addr;
-                cache_tracker[mem_addr[INDEXMSB:INDEXLSB]].occupied <= 1'b1;
-                cache_tracker[mem_addr[INDEXMSB:INDEXLSB]].processing <= processing_flag;
+                cache_tracker[cache_index].trace_index <= index_done;
+                cache_tracker[cache_index].mem_addr <= mem_addr;
+                cache_tracker[cache_index].occupied <= 1'b1;
+                cache_tracker[cache_index].processing <= processing_flag;
+                if (
+                    (cache_index % 2**(SETMSB) >=  fifo_tracker[mem_addr[SETMSB:SETLSB]]) || (cache_index % 2**(SETMSB) == 0 && fifo_tracker[mem_addr[SETMSB:SETLSB]] == 7)
+                ) fifo_tracker[mem_addr[SETMSB:SETLSB]] <= fifo_tracker[mem_addr[SETMSB:SETLSB]]+1 % 2**(SETMSB);
                 if (processing_flag) action_pointer <= action_pointer + 1;
-                if (((index_done > action_pointer) || (action_pointer==-1)) && !processing_flag) action_pointer <= action_pointer+1;
+                if (((index_done > action_pointer) || (action_pointer==-1)) && !processing_flag) 
+                begin
+                    action_pointer <= action_pointer+1;
+                    committed_counter <= committed_counter+1;
+                end
                 mark_done_valid <= 1'b1;
             end
             else mark_done_valid <= 1'b0;
@@ -268,18 +276,35 @@ module trace_repository
     
     
     function can_next_available_be_executed(input bit [DATA_ADDR_WIDTH-1:0] mem_addr);
-        automatic cache_tracker_t cache_tracker_entry = cache_tracker[mem_addr[INDEXMSB:INDEXLSB]];
-        if (!cache_tracker_entry.occupied) return 1'b1;
-        else return mem_addr == cache_tracker_entry.mem_addr && !cache_tracker_entry.processing;
+        // To check if something can execute, you need to check a couple of 
+        // - Is the data referred to by the instruction we want to execute already in the cache (need to search for it)
+        //      - If it is then check if it's processing or not
+        //          - If it is processing then no we can't proceed
+        //          - If it isn't then we can crack on because it's effects have already happened
+        //      - If it's not present then check on the FIFO tracker to see if there's an empty slot or if what's there has finished processing
+        //          - If it has then/is then you're fine
+        //          - If not then you need to wait for the FIFO tracker to be updated/the item there to finish processing.
+        automatic bit [CACHE_BLOCKS-1:0] next_index_in_set = 2**(SETMSB) * mem_addr[SETMSB:SETLSB] + fifo_tracker[mem_addr[SETMSB:SETLSB]];
+        for (int i = 0; i < 2**(SETMSB); i++)
+        begin
+            automatic bit [CACHE_BLOCKS-1:0] index_to_check = 2**(SETMSB) * mem_addr[SETMSB:SETLSB] + i;
+            if (mem_addr == cache_tracker[index_to_check].mem_addr) 
+            begin
+                return cache_tracker[index_to_check].processing;
+            end
+        end
+        return !cache_tracker[next_index_in_set].occupied || !cache_tracker[next_index_in_set].processing;
     endfunction
     
     task initialise_device();
         capture_pointer <= -1;
         action_pointer <= -1;
+        committed_counter <= 0;
         next_available <= 0;
         active_set_processing_pointer <= -1;
         active_set_retired_pointer <= -1;
         trace_valid <= 1'b0;
+        fifo_tracker <= '{default:0};
     endtask
 
 endmodule

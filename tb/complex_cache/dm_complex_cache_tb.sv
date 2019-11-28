@@ -20,13 +20,13 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 import axi_vip_pkg::*;
-import complex_cache_test_axi_vip_0_0_pkg::*;
-import complex_cache_test_axi_vip_1_0_pkg::*;
+import kuuga_cc_dm_sim_axi_vip_0_0_pkg::*;
+import kuuga_cc_dm_sim_axi_vip_1_0_pkg::*;
 import gouram_datatypes::*;
 
-module complex_cache_tb;
+module cc_dm_tb;
 
-    localparam MEM_SIZE = 4096;
+    localparam MEM_SIZE = 16384;
     
     integer sim_counter = 0;
     bit reset;
@@ -37,41 +37,42 @@ module complex_cache_tb;
     bit [31:0] mem[MEM_SIZE] = '{default: 32'b0};
     bit [31:0] data_mem[MEM_SIZE] = '{default: 32'b0};
     
-    complex_cache_test_axi_vip_1_0_slv_mem_t instr_agent;
-    complex_cache_test_axi_vip_0_0_slv_mem_t data_agent;
+    int req_count;
+    int hit_count;
+    int miss_count;
+    int instr_count;
     
-    complex_cache_test_wrapper kuuga_inst(
+    kuuga_cc_dm_sim_axi_vip_0_0_slv_mem_t instr_agent;
+    kuuga_cc_dm_sim_axi_vip_1_0_slv_mem_t data_agent;
+    
+    kuuga_cc_dm_sim_wrapper kuuga_inst(
         .rst_n(reset),
         .clk(clk)
     );
 
-    assign test_sig = kuuga_inst.complex_cache_test_i.godai_wrapper_0.inst.is_decoding_o && kuuga_inst.complex_cache_test_i.godai_wrapper_0.inst.core.id_stage_i.id_ready_o;
-   
    always
    begin
         #5 clk = ~clk;
         if (clk) sim_counter++;
-        if (sim_counter == 7500) $finish;
-        if (clk && sim_counter == 32'h70) $stop;
-        
+        if (clk && kuuga_inst.kuuga_cc_dm_sim_i.gouram_wrapper_0.lock) $stop;
+        if (clk && kuuga_inst.kuuga_cc_dm_sim_i.enokida_dm_wrapper_0.inst.tac.processing_complete) $finish;
    end
-   
    
    initial 
        begin
            // Build up a set of agents to control the AXI VIP Blocks
-           instr_agent = new("InstructionVIP", complex_cache_tb.kuuga_inst.complex_cache_test_i.axi_vip_1.inst.IF);
+           instr_agent = new("InstructionVIP",cc_dm_tb.kuuga_inst.kuuga_cc_dm_sim_i.axi_vip_0.inst.IF);
            instr_agent.set_agent_tag("Instruction Memory Agent");
            instr_agent.set_verbosity(0);  
-           data_agent = new("DataVIP", complex_cache_tb.kuuga_inst.complex_cache_test_i.axi_vip_0.inst.IF);
+           data_agent = new("DataVIP", cc_dm_tb.kuuga_inst.kuuga_cc_dm_sim_i.axi_vip_1.inst.IF);
            data_agent.set_agent_tag("Data Memory Agent");
            data_agent.set_verbosity(0);
            instr_agent.start_slave();
            data_agent.start_slave();
            // Do some backdoor memory access to set up the program that will be accessed throughout the 
            // test
-           $readmemh("compress_nc_instruction_memory.mem", mem);
-           $readmemh("compress_nc_data_memory.mem", data_mem);
+           $readmemh("lms_cc_dm_instruction_memory.mem", mem);
+           $readmemh("lms_cc_dm_data_memory.mem", data_mem);
            for (int i = 0; i < MEM_SIZE; i++) 
            begin
                 if (mem[i] != 32'b0) backdoor_instr_mem_write(i*4, mem[i], 4'b1111);
@@ -86,8 +87,6 @@ module complex_cache_tb;
            clk = 0;
            reset = 0;
            #50 reset = 1;
-           backdoor_instr_mem_read(16'h12b0, mem_rd_data);
-           $display(mem_rd_data);
        end
    
        /*************************************************************************************************

@@ -1,9 +1,9 @@
-package trace_repository_datatypes;
+package dm_trace_repository_datatypes;
 
 import gouram_datatypes::*;
-import cache_def::*;
+import dm_cache_def::*;
 
-    parameter int TRACE_ENTRIES = 8192;
+    parameter int TRACE_ENTRIES = 65536;
 
     typedef struct packed {
 	bit [INSTR_DATA_WIDTH-1:0] instruction;
@@ -28,4 +28,4 @@ import cache_def::*;
 	bit [$clog2(TRACE_ENTRIES)-1:0] trace_index;
     } cache_tracker_t;
 
-endpackage : trace_repository_datatypes
+endpackage : dm_trace_repository_datatypes

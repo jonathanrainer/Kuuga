@@ -1,17 +1,23 @@
 set KuugaRTLFiles {
-	standard_cache.sv
-	enokida.sv
-	enokida_wrapper.v
-	trace_repository.sv
-	simple_cache.sv
-	simple_cache_wrapper.v
-	delay_module.sv
-	delay_module_wrapper.v
+	common/delay_module.sv
+	common/delay_module_wrapper.v
+	dm_cache/dm_cache.sv
+	enokida/enokida_dm.sv
+	enokida/enokida_dm_wrapper.v
+	enokida/enokida_nway.sv
+	enokida/enokida_nway_wrapper.v
+	enokida/nway_trace_repository.sv
+	enokida/dm_trace_repository.sv
+	nway_cache/nway_cache.sv
+	sayuru/sayuru_dm.sv
+	sayuru/sayuru_dm_wrapper.v
+	sayuru/sayuru_nway.sv
+	sayuru/sayuru_nway_wrapper.v
 }
 
 set KuugaIncludeFiles {
-	enokida_config.sv
-	trace_repository_datatypes.sv
-	simple_cache_config.sv
-
+	dm_trace_repository_datatypes.sv
+	dm_cache_config.sv
+	nway_cache_config.sv
+	nway_trace_repository_datatypes.sv
 }

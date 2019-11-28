@@ -1,23 +1,32 @@
-package cache_def;
+package nway_cache_def;
     // Data structure for cache tag & data
     
-    parameter int TAGMSB = 15; // Tag MSB
-    parameter int TAGLSB = 6; // Tag LSB
-    parameter int INDEXMSB = 5;
-    parameter int INDEXLSB = 0;
+    parameter int TAGMSB = 31; // Tag MSB
+    parameter int TAGLSB = 4; // Tag LSB
+    parameter int SETMSB = 3;
+    parameter int SETLSB = 0;
+    parameter int CACHE_BLOCKS = 128;
     
     // Data structure for cache tag
     typedef struct packed {
         bit                 valid;  // Valid Bit
         bit                 dirty;  // Dirty Bit
-        bit [TAGMSB:TAGLSB] tag;    // Tag Bits   
+        bit [TAGMSB-TAGLSB:0] tag;    // Tag Bits
+	bit [$clog2(CACHE_BLOCKS)-1:0] cache_index;
     } cache_tag_type;
     
     // Data structure for cache memory request
     typedef struct {
-        bit [INDEXMSB:INDEXLSB]   index;  // 7-bit index (128 blocks)
+        bit [SETMSB:SETLSB]   set;  // 4 Bit Set (16 Sets, 8 Slots per Set, 128 Blocks overall)
+	bit [TAGMSB-TAGLSB:0]   tag_to_find;
         bit         we;     // Write enable
-    } cache_req_type;
+    } cache_tag_req_type;
+
+    // Data structure for cache memory request
+    typedef struct {
+        bit [$clog2(CACHE_BLOCKS)-1:0]   cache_index;  // 7-bit index
+        bit         we;     // Write enable
+    } cache_data_req_type;
     
     // 32-bit cache line data
     typedef bit [31:0] cache_data_type;
@@ -26,7 +35,7 @@ package cache_def;
     
     // CPU Request (CPU->Cache Controller)
     typedef struct {
-        bit [15:0] addr;    // 16-bit request addr
+        bit [31:0] addr;    // 16-bit request addr
         bit [31:0] data;    // 32-bit request data (used when write)
         bit rw;             // Request type: 0 = read, 1 = write
         bit valid;          // Request is valid
@@ -37,6 +46,7 @@ package cache_def;
         bit [31:0] data;    // 32-bit data
         bit ready;          // Result is ready
         bit checked;        // Is the result final?
+	bit [$clog2(CACHE_BLOCKS)-1:0] cache_index;
     } cpu_result_type;
     
     //--------------------------------------------------------------------
@@ -44,7 +54,7 @@ package cache_def;
     
     // Memory Request (Cache Controller -> Memory)
     typedef struct {
-        bit [15:0]  addr;   // Request byte addr
+        bit [31:0]  addr;   // Request byte addr
         bit [31:0] data;   // 32-bit request data (used when write)
         bit rw;             // Request Type: 0 = read, 1 write    
         bit valid;          // Request is valid

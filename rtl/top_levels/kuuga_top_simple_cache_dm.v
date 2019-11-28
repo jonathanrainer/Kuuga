@@ -20,7 +20,7 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 
-module kuuga_nc (
+module kuuga_sc_dm (
     reset,
     sys_diff_clock_clk_n,
     sys_diff_clock_clk_p
@@ -30,6 +30,9 @@ module kuuga_nc (
   input sys_diff_clock_clk_n;
   input sys_diff_clock_clk_p;
 
+  wire reset;
+  wire sys_diff_clock_clk_n;
+  wire sys_diff_clock_clk_p;
   wire inst_clk;
   wire inst_rst;
   wire [31:0] inst_douta;
@@ -51,7 +54,7 @@ module kuuga_nc (
   assign bram_inst_word_addr = inst_addra >> 2;
   assign bram_data_word_addr = data_addra >> 2;
     
-    kuuga_no_cache k_top 
+    kuuga_simple_cache_dm k_top 
     (   
         .reset(reset),
         .sys_diff_clock_clk_n(sys_diff_clock_clk_n),

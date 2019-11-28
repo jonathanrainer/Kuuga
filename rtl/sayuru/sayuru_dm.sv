@@ -1,8 +1,6 @@
 `timescale 1ns / 1ps
 
-import cache_def::*;
-
-module simple_cache
+module sayuru_dm
 #(
     ADDR_WIDTH = 16,
     DATA_WIDTH = 32
@@ -31,7 +29,13 @@ module simple_cache
     output  logic                            out_data_we_o,
     output  logic [DATA_WIDTH/8-1:0]         out_data_be_o,
     input   logic [DATA_WIDTH-1:0]           out_data_rdata_i,
-    output  logic [DATA_WIDTH-1:0]           out_data_wdata_o
+    output  logic [DATA_WIDTH-1:0]           out_data_wdata_o,
+
+    // Performance Counter
+    
+    output int req_count,
+    output int hit_count,
+    output int miss_count
 );
 
     bit rst;
@@ -92,6 +96,7 @@ module simple_cache
                         cpu_req.rw <= 1'b0;
                     end
                     cpu_req.valid <= 1'b1;
+                    req_count <= req_count + 1;
                     state <= CACHE_HIT_GNT;     
                 end
             end
@@ -124,6 +129,7 @@ module simple_cache
             end
             CACHE_HIT_DATA:
             begin
+		hit_count <= hit_count + 1;
                 in_data_gnt_o <= 1'b0;
                 in_data_rvalid_o <= 1'b1;
                 if (cpu_req.rw) in_data_rdata_o <= 32'h00000000;
@@ -184,6 +190,7 @@ module simple_cache
                     out_data_be_o <= 1'b0;
                     in_data_rdata_o <= out_data_rdata_i;
                     out_data_wdata_o <= 32'b0;
+		    miss_count <= miss_count + 1;
                     state <= WAIT_ON_REQ;
                 end
             end

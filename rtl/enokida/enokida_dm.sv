@@ -1,8 +1,7 @@
-import cache_def::*;
 import gouram_datatypes::*;
-import trace_repository_datatypes::*;
+import dm_trace_repository_datatypes::*;
 
-module enokida
+module enokida_dm
 #(
     ADDR_WIDTH = 16,
     DATA_WIDTH = 32
@@ -37,8 +36,13 @@ module enokida
     
     // Trace Input
     input trace_format              trace_in,
+    input bit                       trace_ready,
     input bit                       trace_capture_enable,
-    input bit                       lock
+    input bit                       lock,
+
+    output int req_count,
+    output int hit_count,
+    output int miss_count
 );
 
     bit rst;
@@ -56,7 +60,7 @@ module enokida
     bit wb_necessary;
     bit indexed_cache_entry_valid;
     
-    dm_cache_fsm #() standard_cache(
+    dm_cache_fsm #() dm_cache(
         .clk(clk),
         .*
     );
@@ -82,7 +86,7 @@ module enokida
     bit get_index;
     bit index_valid;
   
-    trace_repository #(DATA_ADDR_WIDTH) trace_repo(
+    dm_trace_repository #(DATA_ADDR_WIDTH) trace_repo(
         .trace_req(req),
         .*
     );
@@ -113,6 +117,7 @@ module enokida
      bit [DATA_WIDTH-1:0] cached_rdata = 32'b0;
      
      bit signed [$clog2(TRACE_ENTRIES)-1:0] mapping_cache_to_trace_index [0 : 2**(INDEXMSB-INDEXLSB + 1) - 1];
+     bit first_stage_activity_ended;
      
     initial
     begin
@@ -129,7 +134,7 @@ module enokida
             unique case (state)
                 IDLE:
                 begin
-                    if (trace_capture_enable)
+                    if (trace_capture_enable || !first_stage_activity_ended)
                     begin
                         proc_cache_data_rvalid_o <= 1'b0;
                         proc_cache_data_gnt_o <= 1'b0;
@@ -163,6 +168,7 @@ module enokida
                 begin
                     if (cache_mem_data_gnt_i) 
                     begin
+                        if (cache_mem_data_addr_o == 0 && cache_mem_data_wdata_o == 0) first_stage_activity_ended <= 1'b1;
                         cache_mem_data_req_o <= 1'b0; 
                         proc_cache_data_gnt_o <= 1'b1;
                         state <= CAPTURE_PHASE_RVALID;
@@ -212,6 +218,7 @@ module enokida
                             cpu_req.data <= (proc_cache_data_we_i) ? proc_cache_data_wdata_i : 0;
                             cpu_req.valid <= 1'b1;
                             mem_trace_flag <= 1'b0;
+			                req_count <= req_count + 1;
                         end
                         else
                         begin
@@ -250,6 +257,7 @@ module enokida
                                 if (!mem_trace_flag)
                                 begin
                                     proc_cache_data_gnt_o <= 1'b1;
+				    hit_count <= hit_count + 1;
                                     state <= CACHE_HIT_DATA;
                                 end
                                 else
@@ -370,6 +378,7 @@ module enokida
                         mem_data.data <= (cached_rvalid) ? cached_rdata : cache_mem_data_rdata_i;
                         mem_data.ready <= 1'b1;
                         mapping_cache_to_trace_index[mem_req.addr[INDEXMSB:INDEXLSB]] <= index_o;
+			miss_count <= miss_count + 1;
                         state <= UPDATE_TRACE_REPO;
                     end
                 end
@@ -391,6 +400,7 @@ module enokida
                         mapping_cache_to_trace_index[mem_req.addr[INDEXMSB:INDEXLSB]] <= index_o;
                         get_index <= 1'b0;
                         processing_flag <= 1'b0;
+		        miss_count <= miss_count + 1;
                         state <= UPDATE_TRACE_REPO;
                     end
                 end  
@@ -454,6 +464,10 @@ module enokida
             state <= IDLE;
             req <= 1'b0;
             mark_done <= 0;
+	        hit_count <= 0;
+            miss_count <= 0;
+            req_count <= 0;
+            first_stage_activity_ended <= 0;
         end
     endtask
     

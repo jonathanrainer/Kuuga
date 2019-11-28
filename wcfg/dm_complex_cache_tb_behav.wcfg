@@ -1,0 +1,461 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wave_config>
+   <wave_state>
+   </wave_state>
+   <db_ref_list>
+      <db_ref path="dm_complex_cache_tb_behav.wdb" id="1">
+         <top_modules>
+            <top_module name="axi_vip_pkg" />
+            <top_module name="cache_def" />
+            <top_module name="dm_cache_def" />
+            <top_module name="dm_complex_cache_tb" />
+            <top_module name="glbl" />
+            <top_module name="gouram_datatypes" />
+            <top_module name="riscv_defines" />
+            <top_module name="std" />
+            <top_module name="trace_repository_datatypes" />
+            <top_module name="xil_common_vip_pkg" />
+         </top_modules>
+      </db_ref>
+   </db_ref_list>
+   <zoom_setting>
+      <ZoomStartTime time="116275001000fs"></ZoomStartTime>
+      <ZoomEndTime time="121935001001fs"></ZoomEndTime>
+      <Cursor1Time time="119135001000fs"></Cursor1Time>
+   </zoom_setting>
+   <column_width_setting>
+      <NameColumnWidth column_width="295"></NameColumnWidth>
+      <ValueColumnWidth column_width="84"></ValueColumnWidth>
+   </column_width_setting>
+   <WVObjectSize size="5" />
+   <wave_markers>
+      <marker label="" time="34675000000" />
+      <marker label="" time="70155000000" />
+   </wave_markers>
+   <wvobject type="group" fp_name="group155">
+      <obj_property name="label">Counters</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <obj_property name="isExpanded"></obj_property>
+      <wvobject type="array" fp_name="/dm_complex_cache_tb/req_count">
+         <obj_property name="ElementShortName">req_count[31:0]</obj_property>
+         <obj_property name="ObjectShortName">req_count[31:0]</obj_property>
+         <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/dm_complex_cache_tb/hit_count">
+         <obj_property name="ElementShortName">hit_count[31:0]</obj_property>
+         <obj_property name="ObjectShortName">hit_count[31:0]</obj_property>
+         <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/dm_complex_cache_tb/miss_count">
+         <obj_property name="ElementShortName">miss_count[31:0]</obj_property>
+         <obj_property name="ObjectShortName">miss_count[31:0]</obj_property>
+         <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/dm_complex_cache_tb/instr_count">
+         <obj_property name="ElementShortName">instr_count[31:0]</obj_property>
+         <obj_property name="ObjectShortName">instr_count[31:0]</obj_property>
+         <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+      </wvobject>
+   </wvobject>
+   <wvobject type="group" fp_name="group30">
+      <obj_property name="label">Godai</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <obj_property name="isExpanded"></obj_property>
+      <wvobject type="logic" fp_name="/dm_complex_cache_tb/kuuga_inst/dm_complex_cache_test_i/godai_wrapper_0/instr_req_o">
+         <obj_property name="ElementShortName">instr_req_o</obj_property>
+         <obj_property name="ObjectShortName">instr_req_o</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/dm_complex_cache_tb/kuuga_inst/dm_complex_cache_test_i/godai_wrapper_0/instr_gnt_i">
+         <obj_property name="ElementShortName">instr_gnt_i</obj_property>
+         <obj_property name="ObjectShortName">instr_gnt_i</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/dm_complex_cache_tb/kuuga_inst/dm_complex_cache_test_i/godai_wrapper_0/instr_rvalid_i">
+         <obj_property name="ElementShortName">instr_rvalid_i</obj_property>
+         <obj_property name="ObjectShortName">instr_rvalid_i</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/dm_complex_cache_tb/kuuga_inst/dm_complex_cache_test_i/godai_wrapper_0/instr_addr_o">
+         <obj_property name="ElementShortName">instr_addr_o[15:0]</obj_property>
+         <obj_property name="ObjectShortName">instr_addr_o[15:0]</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/dm_complex_cache_tb/kuuga_inst/dm_complex_cache_test_i/godai_wrapper_0/instr_rdata_i">
+         <obj_property name="ElementShortName">instr_rdata_i[31:0]</obj_property>
+         <obj_property name="ObjectShortName">instr_rdata_i[31:0]</obj_property>
+      </wvobject>
+      <wvobject fp_name="divider166" type="divider">
+         <obj_property name="label">Memory Signals</obj_property>
+         <obj_property name="DisplayName">label</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/dm_complex_cache_tb/kuuga_inst/dm_complex_cache_test_i/godai_wrapper_0/data_req_o">
+         <obj_property name="ElementShortName">data_req_o</obj_property>
+         <obj_property name="ObjectShortName">data_req_o</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/dm_complex_cache_tb/kuuga_inst/dm_complex_cache_test_i/godai_wrapper_0/data_gnt_i">
+         <obj_property name="ElementShortName">data_gnt_i</obj_property>
+         <obj_property name="ObjectShortName">data_gnt_i</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/dm_complex_cache_tb/kuuga_inst/dm_complex_cache_test_i/godai_wrapper_0/data_rvalid_i">
+         <obj_property name="ElementShortName">data_rvalid_i</obj_property>
+         <obj_property name="ObjectShortName">data_rvalid_i</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/dm_complex_cache_tb/kuuga_inst/dm_complex_cache_test_i/godai_wrapper_0/data_we_o">
+         <obj_property name="ElementShortName">data_we_o</obj_property>
+         <obj_property name="ObjectShortName">data_we_o</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/dm_complex_cache_tb/kuuga_inst/dm_complex_cache_test_i/godai_wrapper_0/data_be_o">
+         <obj_property name="ElementShortName">data_be_o[3:0]</obj_property>
+         <obj_property name="ObjectShortName">data_be_o[3:0]</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/dm_complex_cache_tb/kuuga_inst/dm_complex_cache_test_i/godai_wrapper_0/data_addr_o">
+         <obj_property name="ElementShortName">data_addr_o[15:0]</obj_property>
+         <obj_property name="ObjectShortName">data_addr_o[15:0]</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/dm_complex_cache_tb/kuuga_inst/dm_complex_cache_test_i/godai_wrapper_0/data_wdata_o">
+         <obj_property name="ElementShortName">data_wdata_o[31:0]</obj_property>
+         <obj_property name="ObjectShortName">data_wdata_o[31:0]</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/dm_complex_cache_tb/kuuga_inst/dm_complex_cache_test_i/godai_wrapper_0/data_rdata_i">
+         <obj_property name="ElementShortName">data_rdata_i[31:0]</obj_property>
+         <obj_property name="ObjectShortName">data_rdata_i[31:0]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/dm_complex_cache_tb/kuuga_inst/dm_complex_cache_test_i/godai_wrapper_0/data_err_i">
+         <obj_property name="ElementShortName">data_err_i</obj_property>
+         <obj_property name="ObjectShortName">data_err_i</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/dm_complex_cache_tb/kuuga_inst/dm_complex_cache_test_i/godai_wrapper_0/irq_i">
+         <obj_property name="ElementShortName">irq_i[31:0]</obj_property>
+         <obj_property name="ObjectShortName">irq_i[31:0]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/dm_complex_cache_tb/kuuga_inst/dm_complex_cache_test_i/godai_wrapper_0/jump_done_o">
+         <obj_property name="ElementShortName">jump_done_o</obj_property>
+         <obj_property name="ObjectShortName">jump_done_o</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/dm_complex_cache_tb/kuuga_inst/dm_complex_cache_test_i/godai_wrapper_0/branch_decision_o">
+         <obj_property name="ElementShortName">branch_decision_o</obj_property>
+         <obj_property name="ObjectShortName">branch_decision_o</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/dm_complex_cache_tb/kuuga_inst/dm_complex_cache_test_i/godai_wrapper_0/is_decoding_o">
+         <obj_property name="ElementShortName">is_decoding_o</obj_property>
+         <obj_property name="ObjectShortName">is_decoding_o</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/dm_complex_cache_tb/kuuga_inst/dm_complex_cache_test_i/godai_wrapper_0/pc_set_o">
+         <obj_property name="ElementShortName">pc_set_o</obj_property>
+         <obj_property name="ObjectShortName">pc_set_o</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/dm_complex_cache_tb/kuuga_inst/dm_complex_cache_test_i/godai_wrapper_0/branch_req_o">
+         <obj_property name="ElementShortName">branch_req_o</obj_property>
+         <obj_property name="ObjectShortName">branch_req_o</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/dm_complex_cache_tb/kuuga_inst/dm_complex_cache_test_i/godai_wrapper_0/id_ready_o">
+         <obj_property name="ElementShortName">id_ready_o</obj_property>
+         <obj_property name="ObjectShortName">id_ready_o</obj_property>
+      </wvobject>
+   </wvobject>
+   <wvobject type="group" fp_name="group4336">
+      <obj_property name="label">Enokida</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <wvobject type="logic" fp_name="/dm_complex_cache_tb/kuuga_inst/dm_complex_cache_test_i/enokida_dm_wrapper_0/proc_cache_data_req_i">
+         <obj_property name="ElementShortName">proc_cache_data_req_i</obj_property>
+         <obj_property name="ObjectShortName">proc_cache_data_req_i</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/dm_complex_cache_tb/kuuga_inst/dm_complex_cache_test_i/enokida_dm_wrapper_0/proc_cache_data_addr_i">
+         <obj_property name="ElementShortName">proc_cache_data_addr_i[15:0]</obj_property>
+         <obj_property name="ObjectShortName">proc_cache_data_addr_i[15:0]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/dm_complex_cache_tb/kuuga_inst/dm_complex_cache_test_i/enokida_dm_wrapper_0/proc_cache_data_we_i">
+         <obj_property name="ElementShortName">proc_cache_data_we_i</obj_property>
+         <obj_property name="ObjectShortName">proc_cache_data_we_i</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/dm_complex_cache_tb/kuuga_inst/dm_complex_cache_test_i/enokida_dm_wrapper_0/proc_cache_data_be_i">
+         <obj_property name="ElementShortName">proc_cache_data_be_i[3:0]</obj_property>
+         <obj_property name="ObjectShortName">proc_cache_data_be_i[3:0]</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/dm_complex_cache_tb/kuuga_inst/dm_complex_cache_test_i/enokida_dm_wrapper_0/proc_cache_data_wdata_i">
+         <obj_property name="ElementShortName">proc_cache_data_wdata_i[31:0]</obj_property>
+         <obj_property name="ObjectShortName">proc_cache_data_wdata_i[31:0]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/dm_complex_cache_tb/kuuga_inst/dm_complex_cache_test_i/enokida_dm_wrapper_0/proc_cache_data_gnt_o">
+         <obj_property name="ElementShortName">proc_cache_data_gnt_o</obj_property>
+         <obj_property name="ObjectShortName">proc_cache_data_gnt_o</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/dm_complex_cache_tb/kuuga_inst/dm_complex_cache_test_i/enokida_dm_wrapper_0/proc_cache_data_rvalid_o">
+         <obj_property name="ElementShortName">proc_cache_data_rvalid_o</obj_property>
+         <obj_property name="ObjectShortName">proc_cache_data_rvalid_o</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/dm_complex_cache_tb/kuuga_inst/dm_complex_cache_test_i/enokida_dm_wrapper_0/proc_cache_data_rdata_o">
+         <obj_property name="ElementShortName">proc_cache_data_rdata_o[31:0]</obj_property>
+         <obj_property name="ObjectShortName">proc_cache_data_rdata_o[31:0]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/dm_complex_cache_tb/kuuga_inst/dm_complex_cache_test_i/enokida_dm_wrapper_0/cache_mem_data_gnt_i">
+         <obj_property name="ElementShortName">cache_mem_data_gnt_i</obj_property>
+         <obj_property name="ObjectShortName">cache_mem_data_gnt_i</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/dm_complex_cache_tb/kuuga_inst/dm_complex_cache_test_i/enokida_dm_wrapper_0/cache_mem_data_rvalid_i">
+         <obj_property name="ElementShortName">cache_mem_data_rvalid_i</obj_property>
+         <obj_property name="ObjectShortName">cache_mem_data_rvalid_i</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/dm_complex_cache_tb/kuuga_inst/dm_complex_cache_test_i/enokida_dm_wrapper_0/cache_mem_data_rdata_i">
+         <obj_property name="ElementShortName">cache_mem_data_rdata_i[31:0]</obj_property>
+         <obj_property name="ObjectShortName">cache_mem_data_rdata_i[31:0]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/dm_complex_cache_tb/kuuga_inst/dm_complex_cache_test_i/enokida_dm_wrapper_0/cache_mem_data_req_o">
+         <obj_property name="ElementShortName">cache_mem_data_req_o</obj_property>
+         <obj_property name="ObjectShortName">cache_mem_data_req_o</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/dm_complex_cache_tb/kuuga_inst/dm_complex_cache_test_i/enokida_dm_wrapper_0/cache_mem_data_addr_o">
+         <obj_property name="ElementShortName">cache_mem_data_addr_o[15:0]</obj_property>
+         <obj_property name="ObjectShortName">cache_mem_data_addr_o[15:0]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/dm_complex_cache_tb/kuuga_inst/dm_complex_cache_test_i/enokida_dm_wrapper_0/cache_mem_data_we_o">
+         <obj_property name="ElementShortName">cache_mem_data_we_o</obj_property>
+         <obj_property name="ObjectShortName">cache_mem_data_we_o</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/dm_complex_cache_tb/kuuga_inst/dm_complex_cache_test_i/enokida_dm_wrapper_0/cache_mem_data_be_o">
+         <obj_property name="ElementShortName">cache_mem_data_be_o[3:0]</obj_property>
+         <obj_property name="ObjectShortName">cache_mem_data_be_o[3:0]</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/dm_complex_cache_tb/kuuga_inst/dm_complex_cache_test_i/enokida_dm_wrapper_0/cache_mem_data_wdata_o">
+         <obj_property name="ElementShortName">cache_mem_data_wdata_o[31:0]</obj_property>
+         <obj_property name="ObjectShortName">cache_mem_data_wdata_o[31:0]</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/dm_complex_cache_tb/kuuga_inst/dm_complex_cache_test_i/enokida_dm_wrapper_0/trace_in">
+         <obj_property name="ElementShortName">trace_in[127:0]</obj_property>
+         <obj_property name="ObjectShortName">trace_in[127:0]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/dm_complex_cache_tb/kuuga_inst/dm_complex_cache_test_i/enokida_dm_wrapper_0/trace_capture_enable">
+         <obj_property name="ElementShortName">trace_capture_enable</obj_property>
+         <obj_property name="ObjectShortName">trace_capture_enable</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/dm_complex_cache_tb/kuuga_inst/dm_complex_cache_test_i/enokida_dm_wrapper_0/lock">
+         <obj_property name="ElementShortName">lock</obj_property>
+         <obj_property name="ObjectShortName">lock</obj_property>
+      </wvobject>
+   </wvobject>
+   <wvobject type="group" fp_name="group143">
+      <obj_property name="label">Cache</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <wvobject type="array" fp_name="/dm_complex_cache_tb/kuuga_inst/dm_complex_cache_test_i/enokida_dm_wrapper_0/inst/tac/dm_cache/cpu_req">
+         <obj_property name="ElementShortName">cpu_req</obj_property>
+         <obj_property name="ObjectShortName">cpu_req</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/dm_complex_cache_tb/kuuga_inst/dm_complex_cache_test_i/enokida_dm_wrapper_0/inst/tac/dm_cache/mem_data">
+         <obj_property name="ElementShortName">mem_data</obj_property>
+         <obj_property name="ObjectShortName">mem_data</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/dm_complex_cache_tb/kuuga_inst/dm_complex_cache_test_i/enokida_dm_wrapper_0/inst/tac/dm_cache/addr_to_check">
+         <obj_property name="ElementShortName">addr_to_check[15:0]</obj_property>
+         <obj_property name="ObjectShortName">addr_to_check[15:0]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/dm_complex_cache_tb/kuuga_inst/dm_complex_cache_test_i/enokida_dm_wrapper_0/inst/tac/dm_cache/wb_necessary">
+         <obj_property name="ElementShortName">wb_necessary</obj_property>
+         <obj_property name="ObjectShortName">wb_necessary</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/dm_complex_cache_tb/kuuga_inst/dm_complex_cache_test_i/enokida_dm_wrapper_0/inst/tac/dm_cache/indexed_cache_entry_valid">
+         <obj_property name="ElementShortName">indexed_cache_entry_valid</obj_property>
+         <obj_property name="ObjectShortName">indexed_cache_entry_valid</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/dm_complex_cache_tb/kuuga_inst/dm_complex_cache_test_i/enokida_dm_wrapper_0/inst/tac/dm_cache/mem_req">
+         <obj_property name="ElementShortName">mem_req</obj_property>
+         <obj_property name="ObjectShortName">mem_req</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/dm_complex_cache_tb/kuuga_inst/dm_complex_cache_test_i/enokida_dm_wrapper_0/inst/tac/dm_cache/cpu_res">
+         <obj_property name="ElementShortName">cpu_res</obj_property>
+         <obj_property name="ObjectShortName">cpu_res</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/dm_complex_cache_tb/kuuga_inst/dm_complex_cache_test_i/enokida_dm_wrapper_0/inst/tac/dm_cache/vstate">
+         <obj_property name="ElementShortName">vstate[31:0]</obj_property>
+         <obj_property name="ObjectShortName">vstate[31:0]</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/dm_complex_cache_tb/kuuga_inst/dm_complex_cache_test_i/enokida_dm_wrapper_0/inst/tac/dm_cache/rstate">
+         <obj_property name="ElementShortName">rstate[31:0]</obj_property>
+         <obj_property name="ObjectShortName">rstate[31:0]</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/dm_complex_cache_tb/kuuga_inst/dm_complex_cache_test_i/enokida_dm_wrapper_0/inst/tac/dm_cache/tag_read">
+         <obj_property name="ElementShortName">tag_read</obj_property>
+         <obj_property name="ObjectShortName">tag_read</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/dm_complex_cache_tb/kuuga_inst/dm_complex_cache_test_i/enokida_dm_wrapper_0/inst/tac/dm_cache/tag_write">
+         <obj_property name="ElementShortName">tag_write</obj_property>
+         <obj_property name="ObjectShortName">tag_write</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/dm_complex_cache_tb/kuuga_inst/dm_complex_cache_test_i/enokida_dm_wrapper_0/inst/tac/dm_cache/tag_req">
+         <obj_property name="ElementShortName">tag_req</obj_property>
+         <obj_property name="ObjectShortName">tag_req</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/dm_complex_cache_tb/kuuga_inst/dm_complex_cache_test_i/enokida_dm_wrapper_0/inst/tac/dm_cache/data_read">
+         <obj_property name="ElementShortName">data_read[31:0]</obj_property>
+         <obj_property name="ObjectShortName">data_read[31:0]</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/dm_complex_cache_tb/kuuga_inst/dm_complex_cache_test_i/enokida_dm_wrapper_0/inst/tac/dm_cache/data_write">
+         <obj_property name="ElementShortName">data_write[31:0]</obj_property>
+         <obj_property name="ObjectShortName">data_write[31:0]</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/dm_complex_cache_tb/kuuga_inst/dm_complex_cache_test_i/enokida_dm_wrapper_0/inst/tac/dm_cache/data_req">
+         <obj_property name="ElementShortName">data_req</obj_property>
+         <obj_property name="ObjectShortName">data_req</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/dm_complex_cache_tb/kuuga_inst/dm_complex_cache_test_i/enokida_dm_wrapper_0/inst/tac/dm_cache/v_cpu_res">
+         <obj_property name="ElementShortName">v_cpu_res</obj_property>
+         <obj_property name="ObjectShortName">v_cpu_res</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/dm_complex_cache_tb/kuuga_inst/dm_complex_cache_test_i/enokida_dm_wrapper_0/inst/tac/dm_cache/v_mem_req">
+         <obj_property name="ElementShortName">v_mem_req</obj_property>
+         <obj_property name="ObjectShortName">v_mem_req</obj_property>
+      </wvobject>
+   </wvobject>
+   <wvobject type="group" fp_name="group587">
+      <obj_property name="label">Trace Repository</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <wvobject type="array" fp_name="/dm_complex_cache_tb/kuuga_inst/dm_complex_cache_test_i/enokida_dm_wrapper_0/inst/tac/trace_repo/trace_in">
+         <obj_property name="ElementShortName">trace_in</obj_property>
+         <obj_property name="ObjectShortName">trace_in</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/dm_complex_cache_tb/kuuga_inst/dm_complex_cache_test_i/enokida_dm_wrapper_0/inst/tac/trace_repo/trace_capture_enable">
+         <obj_property name="ElementShortName">trace_capture_enable</obj_property>
+         <obj_property name="ObjectShortName">trace_capture_enable</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/dm_complex_cache_tb/kuuga_inst/dm_complex_cache_test_i/enokida_dm_wrapper_0/inst/tac/trace_repo/lock">
+         <obj_property name="ElementShortName">lock</obj_property>
+         <obj_property name="ObjectShortName">lock</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/dm_complex_cache_tb/kuuga_inst/dm_complex_cache_test_i/enokida_dm_wrapper_0/inst/tac/trace_repo/trace_req">
+         <obj_property name="ElementShortName">trace_req</obj_property>
+         <obj_property name="ObjectShortName">trace_req</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/dm_complex_cache_tb/kuuga_inst/dm_complex_cache_test_i/enokida_dm_wrapper_0/inst/tac/trace_repo/cancel">
+         <obj_property name="ElementShortName">cancel</obj_property>
+         <obj_property name="ObjectShortName">cancel</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/dm_complex_cache_tb/kuuga_inst/dm_complex_cache_test_i/enokida_dm_wrapper_0/inst/tac/trace_repo/trace_out">
+         <obj_property name="ElementShortName">trace_out</obj_property>
+         <obj_property name="ObjectShortName">trace_out</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/dm_complex_cache_tb/kuuga_inst/dm_complex_cache_test_i/enokida_dm_wrapper_0/inst/tac/trace_repo/trace_index_o">
+         <obj_property name="ElementShortName">trace_index_o[12:0]</obj_property>
+         <obj_property name="ObjectShortName">trace_index_o[12:0]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/dm_complex_cache_tb/kuuga_inst/dm_complex_cache_test_i/enokida_dm_wrapper_0/inst/tac/trace_repo/entry_valid">
+         <obj_property name="ElementShortName">entry_valid</obj_property>
+         <obj_property name="ObjectShortName">entry_valid</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/dm_complex_cache_tb/kuuga_inst/dm_complex_cache_test_i/enokida_dm_wrapper_0/inst/tac/trace_repo/cancelled">
+         <obj_property name="ElementShortName">cancelled</obj_property>
+         <obj_property name="ObjectShortName">cancelled</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/dm_complex_cache_tb/kuuga_inst/dm_complex_cache_test_i/enokida_dm_wrapper_0/inst/tac/trace_repo/processing_complete">
+         <obj_property name="ElementShortName">processing_complete</obj_property>
+         <obj_property name="ObjectShortName">processing_complete</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/dm_complex_cache_tb/kuuga_inst/dm_complex_cache_test_i/enokida_dm_wrapper_0/inst/tac/trace_repo/index_done">
+         <obj_property name="ElementShortName">index_done[12:0]</obj_property>
+         <obj_property name="ObjectShortName">index_done[12:0]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/dm_complex_cache_tb/kuuga_inst/dm_complex_cache_test_i/enokida_dm_wrapper_0/inst/tac/trace_repo/mark_done">
+         <obj_property name="ElementShortName">mark_done</obj_property>
+         <obj_property name="ObjectShortName">mark_done</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/dm_complex_cache_tb/kuuga_inst/dm_complex_cache_test_i/enokida_dm_wrapper_0/inst/tac/trace_repo/processing_flag">
+         <obj_property name="ElementShortName">processing_flag</obj_property>
+         <obj_property name="ObjectShortName">processing_flag</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/dm_complex_cache_tb/kuuga_inst/dm_complex_cache_test_i/enokida_dm_wrapper_0/inst/tac/trace_repo/mem_trace_flag">
+         <obj_property name="ElementShortName">mem_trace_flag</obj_property>
+         <obj_property name="ObjectShortName">mem_trace_flag</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/dm_complex_cache_tb/kuuga_inst/dm_complex_cache_test_i/enokida_dm_wrapper_0/inst/tac/trace_repo/mem_addr">
+         <obj_property name="ElementShortName">mem_addr[15:0]</obj_property>
+         <obj_property name="ObjectShortName">mem_addr[15:0]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/dm_complex_cache_tb/kuuga_inst/dm_complex_cache_test_i/enokida_dm_wrapper_0/inst/tac/trace_repo/mark_done_valid">
+         <obj_property name="ElementShortName">mark_done_valid</obj_property>
+         <obj_property name="ObjectShortName">mark_done_valid</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/dm_complex_cache_tb/kuuga_inst/dm_complex_cache_test_i/enokida_dm_wrapper_0/inst/tac/trace_repo/addr_in">
+         <obj_property name="ElementShortName">addr_in[15:0]</obj_property>
+         <obj_property name="ObjectShortName">addr_in[15:0]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/dm_complex_cache_tb/kuuga_inst/dm_complex_cache_test_i/enokida_dm_wrapper_0/inst/tac/trace_repo/get_index">
+         <obj_property name="ElementShortName">get_index</obj_property>
+         <obj_property name="ObjectShortName">get_index</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/dm_complex_cache_tb/kuuga_inst/dm_complex_cache_test_i/enokida_dm_wrapper_0/inst/tac/trace_repo/index_o">
+         <obj_property name="ElementShortName">index_o[12:0]</obj_property>
+         <obj_property name="ObjectShortName">index_o[12:0]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/dm_complex_cache_tb/kuuga_inst/dm_complex_cache_test_i/enokida_dm_wrapper_0/inst/tac/trace_repo/index_valid">
+         <obj_property name="ElementShortName">index_valid</obj_property>
+         <obj_property name="ObjectShortName">index_valid</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/dm_complex_cache_tb/kuuga_inst/dm_complex_cache_test_i/enokida_dm_wrapper_0/inst/tac/trace_repo/trace_entries_data_o">
+         <obj_property name="ElementShortName">trace_entries_data_o[47:0]</obj_property>
+         <obj_property name="ObjectShortName">trace_entries_data_o[47:0]</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/dm_complex_cache_tb/kuuga_inst/dm_complex_cache_test_i/enokida_dm_wrapper_0/inst/tac/trace_repo/trace_entries_data_i">
+         <obj_property name="ElementShortName">trace_entries_data_i[47:0]</obj_property>
+         <obj_property name="ObjectShortName">trace_entries_data_i[47:0]</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/dm_complex_cache_tb/kuuga_inst/dm_complex_cache_test_i/enokida_dm_wrapper_0/inst/tac/trace_repo/trace_entries_addr_i">
+         <obj_property name="ElementShortName">trace_entries_addr_i[12:0]</obj_property>
+         <obj_property name="ObjectShortName">trace_entries_addr_i[12:0]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/dm_complex_cache_tb/kuuga_inst/dm_complex_cache_test_i/enokida_dm_wrapper_0/inst/tac/trace_repo/trace_entries_ena_i">
+         <obj_property name="ElementShortName">trace_entries_ena_i</obj_property>
+         <obj_property name="ObjectShortName">trace_entries_ena_i</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/dm_complex_cache_tb/kuuga_inst/dm_complex_cache_test_i/enokida_dm_wrapper_0/inst/tac/trace_repo/trace_entries_wea_i">
+         <obj_property name="ElementShortName">trace_entries_wea_i</obj_property>
+         <obj_property name="ObjectShortName">trace_entries_wea_i</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/dm_complex_cache_tb/kuuga_inst/dm_complex_cache_test_i/enokida_dm_wrapper_0/inst/tac/trace_repo/last_entry">
+         <obj_property name="ElementShortName">last_entry</obj_property>
+         <obj_property name="ObjectShortName">last_entry</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/dm_complex_cache_tb/kuuga_inst/dm_complex_cache_test_i/enokida_dm_wrapper_0/inst/tac/trace_repo/last_addr">
+         <obj_property name="ElementShortName">last_addr[12:0]</obj_property>
+         <obj_property name="ObjectShortName">last_addr[12:0]</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/dm_complex_cache_tb/kuuga_inst/dm_complex_cache_test_i/enokida_dm_wrapper_0/inst/tac/trace_repo/capture_pointer">
+         <obj_property name="ElementShortName">capture_pointer[31:0]</obj_property>
+         <obj_property name="ObjectShortName">capture_pointer[31:0]</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/dm_complex_cache_tb/kuuga_inst/dm_complex_cache_test_i/enokida_dm_wrapper_0/inst/tac/trace_repo/action_pointer">
+         <obj_property name="ElementShortName">action_pointer[31:0]</obj_property>
+         <obj_property name="ObjectShortName">action_pointer[31:0]</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/dm_complex_cache_tb/kuuga_inst/dm_complex_cache_test_i/enokida_dm_wrapper_0/inst/tac/trace_repo/next_available">
+         <obj_property name="ElementShortName">next_available[31:0]</obj_property>
+         <obj_property name="ObjectShortName">next_available[31:0]</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/dm_complex_cache_tb/kuuga_inst/dm_complex_cache_test_i/enokida_dm_wrapper_0/inst/tac/trace_repo/trace">
+         <obj_property name="ElementShortName">trace</obj_property>
+         <obj_property name="ObjectShortName">trace</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/dm_complex_cache_tb/kuuga_inst/dm_complex_cache_test_i/enokida_dm_wrapper_0/inst/tac/trace_repo/trace_valid">
+         <obj_property name="ElementShortName">trace_valid</obj_property>
+         <obj_property name="ObjectShortName">trace_valid</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/dm_complex_cache_tb/kuuga_inst/dm_complex_cache_test_i/enokida_dm_wrapper_0/inst/tac/trace_repo/latency_counter">
+         <obj_property name="ElementShortName">latency_counter[0:0]</obj_property>
+         <obj_property name="ObjectShortName">latency_counter[0:0]</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/dm_complex_cache_tb/kuuga_inst/dm_complex_cache_test_i/enokida_dm_wrapper_0/inst/tac/trace_repo/state">
+         <obj_property name="ElementShortName">state[1:0]</obj_property>
+         <obj_property name="ObjectShortName">state[1:0]</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/dm_complex_cache_tb/kuuga_inst/dm_complex_cache_test_i/enokida_dm_wrapper_0/inst/tac/trace_repo/active_set">
+         <obj_property name="ElementShortName">active_set[7:0]</obj_property>
+         <obj_property name="ObjectShortName">active_set[7:0]</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/dm_complex_cache_tb/kuuga_inst/dm_complex_cache_test_i/enokida_dm_wrapper_0/inst/tac/trace_repo/active_set_processing_pointer">
+         <obj_property name="ElementShortName">active_set_processing_pointer[3:0]</obj_property>
+         <obj_property name="ObjectShortName">active_set_processing_pointer[3:0]</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/dm_complex_cache_tb/kuuga_inst/dm_complex_cache_test_i/enokida_dm_wrapper_0/inst/tac/trace_repo/active_set_retired_pointer">
+         <obj_property name="ElementShortName">active_set_retired_pointer[3:0]</obj_property>
+         <obj_property name="ObjectShortName">active_set_retired_pointer[3:0]</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/dm_complex_cache_tb/kuuga_inst/dm_complex_cache_test_i/enokida_dm_wrapper_0/inst/tac/trace_repo/cache_tracker">
+         <obj_property name="ElementShortName">cache_tracker[63:0]</obj_property>
+         <obj_property name="ObjectShortName">cache_tracker[63:0]</obj_property>
+      </wvobject>
+   </wvobject>
+</wave_config>

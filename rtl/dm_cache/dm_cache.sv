@@ -2,7 +2,7 @@
 
 /* Cache: Data Memory, Single Port, 1024 blocks */
 
-import cache_def::*;
+import dm_cache_def::*;
 
 module dm_cache_data
 #(
@@ -115,7 +115,7 @@ module dm_cache_fsm
         /*-------------------------Default values for all signals------------*/
         /* No state change by default */
         vstate = rstate;
-        v_cpu_res = '{0, 0, 0}; tag_write = '{0, 0, 0};
+        v_cpu_res = '{default :0}; tag_write = '{default :0};
     
         /* Read tag by default */
         tag_req.we = '0;
@@ -240,7 +240,7 @@ module dm_cache_fsm
     end
     
     /*connect cache tag/data memory*/
-    dm_cache_tag #(2**(INDEXMSB-INDEXLSB + 1)) ctag(.*);
-    dm_cache_data #(2**(INDEXMSB-INDEXLSB + 1)) cdata(.*);
+    dm_cache_tag #(CACHE_BLOCKS) ctag(.*);
+    dm_cache_data #(CACHE_BLOCKS) cdata(.*);
     
     endmodule

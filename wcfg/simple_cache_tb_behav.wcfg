@@ -3,227 +3,218 @@
    <wave_state>
    </wave_state>
    <db_ref_list>
-      <db_ref path="simple_cache_tb_behav.wdb" id="1">
+      <db_ref path="dm_cache_tb_behav.wdb" id="1">
          <top_modules>
             <top_module name="axi_vip_pkg" />
             <top_module name="cache_def" />
+            <top_module name="dm_cache_tb" />
             <top_module name="glbl" />
             <top_module name="gouram_datatypes" />
             <top_module name="riscv_defines" />
-            <top_module name="simple_cache_tb" />
             <top_module name="std" />
             <top_module name="xil_common_vip_pkg" />
          </top_modules>
       </db_ref>
    </db_ref_list>
    <zoom_setting>
-      <ZoomStartTime time="563250000fs"></ZoomStartTime>
-      <ZoomEndTime time="1023750001fs"></ZoomEndTime>
-      <Cursor1Time time="625000000fs"></Cursor1Time>
+      <ZoomStartTime time="0fs"></ZoomStartTime>
+      <ZoomEndTime time="9920000001fs"></ZoomEndTime>
+      <Cursor1Time time="39995000000fs"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
       <NameColumnWidth column_width="311"></NameColumnWidth>
-      <ValueColumnWidth column_width="269"></ValueColumnWidth>
+      <ValueColumnWidth column_width="265"></ValueColumnWidth>
    </column_width_setting>
-   <WVObjectSize size="4" />
+   <WVObjectSize size="3" />
    <wvobject type="group" fp_name="group25">
       <obj_property name="label">Testbench Signals</obj_property>
       <obj_property name="DisplayName">label</obj_property>
       <obj_property name="isExpanded"></obj_property>
-      <wvobject type="logic" fp_name="/simple_cache_tb/clk">
-         <obj_property name="ElementShortName">clk</obj_property>
-         <obj_property name="ObjectShortName">clk</obj_property>
-      </wvobject>
-      <wvobject type="logic" fp_name="/simple_cache_tb/reset">
-         <obj_property name="ElementShortName">reset</obj_property>
-         <obj_property name="ObjectShortName">reset</obj_property>
-      </wvobject>
-      <wvobject type="array" fp_name="/simple_cache_tb/sim_counter">
+      <wvobject type="array" fp_name="/dm_cache_tb/sim_counter">
          <obj_property name="ElementShortName">sim_counter[31:0]</obj_property>
          <obj_property name="ObjectShortName">sim_counter[31:0]</obj_property>
       </wvobject>
-      <wvobject type="array" fp_name="/simple_cache_tb/trace_out">
+      <wvobject type="logic" fp_name="/dm_cache_tb/reset">
+         <obj_property name="ElementShortName">reset</obj_property>
+         <obj_property name="ObjectShortName">reset</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/dm_cache_tb/clk">
+         <obj_property name="ElementShortName">clk</obj_property>
+         <obj_property name="ObjectShortName">clk</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/dm_cache_tb/trace_out">
          <obj_property name="ElementShortName">trace_out</obj_property>
          <obj_property name="ObjectShortName">trace_out</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/dm_cache_tb/mem_rd_data">
+         <obj_property name="ElementShortName">mem_rd_data[31:0]</obj_property>
+         <obj_property name="ObjectShortName">mem_rd_data[31:0]</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/dm_cache_tb/mem">
+         <obj_property name="ElementShortName">mem[0:199][31:0]</obj_property>
+         <obj_property name="ObjectShortName">mem[0:199][31:0]</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/dm_cache_tb/data_mem">
+         <obj_property name="ElementShortName">data_mem[0:199][31:0]</obj_property>
+         <obj_property name="ObjectShortName">data_mem[0:199][31:0]</obj_property>
       </wvobject>
    </wvobject>
    <wvobject type="group" fp_name="group97">
       <obj_property name="label">Godai</obj_property>
       <obj_property name="DisplayName">label</obj_property>
       <obj_property name="isExpanded"></obj_property>
-      <wvobject type="logic" fp_name="/simple_cache_tb/kuuga_inst/simple_cache_test_i/godai_wrapper_0/clk">
-         <obj_property name="ElementShortName">clk</obj_property>
-         <obj_property name="ObjectShortName">clk</obj_property>
-      </wvobject>
-      <wvobject type="logic" fp_name="/simple_cache_tb/kuuga_inst/simple_cache_test_i/godai_wrapper_0/rst_n">
-         <obj_property name="ElementShortName">rst_n</obj_property>
-         <obj_property name="ObjectShortName">rst_n</obj_property>
-      </wvobject>
-      <wvobject type="logic" fp_name="/simple_cache_tb/kuuga_inst/simple_cache_test_i/godai_wrapper_0/instr_req_o">
+      <wvobject type="logic" fp_name="/dm_cache_tb/kuuga_inst/dm_cache_test_i/godai_wrapper_0/instr_req_o">
          <obj_property name="ElementShortName">instr_req_o</obj_property>
          <obj_property name="ObjectShortName">instr_req_o</obj_property>
       </wvobject>
-      <wvobject type="logic" fp_name="/simple_cache_tb/kuuga_inst/simple_cache_test_i/godai_wrapper_0/instr_gnt_i">
+      <wvobject type="logic" fp_name="/dm_cache_tb/kuuga_inst/dm_cache_test_i/godai_wrapper_0/instr_gnt_i">
          <obj_property name="ElementShortName">instr_gnt_i</obj_property>
          <obj_property name="ObjectShortName">instr_gnt_i</obj_property>
       </wvobject>
-      <wvobject type="logic" fp_name="/simple_cache_tb/kuuga_inst/simple_cache_test_i/godai_wrapper_0/instr_rvalid_i">
+      <wvobject type="logic" fp_name="/dm_cache_tb/kuuga_inst/dm_cache_test_i/godai_wrapper_0/instr_rvalid_i">
          <obj_property name="ElementShortName">instr_rvalid_i</obj_property>
          <obj_property name="ObjectShortName">instr_rvalid_i</obj_property>
       </wvobject>
-      <wvobject type="array" fp_name="/simple_cache_tb/kuuga_inst/simple_cache_test_i/godai_wrapper_0/instr_addr_o">
+      <wvobject type="array" fp_name="/dm_cache_tb/kuuga_inst/dm_cache_test_i/godai_wrapper_0/instr_addr_o">
          <obj_property name="ElementShortName">instr_addr_o[15:0]</obj_property>
          <obj_property name="ObjectShortName">instr_addr_o[15:0]</obj_property>
       </wvobject>
-      <wvobject type="array" fp_name="/simple_cache_tb/kuuga_inst/simple_cache_test_i/godai_wrapper_0/instr_rdata_i">
+      <wvobject type="array" fp_name="/dm_cache_tb/kuuga_inst/dm_cache_test_i/godai_wrapper_0/instr_rdata_i">
          <obj_property name="ElementShortName">instr_rdata_i[31:0]</obj_property>
          <obj_property name="ObjectShortName">instr_rdata_i[31:0]</obj_property>
       </wvobject>
-      <wvobject type="logic" fp_name="/simple_cache_tb/kuuga_inst/simple_cache_test_i/godai_wrapper_0/data_req_o">
+      <wvobject type="logic" fp_name="/dm_cache_tb/kuuga_inst/dm_cache_test_i/godai_wrapper_0/data_req_o">
          <obj_property name="ElementShortName">data_req_o</obj_property>
          <obj_property name="ObjectShortName">data_req_o</obj_property>
       </wvobject>
-      <wvobject type="logic" fp_name="/simple_cache_tb/kuuga_inst/simple_cache_test_i/godai_wrapper_0/data_gnt_i">
+      <wvobject type="logic" fp_name="/dm_cache_tb/kuuga_inst/dm_cache_test_i/godai_wrapper_0/data_gnt_i">
          <obj_property name="ElementShortName">data_gnt_i</obj_property>
          <obj_property name="ObjectShortName">data_gnt_i</obj_property>
       </wvobject>
-      <wvobject type="logic" fp_name="/simple_cache_tb/kuuga_inst/simple_cache_test_i/godai_wrapper_0/data_rvalid_i">
+      <wvobject type="logic" fp_name="/dm_cache_tb/kuuga_inst/dm_cache_test_i/godai_wrapper_0/data_rvalid_i">
          <obj_property name="ElementShortName">data_rvalid_i</obj_property>
          <obj_property name="ObjectShortName">data_rvalid_i</obj_property>
       </wvobject>
-      <wvobject type="logic" fp_name="/simple_cache_tb/kuuga_inst/simple_cache_test_i/godai_wrapper_0/data_we_o">
+      <wvobject type="logic" fp_name="/dm_cache_tb/kuuga_inst/dm_cache_test_i/godai_wrapper_0/data_we_o">
          <obj_property name="ElementShortName">data_we_o</obj_property>
          <obj_property name="ObjectShortName">data_we_o</obj_property>
       </wvobject>
-      <wvobject type="array" fp_name="/simple_cache_tb/kuuga_inst/simple_cache_test_i/godai_wrapper_0/data_be_o">
+      <wvobject type="array" fp_name="/dm_cache_tb/kuuga_inst/dm_cache_test_i/godai_wrapper_0/data_be_o">
          <obj_property name="ElementShortName">data_be_o[3:0]</obj_property>
          <obj_property name="ObjectShortName">data_be_o[3:0]</obj_property>
       </wvobject>
-      <wvobject type="array" fp_name="/simple_cache_tb/kuuga_inst/simple_cache_test_i/godai_wrapper_0/data_addr_o">
+      <wvobject type="array" fp_name="/dm_cache_tb/kuuga_inst/dm_cache_test_i/godai_wrapper_0/data_addr_o">
          <obj_property name="ElementShortName">data_addr_o[15:0]</obj_property>
          <obj_property name="ObjectShortName">data_addr_o[15:0]</obj_property>
       </wvobject>
-      <wvobject type="array" fp_name="/simple_cache_tb/kuuga_inst/simple_cache_test_i/godai_wrapper_0/data_wdata_o">
+      <wvobject type="array" fp_name="/dm_cache_tb/kuuga_inst/dm_cache_test_i/godai_wrapper_0/data_wdata_o">
          <obj_property name="ElementShortName">data_wdata_o[31:0]</obj_property>
          <obj_property name="ObjectShortName">data_wdata_o[31:0]</obj_property>
       </wvobject>
-      <wvobject type="array" fp_name="/simple_cache_tb/kuuga_inst/simple_cache_test_i/godai_wrapper_0/data_rdata_i">
+      <wvobject type="array" fp_name="/dm_cache_tb/kuuga_inst/dm_cache_test_i/godai_wrapper_0/data_rdata_i">
          <obj_property name="ElementShortName">data_rdata_i[31:0]</obj_property>
          <obj_property name="ObjectShortName">data_rdata_i[31:0]</obj_property>
       </wvobject>
-      <wvobject type="logic" fp_name="/simple_cache_tb/kuuga_inst/simple_cache_test_i/godai_wrapper_0/data_err_i">
+      <wvobject type="logic" fp_name="/dm_cache_tb/kuuga_inst/dm_cache_test_i/godai_wrapper_0/data_err_i">
          <obj_property name="ElementShortName">data_err_i</obj_property>
          <obj_property name="ObjectShortName">data_err_i</obj_property>
       </wvobject>
-      <wvobject type="array" fp_name="/simple_cache_tb/kuuga_inst/simple_cache_test_i/godai_wrapper_0/irq_i">
+      <wvobject type="array" fp_name="/dm_cache_tb/kuuga_inst/dm_cache_test_i/godai_wrapper_0/irq_i">
          <obj_property name="ElementShortName">irq_i[31:0]</obj_property>
          <obj_property name="ObjectShortName">irq_i[31:0]</obj_property>
       </wvobject>
-      <wvobject type="logic" fp_name="/simple_cache_tb/kuuga_inst/simple_cache_test_i/godai_wrapper_0/jump_done_o">
+      <wvobject type="logic" fp_name="/dm_cache_tb/kuuga_inst/dm_cache_test_i/godai_wrapper_0/jump_done_o">
          <obj_property name="ElementShortName">jump_done_o</obj_property>
          <obj_property name="ObjectShortName">jump_done_o</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/dm_cache_tb/kuuga_inst/dm_cache_test_i/godai_wrapper_0/branch_decision_o">
+         <obj_property name="ElementShortName">branch_decision_o</obj_property>
+         <obj_property name="ObjectShortName">branch_decision_o</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/dm_cache_tb/kuuga_inst/dm_cache_test_i/godai_wrapper_0/is_decoding_o">
+         <obj_property name="ElementShortName">is_decoding_o</obj_property>
+         <obj_property name="ObjectShortName">is_decoding_o</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/dm_cache_tb/kuuga_inst/dm_cache_test_i/godai_wrapper_0/pc_set_o">
+         <obj_property name="ElementShortName">pc_set_o</obj_property>
+         <obj_property name="ObjectShortName">pc_set_o</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/dm_cache_tb/kuuga_inst/dm_cache_test_i/godai_wrapper_0/branch_req_o">
+         <obj_property name="ElementShortName">branch_req_o</obj_property>
+         <obj_property name="ObjectShortName">branch_req_o</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/dm_cache_tb/kuuga_inst/dm_cache_test_i/godai_wrapper_0/id_ready_o">
+         <obj_property name="ElementShortName">id_ready_o</obj_property>
+         <obj_property name="ObjectShortName">id_ready_o</obj_property>
       </wvobject>
    </wvobject>
    <wvobject type="group" fp_name="group229">
       <obj_property name="label">Cache Signals</obj_property>
       <obj_property name="DisplayName">label</obj_property>
       <obj_property name="isExpanded"></obj_property>
-      <wvobject type="logic" fp_name="/simple_cache_tb/kuuga_inst/simple_cache_test_i/simple_cache_wrapper_0/clk">
-         <obj_property name="ElementShortName">clk</obj_property>
-         <obj_property name="ObjectShortName">clk</obj_property>
-      </wvobject>
-      <wvobject type="logic" fp_name="/simple_cache_tb/kuuga_inst/simple_cache_test_i/simple_cache_wrapper_0/rst_n">
-         <obj_property name="ElementShortName">rst_n</obj_property>
-         <obj_property name="ObjectShortName">rst_n</obj_property>
-      </wvobject>
-      <wvobject type="logic" fp_name="/simple_cache_tb/kuuga_inst/simple_cache_test_i/simple_cache_wrapper_0/in_data_req_i">
+      <wvobject type="logic" fp_name="/dm_cache_tb/kuuga_inst/dm_cache_test_i/sayuru_dm_wrapper_0/inst/in_data_req_i">
          <obj_property name="ElementShortName">in_data_req_i</obj_property>
          <obj_property name="ObjectShortName">in_data_req_i</obj_property>
       </wvobject>
-      <wvobject type="logic" fp_name="/simple_cache_tb/kuuga_inst/simple_cache_test_i/simple_cache_wrapper_0/in_data_gnt_o">
+      <wvobject type="logic" fp_name="/dm_cache_tb/kuuga_inst/dm_cache_test_i/sayuru_dm_wrapper_0/inst/in_data_gnt_o">
          <obj_property name="ElementShortName">in_data_gnt_o</obj_property>
          <obj_property name="ObjectShortName">in_data_gnt_o</obj_property>
       </wvobject>
-      <wvobject type="logic" fp_name="/simple_cache_tb/kuuga_inst/simple_cache_test_i/simple_cache_wrapper_0/in_data_rvalid_o">
+      <wvobject type="logic" fp_name="/dm_cache_tb/kuuga_inst/dm_cache_test_i/sayuru_dm_wrapper_0/inst/in_data_rvalid_o">
          <obj_property name="ElementShortName">in_data_rvalid_o</obj_property>
          <obj_property name="ObjectShortName">in_data_rvalid_o</obj_property>
       </wvobject>
-      <wvobject type="array" fp_name="/simple_cache_tb/kuuga_inst/simple_cache_test_i/simple_cache_wrapper_0/in_data_addr_i">
+      <wvobject type="array" fp_name="/dm_cache_tb/kuuga_inst/dm_cache_test_i/sayuru_dm_wrapper_0/inst/in_data_addr_i">
          <obj_property name="ElementShortName">in_data_addr_i[15:0]</obj_property>
          <obj_property name="ObjectShortName">in_data_addr_i[15:0]</obj_property>
       </wvobject>
-      <wvobject type="logic" fp_name="/simple_cache_tb/kuuga_inst/simple_cache_test_i/simple_cache_wrapper_0/in_data_we_i">
+      <wvobject type="logic" fp_name="/dm_cache_tb/kuuga_inst/dm_cache_test_i/sayuru_dm_wrapper_0/inst/in_data_we_i">
          <obj_property name="ElementShortName">in_data_we_i</obj_property>
          <obj_property name="ObjectShortName">in_data_we_i</obj_property>
       </wvobject>
-      <wvobject type="array" fp_name="/simple_cache_tb/kuuga_inst/simple_cache_test_i/simple_cache_wrapper_0/in_data_be_i">
+      <wvobject type="array" fp_name="/dm_cache_tb/kuuga_inst/dm_cache_test_i/sayuru_dm_wrapper_0/inst/in_data_be_i">
          <obj_property name="ElementShortName">in_data_be_i[3:0]</obj_property>
          <obj_property name="ObjectShortName">in_data_be_i[3:0]</obj_property>
       </wvobject>
-      <wvobject type="array" fp_name="/simple_cache_tb/kuuga_inst/simple_cache_test_i/simple_cache_wrapper_0/in_data_rdata_o">
+      <wvobject type="array" fp_name="/dm_cache_tb/kuuga_inst/dm_cache_test_i/sayuru_dm_wrapper_0/inst/in_data_rdata_o">
          <obj_property name="ElementShortName">in_data_rdata_o[31:0]</obj_property>
          <obj_property name="ObjectShortName">in_data_rdata_o[31:0]</obj_property>
       </wvobject>
-      <wvobject type="array" fp_name="/simple_cache_tb/kuuga_inst/simple_cache_test_i/simple_cache_wrapper_0/in_data_wdata_i">
+      <wvobject type="array" fp_name="/dm_cache_tb/kuuga_inst/dm_cache_test_i/sayuru_dm_wrapper_0/inst/in_data_wdata_i">
          <obj_property name="ElementShortName">in_data_wdata_i[31:0]</obj_property>
          <obj_property name="ObjectShortName">in_data_wdata_i[31:0]</obj_property>
       </wvobject>
-      <wvobject type="logic" fp_name="/simple_cache_tb/kuuga_inst/simple_cache_test_i/simple_cache_wrapper_0/out_data_req_o">
+      <wvobject type="logic" fp_name="/dm_cache_tb/kuuga_inst/dm_cache_test_i/sayuru_dm_wrapper_0/inst/out_data_req_o">
          <obj_property name="ElementShortName">out_data_req_o</obj_property>
          <obj_property name="ObjectShortName">out_data_req_o</obj_property>
       </wvobject>
-      <wvobject type="logic" fp_name="/simple_cache_tb/kuuga_inst/simple_cache_test_i/simple_cache_wrapper_0/out_data_gnt_i">
+      <wvobject type="logic" fp_name="/dm_cache_tb/kuuga_inst/dm_cache_test_i/sayuru_dm_wrapper_0/inst/out_data_gnt_i">
          <obj_property name="ElementShortName">out_data_gnt_i</obj_property>
          <obj_property name="ObjectShortName">out_data_gnt_i</obj_property>
       </wvobject>
-      <wvobject type="logic" fp_name="/simple_cache_tb/kuuga_inst/simple_cache_test_i/simple_cache_wrapper_0/out_data_rvalid_i">
+      <wvobject type="logic" fp_name="/dm_cache_tb/kuuga_inst/dm_cache_test_i/sayuru_dm_wrapper_0/inst/out_data_rvalid_i">
          <obj_property name="ElementShortName">out_data_rvalid_i</obj_property>
          <obj_property name="ObjectShortName">out_data_rvalid_i</obj_property>
       </wvobject>
-      <wvobject type="array" fp_name="/simple_cache_tb/kuuga_inst/simple_cache_test_i/simple_cache_wrapper_0/out_data_addr_o">
+      <wvobject type="array" fp_name="/dm_cache_tb/kuuga_inst/dm_cache_test_i/sayuru_dm_wrapper_0/inst/out_data_addr_o">
          <obj_property name="ElementShortName">out_data_addr_o[15:0]</obj_property>
          <obj_property name="ObjectShortName">out_data_addr_o[15:0]</obj_property>
       </wvobject>
-      <wvobject type="logic" fp_name="/simple_cache_tb/kuuga_inst/simple_cache_test_i/simple_cache_wrapper_0/out_data_we_o">
+      <wvobject type="logic" fp_name="/dm_cache_tb/kuuga_inst/dm_cache_test_i/sayuru_dm_wrapper_0/inst/out_data_we_o">
          <obj_property name="ElementShortName">out_data_we_o</obj_property>
          <obj_property name="ObjectShortName">out_data_we_o</obj_property>
       </wvobject>
-      <wvobject type="array" fp_name="/simple_cache_tb/kuuga_inst/simple_cache_test_i/simple_cache_wrapper_0/out_data_be_o">
+      <wvobject type="array" fp_name="/dm_cache_tb/kuuga_inst/dm_cache_test_i/sayuru_dm_wrapper_0/inst/out_data_be_o">
          <obj_property name="ElementShortName">out_data_be_o[3:0]</obj_property>
          <obj_property name="ObjectShortName">out_data_be_o[3:0]</obj_property>
       </wvobject>
-      <wvobject type="array" fp_name="/simple_cache_tb/kuuga_inst/simple_cache_test_i/simple_cache_wrapper_0/out_data_rdata_i">
+      <wvobject type="array" fp_name="/dm_cache_tb/kuuga_inst/dm_cache_test_i/sayuru_dm_wrapper_0/inst/out_data_rdata_i">
          <obj_property name="ElementShortName">out_data_rdata_i[31:0]</obj_property>
          <obj_property name="ObjectShortName">out_data_rdata_i[31:0]</obj_property>
       </wvobject>
-      <wvobject type="array" fp_name="/simple_cache_tb/kuuga_inst/simple_cache_test_i/simple_cache_wrapper_0/out_data_wdata_o">
+      <wvobject type="array" fp_name="/dm_cache_tb/kuuga_inst/dm_cache_test_i/sayuru_dm_wrapper_0/inst/out_data_wdata_o">
          <obj_property name="ElementShortName">out_data_wdata_o[31:0]</obj_property>
          <obj_property name="ObjectShortName">out_data_wdata_o[31:0]</obj_property>
       </wvobject>
-      <wvobject type="array" fp_name="/simple_cache_tb/kuuga_inst/simple_cache_test_i/simple_cache_wrapper_0/inst/cache_inst/state">
-         <obj_property name="ElementShortName">state[2:0]</obj_property>
-         <obj_property name="ObjectShortName">state[2:0]</obj_property>
-      </wvobject>
-      <wvobject type="array" fp_name="/simple_cache_tb/kuuga_inst/simple_cache_test_i/simple_cache_wrapper_0/inst/cache_inst/cache_imp/rstate">
-         <obj_property name="ElementShortName">rstate[31:0]</obj_property>
-         <obj_property name="ObjectShortName">rstate[31:0]</obj_property>
-      </wvobject>
-      <wvobject type="array" fp_name="/simple_cache_tb/kuuga_inst/simple_cache_test_i/simple_cache_wrapper_0/inst/cache_inst/cache_imp/ctag/tag_mem">
-         <obj_property name="ElementShortName">tag_mem[0:63]</obj_property>
-         <obj_property name="ObjectShortName">tag_mem[0:63]</obj_property>
-         <obj_property name="isExpanded"></obj_property>
-      </wvobject>
-      <wvobject type="array" fp_name="/simple_cache_tb/kuuga_inst/simple_cache_test_i/simple_cache_wrapper_0/inst/cache_inst/cache_imp/cdata/data_mem">
-         <obj_property name="ElementShortName">data_mem[0:63][31:0]</obj_property>
-         <obj_property name="ObjectShortName">data_mem[0:63][31:0]</obj_property>
-         <obj_property name="isExpanded"></obj_property>
-      </wvobject>
-   </wvobject>
-   <wvobject type="array" fp_name="/simple_cache_tb/kuuga_inst/simple_cache_test_i/godai_wrapper_0/inst/core/id_stage_i/registers_i/rf_reg">
-      <obj_property name="DisplayName">label</obj_property>
-      <obj_property name="ElementShortName">rf_reg[31:0][31:0]</obj_property>
-      <obj_property name="ObjectShortName">rf_reg[31:0][31:0]</obj_property>
-      <obj_property name="label">Registers</obj_property>
-      <obj_property name="isExpanded"></obj_property>
    </wvobject>
 </wave_config>
