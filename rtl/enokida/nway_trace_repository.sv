@@ -228,6 +228,7 @@ module nway_trace_repository
                 begin
                     if (active_set_processing_pointer == active_set_retired_pointer) active_set_processing_pointer <= (active_set_processing_pointer + 1) % ACTIVE_SET_ENTRIES;
                     active_set_retired_pointer <= (active_set_retired_pointer + 1) % ACTIVE_SET_ENTRIES;
+                    committed_counter <= committed_counter+1;
                 end
                 // Case 3 (Trace not done by the processing 
                 else
@@ -236,6 +237,7 @@ module nway_trace_repository
                     active_set[(active_set_retired_pointer + 1) % ACTIVE_SET_ENTRIES].mem_addr <= mem_addr;
                     active_set_retired_pointer <= (active_set_retired_pointer + 1) % ACTIVE_SET_ENTRIES;
                     if (active_set_retired_pointer == active_set_processing_pointer) active_set_processing_pointer <= (active_set_processing_pointer + 1) % ACTIVE_SET_ENTRIES;
+                    committed_counter <= committed_counter+1;
                 end
                 cache_tracker[cache_index].trace_index <= index_done;
                 cache_tracker[cache_index].mem_addr <= mem_addr;
@@ -248,8 +250,8 @@ module nway_trace_repository
                 if (((index_done > action_pointer) || (action_pointer==-1)) && !processing_flag) 
                 begin
                     action_pointer <= action_pointer+1;
-                    committed_counter <= committed_counter+1;
                 end
+                // TODO; There's another situation whereby the committed counter needs to catch up as stuff is actually committed,
                 mark_done_valid <= 1'b1;
             end
             else mark_done_valid <= 1'b0;

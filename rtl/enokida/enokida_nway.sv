@@ -100,7 +100,7 @@ module enokida_nway
     bit get_index;
     bit index_valid;
   
-    nway_trace_repository #(DATA_ADDR_WIDTH) trace_repo(
+    nway_trace_repository #(DATA_ADDR_WIDTH, DATA_WIDTH, 16) trace_repo(
         .trace_req(req),
         .*
     );
