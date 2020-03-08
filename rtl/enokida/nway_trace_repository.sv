@@ -246,7 +246,10 @@ module nway_trace_repository
                 if (
                     (cache_index % 2**(SETMSB) >=  fifo_tracker[mem_addr[SETMSB:SETLSB]]) || (cache_index % 2**(SETMSB) == 0 && fifo_tracker[mem_addr[SETMSB:SETLSB]] == 7)
                 ) fifo_tracker[mem_addr[SETMSB:SETLSB]] <= fifo_tracker[mem_addr[SETMSB:SETLSB]]+1 % 2**(SETMSB);
-                if (processing_flag) action_pointer <= action_pointer + 1;
+                if (processing_flag) 
+                begin
+                    action_pointer <= action_pointer + 1;
+                end
                 if (((index_done > action_pointer) || (action_pointer==-1)) && !processing_flag) 
                 begin
                     action_pointer <= action_pointer+1;

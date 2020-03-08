@@ -20,8 +20,8 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 import axi_vip_pkg::*;
-import kuuga_sc_dm_sim_axi_vip_0_0_pkg::*;
-import kuuga_sc_dm_sim_axi_vip_1_0_pkg::*;
+import new_kuuga_sc_dm_sim_axi_vip_0_0_pkg::*;
+import new_kuuga_sc_dm_sim_axi_vip_1_0_pkg::*;
 import gouram_datatypes::*;
 
 module sc_dm_tb;
@@ -38,8 +38,8 @@ module sc_dm_tb;
     bit [31:0] mem[MEM_SIZE] = '{default: 32'b0};
     bit [31:0] data_mem[MEM_SIZE] = '{default: 32'b0};
     
-    kuuga_sc_dm_sim_axi_vip_0_0_slv_mem_t instr_agent;
-    kuuga_sc_dm_sim_axi_vip_1_0_slv_mem_t data_agent;
+    new_kuuga_sc_dm_sim_axi_vip_0_0_slv_mem_t instr_agent;
+    new_kuuga_sc_dm_sim_axi_vip_1_0_slv_mem_t data_agent;
     
     kuuga_sc_dm_sim_wrapper kuuga_inst(
         .rst_n(reset),
@@ -53,7 +53,7 @@ module sc_dm_tb;
         #5 clk = ~clk;
         if (clk) sim_counter++;
         //if (sim_counter == 32'h1af) $stop;
-        if (sim_counter == 16'h117f) $finish;
+        if (sim_counter == 16'h78c) $finish;
    end
    
    initial 
@@ -69,13 +69,18 @@ module sc_dm_tb;
            data_agent.start_slave();
            // Do some backdoor memory access to set up the program that will be accessed throughout the 
            // test
-           $readmemh("fac_sc_dm_instruction_memory.mem", mem);
-           $readmemh("fac_sc_dm_data_memory.mem", data_mem);
+           $readmemh("select-int_sc_dm_instruction_memory.mem", mem);
+           $readmemh("select-int_sc_dm_data_memory.mem", data_mem);
            for (int i = 0; i < MEM_SIZE; i++) 
            begin
                 if (mem[i] != 32'b0) backdoor_instr_mem_write(i*4, mem[i], 4'b1111);
                 else backdoor_instr_mem_write(i*4, i, 4'b1111);
            end
+           for (int i = 0; i < MEM_SIZE; i++) 
+          begin
+               if (data_mem[i] != 32'b0) backdoor_data_mem_write(i*4 + 24'h100000, data_mem[i], 4'b1111);
+               else backdoor_data_mem_write(i*4 + 24'h100000, i, 4'b1111);
+          end 
            // Set up the device to run
            clk = 0;
            reset = 0;

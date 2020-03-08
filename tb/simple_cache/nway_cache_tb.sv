@@ -20,13 +20,13 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 import axi_vip_pkg::*;
-import kuuga_sc_nway_sim_axi_vip_0_0_pkg::*;
-import kuuga_sc_nway_sim_axi_vip_1_0_pkg::*;
+import new_kuuga_sc_nway_sim_axi_vip_0_0_pkg::*;
+import new_kuuga_sc_nway_sim_axi_vip_1_0_pkg::*;
 import gouram_datatypes::*;
 
 module sc_nway_tb;
 
-    localparam MEM_SIZE = 200;
+    localparam MEM_SIZE = 20000;
     localparam PERIOD = 50;
     
     integer sim_counter = 0;
@@ -38,10 +38,10 @@ module sc_nway_tb;
     bit [31:0] mem[MEM_SIZE] = '{default: 32'b0};
     bit [31:0] data_mem[MEM_SIZE] = '{default: 32'b0};
     
-    kuuga_sc_nway_sim_axi_vip_0_0_slv_mem_t instr_agent;
-    kuuga_sc_nway_sim_axi_vip_1_0_slv_mem_t data_agent;
+    new_kuuga_sc_nway_sim_axi_vip_0_0_slv_mem_t instr_agent;
+    new_kuuga_sc_nway_sim_axi_vip_1_0_slv_mem_t data_agent;
     
-    kuuga_sc_nway_sim_wrapper kuuga_inst(
+    new_kuuga_sc_nway_sim_wrapper kuuga_inst(
         .rst_n(reset),
         .clk(clk),
         .trace_data_o(trace_out)
@@ -59,23 +59,28 @@ module sc_nway_tb;
    initial 
        begin
            // Build up a set of agents to control the AXI VIP Blocks
-           instr_agent = new("InstructionVIP",sc_nway_tb.kuuga_inst.kuuga_sc_nway_sim_i.axi_vip_0.inst.IF);
+           instr_agent = new("InstructionVIP",sc_nway_tb.kuuga_inst.new_kuuga_sc_nway_sim_i.axi_vip_0.inst.IF);
            instr_agent.set_agent_tag("Instruction Memory Agent");
            instr_agent.set_verbosity(0);  
-           data_agent = new("DataVIP",sc_nway_tb.kuuga_inst.kuuga_sc_nway_sim_i.axi_vip_1.inst.IF);
+           data_agent = new("DataVIP",sc_nway_tb.kuuga_inst.new_kuuga_sc_nway_sim_i.axi_vip_1.inst.IF);
            data_agent.set_agent_tag("Data Memory Agent");
            data_agent.set_verbosity(0);
            instr_agent.start_slave();
            data_agent.start_slave();
            // Do some backdoor memory access to set up the program that will be accessed throughout the 
            // test
-           $readmemh("fac_sc_nway_instruction_memory.mem", mem);
-           $readmemh("fac_sc_nway_data_memory.mem", data_mem);
+           $readmemh("select-int_sc_nway_instruction_memory.mem", mem);
+           $readmemh("select-int_sc_nway_data_memory.mem", data_mem);
            for (int i = 0; i < MEM_SIZE; i++) 
            begin
                 if (mem[i] != 32'b0) backdoor_instr_mem_write(i*4, mem[i], 4'b1111);
                 else backdoor_instr_mem_write(i*4, i, 4'b1111);
            end
+           for (int i = 0; i < MEM_SIZE; i++) 
+           begin
+                if (data_mem[i] != 32'b0) backdoor_data_mem_write(i*4 + 24'h100000, data_mem[i], 4'b1111);
+                else backdoor_data_mem_write(i*4 + 24'h100000, i, 4'b1111);
+           end 
            // Set up the device to run
            clk = 0;
            reset = 0;

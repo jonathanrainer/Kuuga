@@ -18,22 +18,24 @@
       </db_ref>
    </db_ref_list>
    <zoom_setting>
-      <ZoomStartTime time="2638480409057fs"></ZoomStartTime>
-      <ZoomEndTime time="2852877918189fs"></ZoomEndTime>
-      <Cursor1Time time="2817145000000fs"></Cursor1Time>
+      <ZoomStartTime time="803025001000fs"></ZoomStartTime>
+      <ZoomEndTime time="809325001001fs"></ZoomEndTime>
+      <Cursor1Time time="808275001000fs"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
-      <NameColumnWidth column_width="309"></NameColumnWidth>
-      <ValueColumnWidth column_width="86"></ValueColumnWidth>
+      <NameColumnWidth column_width="295"></NameColumnWidth>
+      <ValueColumnWidth column_width="106"></ValueColumnWidth>
    </column_width_setting>
-   <WVObjectSize size="8" />
+   <WVObjectSize size="4" />
    <wave_markers>
-      <marker label="" time="99165000000" />
-      <marker label="" time="98585000000" />
+      <marker label="" time="162675000000" />
+      <marker label="" time="842035000000" />
+      <marker label="" time="31075000000" />
    </wave_markers>
    <wvobject type="group" fp_name="group7">
       <obj_property name="label">Generic Signals</obj_property>
       <obj_property name="DisplayName">label</obj_property>
+      <obj_property name="isExpanded"></obj_property>
       <wvobject type="logic" fp_name="/cc_dm_tb/clk">
          <obj_property name="ElementShortName">clk</obj_property>
          <obj_property name="ObjectShortName">clk</obj_property>
@@ -51,295 +53,282 @@
       <obj_property name="label">Godai</obj_property>
       <obj_property name="DisplayName">label</obj_property>
       <obj_property name="isExpanded"></obj_property>
-      <wvobject type="logic" fp_name="/cc_dm_tb/kuuga_inst/kuuga_cc_dm_sim_i/godai_wrapper_0/instr_req_o">
+      <wvobject type="logic" fp_name="/cc_dm_tb/kuuga_inst/new_kuuga_cc_dm_sim_i/godai_wrapper_0/instr_req_o">
          <obj_property name="ElementShortName">instr_req_o</obj_property>
          <obj_property name="ObjectShortName">instr_req_o</obj_property>
       </wvobject>
-      <wvobject type="logic" fp_name="/cc_dm_tb/kuuga_inst/kuuga_cc_dm_sim_i/godai_wrapper_0/instr_gnt_i">
+      <wvobject type="logic" fp_name="/cc_dm_tb/kuuga_inst/new_kuuga_cc_dm_sim_i/godai_wrapper_0/instr_gnt_i">
          <obj_property name="ElementShortName">instr_gnt_i</obj_property>
          <obj_property name="ObjectShortName">instr_gnt_i</obj_property>
       </wvobject>
-      <wvobject type="logic" fp_name="/cc_dm_tb/kuuga_inst/kuuga_cc_dm_sim_i/godai_wrapper_0/instr_rvalid_i">
+      <wvobject type="logic" fp_name="/cc_dm_tb/kuuga_inst/new_kuuga_cc_dm_sim_i/godai_wrapper_0/instr_rvalid_i">
          <obj_property name="ElementShortName">instr_rvalid_i</obj_property>
          <obj_property name="ObjectShortName">instr_rvalid_i</obj_property>
       </wvobject>
-      <wvobject type="array" fp_name="/cc_dm_tb/kuuga_inst/kuuga_cc_dm_sim_i/godai_wrapper_0/instr_addr_o">
+      <wvobject type="array" fp_name="/cc_dm_tb/kuuga_inst/new_kuuga_cc_dm_sim_i/godai_wrapper_0/instr_addr_o">
          <obj_property name="ElementShortName">instr_addr_o[31:0]</obj_property>
          <obj_property name="ObjectShortName">instr_addr_o[31:0]</obj_property>
       </wvobject>
-      <wvobject type="array" fp_name="/cc_dm_tb/kuuga_inst/kuuga_cc_dm_sim_i/godai_wrapper_0/instr_rdata_i">
+      <wvobject type="array" fp_name="/cc_dm_tb/kuuga_inst/new_kuuga_cc_dm_sim_i/godai_wrapper_0/instr_rdata_i">
          <obj_property name="ElementShortName">instr_rdata_i[31:0]</obj_property>
          <obj_property name="ObjectShortName">instr_rdata_i[31:0]</obj_property>
       </wvobject>
-      <wvobject type="logic" fp_name="/cc_dm_tb/kuuga_inst/kuuga_cc_dm_sim_i/godai_wrapper_0/data_req_o">
+      <wvobject type="logic" fp_name="/cc_dm_tb/kuuga_inst/new_kuuga_cc_dm_sim_i/godai_wrapper_0/data_req_o">
          <obj_property name="ElementShortName">data_req_o</obj_property>
          <obj_property name="ObjectShortName">data_req_o</obj_property>
       </wvobject>
-      <wvobject type="logic" fp_name="/cc_dm_tb/kuuga_inst/kuuga_cc_dm_sim_i/godai_wrapper_0/data_gnt_i">
+      <wvobject type="logic" fp_name="/cc_dm_tb/kuuga_inst/new_kuuga_cc_dm_sim_i/godai_wrapper_0/data_gnt_i">
          <obj_property name="ElementShortName">data_gnt_i</obj_property>
          <obj_property name="ObjectShortName">data_gnt_i</obj_property>
       </wvobject>
-      <wvobject type="logic" fp_name="/cc_dm_tb/kuuga_inst/kuuga_cc_dm_sim_i/godai_wrapper_0/data_rvalid_i">
+      <wvobject type="logic" fp_name="/cc_dm_tb/kuuga_inst/new_kuuga_cc_dm_sim_i/godai_wrapper_0/data_rvalid_i">
          <obj_property name="ElementShortName">data_rvalid_i</obj_property>
          <obj_property name="ObjectShortName">data_rvalid_i</obj_property>
       </wvobject>
-      <wvobject type="logic" fp_name="/cc_dm_tb/kuuga_inst/kuuga_cc_dm_sim_i/godai_wrapper_0/data_we_o">
+      <wvobject type="logic" fp_name="/cc_dm_tb/kuuga_inst/new_kuuga_cc_dm_sim_i/godai_wrapper_0/data_we_o">
          <obj_property name="ElementShortName">data_we_o</obj_property>
          <obj_property name="ObjectShortName">data_we_o</obj_property>
       </wvobject>
-      <wvobject type="array" fp_name="/cc_dm_tb/kuuga_inst/kuuga_cc_dm_sim_i/godai_wrapper_0/data_be_o">
+      <wvobject type="array" fp_name="/cc_dm_tb/kuuga_inst/new_kuuga_cc_dm_sim_i/godai_wrapper_0/data_be_o">
          <obj_property name="ElementShortName">data_be_o[3:0]</obj_property>
          <obj_property name="ObjectShortName">data_be_o[3:0]</obj_property>
       </wvobject>
-      <wvobject type="array" fp_name="/cc_dm_tb/kuuga_inst/kuuga_cc_dm_sim_i/godai_wrapper_0/data_addr_o">
+      <wvobject type="array" fp_name="/cc_dm_tb/kuuga_inst/new_kuuga_cc_dm_sim_i/godai_wrapper_0/data_addr_o">
          <obj_property name="ElementShortName">data_addr_o[31:0]</obj_property>
          <obj_property name="ObjectShortName">data_addr_o[31:0]</obj_property>
       </wvobject>
-      <wvobject type="array" fp_name="/cc_dm_tb/kuuga_inst/kuuga_cc_dm_sim_i/godai_wrapper_0/data_wdata_o">
+      <wvobject type="array" fp_name="/cc_dm_tb/kuuga_inst/new_kuuga_cc_dm_sim_i/godai_wrapper_0/data_wdata_o">
          <obj_property name="ElementShortName">data_wdata_o[31:0]</obj_property>
          <obj_property name="ObjectShortName">data_wdata_o[31:0]</obj_property>
       </wvobject>
-      <wvobject type="array" fp_name="/cc_dm_tb/kuuga_inst/kuuga_cc_dm_sim_i/godai_wrapper_0/data_rdata_i">
+      <wvobject type="array" fp_name="/cc_dm_tb/kuuga_inst/new_kuuga_cc_dm_sim_i/godai_wrapper_0/data_rdata_i">
          <obj_property name="ElementShortName">data_rdata_i[31:0]</obj_property>
          <obj_property name="ObjectShortName">data_rdata_i[31:0]</obj_property>
       </wvobject>
-      <wvobject type="logic" fp_name="/cc_dm_tb/kuuga_inst/kuuga_cc_dm_sim_i/godai_wrapper_0/data_err_i">
+      <wvobject type="logic" fp_name="/cc_dm_tb/kuuga_inst/new_kuuga_cc_dm_sim_i/godai_wrapper_0/data_err_i">
          <obj_property name="ElementShortName">data_err_i</obj_property>
          <obj_property name="ObjectShortName">data_err_i</obj_property>
       </wvobject>
-      <wvobject type="array" fp_name="/cc_dm_tb/kuuga_inst/kuuga_cc_dm_sim_i/godai_wrapper_0/irq_i">
+      <wvobject type="array" fp_name="/cc_dm_tb/kuuga_inst/new_kuuga_cc_dm_sim_i/godai_wrapper_0/irq_i">
          <obj_property name="ElementShortName">irq_i[31:0]</obj_property>
          <obj_property name="ObjectShortName">irq_i[31:0]</obj_property>
       </wvobject>
-      <wvobject type="logic" fp_name="/cc_dm_tb/kuuga_inst/kuuga_cc_dm_sim_i/godai_wrapper_0/jump_done_o">
+      <wvobject type="logic" fp_name="/cc_dm_tb/kuuga_inst/new_kuuga_cc_dm_sim_i/godai_wrapper_0/jump_done_o">
          <obj_property name="ElementShortName">jump_done_o</obj_property>
          <obj_property name="ObjectShortName">jump_done_o</obj_property>
       </wvobject>
-      <wvobject type="logic" fp_name="/cc_dm_tb/kuuga_inst/kuuga_cc_dm_sim_i/godai_wrapper_0/branch_decision_o">
+      <wvobject type="logic" fp_name="/cc_dm_tb/kuuga_inst/new_kuuga_cc_dm_sim_i/godai_wrapper_0/branch_decision_o">
          <obj_property name="ElementShortName">branch_decision_o</obj_property>
          <obj_property name="ObjectShortName">branch_decision_o</obj_property>
       </wvobject>
-      <wvobject type="logic" fp_name="/cc_dm_tb/kuuga_inst/kuuga_cc_dm_sim_i/godai_wrapper_0/is_decoding_o">
+      <wvobject type="logic" fp_name="/cc_dm_tb/kuuga_inst/new_kuuga_cc_dm_sim_i/godai_wrapper_0/is_decoding_o">
          <obj_property name="ElementShortName">is_decoding_o</obj_property>
          <obj_property name="ObjectShortName">is_decoding_o</obj_property>
       </wvobject>
-      <wvobject type="logic" fp_name="/cc_dm_tb/kuuga_inst/kuuga_cc_dm_sim_i/godai_wrapper_0/pc_set_o">
+      <wvobject type="logic" fp_name="/cc_dm_tb/kuuga_inst/new_kuuga_cc_dm_sim_i/godai_wrapper_0/pc_set_o">
          <obj_property name="ElementShortName">pc_set_o</obj_property>
          <obj_property name="ObjectShortName">pc_set_o</obj_property>
       </wvobject>
-      <wvobject type="logic" fp_name="/cc_dm_tb/kuuga_inst/kuuga_cc_dm_sim_i/godai_wrapper_0/branch_req_o">
+      <wvobject type="logic" fp_name="/cc_dm_tb/kuuga_inst/new_kuuga_cc_dm_sim_i/godai_wrapper_0/branch_req_o">
          <obj_property name="ElementShortName">branch_req_o</obj_property>
          <obj_property name="ObjectShortName">branch_req_o</obj_property>
       </wvobject>
-      <wvobject type="logic" fp_name="/cc_dm_tb/kuuga_inst/kuuga_cc_dm_sim_i/godai_wrapper_0/id_ready_o">
+      <wvobject type="logic" fp_name="/cc_dm_tb/kuuga_inst/new_kuuga_cc_dm_sim_i/godai_wrapper_0/id_ready_o">
          <obj_property name="ElementShortName">id_ready_o</obj_property>
          <obj_property name="ObjectShortName">id_ready_o</obj_property>
       </wvobject>
-      <wvobject type="array" fp_name="/cc_dm_tb/kuuga_inst/kuuga_cc_dm_sim_i/godai_wrapper_0/instr_count_o">
+      <wvobject type="array" fp_name="/cc_dm_tb/kuuga_inst/new_kuuga_cc_dm_sim_i/godai_wrapper_0/instr_count_o">
          <obj_property name="ElementShortName">instr_count_o[31:0]</obj_property>
          <obj_property name="ObjectShortName">instr_count_o[31:0]</obj_property>
-         <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/cc_dm_tb/kuuga_inst/new_kuuga_cc_dm_sim_i/godai_wrapper_0/mem_req_count_o">
+         <obj_property name="ElementShortName">mem_req_count_o[31:0]</obj_property>
+         <obj_property name="ObjectShortName">mem_req_count_o[31:0]</obj_property>
       </wvobject>
    </wvobject>
    <wvobject type="group" fp_name="group54">
       <obj_property name="label">Gouram</obj_property>
       <obj_property name="DisplayName">label</obj_property>
       <obj_property name="isExpanded"></obj_property>
-      <wvobject type="logic" fp_name="/cc_dm_tb/kuuga_inst/kuuga_cc_dm_sim_i/gouram_wrapper_0/jump_done">
+      <wvobject type="logic" fp_name="/cc_dm_tb/kuuga_inst/new_kuuga_cc_dm_sim_i/gouram_wrapper_0/jump_done">
          <obj_property name="ElementShortName">jump_done</obj_property>
          <obj_property name="ObjectShortName">jump_done</obj_property>
       </wvobject>
-      <wvobject type="logic" fp_name="/cc_dm_tb/kuuga_inst/kuuga_cc_dm_sim_i/gouram_wrapper_0/branch_decision">
+      <wvobject type="logic" fp_name="/cc_dm_tb/kuuga_inst/new_kuuga_cc_dm_sim_i/gouram_wrapper_0/branch_decision">
          <obj_property name="ElementShortName">branch_decision</obj_property>
          <obj_property name="ObjectShortName">branch_decision</obj_property>
       </wvobject>
-      <wvobject type="logic" fp_name="/cc_dm_tb/kuuga_inst/kuuga_cc_dm_sim_i/gouram_wrapper_0/is_decoding">
+      <wvobject type="logic" fp_name="/cc_dm_tb/kuuga_inst/new_kuuga_cc_dm_sim_i/gouram_wrapper_0/is_decoding">
          <obj_property name="ElementShortName">is_decoding</obj_property>
          <obj_property name="ObjectShortName">is_decoding</obj_property>
       </wvobject>
-      <wvobject type="logic" fp_name="/cc_dm_tb/kuuga_inst/kuuga_cc_dm_sim_i/gouram_wrapper_0/pc_set">
+      <wvobject type="logic" fp_name="/cc_dm_tb/kuuga_inst/new_kuuga_cc_dm_sim_i/gouram_wrapper_0/pc_set">
          <obj_property name="ElementShortName">pc_set</obj_property>
          <obj_property name="ObjectShortName">pc_set</obj_property>
       </wvobject>
-      <wvobject type="logic" fp_name="/cc_dm_tb/kuuga_inst/kuuga_cc_dm_sim_i/gouram_wrapper_0/branch_req">
+      <wvobject type="logic" fp_name="/cc_dm_tb/kuuga_inst/new_kuuga_cc_dm_sim_i/gouram_wrapper_0/branch_req">
          <obj_property name="ElementShortName">branch_req</obj_property>
          <obj_property name="ObjectShortName">branch_req</obj_property>
       </wvobject>
-      <wvobject type="logic" fp_name="/cc_dm_tb/kuuga_inst/kuuga_cc_dm_sim_i/gouram_wrapper_0/id_ready">
+      <wvobject type="logic" fp_name="/cc_dm_tb/kuuga_inst/new_kuuga_cc_dm_sim_i/gouram_wrapper_0/id_ready">
          <obj_property name="ElementShortName">id_ready</obj_property>
          <obj_property name="ObjectShortName">id_ready</obj_property>
       </wvobject>
-      <wvobject type="logic" fp_name="/cc_dm_tb/kuuga_inst/kuuga_cc_dm_sim_i/gouram_wrapper_0/instr_req">
+      <wvobject type="logic" fp_name="/cc_dm_tb/kuuga_inst/new_kuuga_cc_dm_sim_i/gouram_wrapper_0/instr_req">
          <obj_property name="ElementShortName">instr_req</obj_property>
          <obj_property name="ObjectShortName">instr_req</obj_property>
       </wvobject>
-      <wvobject type="logic" fp_name="/cc_dm_tb/kuuga_inst/kuuga_cc_dm_sim_i/gouram_wrapper_0/instr_rvalid">
+      <wvobject type="logic" fp_name="/cc_dm_tb/kuuga_inst/new_kuuga_cc_dm_sim_i/gouram_wrapper_0/instr_rvalid">
          <obj_property name="ElementShortName">instr_rvalid</obj_property>
          <obj_property name="ObjectShortName">instr_rvalid</obj_property>
       </wvobject>
-      <wvobject type="array" fp_name="/cc_dm_tb/kuuga_inst/kuuga_cc_dm_sim_i/gouram_wrapper_0/instr_rdata">
+      <wvobject type="array" fp_name="/cc_dm_tb/kuuga_inst/new_kuuga_cc_dm_sim_i/gouram_wrapper_0/instr_rdata">
          <obj_property name="ElementShortName">instr_rdata[31:0]</obj_property>
          <obj_property name="ObjectShortName">instr_rdata[31:0]</obj_property>
       </wvobject>
-      <wvobject type="array" fp_name="/cc_dm_tb/kuuga_inst/kuuga_cc_dm_sim_i/gouram_wrapper_0/instr_addr">
+      <wvobject type="array" fp_name="/cc_dm_tb/kuuga_inst/new_kuuga_cc_dm_sim_i/gouram_wrapper_0/instr_addr">
          <obj_property name="ElementShortName">instr_addr[31:0]</obj_property>
          <obj_property name="ObjectShortName">instr_addr[31:0]</obj_property>
       </wvobject>
-      <wvobject type="logic" fp_name="/cc_dm_tb/kuuga_inst/kuuga_cc_dm_sim_i/gouram_wrapper_0/instr_gnt">
+      <wvobject type="logic" fp_name="/cc_dm_tb/kuuga_inst/new_kuuga_cc_dm_sim_i/gouram_wrapper_0/instr_gnt">
          <obj_property name="ElementShortName">instr_gnt</obj_property>
          <obj_property name="ObjectShortName">instr_gnt</obj_property>
       </wvobject>
-      <wvobject type="logic" fp_name="/cc_dm_tb/kuuga_inst/kuuga_cc_dm_sim_i/gouram_wrapper_0/data_mem_req">
+      <wvobject type="logic" fp_name="/cc_dm_tb/kuuga_inst/new_kuuga_cc_dm_sim_i/gouram_wrapper_0/data_mem_req">
          <obj_property name="ElementShortName">data_mem_req</obj_property>
          <obj_property name="ObjectShortName">data_mem_req</obj_property>
       </wvobject>
-      <wvobject type="array" fp_name="/cc_dm_tb/kuuga_inst/kuuga_cc_dm_sim_i/gouram_wrapper_0/data_mem_addr">
+      <wvobject type="array" fp_name="/cc_dm_tb/kuuga_inst/new_kuuga_cc_dm_sim_i/gouram_wrapper_0/data_mem_addr">
          <obj_property name="ElementShortName">data_mem_addr[31:0]</obj_property>
          <obj_property name="ObjectShortName">data_mem_addr[31:0]</obj_property>
       </wvobject>
-      <wvobject type="logic" fp_name="/cc_dm_tb/kuuga_inst/kuuga_cc_dm_sim_i/gouram_wrapper_0/data_mem_rvalid">
+      <wvobject type="logic" fp_name="/cc_dm_tb/kuuga_inst/new_kuuga_cc_dm_sim_i/gouram_wrapper_0/data_mem_rvalid">
          <obj_property name="ElementShortName">data_mem_rvalid</obj_property>
          <obj_property name="ObjectShortName">data_mem_rvalid</obj_property>
       </wvobject>
-      <wvobject type="array" fp_name="/cc_dm_tb/kuuga_inst/kuuga_cc_dm_sim_i/gouram_wrapper_0/trace_data_o">
+      <wvobject type="array" fp_name="/cc_dm_tb/kuuga_inst/new_kuuga_cc_dm_sim_i/gouram_wrapper_0/trace_data_o">
          <obj_property name="ElementShortName">trace_data_o[159:0]</obj_property>
          <obj_property name="ObjectShortName">trace_data_o[159:0]</obj_property>
       </wvobject>
-      <wvobject type="logic" fp_name="/cc_dm_tb/kuuga_inst/kuuga_cc_dm_sim_i/gouram_wrapper_0/trace_capture_enable">
+      <wvobject type="logic" fp_name="/cc_dm_tb/kuuga_inst/new_kuuga_cc_dm_sim_i/gouram_wrapper_0/trace_capture_enable">
          <obj_property name="ElementShortName">trace_capture_enable</obj_property>
          <obj_property name="ObjectShortName">trace_capture_enable</obj_property>
       </wvobject>
-      <wvobject type="logic" fp_name="/cc_dm_tb/kuuga_inst/kuuga_cc_dm_sim_i/gouram_wrapper_0/lock">
-         <obj_property name="DisplayName">FullPathName</obj_property>
+      <wvobject type="logic" fp_name="/cc_dm_tb/kuuga_inst/new_kuuga_cc_dm_sim_i/gouram_wrapper_0/lock">
          <obj_property name="ElementShortName">lock</obj_property>
          <obj_property name="ObjectShortName">lock</obj_property>
       </wvobject>
-      <wvobject type="array" fp_name="/cc_dm_tb/kuuga_inst/kuuga_cc_dm_sim_i/gouram_wrapper_0/counter">
+      <wvobject type="logic" fp_name="/cc_dm_tb/kuuga_inst/new_kuuga_cc_dm_sim_i/gouram_wrapper_0/trace_ready">
+         <obj_property name="ElementShortName">trace_ready</obj_property>
+         <obj_property name="ObjectShortName">trace_ready</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/cc_dm_tb/kuuga_inst/new_kuuga_cc_dm_sim_i/gouram_wrapper_0/counter">
          <obj_property name="ElementShortName">counter[31:0]</obj_property>
          <obj_property name="ObjectShortName">counter[31:0]</obj_property>
-      </wvobject>
-      <wvobject type="array" fp_name="/cc_dm_tb/kuuga_inst/kuuga_cc_dm_sim_i/gouram_wrapper_0/mem_req_count">
-         <obj_property name="ElementShortName">mem_req_count[31:0]</obj_property>
-         <obj_property name="ObjectShortName">mem_req_count[31:0]</obj_property>
       </wvobject>
    </wvobject>
    <wvobject type="group" fp_name="group170">
       <obj_property name="label">Enokida - DM</obj_property>
       <obj_property name="DisplayName">label</obj_property>
       <obj_property name="isExpanded"></obj_property>
-      <wvobject type="logic" fp_name="/cc_dm_tb/kuuga_inst/kuuga_cc_dm_sim_i/enokida_dm_wrapper_0/proc_cache_data_req_i">
+      <wvobject type="logic" fp_name="/cc_dm_tb/kuuga_inst/new_kuuga_cc_dm_sim_i/enokida_dm_wrapper_0/proc_cache_data_req_i">
          <obj_property name="ElementShortName">proc_cache_data_req_i</obj_property>
          <obj_property name="ObjectShortName">proc_cache_data_req_i</obj_property>
       </wvobject>
-      <wvobject type="array" fp_name="/cc_dm_tb/kuuga_inst/kuuga_cc_dm_sim_i/enokida_dm_wrapper_0/proc_cache_data_addr_i">
+      <wvobject type="array" fp_name="/cc_dm_tb/kuuga_inst/new_kuuga_cc_dm_sim_i/enokida_dm_wrapper_0/proc_cache_data_addr_i">
          <obj_property name="ElementShortName">proc_cache_data_addr_i[31:0]</obj_property>
          <obj_property name="ObjectShortName">proc_cache_data_addr_i[31:0]</obj_property>
       </wvobject>
-      <wvobject type="logic" fp_name="/cc_dm_tb/kuuga_inst/kuuga_cc_dm_sim_i/enokida_dm_wrapper_0/proc_cache_data_we_i">
+      <wvobject type="logic" fp_name="/cc_dm_tb/kuuga_inst/new_kuuga_cc_dm_sim_i/enokida_dm_wrapper_0/proc_cache_data_we_i">
          <obj_property name="ElementShortName">proc_cache_data_we_i</obj_property>
          <obj_property name="ObjectShortName">proc_cache_data_we_i</obj_property>
       </wvobject>
-      <wvobject type="array" fp_name="/cc_dm_tb/kuuga_inst/kuuga_cc_dm_sim_i/enokida_dm_wrapper_0/proc_cache_data_be_i">
+      <wvobject type="array" fp_name="/cc_dm_tb/kuuga_inst/new_kuuga_cc_dm_sim_i/enokida_dm_wrapper_0/proc_cache_data_be_i">
          <obj_property name="ElementShortName">proc_cache_data_be_i[3:0]</obj_property>
          <obj_property name="ObjectShortName">proc_cache_data_be_i[3:0]</obj_property>
       </wvobject>
-      <wvobject type="array" fp_name="/cc_dm_tb/kuuga_inst/kuuga_cc_dm_sim_i/enokida_dm_wrapper_0/proc_cache_data_wdata_i">
+      <wvobject type="array" fp_name="/cc_dm_tb/kuuga_inst/new_kuuga_cc_dm_sim_i/enokida_dm_wrapper_0/proc_cache_data_wdata_i">
          <obj_property name="ElementShortName">proc_cache_data_wdata_i[31:0]</obj_property>
          <obj_property name="ObjectShortName">proc_cache_data_wdata_i[31:0]</obj_property>
       </wvobject>
-      <wvobject type="logic" fp_name="/cc_dm_tb/kuuga_inst/kuuga_cc_dm_sim_i/enokida_dm_wrapper_0/proc_cache_data_gnt_o">
+      <wvobject type="logic" fp_name="/cc_dm_tb/kuuga_inst/new_kuuga_cc_dm_sim_i/enokida_dm_wrapper_0/proc_cache_data_gnt_o">
          <obj_property name="ElementShortName">proc_cache_data_gnt_o</obj_property>
          <obj_property name="ObjectShortName">proc_cache_data_gnt_o</obj_property>
       </wvobject>
-      <wvobject type="logic" fp_name="/cc_dm_tb/kuuga_inst/kuuga_cc_dm_sim_i/enokida_dm_wrapper_0/proc_cache_data_rvalid_o">
+      <wvobject type="logic" fp_name="/cc_dm_tb/kuuga_inst/new_kuuga_cc_dm_sim_i/enokida_dm_wrapper_0/proc_cache_data_rvalid_o">
          <obj_property name="ElementShortName">proc_cache_data_rvalid_o</obj_property>
          <obj_property name="ObjectShortName">proc_cache_data_rvalid_o</obj_property>
       </wvobject>
-      <wvobject type="array" fp_name="/cc_dm_tb/kuuga_inst/kuuga_cc_dm_sim_i/enokida_dm_wrapper_0/proc_cache_data_rdata_o">
+      <wvobject type="array" fp_name="/cc_dm_tb/kuuga_inst/new_kuuga_cc_dm_sim_i/enokida_dm_wrapper_0/proc_cache_data_rdata_o">
          <obj_property name="ElementShortName">proc_cache_data_rdata_o[31:0]</obj_property>
          <obj_property name="ObjectShortName">proc_cache_data_rdata_o[31:0]</obj_property>
       </wvobject>
-      <wvobject type="logic" fp_name="/cc_dm_tb/kuuga_inst/kuuga_cc_dm_sim_i/enokida_dm_wrapper_0/cache_mem_data_gnt_i">
+      <wvobject type="logic" fp_name="/cc_dm_tb/kuuga_inst/new_kuuga_cc_dm_sim_i/enokida_dm_wrapper_0/cache_mem_data_gnt_i">
          <obj_property name="ElementShortName">cache_mem_data_gnt_i</obj_property>
          <obj_property name="ObjectShortName">cache_mem_data_gnt_i</obj_property>
       </wvobject>
-      <wvobject type="logic" fp_name="/cc_dm_tb/kuuga_inst/kuuga_cc_dm_sim_i/enokida_dm_wrapper_0/cache_mem_data_rvalid_i">
+      <wvobject type="logic" fp_name="/cc_dm_tb/kuuga_inst/new_kuuga_cc_dm_sim_i/enokida_dm_wrapper_0/cache_mem_data_rvalid_i">
          <obj_property name="ElementShortName">cache_mem_data_rvalid_i</obj_property>
          <obj_property name="ObjectShortName">cache_mem_data_rvalid_i</obj_property>
       </wvobject>
-      <wvobject type="array" fp_name="/cc_dm_tb/kuuga_inst/kuuga_cc_dm_sim_i/enokida_dm_wrapper_0/cache_mem_data_rdata_i">
+      <wvobject type="array" fp_name="/cc_dm_tb/kuuga_inst/new_kuuga_cc_dm_sim_i/enokida_dm_wrapper_0/cache_mem_data_rdata_i">
          <obj_property name="ElementShortName">cache_mem_data_rdata_i[31:0]</obj_property>
          <obj_property name="ObjectShortName">cache_mem_data_rdata_i[31:0]</obj_property>
       </wvobject>
-      <wvobject type="logic" fp_name="/cc_dm_tb/kuuga_inst/kuuga_cc_dm_sim_i/enokida_dm_wrapper_0/cache_mem_data_req_o">
+      <wvobject type="logic" fp_name="/cc_dm_tb/kuuga_inst/new_kuuga_cc_dm_sim_i/enokida_dm_wrapper_0/cache_mem_data_req_o">
          <obj_property name="ElementShortName">cache_mem_data_req_o</obj_property>
          <obj_property name="ObjectShortName">cache_mem_data_req_o</obj_property>
       </wvobject>
-      <wvobject type="array" fp_name="/cc_dm_tb/kuuga_inst/kuuga_cc_dm_sim_i/enokida_dm_wrapper_0/cache_mem_data_addr_o">
+      <wvobject type="array" fp_name="/cc_dm_tb/kuuga_inst/new_kuuga_cc_dm_sim_i/enokida_dm_wrapper_0/cache_mem_data_addr_o">
          <obj_property name="ElementShortName">cache_mem_data_addr_o[31:0]</obj_property>
          <obj_property name="ObjectShortName">cache_mem_data_addr_o[31:0]</obj_property>
       </wvobject>
-      <wvobject type="logic" fp_name="/cc_dm_tb/kuuga_inst/kuuga_cc_dm_sim_i/enokida_dm_wrapper_0/cache_mem_data_we_o">
+      <wvobject type="logic" fp_name="/cc_dm_tb/kuuga_inst/new_kuuga_cc_dm_sim_i/enokida_dm_wrapper_0/cache_mem_data_we_o">
          <obj_property name="ElementShortName">cache_mem_data_we_o</obj_property>
          <obj_property name="ObjectShortName">cache_mem_data_we_o</obj_property>
       </wvobject>
-      <wvobject type="array" fp_name="/cc_dm_tb/kuuga_inst/kuuga_cc_dm_sim_i/enokida_dm_wrapper_0/cache_mem_data_be_o">
+      <wvobject type="array" fp_name="/cc_dm_tb/kuuga_inst/new_kuuga_cc_dm_sim_i/enokida_dm_wrapper_0/cache_mem_data_be_o">
          <obj_property name="ElementShortName">cache_mem_data_be_o[3:0]</obj_property>
          <obj_property name="ObjectShortName">cache_mem_data_be_o[3:0]</obj_property>
       </wvobject>
-      <wvobject type="array" fp_name="/cc_dm_tb/kuuga_inst/kuuga_cc_dm_sim_i/enokida_dm_wrapper_0/cache_mem_data_wdata_o">
+      <wvobject type="array" fp_name="/cc_dm_tb/kuuga_inst/new_kuuga_cc_dm_sim_i/enokida_dm_wrapper_0/cache_mem_data_wdata_o">
          <obj_property name="ElementShortName">cache_mem_data_wdata_o[31:0]</obj_property>
          <obj_property name="ObjectShortName">cache_mem_data_wdata_o[31:0]</obj_property>
       </wvobject>
-      <wvobject type="logic" fp_name="/cc_dm_tb/kuuga_inst/kuuga_cc_dm_sim_i/enokida_dm_wrapper_0/inst/tac/trace_ready">
-         <obj_property name="ElementShortName">trace_ready</obj_property>
-         <obj_property name="ObjectShortName">trace_ready</obj_property>
-      </wvobject>
-      <wvobject type="array" fp_name="/cc_dm_tb/kuuga_inst/kuuga_cc_dm_sim_i/enokida_dm_wrapper_0/trace_in">
+      <wvobject type="array" fp_name="/cc_dm_tb/kuuga_inst/new_kuuga_cc_dm_sim_i/enokida_dm_wrapper_0/trace_in">
          <obj_property name="ElementShortName">trace_in[159:0]</obj_property>
          <obj_property name="ObjectShortName">trace_in[159:0]</obj_property>
       </wvobject>
-      <wvobject type="logic" fp_name="/cc_dm_tb/kuuga_inst/kuuga_cc_dm_sim_i/enokida_dm_wrapper_0/trace_capture_enable">
+      <wvobject type="logic" fp_name="/cc_dm_tb/kuuga_inst/new_kuuga_cc_dm_sim_i/enokida_dm_wrapper_0/trace_ready">
+         <obj_property name="ElementShortName">trace_ready</obj_property>
+         <obj_property name="ObjectShortName">trace_ready</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/cc_dm_tb/kuuga_inst/new_kuuga_cc_dm_sim_i/enokida_dm_wrapper_0/trace_capture_enable">
          <obj_property name="ElementShortName">trace_capture_enable</obj_property>
          <obj_property name="ObjectShortName">trace_capture_enable</obj_property>
       </wvobject>
-      <wvobject type="logic" fp_name="/cc_dm_tb/kuuga_inst/kuuga_cc_dm_sim_i/enokida_dm_wrapper_0/lock">
+      <wvobject type="logic" fp_name="/cc_dm_tb/kuuga_inst/new_kuuga_cc_dm_sim_i/enokida_dm_wrapper_0/lock">
          <obj_property name="ElementShortName">lock</obj_property>
          <obj_property name="ObjectShortName">lock</obj_property>
       </wvobject>
-      <wvobject type="array" fp_name="/cc_dm_tb/kuuga_inst/kuuga_cc_dm_sim_i/enokida_dm_wrapper_0/req_count">
-         <obj_property name="ElementShortName">req_count[31:0]</obj_property>
-         <obj_property name="ObjectShortName">req_count[31:0]</obj_property>
+      <wvobject type="logic" fp_name="/cc_dm_tb/kuuga_inst/new_kuuga_cc_dm_sim_i/enokida_dm_wrapper_0/inst/tac/processing_complete">
+         <obj_property name="ElementShortName">processing_complete</obj_property>
+         <obj_property name="ObjectShortName">processing_complete</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/cc_dm_tb/kuuga_inst/new_kuuga_cc_dm_sim_i/enokida_dm_wrapper_0/trans_count">
+         <obj_property name="ElementShortName">trans_count[31:0]</obj_property>
+         <obj_property name="ObjectShortName">trans_count[31:0]</obj_property>
          <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
       </wvobject>
-      <wvobject type="array" fp_name="/cc_dm_tb/kuuga_inst/kuuga_cc_dm_sim_i/enokida_dm_wrapper_0/hit_count">
+      <wvobject type="array" fp_name="/cc_dm_tb/kuuga_inst/new_kuuga_cc_dm_sim_i/enokida_dm_wrapper_0/hit_count">
          <obj_property name="ElementShortName">hit_count[31:0]</obj_property>
          <obj_property name="ObjectShortName">hit_count[31:0]</obj_property>
          <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
       </wvobject>
-      <wvobject type="array" fp_name="/cc_dm_tb/kuuga_inst/kuuga_cc_dm_sim_i/enokida_dm_wrapper_0/miss_count">
+      <wvobject type="array" fp_name="/cc_dm_tb/kuuga_inst/new_kuuga_cc_dm_sim_i/enokida_dm_wrapper_0/miss_count">
          <obj_property name="ElementShortName">miss_count[31:0]</obj_property>
          <obj_property name="ObjectShortName">miss_count[31:0]</obj_property>
          <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
       </wvobject>
-   </wvobject>
-   <wvobject type="array" fp_name="/cc_dm_tb/kuuga_inst/kuuga_cc_dm_sim_i/godai_wrapper_0/inst/core/id_stage_i/registers_i/rf_reg">
-      <obj_property name="DisplayName">label</obj_property>
-      <obj_property name="ElementShortName">rf_reg[31:0][31:0]</obj_property>
-      <obj_property name="ObjectShortName">rf_reg[31:0][31:0]</obj_property>
-      <obj_property name="label">Registers</obj_property>
-   </wvobject>
-   <wvobject type="array" fp_name="/cc_dm_tb/kuuga_inst/kuuga_cc_dm_sim_i/enokida_dm_wrapper_0/inst/tac/dm_cache/ctag/tag_mem">
-      <obj_property name="ElementShortName">tag_mem[0:127]</obj_property>
-      <obj_property name="ObjectShortName">tag_mem[0:127]</obj_property>
-   </wvobject>
-   <wvobject type="array" fp_name="/cc_dm_tb/kuuga_inst/kuuga_cc_dm_sim_i/enokida_dm_wrapper_0/inst/tac/dm_cache/cdata/data_mem">
-      <obj_property name="ElementShortName">data_mem[0:127][31:0]</obj_property>
-      <obj_property name="ObjectShortName">data_mem[0:127][31:0]</obj_property>
-      <obj_property name="isExpanded"></obj_property>
-   </wvobject>
-   <wvobject type="array" fp_name="/cc_dm_tb/kuuga_inst/kuuga_cc_dm_sim_i/godai_wrapper_0/instr_count_o">
-      <obj_property name="ElementShortName">instr_count_o[31:0]</obj_property>
-      <obj_property name="ObjectShortName">instr_count_o[31:0]</obj_property>
    </wvobject>
 </wave_config>

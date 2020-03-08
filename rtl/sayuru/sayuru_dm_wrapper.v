@@ -50,7 +50,7 @@ module sayuru_dm_wrapper
     input    [DATA_WIDTH-1:0]       out_data_rdata_i,
     output   [DATA_WIDTH-1:0]       out_data_wdata_o,
 
-    output   [31:0] req_count,
+    output   [31:0] trans_count,
     output   [31:0] hit_count,
     output   [31:0] miss_count
 );
@@ -62,7 +62,7 @@ module sayuru_dm_wrapper
         in_data_addr_i, in_data_we_i, in_data_be_i, in_data_rdata_o,
         in_data_wdata_i, out_data_req_o, out_data_gnt_i, out_data_rvalid_i,
         out_data_addr_o, out_data_we_o, out_data_be_o, out_data_rdata_i,
-        out_data_wdata_o, req_count, hit_count, miss_count
+        out_data_wdata_o, trans_count, hit_count, miss_count
     );
 
 endmodule

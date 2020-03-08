@@ -103,6 +103,7 @@ module dm_trace_repository
     bit [$clog2(TRACE_ENTRIES)-1:0] last_addr;
     (* dont_touch = "yes" *) integer signed capture_pointer;
     (* dont_touch = "yes" *) integer signed action_pointer;
+    (* dont_touch = "yes" *) integer signed committed_counter;
     (* dont_touch = "yes" *) integer next_available;
     (* dont_touch = "yes" *) trace_repo_data_entry trace;
     bit trace_valid;
@@ -152,7 +153,7 @@ module dm_trace_repository
                     automatic bit next_trace_ready = (action_pointer + 1 == last_addr) && trace_valid;
                     if (next_trace_ready && trace_req) 
                     begin
-                        if (action_pointer == capture_pointer) processing_complete <= 1'b1;
+                        if (committed_counter == capture_pointer + 1) processing_complete <= 1'b1;
                         else
                         begin
                             next_available <= action_pointer+1;
@@ -227,6 +228,7 @@ module dm_trace_repository
                 begin
                     if (active_set_processing_pointer == active_set_retired_pointer) active_set_processing_pointer <= (active_set_processing_pointer + 1) % ACTIVE_SET_ENTRIES;
                     active_set_retired_pointer <= (active_set_retired_pointer + 1) % ACTIVE_SET_ENTRIES;
+                    committed_counter <= committed_counter + 1;
                 end
                 // Case 3 (Trace not done by the processing 
                 else
@@ -235,6 +237,7 @@ module dm_trace_repository
                     active_set[(active_set_retired_pointer + 1) % ACTIVE_SET_ENTRIES].mem_addr <= mem_addr;
                     active_set_retired_pointer <= (active_set_retired_pointer + 1) % ACTIVE_SET_ENTRIES;
                     if (active_set_retired_pointer == active_set_processing_pointer) active_set_processing_pointer <= (active_set_processing_pointer + 1) % ACTIVE_SET_ENTRIES;
+                    committed_counter <= committed_counter + 1;
                 end
                 cache_tracker[mem_addr[INDEXMSB:INDEXLSB]].trace_index <= index_done;
                 cache_tracker[mem_addr[INDEXMSB:INDEXLSB]].mem_addr <= mem_addr;
@@ -276,6 +279,7 @@ module dm_trace_repository
     task initialise_device();
         capture_pointer <= -1;
         action_pointer <= -1;
+        committed_counter <= 0;
         next_available <= 0;
         active_set_processing_pointer <= -1;
         active_set_retired_pointer <= -1;

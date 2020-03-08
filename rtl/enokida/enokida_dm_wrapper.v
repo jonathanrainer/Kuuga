@@ -59,7 +59,7 @@ module enokida_dm_wrapper
     input                       trace_capture_enable,
     input                       lock,
 
-    output [31:0] req_count,
+    output [31:0] trans_count,
     output [31:0] hit_count,
     output [31:0] miss_count
 );
@@ -71,7 +71,7 @@ module enokida_dm_wrapper
         cache_mem_data_gnt_i, cache_mem_data_rvalid_i, cache_mem_data_rdata_i,
         cache_mem_data_req_o, cache_mem_data_addr_o, cache_mem_data_we_o,
         cache_mem_data_be_o, cache_mem_data_wdata_o, trace_in, trace_ready,
-        trace_capture_enable, lock, req_count, hit_count, miss_count
+        trace_capture_enable, lock, trans_count, hit_count, miss_count
     );
 
 endmodule

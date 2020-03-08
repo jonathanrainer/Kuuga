@@ -18,18 +18,17 @@
       </db_ref>
    </db_ref_list>
    <zoom_setting>
-      <ZoomStartTime time="471889626167fs"></ZoomStartTime>
-      <ZoomEndTime time="478376074767fs"></ZoomEndTime>
-      <Cursor1Time time="477005000000fs"></Cursor1Time>
+      <ZoomStartTime time="118318197400fs"></ZoomStartTime>
+      <ZoomEndTime time="153154876896fs"></ZoomEndTime>
+      <Cursor1Time time="130035000000fs"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
-      <NameColumnWidth column_width="295"></NameColumnWidth>
-      <ValueColumnWidth column_width="103"></ValueColumnWidth>
+      <NameColumnWidth column_width="293"></NameColumnWidth>
+      <ValueColumnWidth column_width="66"></ValueColumnWidth>
    </column_width_setting>
-   <WVObjectSize size="9" />
+   <WVObjectSize size="7" />
    <wave_markers>
-      <marker label="" time="506205000000" />
-      <marker label="" time="1003235000000" />
+      <marker label="" time="16485000000" />
    </wave_markers>
    <wvobject type="group" fp_name="group7">
       <obj_property name="label">Generic Signals</obj_property>
@@ -47,103 +46,102 @@
          <obj_property name="ElementShortName">sim_counter[31:0]</obj_property>
          <obj_property name="ObjectShortName">sim_counter[31:0]</obj_property>
       </wvobject>
-      <wvobject type="array" fp_name="/cc_nway_tb/kuuga_inst/kuuga_cc_nway_sim_i/gouram_wrapper_0/counter">
-         <obj_property name="ElementShortName">counter[31:0]</obj_property>
-         <obj_property name="ObjectShortName">counter[31:0]</obj_property>
-         <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
-      </wvobject>
    </wvobject>
    <wvobject type="group" fp_name="group32">
       <obj_property name="label">Godai</obj_property>
       <obj_property name="DisplayName">label</obj_property>
       <obj_property name="isExpanded"></obj_property>
-      <wvobject type="logic" fp_name="/cc_nway_tb/kuuga_inst/kuuga_cc_nway_sim_i/godai_wrapper_0/instr_req_o">
+      <wvobject type="logic" fp_name="/cc_nway_tb/kuuga_inst/new_kuuga_cc_nway_sim_i/godai_wrapper_0/instr_req_o">
          <obj_property name="ElementShortName">instr_req_o</obj_property>
          <obj_property name="ObjectShortName">instr_req_o</obj_property>
       </wvobject>
-      <wvobject type="logic" fp_name="/cc_nway_tb/kuuga_inst/kuuga_cc_nway_sim_i/godai_wrapper_0/instr_gnt_i">
+      <wvobject type="logic" fp_name="/cc_nway_tb/kuuga_inst/new_kuuga_cc_nway_sim_i/godai_wrapper_0/instr_gnt_i">
          <obj_property name="ElementShortName">instr_gnt_i</obj_property>
          <obj_property name="ObjectShortName">instr_gnt_i</obj_property>
       </wvobject>
-      <wvobject type="logic" fp_name="/cc_nway_tb/kuuga_inst/kuuga_cc_nway_sim_i/godai_wrapper_0/instr_rvalid_i">
+      <wvobject type="logic" fp_name="/cc_nway_tb/kuuga_inst/new_kuuga_cc_nway_sim_i/godai_wrapper_0/instr_rvalid_i">
          <obj_property name="ElementShortName">instr_rvalid_i</obj_property>
          <obj_property name="ObjectShortName">instr_rvalid_i</obj_property>
       </wvobject>
-      <wvobject type="array" fp_name="/cc_nway_tb/kuuga_inst/kuuga_cc_nway_sim_i/godai_wrapper_0/instr_addr_o">
+      <wvobject type="array" fp_name="/cc_nway_tb/kuuga_inst/new_kuuga_cc_nway_sim_i/godai_wrapper_0/instr_addr_o">
          <obj_property name="ElementShortName">instr_addr_o[31:0]</obj_property>
          <obj_property name="ObjectShortName">instr_addr_o[31:0]</obj_property>
       </wvobject>
-      <wvobject type="array" fp_name="/cc_nway_tb/kuuga_inst/kuuga_cc_nway_sim_i/godai_wrapper_0/instr_rdata_i">
+      <wvobject type="array" fp_name="/cc_nway_tb/kuuga_inst/new_kuuga_cc_nway_sim_i/godai_wrapper_0/instr_rdata_i">
          <obj_property name="ElementShortName">instr_rdata_i[31:0]</obj_property>
          <obj_property name="ObjectShortName">instr_rdata_i[31:0]</obj_property>
       </wvobject>
-      <wvobject type="logic" fp_name="/cc_nway_tb/kuuga_inst/kuuga_cc_nway_sim_i/godai_wrapper_0/data_req_o">
+      <wvobject type="logic" fp_name="/cc_nway_tb/kuuga_inst/new_kuuga_cc_nway_sim_i/godai_wrapper_0/data_req_o">
          <obj_property name="ElementShortName">data_req_o</obj_property>
          <obj_property name="ObjectShortName">data_req_o</obj_property>
       </wvobject>
-      <wvobject type="logic" fp_name="/cc_nway_tb/kuuga_inst/kuuga_cc_nway_sim_i/godai_wrapper_0/data_gnt_i">
+      <wvobject type="logic" fp_name="/cc_nway_tb/kuuga_inst/new_kuuga_cc_nway_sim_i/godai_wrapper_0/data_gnt_i">
          <obj_property name="ElementShortName">data_gnt_i</obj_property>
          <obj_property name="ObjectShortName">data_gnt_i</obj_property>
       </wvobject>
-      <wvobject type="logic" fp_name="/cc_nway_tb/kuuga_inst/kuuga_cc_nway_sim_i/godai_wrapper_0/data_rvalid_i">
+      <wvobject type="logic" fp_name="/cc_nway_tb/kuuga_inst/new_kuuga_cc_nway_sim_i/godai_wrapper_0/data_rvalid_i">
          <obj_property name="ElementShortName">data_rvalid_i</obj_property>
          <obj_property name="ObjectShortName">data_rvalid_i</obj_property>
       </wvobject>
-      <wvobject type="logic" fp_name="/cc_nway_tb/kuuga_inst/kuuga_cc_nway_sim_i/godai_wrapper_0/data_we_o">
+      <wvobject type="logic" fp_name="/cc_nway_tb/kuuga_inst/new_kuuga_cc_nway_sim_i/godai_wrapper_0/data_we_o">
          <obj_property name="ElementShortName">data_we_o</obj_property>
          <obj_property name="ObjectShortName">data_we_o</obj_property>
       </wvobject>
-      <wvobject type="array" fp_name="/cc_nway_tb/kuuga_inst/kuuga_cc_nway_sim_i/godai_wrapper_0/data_be_o">
+      <wvobject type="array" fp_name="/cc_nway_tb/kuuga_inst/new_kuuga_cc_nway_sim_i/godai_wrapper_0/data_be_o">
          <obj_property name="ElementShortName">data_be_o[3:0]</obj_property>
          <obj_property name="ObjectShortName">data_be_o[3:0]</obj_property>
       </wvobject>
-      <wvobject type="array" fp_name="/cc_nway_tb/kuuga_inst/kuuga_cc_nway_sim_i/godai_wrapper_0/data_addr_o">
+      <wvobject type="array" fp_name="/cc_nway_tb/kuuga_inst/new_kuuga_cc_nway_sim_i/godai_wrapper_0/data_addr_o">
          <obj_property name="ElementShortName">data_addr_o[31:0]</obj_property>
          <obj_property name="ObjectShortName">data_addr_o[31:0]</obj_property>
       </wvobject>
-      <wvobject type="array" fp_name="/cc_nway_tb/kuuga_inst/kuuga_cc_nway_sim_i/godai_wrapper_0/data_wdata_o">
+      <wvobject type="array" fp_name="/cc_nway_tb/kuuga_inst/new_kuuga_cc_nway_sim_i/godai_wrapper_0/data_wdata_o">
          <obj_property name="ElementShortName">data_wdata_o[31:0]</obj_property>
          <obj_property name="ObjectShortName">data_wdata_o[31:0]</obj_property>
       </wvobject>
-      <wvobject type="array" fp_name="/cc_nway_tb/kuuga_inst/kuuga_cc_nway_sim_i/godai_wrapper_0/data_rdata_i">
+      <wvobject type="array" fp_name="/cc_nway_tb/kuuga_inst/new_kuuga_cc_nway_sim_i/godai_wrapper_0/data_rdata_i">
          <obj_property name="ElementShortName">data_rdata_i[31:0]</obj_property>
          <obj_property name="ObjectShortName">data_rdata_i[31:0]</obj_property>
       </wvobject>
-      <wvobject type="logic" fp_name="/cc_nway_tb/kuuga_inst/kuuga_cc_nway_sim_i/godai_wrapper_0/data_err_i">
+      <wvobject type="logic" fp_name="/cc_nway_tb/kuuga_inst/new_kuuga_cc_nway_sim_i/godai_wrapper_0/data_err_i">
          <obj_property name="ElementShortName">data_err_i</obj_property>
          <obj_property name="ObjectShortName">data_err_i</obj_property>
       </wvobject>
-      <wvobject type="array" fp_name="/cc_nway_tb/kuuga_inst/kuuga_cc_nway_sim_i/godai_wrapper_0/irq_i">
+      <wvobject type="array" fp_name="/cc_nway_tb/kuuga_inst/new_kuuga_cc_nway_sim_i/godai_wrapper_0/irq_i">
          <obj_property name="ElementShortName">irq_i[31:0]</obj_property>
          <obj_property name="ObjectShortName">irq_i[31:0]</obj_property>
       </wvobject>
-      <wvobject type="logic" fp_name="/cc_nway_tb/kuuga_inst/kuuga_cc_nway_sim_i/godai_wrapper_0/jump_done_o">
+      <wvobject type="logic" fp_name="/cc_nway_tb/kuuga_inst/new_kuuga_cc_nway_sim_i/godai_wrapper_0/jump_done_o">
          <obj_property name="ElementShortName">jump_done_o</obj_property>
          <obj_property name="ObjectShortName">jump_done_o</obj_property>
       </wvobject>
-      <wvobject type="logic" fp_name="/cc_nway_tb/kuuga_inst/kuuga_cc_nway_sim_i/godai_wrapper_0/branch_decision_o">
+      <wvobject type="logic" fp_name="/cc_nway_tb/kuuga_inst/new_kuuga_cc_nway_sim_i/godai_wrapper_0/branch_decision_o">
          <obj_property name="ElementShortName">branch_decision_o</obj_property>
          <obj_property name="ObjectShortName">branch_decision_o</obj_property>
       </wvobject>
-      <wvobject type="logic" fp_name="/cc_nway_tb/kuuga_inst/kuuga_cc_nway_sim_i/godai_wrapper_0/is_decoding_o">
+      <wvobject type="logic" fp_name="/cc_nway_tb/kuuga_inst/new_kuuga_cc_nway_sim_i/godai_wrapper_0/is_decoding_o">
          <obj_property name="ElementShortName">is_decoding_o</obj_property>
          <obj_property name="ObjectShortName">is_decoding_o</obj_property>
       </wvobject>
-      <wvobject type="logic" fp_name="/cc_nway_tb/kuuga_inst/kuuga_cc_nway_sim_i/godai_wrapper_0/pc_set_o">
+      <wvobject type="logic" fp_name="/cc_nway_tb/kuuga_inst/new_kuuga_cc_nway_sim_i/godai_wrapper_0/pc_set_o">
          <obj_property name="ElementShortName">pc_set_o</obj_property>
          <obj_property name="ObjectShortName">pc_set_o</obj_property>
       </wvobject>
-      <wvobject type="logic" fp_name="/cc_nway_tb/kuuga_inst/kuuga_cc_nway_sim_i/godai_wrapper_0/branch_req_o">
+      <wvobject type="logic" fp_name="/cc_nway_tb/kuuga_inst/new_kuuga_cc_nway_sim_i/godai_wrapper_0/branch_req_o">
          <obj_property name="ElementShortName">branch_req_o</obj_property>
          <obj_property name="ObjectShortName">branch_req_o</obj_property>
       </wvobject>
-      <wvobject type="logic" fp_name="/cc_nway_tb/kuuga_inst/kuuga_cc_nway_sim_i/godai_wrapper_0/id_ready_o">
+      <wvobject type="logic" fp_name="/cc_nway_tb/kuuga_inst/new_kuuga_cc_nway_sim_i/godai_wrapper_0/id_ready_o">
          <obj_property name="ElementShortName">id_ready_o</obj_property>
          <obj_property name="ObjectShortName">id_ready_o</obj_property>
       </wvobject>
-      <wvobject type="array" fp_name="/cc_nway_tb/kuuga_inst/kuuga_cc_nway_sim_i/godai_wrapper_0/instr_count_o">
+      <wvobject type="array" fp_name="/cc_nway_tb/kuuga_inst/new_kuuga_cc_nway_sim_i/godai_wrapper_0/instr_count_o">
          <obj_property name="ElementShortName">instr_count_o[31:0]</obj_property>
          <obj_property name="ObjectShortName">instr_count_o[31:0]</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/cc_nway_tb/kuuga_inst/new_kuuga_cc_nway_sim_i/godai_wrapper_0/inst/mem_req_count_o">
+         <obj_property name="ElementShortName">mem_req_count_o[31:0]</obj_property>
+         <obj_property name="ObjectShortName">mem_req_count_o[31:0]</obj_property>
          <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
       </wvobject>
    </wvobject>
@@ -151,741 +149,267 @@
       <obj_property name="label">Gouram</obj_property>
       <obj_property name="DisplayName">label</obj_property>
       <obj_property name="isExpanded"></obj_property>
-      <wvobject type="logic" fp_name="/cc_nway_tb/kuuga_inst/kuuga_cc_nway_sim_i/gouram_wrapper_0/jump_done">
+      <wvobject type="logic" fp_name="/cc_nway_tb/kuuga_inst/new_kuuga_cc_nway_sim_i/gouram_wrapper_0/jump_done">
          <obj_property name="ElementShortName">jump_done</obj_property>
          <obj_property name="ObjectShortName">jump_done</obj_property>
       </wvobject>
-      <wvobject type="logic" fp_name="/cc_nway_tb/kuuga_inst/kuuga_cc_nway_sim_i/gouram_wrapper_0/branch_decision">
+      <wvobject type="logic" fp_name="/cc_nway_tb/kuuga_inst/new_kuuga_cc_nway_sim_i/gouram_wrapper_0/branch_decision">
          <obj_property name="ElementShortName">branch_decision</obj_property>
          <obj_property name="ObjectShortName">branch_decision</obj_property>
       </wvobject>
-      <wvobject type="logic" fp_name="/cc_nway_tb/kuuga_inst/kuuga_cc_nway_sim_i/gouram_wrapper_0/is_decoding">
+      <wvobject type="logic" fp_name="/cc_nway_tb/kuuga_inst/new_kuuga_cc_nway_sim_i/gouram_wrapper_0/is_decoding">
          <obj_property name="ElementShortName">is_decoding</obj_property>
          <obj_property name="ObjectShortName">is_decoding</obj_property>
       </wvobject>
-      <wvobject type="logic" fp_name="/cc_nway_tb/kuuga_inst/kuuga_cc_nway_sim_i/gouram_wrapper_0/pc_set">
+      <wvobject type="logic" fp_name="/cc_nway_tb/kuuga_inst/new_kuuga_cc_nway_sim_i/gouram_wrapper_0/pc_set">
          <obj_property name="ElementShortName">pc_set</obj_property>
          <obj_property name="ObjectShortName">pc_set</obj_property>
       </wvobject>
-      <wvobject type="logic" fp_name="/cc_nway_tb/kuuga_inst/kuuga_cc_nway_sim_i/gouram_wrapper_0/branch_req">
+      <wvobject type="logic" fp_name="/cc_nway_tb/kuuga_inst/new_kuuga_cc_nway_sim_i/gouram_wrapper_0/branch_req">
          <obj_property name="ElementShortName">branch_req</obj_property>
          <obj_property name="ObjectShortName">branch_req</obj_property>
       </wvobject>
-      <wvobject type="logic" fp_name="/cc_nway_tb/kuuga_inst/kuuga_cc_nway_sim_i/gouram_wrapper_0/id_ready">
+      <wvobject type="logic" fp_name="/cc_nway_tb/kuuga_inst/new_kuuga_cc_nway_sim_i/gouram_wrapper_0/id_ready">
          <obj_property name="ElementShortName">id_ready</obj_property>
          <obj_property name="ObjectShortName">id_ready</obj_property>
       </wvobject>
-      <wvobject type="logic" fp_name="/cc_nway_tb/kuuga_inst/kuuga_cc_nway_sim_i/gouram_wrapper_0/instr_req">
+      <wvobject type="logic" fp_name="/cc_nway_tb/kuuga_inst/new_kuuga_cc_nway_sim_i/gouram_wrapper_0/instr_req">
          <obj_property name="ElementShortName">instr_req</obj_property>
          <obj_property name="ObjectShortName">instr_req</obj_property>
       </wvobject>
-      <wvobject type="logic" fp_name="/cc_nway_tb/kuuga_inst/kuuga_cc_nway_sim_i/gouram_wrapper_0/instr_rvalid">
+      <wvobject type="logic" fp_name="/cc_nway_tb/kuuga_inst/new_kuuga_cc_nway_sim_i/gouram_wrapper_0/instr_rvalid">
          <obj_property name="ElementShortName">instr_rvalid</obj_property>
          <obj_property name="ObjectShortName">instr_rvalid</obj_property>
       </wvobject>
-      <wvobject type="array" fp_name="/cc_nway_tb/kuuga_inst/kuuga_cc_nway_sim_i/gouram_wrapper_0/instr_rdata">
+      <wvobject type="array" fp_name="/cc_nway_tb/kuuga_inst/new_kuuga_cc_nway_sim_i/gouram_wrapper_0/instr_rdata">
          <obj_property name="ElementShortName">instr_rdata[31:0]</obj_property>
          <obj_property name="ObjectShortName">instr_rdata[31:0]</obj_property>
       </wvobject>
-      <wvobject type="array" fp_name="/cc_nway_tb/kuuga_inst/kuuga_cc_nway_sim_i/gouram_wrapper_0/instr_addr">
+      <wvobject type="array" fp_name="/cc_nway_tb/kuuga_inst/new_kuuga_cc_nway_sim_i/gouram_wrapper_0/instr_addr">
          <obj_property name="ElementShortName">instr_addr[31:0]</obj_property>
          <obj_property name="ObjectShortName">instr_addr[31:0]</obj_property>
       </wvobject>
-      <wvobject type="logic" fp_name="/cc_nway_tb/kuuga_inst/kuuga_cc_nway_sim_i/gouram_wrapper_0/instr_gnt">
+      <wvobject type="logic" fp_name="/cc_nway_tb/kuuga_inst/new_kuuga_cc_nway_sim_i/gouram_wrapper_0/instr_gnt">
          <obj_property name="ElementShortName">instr_gnt</obj_property>
          <obj_property name="ObjectShortName">instr_gnt</obj_property>
       </wvobject>
-      <wvobject type="logic" fp_name="/cc_nway_tb/kuuga_inst/kuuga_cc_nway_sim_i/gouram_wrapper_0/data_mem_req">
+      <wvobject type="logic" fp_name="/cc_nway_tb/kuuga_inst/new_kuuga_cc_nway_sim_i/gouram_wrapper_0/data_mem_req">
          <obj_property name="ElementShortName">data_mem_req</obj_property>
          <obj_property name="ObjectShortName">data_mem_req</obj_property>
       </wvobject>
-      <wvobject type="array" fp_name="/cc_nway_tb/kuuga_inst/kuuga_cc_nway_sim_i/gouram_wrapper_0/data_mem_addr">
+      <wvobject type="array" fp_name="/cc_nway_tb/kuuga_inst/new_kuuga_cc_nway_sim_i/gouram_wrapper_0/data_mem_addr">
          <obj_property name="ElementShortName">data_mem_addr[31:0]</obj_property>
          <obj_property name="ObjectShortName">data_mem_addr[31:0]</obj_property>
       </wvobject>
-      <wvobject type="logic" fp_name="/cc_nway_tb/kuuga_inst/kuuga_cc_nway_sim_i/gouram_wrapper_0/data_mem_rvalid">
+      <wvobject type="logic" fp_name="/cc_nway_tb/kuuga_inst/new_kuuga_cc_nway_sim_i/gouram_wrapper_0/data_mem_rvalid">
          <obj_property name="ElementShortName">data_mem_rvalid</obj_property>
          <obj_property name="ObjectShortName">data_mem_rvalid</obj_property>
       </wvobject>
-      <wvobject type="array" fp_name="/cc_nway_tb/kuuga_inst/kuuga_cc_nway_sim_i/gouram_wrapper_0/trace_data_o">
+      <wvobject type="array" fp_name="/cc_nway_tb/kuuga_inst/new_kuuga_cc_nway_sim_i/gouram_wrapper_0/trace_data_o">
          <obj_property name="ElementShortName">trace_data_o[159:0]</obj_property>
          <obj_property name="ObjectShortName">trace_data_o[159:0]</obj_property>
       </wvobject>
-      <wvobject type="logic" fp_name="/cc_nway_tb/kuuga_inst/kuuga_cc_nway_sim_i/gouram_wrapper_0/trace_capture_enable">
+      <wvobject type="logic" fp_name="/cc_nway_tb/kuuga_inst/new_kuuga_cc_nway_sim_i/gouram_wrapper_0/trace_capture_enable">
          <obj_property name="ElementShortName">trace_capture_enable</obj_property>
          <obj_property name="ObjectShortName">trace_capture_enable</obj_property>
       </wvobject>
-      <wvobject type="logic" fp_name="/cc_nway_tb/kuuga_inst/kuuga_cc_nway_sim_i/gouram_wrapper_0/lock">
+      <wvobject type="logic" fp_name="/cc_nway_tb/kuuga_inst/new_kuuga_cc_nway_sim_i/gouram_wrapper_0/lock">
          <obj_property name="ElementShortName">lock</obj_property>
          <obj_property name="ObjectShortName">lock</obj_property>
       </wvobject>
-      <wvobject type="array" fp_name="/cc_nway_tb/kuuga_inst/kuuga_cc_nway_sim_i/gouram_wrapper_0/counter">
+      <wvobject type="logic" fp_name="/cc_nway_tb/kuuga_inst/new_kuuga_cc_nway_sim_i/gouram_wrapper_0/trace_ready">
+         <obj_property name="ElementShortName">trace_ready</obj_property>
+         <obj_property name="ObjectShortName">trace_ready</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/cc_nway_tb/kuuga_inst/new_kuuga_cc_nway_sim_i/gouram_wrapper_0/counter">
          <obj_property name="ElementShortName">counter[31:0]</obj_property>
          <obj_property name="ObjectShortName">counter[31:0]</obj_property>
-         <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
-      </wvobject>
-      <wvobject type="array" fp_name="/cc_nway_tb/kuuga_inst/kuuga_cc_nway_sim_i/gouram_wrapper_0/mem_req_count">
-         <obj_property name="ElementShortName">mem_req_count[31:0]</obj_property>
-         <obj_property name="ObjectShortName">mem_req_count[31:0]</obj_property>
       </wvobject>
    </wvobject>
    <wvobject type="group" fp_name="group170">
       <obj_property name="label">Enokida - Nway</obj_property>
       <obj_property name="DisplayName">label</obj_property>
       <obj_property name="isExpanded"></obj_property>
-      <wvobject type="logic" fp_name="/cc_nway_tb/kuuga_inst/kuuga_cc_nway_sim_i/enokida_nway_wrapper_0/proc_cache_data_req_i">
+      <wvobject type="logic" fp_name="/cc_nway_tb/kuuga_inst/new_kuuga_cc_nway_sim_i/enokida_nway_wrapper_0/proc_cache_data_req_i">
          <obj_property name="ElementShortName">proc_cache_data_req_i</obj_property>
          <obj_property name="ObjectShortName">proc_cache_data_req_i</obj_property>
       </wvobject>
-      <wvobject type="array" fp_name="/cc_nway_tb/kuuga_inst/kuuga_cc_nway_sim_i/enokida_nway_wrapper_0/proc_cache_data_addr_i">
+      <wvobject type="array" fp_name="/cc_nway_tb/kuuga_inst/new_kuuga_cc_nway_sim_i/enokida_nway_wrapper_0/proc_cache_data_addr_i">
          <obj_property name="ElementShortName">proc_cache_data_addr_i[31:0]</obj_property>
          <obj_property name="ObjectShortName">proc_cache_data_addr_i[31:0]</obj_property>
       </wvobject>
-      <wvobject type="logic" fp_name="/cc_nway_tb/kuuga_inst/kuuga_cc_nway_sim_i/enokida_nway_wrapper_0/proc_cache_data_we_i">
+      <wvobject type="logic" fp_name="/cc_nway_tb/kuuga_inst/new_kuuga_cc_nway_sim_i/enokida_nway_wrapper_0/proc_cache_data_we_i">
          <obj_property name="ElementShortName">proc_cache_data_we_i</obj_property>
          <obj_property name="ObjectShortName">proc_cache_data_we_i</obj_property>
       </wvobject>
-      <wvobject type="array" fp_name="/cc_nway_tb/kuuga_inst/kuuga_cc_nway_sim_i/enokida_nway_wrapper_0/proc_cache_data_be_i">
+      <wvobject type="array" fp_name="/cc_nway_tb/kuuga_inst/new_kuuga_cc_nway_sim_i/enokida_nway_wrapper_0/proc_cache_data_be_i">
          <obj_property name="ElementShortName">proc_cache_data_be_i[3:0]</obj_property>
          <obj_property name="ObjectShortName">proc_cache_data_be_i[3:0]</obj_property>
       </wvobject>
-      <wvobject type="array" fp_name="/cc_nway_tb/kuuga_inst/kuuga_cc_nway_sim_i/enokida_nway_wrapper_0/proc_cache_data_wdata_i">
+      <wvobject type="array" fp_name="/cc_nway_tb/kuuga_inst/new_kuuga_cc_nway_sim_i/enokida_nway_wrapper_0/proc_cache_data_wdata_i">
          <obj_property name="ElementShortName">proc_cache_data_wdata_i[31:0]</obj_property>
          <obj_property name="ObjectShortName">proc_cache_data_wdata_i[31:0]</obj_property>
       </wvobject>
-      <wvobject type="logic" fp_name="/cc_nway_tb/kuuga_inst/kuuga_cc_nway_sim_i/enokida_nway_wrapper_0/proc_cache_data_gnt_o">
+      <wvobject type="logic" fp_name="/cc_nway_tb/kuuga_inst/new_kuuga_cc_nway_sim_i/enokida_nway_wrapper_0/proc_cache_data_gnt_o">
          <obj_property name="ElementShortName">proc_cache_data_gnt_o</obj_property>
          <obj_property name="ObjectShortName">proc_cache_data_gnt_o</obj_property>
       </wvobject>
-      <wvobject type="logic" fp_name="/cc_nway_tb/kuuga_inst/kuuga_cc_nway_sim_i/enokida_nway_wrapper_0/proc_cache_data_rvalid_o">
+      <wvobject type="logic" fp_name="/cc_nway_tb/kuuga_inst/new_kuuga_cc_nway_sim_i/enokida_nway_wrapper_0/proc_cache_data_rvalid_o">
          <obj_property name="ElementShortName">proc_cache_data_rvalid_o</obj_property>
          <obj_property name="ObjectShortName">proc_cache_data_rvalid_o</obj_property>
       </wvobject>
-      <wvobject type="array" fp_name="/cc_nway_tb/kuuga_inst/kuuga_cc_nway_sim_i/enokida_nway_wrapper_0/proc_cache_data_rdata_o">
+      <wvobject type="array" fp_name="/cc_nway_tb/kuuga_inst/new_kuuga_cc_nway_sim_i/enokida_nway_wrapper_0/proc_cache_data_rdata_o">
          <obj_property name="ElementShortName">proc_cache_data_rdata_o[31:0]</obj_property>
          <obj_property name="ObjectShortName">proc_cache_data_rdata_o[31:0]</obj_property>
       </wvobject>
-      <wvobject type="logic" fp_name="/cc_nway_tb/kuuga_inst/kuuga_cc_nway_sim_i/enokida_nway_wrapper_0/cache_mem_data_gnt_i">
+      <wvobject type="logic" fp_name="/cc_nway_tb/kuuga_inst/new_kuuga_cc_nway_sim_i/enokida_nway_wrapper_0/cache_mem_data_gnt_i">
          <obj_property name="ElementShortName">cache_mem_data_gnt_i</obj_property>
          <obj_property name="ObjectShortName">cache_mem_data_gnt_i</obj_property>
       </wvobject>
-      <wvobject type="logic" fp_name="/cc_nway_tb/kuuga_inst/kuuga_cc_nway_sim_i/enokida_nway_wrapper_0/cache_mem_data_rvalid_i">
+      <wvobject type="logic" fp_name="/cc_nway_tb/kuuga_inst/new_kuuga_cc_nway_sim_i/enokida_nway_wrapper_0/cache_mem_data_rvalid_i">
          <obj_property name="ElementShortName">cache_mem_data_rvalid_i</obj_property>
          <obj_property name="ObjectShortName">cache_mem_data_rvalid_i</obj_property>
       </wvobject>
-      <wvobject type="array" fp_name="/cc_nway_tb/kuuga_inst/kuuga_cc_nway_sim_i/enokida_nway_wrapper_0/cache_mem_data_rdata_i">
+      <wvobject type="array" fp_name="/cc_nway_tb/kuuga_inst/new_kuuga_cc_nway_sim_i/enokida_nway_wrapper_0/cache_mem_data_rdata_i">
          <obj_property name="ElementShortName">cache_mem_data_rdata_i[31:0]</obj_property>
          <obj_property name="ObjectShortName">cache_mem_data_rdata_i[31:0]</obj_property>
       </wvobject>
-      <wvobject type="logic" fp_name="/cc_nway_tb/kuuga_inst/kuuga_cc_nway_sim_i/enokida_nway_wrapper_0/cache_mem_data_req_o">
+      <wvobject type="logic" fp_name="/cc_nway_tb/kuuga_inst/new_kuuga_cc_nway_sim_i/enokida_nway_wrapper_0/cache_mem_data_req_o">
          <obj_property name="ElementShortName">cache_mem_data_req_o</obj_property>
          <obj_property name="ObjectShortName">cache_mem_data_req_o</obj_property>
       </wvobject>
-      <wvobject type="array" fp_name="/cc_nway_tb/kuuga_inst/kuuga_cc_nway_sim_i/enokida_nway_wrapper_0/cache_mem_data_addr_o">
+      <wvobject type="array" fp_name="/cc_nway_tb/kuuga_inst/new_kuuga_cc_nway_sim_i/enokida_nway_wrapper_0/cache_mem_data_addr_o">
          <obj_property name="ElementShortName">cache_mem_data_addr_o[31:0]</obj_property>
          <obj_property name="ObjectShortName">cache_mem_data_addr_o[31:0]</obj_property>
       </wvobject>
-      <wvobject type="logic" fp_name="/cc_nway_tb/kuuga_inst/kuuga_cc_nway_sim_i/enokida_nway_wrapper_0/cache_mem_data_we_o">
+      <wvobject type="logic" fp_name="/cc_nway_tb/kuuga_inst/new_kuuga_cc_nway_sim_i/enokida_nway_wrapper_0/cache_mem_data_we_o">
          <obj_property name="ElementShortName">cache_mem_data_we_o</obj_property>
          <obj_property name="ObjectShortName">cache_mem_data_we_o</obj_property>
       </wvobject>
-      <wvobject type="array" fp_name="/cc_nway_tb/kuuga_inst/kuuga_cc_nway_sim_i/enokida_nway_wrapper_0/cache_mem_data_be_o">
+      <wvobject type="array" fp_name="/cc_nway_tb/kuuga_inst/new_kuuga_cc_nway_sim_i/enokida_nway_wrapper_0/cache_mem_data_be_o">
          <obj_property name="ElementShortName">cache_mem_data_be_o[3:0]</obj_property>
          <obj_property name="ObjectShortName">cache_mem_data_be_o[3:0]</obj_property>
       </wvobject>
-      <wvobject type="array" fp_name="/cc_nway_tb/kuuga_inst/kuuga_cc_nway_sim_i/enokida_nway_wrapper_0/cache_mem_data_wdata_o">
+      <wvobject type="array" fp_name="/cc_nway_tb/kuuga_inst/new_kuuga_cc_nway_sim_i/enokida_nway_wrapper_0/cache_mem_data_wdata_o">
          <obj_property name="ElementShortName">cache_mem_data_wdata_o[31:0]</obj_property>
          <obj_property name="ObjectShortName">cache_mem_data_wdata_o[31:0]</obj_property>
       </wvobject>
-      <wvobject type="logic" fp_name="/cc_nway_tb/kuuga_inst/kuuga_cc_nway_sim_i/enokida_nway_wrapper_0/trace_ready">
-         <obj_property name="ElementShortName">trace_ready</obj_property>
-         <obj_property name="ObjectShortName">trace_ready</obj_property>
-      </wvobject>
-      <wvobject type="array" fp_name="/cc_nway_tb/kuuga_inst/kuuga_cc_nway_sim_i/enokida_nway_wrapper_0/trace_in">
+      <wvobject type="array" fp_name="/cc_nway_tb/kuuga_inst/new_kuuga_cc_nway_sim_i/enokida_nway_wrapper_0/trace_in">
          <obj_property name="ElementShortName">trace_in[159:0]</obj_property>
          <obj_property name="ObjectShortName">trace_in[159:0]</obj_property>
       </wvobject>
-      <wvobject type="logic" fp_name="/cc_nway_tb/kuuga_inst/kuuga_cc_nway_sim_i/enokida_nway_wrapper_0/trace_capture_enable">
+      <wvobject type="logic" fp_name="/cc_nway_tb/kuuga_inst/new_kuuga_cc_nway_sim_i/enokida_nway_wrapper_0/trace_capture_enable">
          <obj_property name="ElementShortName">trace_capture_enable</obj_property>
          <obj_property name="ObjectShortName">trace_capture_enable</obj_property>
       </wvobject>
-      <wvobject type="logic" fp_name="/cc_nway_tb/kuuga_inst/kuuga_cc_nway_sim_i/enokida_nway_wrapper_0/lock">
+      <wvobject type="logic" fp_name="/cc_nway_tb/kuuga_inst/new_kuuga_cc_nway_sim_i/enokida_nway_wrapper_0/lock">
          <obj_property name="ElementShortName">lock</obj_property>
          <obj_property name="ObjectShortName">lock</obj_property>
       </wvobject>
-      <wvobject type="logic" fp_name="/cc_nway_tb/kuuga_inst/kuuga_cc_nway_sim_i/enokida_nway_wrapper_0/inst/tac/processing_complete">
+      <wvobject type="logic" fp_name="/cc_nway_tb/kuuga_inst/new_kuuga_cc_nway_sim_i/enokida_nway_wrapper_0/inst/tac/processing_complete">
          <obj_property name="ElementShortName">processing_complete</obj_property>
          <obj_property name="ObjectShortName">processing_complete</obj_property>
       </wvobject>
-      <wvobject type="array" fp_name="/cc_nway_tb/kuuga_inst/kuuga_cc_nway_sim_i/enokida_nway_wrapper_0/req_count">
-         <obj_property name="ElementShortName">req_count[31:0]</obj_property>
-         <obj_property name="ObjectShortName">req_count[31:0]</obj_property>
+      <wvobject type="logic" fp_name="/cc_nway_tb/kuuga_inst/new_kuuga_cc_nway_sim_i/enokida_nway_wrapper_0/trace_ready">
+         <obj_property name="ElementShortName">trace_ready</obj_property>
+         <obj_property name="ObjectShortName">trace_ready</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/cc_nway_tb/kuuga_inst/new_kuuga_cc_nway_sim_i/enokida_nway_wrapper_0/inst/trans_count">
+         <obj_property name="ElementShortName">trans_count[31:0]</obj_property>
+         <obj_property name="ObjectShortName">trans_count[31:0]</obj_property>
          <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
       </wvobject>
-      <wvobject type="array" fp_name="/cc_nway_tb/kuuga_inst/kuuga_cc_nway_sim_i/enokida_nway_wrapper_0/hit_count">
+      <wvobject type="array" fp_name="/cc_nway_tb/kuuga_inst/new_kuuga_cc_nway_sim_i/enokida_nway_wrapper_0/hit_count">
          <obj_property name="ElementShortName">hit_count[31:0]</obj_property>
          <obj_property name="ObjectShortName">hit_count[31:0]</obj_property>
          <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
       </wvobject>
-      <wvobject type="array" fp_name="/cc_nway_tb/kuuga_inst/kuuga_cc_nway_sim_i/enokida_nway_wrapper_0/miss_count">
+      <wvobject type="array" fp_name="/cc_nway_tb/kuuga_inst/new_kuuga_cc_nway_sim_i/enokida_nway_wrapper_0/miss_count">
          <obj_property name="ElementShortName">miss_count[31:0]</obj_property>
          <obj_property name="ObjectShortName">miss_count[31:0]</obj_property>
          <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
       </wvobject>
-      <wvobject type="logic" fp_name="/cc_nway_tb/kuuga_inst/kuuga_cc_nway_sim_i/enokida_nway_wrapper_0/inst/tac/trace_repo/processing_flag">
-         <obj_property name="ElementShortName">processing_flag</obj_property>
-         <obj_property name="ObjectShortName">processing_flag</obj_property>
+      <wvobject type="array" fp_name="/cc_nway_tb/kuuga_inst/new_kuuga_cc_nway_sim_i/enokida_nway_wrapper_0/index_affected">
+         <obj_property name="ElementShortName">index_affected[6:0]</obj_property>
+         <obj_property name="ObjectShortName">index_affected[6:0]</obj_property>
       </wvobject>
-      <wvobject type="array" fp_name="/cc_nway_tb/kuuga_inst/kuuga_cc_nway_sim_i/enokida_nway_wrapper_0/inst/tac/trace_repo/capture_pointer">
-         <obj_property name="ElementShortName">capture_pointer[31:0]</obj_property>
-         <obj_property name="ObjectShortName">capture_pointer[31:0]</obj_property>
-         <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+      <wvobject type="array" fp_name="/cc_nway_tb/kuuga_inst/new_kuuga_cc_nway_sim_i/enokida_nway_wrapper_0/data_read_o">
+         <obj_property name="ElementShortName">data_read_o[31:0]</obj_property>
+         <obj_property name="ObjectShortName">data_read_o[31:0]</obj_property>
       </wvobject>
-      <wvobject type="array" fp_name="/cc_nway_tb/kuuga_inst/kuuga_cc_nway_sim_i/enokida_nway_wrapper_0/inst/tac/trace_repo/action_pointer">
-         <obj_property name="ElementShortName">action_pointer[31:0]</obj_property>
-         <obj_property name="ObjectShortName">action_pointer[31:0]</obj_property>
-         <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+      <wvobject type="array" fp_name="/cc_nway_tb/kuuga_inst/new_kuuga_cc_nway_sim_i/enokida_nway_wrapper_0/data_write_o">
+         <obj_property name="ElementShortName">data_write_o[31:0]</obj_property>
+         <obj_property name="ObjectShortName">data_write_o[31:0]</obj_property>
       </wvobject>
-      <wvobject type="array" fp_name="/cc_nway_tb/kuuga_inst/kuuga_cc_nway_sim_i/enokida_nway_wrapper_0/inst/tac/trace_repo/committed_counter">
-         <obj_property name="ElementShortName">committed_counter[31:0]</obj_property>
-         <obj_property name="ObjectShortName">committed_counter[31:0]</obj_property>
-         <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+      <wvobject type="array" fp_name="/cc_nway_tb/kuuga_inst/new_kuuga_cc_nway_sim_i/enokida_nway_wrapper_0/index_done_o">
+         <obj_property name="ElementShortName">index_done_o[15:0]</obj_property>
+         <obj_property name="ObjectShortName">index_done_o[15:0]</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/cc_nway_tb/kuuga_inst/new_kuuga_cc_nway_sim_i/enokida_nway_wrapper_0/cache_index_o">
+         <obj_property name="ElementShortName">cache_index_o[6:0]</obj_property>
+         <obj_property name="ObjectShortName">cache_index_o[6:0]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/cc_nway_tb/kuuga_inst/new_kuuga_cc_nway_sim_i/enokida_nway_wrapper_0/mark_done_o">
+         <obj_property name="ElementShortName">mark_done_o</obj_property>
+         <obj_property name="ObjectShortName">mark_done_o</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/cc_nway_tb/kuuga_inst/new_kuuga_cc_nway_sim_i/enokida_nway_wrapper_0/processing_flag_o">
+         <obj_property name="ElementShortName">processing_flag_o</obj_property>
+         <obj_property name="ObjectShortName">processing_flag_o</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/cc_nway_tb/kuuga_inst/new_kuuga_cc_nway_sim_i/enokida_nway_wrapper_0/mark_done_valid_o">
+         <obj_property name="ElementShortName">mark_done_valid_o</obj_property>
+         <obj_property name="ObjectShortName">mark_done_valid_o</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/cc_nway_tb/kuuga_inst/new_kuuga_cc_nway_sim_i/enokida_nway_wrapper_0/mem_trace_flag_o">
+         <obj_property name="ElementShortName">mem_trace_flag_o</obj_property>
+         <obj_property name="ObjectShortName">mem_trace_flag_o</obj_property>
       </wvobject>
    </wvobject>
-   <wvobject type="array" fp_name="/cc_nway_tb/kuuga_inst/kuuga_cc_nway_sim_i/enokida_nway_wrapper_0/inst/tac/nway_cache/ctag/tag_mem">
-      <obj_property name="ElementShortName">tag_mem[0:127]</obj_property>
-      <obj_property name="ObjectShortName">tag_mem[0:127]</obj_property>
-   </wvobject>
-   <wvobject type="array" fp_name="/cc_nway_tb/kuuga_inst/kuuga_cc_nway_sim_i/enokida_nway_wrapper_0/inst/tac/nway_cache/cdata/data_mem">
-      <obj_property name="ElementShortName">data_mem[0:127][31:0]</obj_property>
-      <obj_property name="ObjectShortName">data_mem[0:127][31:0]</obj_property>
-   </wvobject>
-   <wvobject type="array" fp_name="/cc_nway_tb/kuuga_inst/kuuga_cc_nway_sim_i/godai_wrapper_0/inst/core/id_stage_i/registers_i/rf_reg">
-      <obj_property name="ElementShortName">rf_reg[31:0][31:0]</obj_property>
-      <obj_property name="ObjectShortName">rf_reg[31:0][31:0]</obj_property>
-   </wvobject>
-   <wvobject type="array" fp_name="/cc_nway_tb/kuuga_inst/kuuga_cc_nway_sim_i/enokida_nway_wrapper_0/inst/tac/trace_repo/cache_tracker">
-      <obj_property name="ElementShortName">cache_tracker[127:0]</obj_property>
-      <obj_property name="ObjectShortName">cache_tracker[127:0]</obj_property>
-      <wvobject type="array" fp_name="/cc_nway_tb/kuuga_inst/kuuga_cc_nway_sim_i/enokida_nway_wrapper_0/inst/tac/trace_repo/cache_tracker[127]">
-         <obj_property name="ElementShortName">[127]</obj_property>
-         <obj_property name="ObjectShortName">[127]</obj_property>
-      </wvobject>
-      <wvobject type="array" fp_name="/cc_nway_tb/kuuga_inst/kuuga_cc_nway_sim_i/enokida_nway_wrapper_0/inst/tac/trace_repo/cache_tracker[126]">
-         <obj_property name="ElementShortName">[126]</obj_property>
-         <obj_property name="ObjectShortName">[126]</obj_property>
-      </wvobject>
-      <wvobject type="array" fp_name="/cc_nway_tb/kuuga_inst/kuuga_cc_nway_sim_i/enokida_nway_wrapper_0/inst/tac/trace_repo/cache_tracker[125]">
-         <obj_property name="ElementShortName">[125]</obj_property>
-         <obj_property name="ObjectShortName">[125]</obj_property>
-      </wvobject>
-      <wvobject type="array" fp_name="/cc_nway_tb/kuuga_inst/kuuga_cc_nway_sim_i/enokida_nway_wrapper_0/inst/tac/trace_repo/cache_tracker[124]">
-         <obj_property name="ElementShortName">[124]</obj_property>
-         <obj_property name="ObjectShortName">[124]</obj_property>
-      </wvobject>
-      <wvobject type="array" fp_name="/cc_nway_tb/kuuga_inst/kuuga_cc_nway_sim_i/enokida_nway_wrapper_0/inst/tac/trace_repo/cache_tracker[123]">
-         <obj_property name="ElementShortName">[123]</obj_property>
-         <obj_property name="ObjectShortName">[123]</obj_property>
-      </wvobject>
-      <wvobject type="array" fp_name="/cc_nway_tb/kuuga_inst/kuuga_cc_nway_sim_i/enokida_nway_wrapper_0/inst/tac/trace_repo/cache_tracker[122]">
-         <obj_property name="ElementShortName">[122]</obj_property>
-         <obj_property name="ObjectShortName">[122]</obj_property>
-      </wvobject>
-      <wvobject type="array" fp_name="/cc_nway_tb/kuuga_inst/kuuga_cc_nway_sim_i/enokida_nway_wrapper_0/inst/tac/trace_repo/cache_tracker[121]">
-         <obj_property name="ElementShortName">[121]</obj_property>
-         <obj_property name="ObjectShortName">[121]</obj_property>
-      </wvobject>
-      <wvobject type="array" fp_name="/cc_nway_tb/kuuga_inst/kuuga_cc_nway_sim_i/enokida_nway_wrapper_0/inst/tac/trace_repo/cache_tracker[120]">
-         <obj_property name="ElementShortName">[120]</obj_property>
-         <obj_property name="ObjectShortName">[120]</obj_property>
-      </wvobject>
-      <wvobject type="array" fp_name="/cc_nway_tb/kuuga_inst/kuuga_cc_nway_sim_i/enokida_nway_wrapper_0/inst/tac/trace_repo/cache_tracker[119]">
-         <obj_property name="ElementShortName">[119]</obj_property>
-         <obj_property name="ObjectShortName">[119]</obj_property>
-      </wvobject>
-      <wvobject type="array" fp_name="/cc_nway_tb/kuuga_inst/kuuga_cc_nway_sim_i/enokida_nway_wrapper_0/inst/tac/trace_repo/cache_tracker[118]">
-         <obj_property name="ElementShortName">[118]</obj_property>
-         <obj_property name="ObjectShortName">[118]</obj_property>
-      </wvobject>
-      <wvobject type="array" fp_name="/cc_nway_tb/kuuga_inst/kuuga_cc_nway_sim_i/enokida_nway_wrapper_0/inst/tac/trace_repo/cache_tracker[117]">
-         <obj_property name="ElementShortName">[117]</obj_property>
-         <obj_property name="ObjectShortName">[117]</obj_property>
-      </wvobject>
-      <wvobject type="array" fp_name="/cc_nway_tb/kuuga_inst/kuuga_cc_nway_sim_i/enokida_nway_wrapper_0/inst/tac/trace_repo/cache_tracker[116]">
-         <obj_property name="ElementShortName">[116]</obj_property>
-         <obj_property name="ObjectShortName">[116]</obj_property>
-      </wvobject>
-      <wvobject type="array" fp_name="/cc_nway_tb/kuuga_inst/kuuga_cc_nway_sim_i/enokida_nway_wrapper_0/inst/tac/trace_repo/cache_tracker[115]">
-         <obj_property name="ElementShortName">[115]</obj_property>
-         <obj_property name="ObjectShortName">[115]</obj_property>
-      </wvobject>
-      <wvobject type="array" fp_name="/cc_nway_tb/kuuga_inst/kuuga_cc_nway_sim_i/enokida_nway_wrapper_0/inst/tac/trace_repo/cache_tracker[114]">
-         <obj_property name="ElementShortName">[114]</obj_property>
-         <obj_property name="ObjectShortName">[114]</obj_property>
-      </wvobject>
-      <wvobject type="array" fp_name="/cc_nway_tb/kuuga_inst/kuuga_cc_nway_sim_i/enokida_nway_wrapper_0/inst/tac/trace_repo/cache_tracker[113]">
-         <obj_property name="ElementShortName">[113]</obj_property>
-         <obj_property name="ObjectShortName">[113]</obj_property>
-      </wvobject>
-      <wvobject type="array" fp_name="/cc_nway_tb/kuuga_inst/kuuga_cc_nway_sim_i/enokida_nway_wrapper_0/inst/tac/trace_repo/cache_tracker[112]">
-         <obj_property name="ElementShortName">[112]</obj_property>
-         <obj_property name="ObjectShortName">[112]</obj_property>
-      </wvobject>
-      <wvobject type="array" fp_name="/cc_nway_tb/kuuga_inst/kuuga_cc_nway_sim_i/enokida_nway_wrapper_0/inst/tac/trace_repo/cache_tracker[111]">
-         <obj_property name="ElementShortName">[111]</obj_property>
-         <obj_property name="ObjectShortName">[111]</obj_property>
-      </wvobject>
-      <wvobject type="array" fp_name="/cc_nway_tb/kuuga_inst/kuuga_cc_nway_sim_i/enokida_nway_wrapper_0/inst/tac/trace_repo/cache_tracker[110]">
-         <obj_property name="ElementShortName">[110]</obj_property>
-         <obj_property name="ObjectShortName">[110]</obj_property>
-      </wvobject>
-      <wvobject type="array" fp_name="/cc_nway_tb/kuuga_inst/kuuga_cc_nway_sim_i/enokida_nway_wrapper_0/inst/tac/trace_repo/cache_tracker[109]">
-         <obj_property name="ElementShortName">[109]</obj_property>
-         <obj_property name="ObjectShortName">[109]</obj_property>
-      </wvobject>
-      <wvobject type="array" fp_name="/cc_nway_tb/kuuga_inst/kuuga_cc_nway_sim_i/enokida_nway_wrapper_0/inst/tac/trace_repo/cache_tracker[108]">
-         <obj_property name="ElementShortName">[108]</obj_property>
-         <obj_property name="ObjectShortName">[108]</obj_property>
-      </wvobject>
-      <wvobject type="array" fp_name="/cc_nway_tb/kuuga_inst/kuuga_cc_nway_sim_i/enokida_nway_wrapper_0/inst/tac/trace_repo/cache_tracker[107]">
-         <obj_property name="ElementShortName">[107]</obj_property>
-         <obj_property name="ObjectShortName">[107]</obj_property>
-      </wvobject>
-      <wvobject type="array" fp_name="/cc_nway_tb/kuuga_inst/kuuga_cc_nway_sim_i/enokida_nway_wrapper_0/inst/tac/trace_repo/cache_tracker[106]">
-         <obj_property name="ElementShortName">[106]</obj_property>
-         <obj_property name="ObjectShortName">[106]</obj_property>
-      </wvobject>
-      <wvobject type="array" fp_name="/cc_nway_tb/kuuga_inst/kuuga_cc_nway_sim_i/enokida_nway_wrapper_0/inst/tac/trace_repo/cache_tracker[105]">
-         <obj_property name="ElementShortName">[105]</obj_property>
-         <obj_property name="ObjectShortName">[105]</obj_property>
-      </wvobject>
-      <wvobject type="array" fp_name="/cc_nway_tb/kuuga_inst/kuuga_cc_nway_sim_i/enokida_nway_wrapper_0/inst/tac/trace_repo/cache_tracker[104]">
-         <obj_property name="ElementShortName">[104]</obj_property>
-         <obj_property name="ObjectShortName">[104]</obj_property>
-      </wvobject>
-      <wvobject type="array" fp_name="/cc_nway_tb/kuuga_inst/kuuga_cc_nway_sim_i/enokida_nway_wrapper_0/inst/tac/trace_repo/cache_tracker[103]">
-         <obj_property name="ElementShortName">[103]</obj_property>
-         <obj_property name="ObjectShortName">[103]</obj_property>
-      </wvobject>
-      <wvobject type="array" fp_name="/cc_nway_tb/kuuga_inst/kuuga_cc_nway_sim_i/enokida_nway_wrapper_0/inst/tac/trace_repo/cache_tracker[102]">
-         <obj_property name="ElementShortName">[102]</obj_property>
-         <obj_property name="ObjectShortName">[102]</obj_property>
-      </wvobject>
-      <wvobject type="array" fp_name="/cc_nway_tb/kuuga_inst/kuuga_cc_nway_sim_i/enokida_nway_wrapper_0/inst/tac/trace_repo/cache_tracker[101]">
-         <obj_property name="ElementShortName">[101]</obj_property>
-         <obj_property name="ObjectShortName">[101]</obj_property>
-      </wvobject>
-      <wvobject type="array" fp_name="/cc_nway_tb/kuuga_inst/kuuga_cc_nway_sim_i/enokida_nway_wrapper_0/inst/tac/trace_repo/cache_tracker[100]">
-         <obj_property name="ElementShortName">[100]</obj_property>
-         <obj_property name="ObjectShortName">[100]</obj_property>
-      </wvobject>
-      <wvobject type="array" fp_name="/cc_nway_tb/kuuga_inst/kuuga_cc_nway_sim_i/enokida_nway_wrapper_0/inst/tac/trace_repo/cache_tracker[99]">
-         <obj_property name="ElementShortName">[99]</obj_property>
-         <obj_property name="ObjectShortName">[99]</obj_property>
-         <obj_property name="isExpanded"></obj_property>
-      </wvobject>
-      <wvobject type="array" fp_name="/cc_nway_tb/kuuga_inst/kuuga_cc_nway_sim_i/enokida_nway_wrapper_0/inst/tac/trace_repo/cache_tracker[98]">
-         <obj_property name="ElementShortName">[98]</obj_property>
-         <obj_property name="ObjectShortName">[98]</obj_property>
-      </wvobject>
-      <wvobject type="array" fp_name="/cc_nway_tb/kuuga_inst/kuuga_cc_nway_sim_i/enokida_nway_wrapper_0/inst/tac/trace_repo/cache_tracker[97]">
-         <obj_property name="ElementShortName">[97]</obj_property>
-         <obj_property name="ObjectShortName">[97]</obj_property>
-      </wvobject>
-      <wvobject type="array" fp_name="/cc_nway_tb/kuuga_inst/kuuga_cc_nway_sim_i/enokida_nway_wrapper_0/inst/tac/trace_repo/cache_tracker[96]">
-         <obj_property name="ElementShortName">[96]</obj_property>
-         <obj_property name="ObjectShortName">[96]</obj_property>
-      </wvobject>
-      <wvobject type="array" fp_name="/cc_nway_tb/kuuga_inst/kuuga_cc_nway_sim_i/enokida_nway_wrapper_0/inst/tac/trace_repo/cache_tracker[95]">
-         <obj_property name="ElementShortName">[95]</obj_property>
-         <obj_property name="ObjectShortName">[95]</obj_property>
-      </wvobject>
-      <wvobject type="array" fp_name="/cc_nway_tb/kuuga_inst/kuuga_cc_nway_sim_i/enokida_nway_wrapper_0/inst/tac/trace_repo/cache_tracker[94]">
-         <obj_property name="ElementShortName">[94]</obj_property>
-         <obj_property name="ObjectShortName">[94]</obj_property>
-      </wvobject>
-      <wvobject type="array" fp_name="/cc_nway_tb/kuuga_inst/kuuga_cc_nway_sim_i/enokida_nway_wrapper_0/inst/tac/trace_repo/cache_tracker[93]">
-         <obj_property name="ElementShortName">[93]</obj_property>
-         <obj_property name="ObjectShortName">[93]</obj_property>
-      </wvobject>
-      <wvobject type="array" fp_name="/cc_nway_tb/kuuga_inst/kuuga_cc_nway_sim_i/enokida_nway_wrapper_0/inst/tac/trace_repo/cache_tracker[92]">
-         <obj_property name="ElementShortName">[92]</obj_property>
-         <obj_property name="ObjectShortName">[92]</obj_property>
-      </wvobject>
-      <wvobject type="array" fp_name="/cc_nway_tb/kuuga_inst/kuuga_cc_nway_sim_i/enokida_nway_wrapper_0/inst/tac/trace_repo/cache_tracker[91]">
-         <obj_property name="ElementShortName">[91]</obj_property>
-         <obj_property name="ObjectShortName">[91]</obj_property>
-      </wvobject>
-      <wvobject type="array" fp_name="/cc_nway_tb/kuuga_inst/kuuga_cc_nway_sim_i/enokida_nway_wrapper_0/inst/tac/trace_repo/cache_tracker[90]">
-         <obj_property name="ElementShortName">[90]</obj_property>
-         <obj_property name="ObjectShortName">[90]</obj_property>
-      </wvobject>
-      <wvobject type="array" fp_name="/cc_nway_tb/kuuga_inst/kuuga_cc_nway_sim_i/enokida_nway_wrapper_0/inst/tac/trace_repo/cache_tracker[89]">
-         <obj_property name="ElementShortName">[89]</obj_property>
-         <obj_property name="ObjectShortName">[89]</obj_property>
-      </wvobject>
-      <wvobject type="array" fp_name="/cc_nway_tb/kuuga_inst/kuuga_cc_nway_sim_i/enokida_nway_wrapper_0/inst/tac/trace_repo/cache_tracker[88]">
-         <obj_property name="ElementShortName">[88]</obj_property>
-         <obj_property name="ObjectShortName">[88]</obj_property>
-      </wvobject>
-      <wvobject type="array" fp_name="/cc_nway_tb/kuuga_inst/kuuga_cc_nway_sim_i/enokida_nway_wrapper_0/inst/tac/trace_repo/cache_tracker[87]">
-         <obj_property name="ElementShortName">[87]</obj_property>
-         <obj_property name="ObjectShortName">[87]</obj_property>
-      </wvobject>
-      <wvobject type="array" fp_name="/cc_nway_tb/kuuga_inst/kuuga_cc_nway_sim_i/enokida_nway_wrapper_0/inst/tac/trace_repo/cache_tracker[86]">
-         <obj_property name="ElementShortName">[86]</obj_property>
-         <obj_property name="ObjectShortName">[86]</obj_property>
-      </wvobject>
-      <wvobject type="array" fp_name="/cc_nway_tb/kuuga_inst/kuuga_cc_nway_sim_i/enokida_nway_wrapper_0/inst/tac/trace_repo/cache_tracker[85]">
-         <obj_property name="ElementShortName">[85]</obj_property>
-         <obj_property name="ObjectShortName">[85]</obj_property>
-      </wvobject>
-      <wvobject type="array" fp_name="/cc_nway_tb/kuuga_inst/kuuga_cc_nway_sim_i/enokida_nway_wrapper_0/inst/tac/trace_repo/cache_tracker[84]">
-         <obj_property name="ElementShortName">[84]</obj_property>
-         <obj_property name="ObjectShortName">[84]</obj_property>
-      </wvobject>
-      <wvobject type="array" fp_name="/cc_nway_tb/kuuga_inst/kuuga_cc_nway_sim_i/enokida_nway_wrapper_0/inst/tac/trace_repo/cache_tracker[83]">
-         <obj_property name="ElementShortName">[83]</obj_property>
-         <obj_property name="ObjectShortName">[83]</obj_property>
-      </wvobject>
-      <wvobject type="array" fp_name="/cc_nway_tb/kuuga_inst/kuuga_cc_nway_sim_i/enokida_nway_wrapper_0/inst/tac/trace_repo/cache_tracker[82]">
-         <obj_property name="ElementShortName">[82]</obj_property>
-         <obj_property name="ObjectShortName">[82]</obj_property>
-      </wvobject>
-      <wvobject type="array" fp_name="/cc_nway_tb/kuuga_inst/kuuga_cc_nway_sim_i/enokida_nway_wrapper_0/inst/tac/trace_repo/cache_tracker[81]">
-         <obj_property name="ElementShortName">[81]</obj_property>
-         <obj_property name="ObjectShortName">[81]</obj_property>
-      </wvobject>
-      <wvobject type="array" fp_name="/cc_nway_tb/kuuga_inst/kuuga_cc_nway_sim_i/enokida_nway_wrapper_0/inst/tac/trace_repo/cache_tracker[80]">
-         <obj_property name="ElementShortName">[80]</obj_property>
-         <obj_property name="ObjectShortName">[80]</obj_property>
-      </wvobject>
-      <wvobject type="array" fp_name="/cc_nway_tb/kuuga_inst/kuuga_cc_nway_sim_i/enokida_nway_wrapper_0/inst/tac/trace_repo/cache_tracker[79]">
-         <obj_property name="ElementShortName">[79]</obj_property>
-         <obj_property name="ObjectShortName">[79]</obj_property>
-      </wvobject>
-      <wvobject type="array" fp_name="/cc_nway_tb/kuuga_inst/kuuga_cc_nway_sim_i/enokida_nway_wrapper_0/inst/tac/trace_repo/cache_tracker[78]">
-         <obj_property name="ElementShortName">[78]</obj_property>
-         <obj_property name="ObjectShortName">[78]</obj_property>
-      </wvobject>
-      <wvobject type="array" fp_name="/cc_nway_tb/kuuga_inst/kuuga_cc_nway_sim_i/enokida_nway_wrapper_0/inst/tac/trace_repo/cache_tracker[77]">
-         <obj_property name="ElementShortName">[77]</obj_property>
-         <obj_property name="ObjectShortName">[77]</obj_property>
-      </wvobject>
-      <wvobject type="array" fp_name="/cc_nway_tb/kuuga_inst/kuuga_cc_nway_sim_i/enokida_nway_wrapper_0/inst/tac/trace_repo/cache_tracker[76]">
-         <obj_property name="ElementShortName">[76]</obj_property>
-         <obj_property name="ObjectShortName">[76]</obj_property>
-      </wvobject>
-      <wvobject type="array" fp_name="/cc_nway_tb/kuuga_inst/kuuga_cc_nway_sim_i/enokida_nway_wrapper_0/inst/tac/trace_repo/cache_tracker[75]">
-         <obj_property name="ElementShortName">[75]</obj_property>
-         <obj_property name="ObjectShortName">[75]</obj_property>
-      </wvobject>
-      <wvobject type="array" fp_name="/cc_nway_tb/kuuga_inst/kuuga_cc_nway_sim_i/enokida_nway_wrapper_0/inst/tac/trace_repo/cache_tracker[74]">
-         <obj_property name="ElementShortName">[74]</obj_property>
-         <obj_property name="ObjectShortName">[74]</obj_property>
-      </wvobject>
-      <wvobject type="array" fp_name="/cc_nway_tb/kuuga_inst/kuuga_cc_nway_sim_i/enokida_nway_wrapper_0/inst/tac/trace_repo/cache_tracker[73]">
-         <obj_property name="ElementShortName">[73]</obj_property>
-         <obj_property name="ObjectShortName">[73]</obj_property>
-      </wvobject>
-      <wvobject type="array" fp_name="/cc_nway_tb/kuuga_inst/kuuga_cc_nway_sim_i/enokida_nway_wrapper_0/inst/tac/trace_repo/cache_tracker[72]">
-         <obj_property name="ElementShortName">[72]</obj_property>
-         <obj_property name="ObjectShortName">[72]</obj_property>
-      </wvobject>
-      <wvobject type="array" fp_name="/cc_nway_tb/kuuga_inst/kuuga_cc_nway_sim_i/enokida_nway_wrapper_0/inst/tac/trace_repo/cache_tracker[71]">
-         <obj_property name="ElementShortName">[71]</obj_property>
-         <obj_property name="ObjectShortName">[71]</obj_property>
-      </wvobject>
-      <wvobject type="array" fp_name="/cc_nway_tb/kuuga_inst/kuuga_cc_nway_sim_i/enokida_nway_wrapper_0/inst/tac/trace_repo/cache_tracker[70]">
-         <obj_property name="ElementShortName">[70]</obj_property>
-         <obj_property name="ObjectShortName">[70]</obj_property>
-      </wvobject>
-      <wvobject type="array" fp_name="/cc_nway_tb/kuuga_inst/kuuga_cc_nway_sim_i/enokida_nway_wrapper_0/inst/tac/trace_repo/cache_tracker[69]">
-         <obj_property name="ElementShortName">[69]</obj_property>
-         <obj_property name="ObjectShortName">[69]</obj_property>
-      </wvobject>
-      <wvobject type="array" fp_name="/cc_nway_tb/kuuga_inst/kuuga_cc_nway_sim_i/enokida_nway_wrapper_0/inst/tac/trace_repo/cache_tracker[68]">
-         <obj_property name="ElementShortName">[68]</obj_property>
-         <obj_property name="ObjectShortName">[68]</obj_property>
-      </wvobject>
-      <wvobject type="array" fp_name="/cc_nway_tb/kuuga_inst/kuuga_cc_nway_sim_i/enokida_nway_wrapper_0/inst/tac/trace_repo/cache_tracker[67]">
-         <obj_property name="ElementShortName">[67]</obj_property>
-         <obj_property name="ObjectShortName">[67]</obj_property>
-         <obj_property name="isExpanded"></obj_property>
-      </wvobject>
-      <wvobject type="array" fp_name="/cc_nway_tb/kuuga_inst/kuuga_cc_nway_sim_i/enokida_nway_wrapper_0/inst/tac/trace_repo/cache_tracker[66]">
-         <obj_property name="ElementShortName">[66]</obj_property>
-         <obj_property name="ObjectShortName">[66]</obj_property>
-      </wvobject>
-      <wvobject type="array" fp_name="/cc_nway_tb/kuuga_inst/kuuga_cc_nway_sim_i/enokida_nway_wrapper_0/inst/tac/trace_repo/cache_tracker[65]">
-         <obj_property name="ElementShortName">[65]</obj_property>
-         <obj_property name="ObjectShortName">[65]</obj_property>
-      </wvobject>
-      <wvobject type="array" fp_name="/cc_nway_tb/kuuga_inst/kuuga_cc_nway_sim_i/enokida_nway_wrapper_0/inst/tac/trace_repo/cache_tracker[64]">
-         <obj_property name="ElementShortName">[64]</obj_property>
-         <obj_property name="ObjectShortName">[64]</obj_property>
-      </wvobject>
-      <wvobject type="array" fp_name="/cc_nway_tb/kuuga_inst/kuuga_cc_nway_sim_i/enokida_nway_wrapper_0/inst/tac/trace_repo/cache_tracker[63]">
-         <obj_property name="ElementShortName">[63]</obj_property>
-         <obj_property name="ObjectShortName">[63]</obj_property>
-      </wvobject>
-      <wvobject type="array" fp_name="/cc_nway_tb/kuuga_inst/kuuga_cc_nway_sim_i/enokida_nway_wrapper_0/inst/tac/trace_repo/cache_tracker[62]">
-         <obj_property name="ElementShortName">[62]</obj_property>
-         <obj_property name="ObjectShortName">[62]</obj_property>
-      </wvobject>
-      <wvobject type="array" fp_name="/cc_nway_tb/kuuga_inst/kuuga_cc_nway_sim_i/enokida_nway_wrapper_0/inst/tac/trace_repo/cache_tracker[61]">
-         <obj_property name="ElementShortName">[61]</obj_property>
-         <obj_property name="ObjectShortName">[61]</obj_property>
-      </wvobject>
-      <wvobject type="array" fp_name="/cc_nway_tb/kuuga_inst/kuuga_cc_nway_sim_i/enokida_nway_wrapper_0/inst/tac/trace_repo/cache_tracker[60]">
-         <obj_property name="ElementShortName">[60]</obj_property>
-         <obj_property name="ObjectShortName">[60]</obj_property>
-      </wvobject>
-      <wvobject type="array" fp_name="/cc_nway_tb/kuuga_inst/kuuga_cc_nway_sim_i/enokida_nway_wrapper_0/inst/tac/trace_repo/cache_tracker[59]">
-         <obj_property name="ElementShortName">[59]</obj_property>
-         <obj_property name="ObjectShortName">[59]</obj_property>
-      </wvobject>
-      <wvobject type="array" fp_name="/cc_nway_tb/kuuga_inst/kuuga_cc_nway_sim_i/enokida_nway_wrapper_0/inst/tac/trace_repo/cache_tracker[58]">
-         <obj_property name="ElementShortName">[58]</obj_property>
-         <obj_property name="ObjectShortName">[58]</obj_property>
-      </wvobject>
-      <wvobject type="array" fp_name="/cc_nway_tb/kuuga_inst/kuuga_cc_nway_sim_i/enokida_nway_wrapper_0/inst/tac/trace_repo/cache_tracker[57]">
-         <obj_property name="ElementShortName">[57]</obj_property>
-         <obj_property name="ObjectShortName">[57]</obj_property>
-      </wvobject>
-      <wvobject type="array" fp_name="/cc_nway_tb/kuuga_inst/kuuga_cc_nway_sim_i/enokida_nway_wrapper_0/inst/tac/trace_repo/cache_tracker[56]">
-         <obj_property name="ElementShortName">[56]</obj_property>
-         <obj_property name="ObjectShortName">[56]</obj_property>
-      </wvobject>
-      <wvobject type="array" fp_name="/cc_nway_tb/kuuga_inst/kuuga_cc_nway_sim_i/enokida_nway_wrapper_0/inst/tac/trace_repo/cache_tracker[55]">
-         <obj_property name="ElementShortName">[55]</obj_property>
-         <obj_property name="ObjectShortName">[55]</obj_property>
-      </wvobject>
-      <wvobject type="array" fp_name="/cc_nway_tb/kuuga_inst/kuuga_cc_nway_sim_i/enokida_nway_wrapper_0/inst/tac/trace_repo/cache_tracker[54]">
-         <obj_property name="ElementShortName">[54]</obj_property>
-         <obj_property name="ObjectShortName">[54]</obj_property>
-      </wvobject>
-      <wvobject type="array" fp_name="/cc_nway_tb/kuuga_inst/kuuga_cc_nway_sim_i/enokida_nway_wrapper_0/inst/tac/trace_repo/cache_tracker[53]">
-         <obj_property name="ElementShortName">[53]</obj_property>
-         <obj_property name="ObjectShortName">[53]</obj_property>
-      </wvobject>
-      <wvobject type="array" fp_name="/cc_nway_tb/kuuga_inst/kuuga_cc_nway_sim_i/enokida_nway_wrapper_0/inst/tac/trace_repo/cache_tracker[52]">
-         <obj_property name="ElementShortName">[52]</obj_property>
-         <obj_property name="ObjectShortName">[52]</obj_property>
-      </wvobject>
-      <wvobject type="array" fp_name="/cc_nway_tb/kuuga_inst/kuuga_cc_nway_sim_i/enokida_nway_wrapper_0/inst/tac/trace_repo/cache_tracker[51]">
-         <obj_property name="ElementShortName">[51]</obj_property>
-         <obj_property name="ObjectShortName">[51]</obj_property>
-      </wvobject>
-      <wvobject type="array" fp_name="/cc_nway_tb/kuuga_inst/kuuga_cc_nway_sim_i/enokida_nway_wrapper_0/inst/tac/trace_repo/cache_tracker[50]">
-         <obj_property name="ElementShortName">[50]</obj_property>
-         <obj_property name="ObjectShortName">[50]</obj_property>
-      </wvobject>
-      <wvobject type="array" fp_name="/cc_nway_tb/kuuga_inst/kuuga_cc_nway_sim_i/enokida_nway_wrapper_0/inst/tac/trace_repo/cache_tracker[49]">
-         <obj_property name="ElementShortName">[49]</obj_property>
-         <obj_property name="ObjectShortName">[49]</obj_property>
-      </wvobject>
-      <wvobject type="array" fp_name="/cc_nway_tb/kuuga_inst/kuuga_cc_nway_sim_i/enokida_nway_wrapper_0/inst/tac/trace_repo/cache_tracker[48]">
-         <obj_property name="ElementShortName">[48]</obj_property>
-         <obj_property name="ObjectShortName">[48]</obj_property>
-      </wvobject>
-      <wvobject type="array" fp_name="/cc_nway_tb/kuuga_inst/kuuga_cc_nway_sim_i/enokida_nway_wrapper_0/inst/tac/trace_repo/cache_tracker[47]">
-         <obj_property name="ElementShortName">[47]</obj_property>
-         <obj_property name="ObjectShortName">[47]</obj_property>
-      </wvobject>
-      <wvobject type="array" fp_name="/cc_nway_tb/kuuga_inst/kuuga_cc_nway_sim_i/enokida_nway_wrapper_0/inst/tac/trace_repo/cache_tracker[46]">
-         <obj_property name="ElementShortName">[46]</obj_property>
-         <obj_property name="ObjectShortName">[46]</obj_property>
-      </wvobject>
-      <wvobject type="array" fp_name="/cc_nway_tb/kuuga_inst/kuuga_cc_nway_sim_i/enokida_nway_wrapper_0/inst/tac/trace_repo/cache_tracker[45]">
-         <obj_property name="ElementShortName">[45]</obj_property>
-         <obj_property name="ObjectShortName">[45]</obj_property>
-      </wvobject>
-      <wvobject type="array" fp_name="/cc_nway_tb/kuuga_inst/kuuga_cc_nway_sim_i/enokida_nway_wrapper_0/inst/tac/trace_repo/cache_tracker[44]">
-         <obj_property name="ElementShortName">[44]</obj_property>
-         <obj_property name="ObjectShortName">[44]</obj_property>
-      </wvobject>
-      <wvobject type="array" fp_name="/cc_nway_tb/kuuga_inst/kuuga_cc_nway_sim_i/enokida_nway_wrapper_0/inst/tac/trace_repo/cache_tracker[43]">
-         <obj_property name="ElementShortName">[43]</obj_property>
-         <obj_property name="ObjectShortName">[43]</obj_property>
-      </wvobject>
-      <wvobject type="array" fp_name="/cc_nway_tb/kuuga_inst/kuuga_cc_nway_sim_i/enokida_nway_wrapper_0/inst/tac/trace_repo/cache_tracker[42]">
-         <obj_property name="ElementShortName">[42]</obj_property>
-         <obj_property name="ObjectShortName">[42]</obj_property>
-      </wvobject>
-      <wvobject type="array" fp_name="/cc_nway_tb/kuuga_inst/kuuga_cc_nway_sim_i/enokida_nway_wrapper_0/inst/tac/trace_repo/cache_tracker[41]">
-         <obj_property name="ElementShortName">[41]</obj_property>
-         <obj_property name="ObjectShortName">[41]</obj_property>
-      </wvobject>
-      <wvobject type="array" fp_name="/cc_nway_tb/kuuga_inst/kuuga_cc_nway_sim_i/enokida_nway_wrapper_0/inst/tac/trace_repo/cache_tracker[40]">
-         <obj_property name="ElementShortName">[40]</obj_property>
-         <obj_property name="ObjectShortName">[40]</obj_property>
-      </wvobject>
-      <wvobject type="array" fp_name="/cc_nway_tb/kuuga_inst/kuuga_cc_nway_sim_i/enokida_nway_wrapper_0/inst/tac/trace_repo/cache_tracker[39]">
-         <obj_property name="ElementShortName">[39]</obj_property>
-         <obj_property name="ObjectShortName">[39]</obj_property>
-      </wvobject>
-      <wvobject type="array" fp_name="/cc_nway_tb/kuuga_inst/kuuga_cc_nway_sim_i/enokida_nway_wrapper_0/inst/tac/trace_repo/cache_tracker[38]">
-         <obj_property name="ElementShortName">[38]</obj_property>
-         <obj_property name="ObjectShortName">[38]</obj_property>
-      </wvobject>
-      <wvobject type="array" fp_name="/cc_nway_tb/kuuga_inst/kuuga_cc_nway_sim_i/enokida_nway_wrapper_0/inst/tac/trace_repo/cache_tracker[37]">
-         <obj_property name="ElementShortName">[37]</obj_property>
-         <obj_property name="ObjectShortName">[37]</obj_property>
-      </wvobject>
-      <wvobject type="array" fp_name="/cc_nway_tb/kuuga_inst/kuuga_cc_nway_sim_i/enokida_nway_wrapper_0/inst/tac/trace_repo/cache_tracker[36]">
-         <obj_property name="ElementShortName">[36]</obj_property>
-         <obj_property name="ObjectShortName">[36]</obj_property>
-      </wvobject>
-      <wvobject type="array" fp_name="/cc_nway_tb/kuuga_inst/kuuga_cc_nway_sim_i/enokida_nway_wrapper_0/inst/tac/trace_repo/cache_tracker[35]">
-         <obj_property name="ElementShortName">[35]</obj_property>
-         <obj_property name="ObjectShortName">[35]</obj_property>
-      </wvobject>
-      <wvobject type="array" fp_name="/cc_nway_tb/kuuga_inst/kuuga_cc_nway_sim_i/enokida_nway_wrapper_0/inst/tac/trace_repo/cache_tracker[34]">
-         <obj_property name="ElementShortName">[34]</obj_property>
-         <obj_property name="ObjectShortName">[34]</obj_property>
-      </wvobject>
-      <wvobject type="array" fp_name="/cc_nway_tb/kuuga_inst/kuuga_cc_nway_sim_i/enokida_nway_wrapper_0/inst/tac/trace_repo/cache_tracker[33]">
-         <obj_property name="ElementShortName">[33]</obj_property>
-         <obj_property name="ObjectShortName">[33]</obj_property>
-      </wvobject>
-      <wvobject type="array" fp_name="/cc_nway_tb/kuuga_inst/kuuga_cc_nway_sim_i/enokida_nway_wrapper_0/inst/tac/trace_repo/cache_tracker[32]">
-         <obj_property name="ElementShortName">[32]</obj_property>
-         <obj_property name="ObjectShortName">[32]</obj_property>
-      </wvobject>
-      <wvobject type="array" fp_name="/cc_nway_tb/kuuga_inst/kuuga_cc_nway_sim_i/enokida_nway_wrapper_0/inst/tac/trace_repo/cache_tracker[31]">
-         <obj_property name="ElementShortName">[31]</obj_property>
-         <obj_property name="ObjectShortName">[31]</obj_property>
-      </wvobject>
-      <wvobject type="array" fp_name="/cc_nway_tb/kuuga_inst/kuuga_cc_nway_sim_i/enokida_nway_wrapper_0/inst/tac/trace_repo/cache_tracker[30]">
-         <obj_property name="ElementShortName">[30]</obj_property>
-         <obj_property name="ObjectShortName">[30]</obj_property>
-      </wvobject>
-      <wvobject type="array" fp_name="/cc_nway_tb/kuuga_inst/kuuga_cc_nway_sim_i/enokida_nway_wrapper_0/inst/tac/trace_repo/cache_tracker[29]">
-         <obj_property name="ElementShortName">[29]</obj_property>
-         <obj_property name="ObjectShortName">[29]</obj_property>
-      </wvobject>
-      <wvobject type="array" fp_name="/cc_nway_tb/kuuga_inst/kuuga_cc_nway_sim_i/enokida_nway_wrapper_0/inst/tac/trace_repo/cache_tracker[28]">
-         <obj_property name="ElementShortName">[28]</obj_property>
-         <obj_property name="ObjectShortName">[28]</obj_property>
-      </wvobject>
-      <wvobject type="array" fp_name="/cc_nway_tb/kuuga_inst/kuuga_cc_nway_sim_i/enokida_nway_wrapper_0/inst/tac/trace_repo/cache_tracker[27]">
-         <obj_property name="ElementShortName">[27]</obj_property>
-         <obj_property name="ObjectShortName">[27]</obj_property>
-      </wvobject>
-      <wvobject type="array" fp_name="/cc_nway_tb/kuuga_inst/kuuga_cc_nway_sim_i/enokida_nway_wrapper_0/inst/tac/trace_repo/cache_tracker[26]">
-         <obj_property name="ElementShortName">[26]</obj_property>
-         <obj_property name="ObjectShortName">[26]</obj_property>
-      </wvobject>
-      <wvobject type="array" fp_name="/cc_nway_tb/kuuga_inst/kuuga_cc_nway_sim_i/enokida_nway_wrapper_0/inst/tac/trace_repo/cache_tracker[25]">
-         <obj_property name="ElementShortName">[25]</obj_property>
-         <obj_property name="ObjectShortName">[25]</obj_property>
-      </wvobject>
-      <wvobject type="array" fp_name="/cc_nway_tb/kuuga_inst/kuuga_cc_nway_sim_i/enokida_nway_wrapper_0/inst/tac/trace_repo/cache_tracker[24]">
-         <obj_property name="ElementShortName">[24]</obj_property>
-         <obj_property name="ObjectShortName">[24]</obj_property>
-      </wvobject>
-      <wvobject type="array" fp_name="/cc_nway_tb/kuuga_inst/kuuga_cc_nway_sim_i/enokida_nway_wrapper_0/inst/tac/trace_repo/cache_tracker[23]">
-         <obj_property name="ElementShortName">[23]</obj_property>
-         <obj_property name="ObjectShortName">[23]</obj_property>
-      </wvobject>
-      <wvobject type="array" fp_name="/cc_nway_tb/kuuga_inst/kuuga_cc_nway_sim_i/enokida_nway_wrapper_0/inst/tac/trace_repo/cache_tracker[22]">
-         <obj_property name="ElementShortName">[22]</obj_property>
-         <obj_property name="ObjectShortName">[22]</obj_property>
-      </wvobject>
-      <wvobject type="array" fp_name="/cc_nway_tb/kuuga_inst/kuuga_cc_nway_sim_i/enokida_nway_wrapper_0/inst/tac/trace_repo/cache_tracker[21]">
-         <obj_property name="ElementShortName">[21]</obj_property>
-         <obj_property name="ObjectShortName">[21]</obj_property>
-      </wvobject>
-      <wvobject type="array" fp_name="/cc_nway_tb/kuuga_inst/kuuga_cc_nway_sim_i/enokida_nway_wrapper_0/inst/tac/trace_repo/cache_tracker[20]">
-         <obj_property name="ElementShortName">[20]</obj_property>
-         <obj_property name="ObjectShortName">[20]</obj_property>
-      </wvobject>
-      <wvobject type="array" fp_name="/cc_nway_tb/kuuga_inst/kuuga_cc_nway_sim_i/enokida_nway_wrapper_0/inst/tac/trace_repo/cache_tracker[19]">
-         <obj_property name="ElementShortName">[19]</obj_property>
-         <obj_property name="ObjectShortName">[19]</obj_property>
-      </wvobject>
-      <wvobject type="array" fp_name="/cc_nway_tb/kuuga_inst/kuuga_cc_nway_sim_i/enokida_nway_wrapper_0/inst/tac/trace_repo/cache_tracker[18]">
-         <obj_property name="ElementShortName">[18]</obj_property>
-         <obj_property name="ObjectShortName">[18]</obj_property>
-      </wvobject>
-      <wvobject type="array" fp_name="/cc_nway_tb/kuuga_inst/kuuga_cc_nway_sim_i/enokida_nway_wrapper_0/inst/tac/trace_repo/cache_tracker[17]">
-         <obj_property name="ElementShortName">[17]</obj_property>
-         <obj_property name="ObjectShortName">[17]</obj_property>
-      </wvobject>
-      <wvobject type="array" fp_name="/cc_nway_tb/kuuga_inst/kuuga_cc_nway_sim_i/enokida_nway_wrapper_0/inst/tac/trace_repo/cache_tracker[16]">
-         <obj_property name="ElementShortName">[16]</obj_property>
-         <obj_property name="ObjectShortName">[16]</obj_property>
-      </wvobject>
-      <wvobject type="array" fp_name="/cc_nway_tb/kuuga_inst/kuuga_cc_nway_sim_i/enokida_nway_wrapper_0/inst/tac/trace_repo/cache_tracker[15]">
-         <obj_property name="ElementShortName">[15]</obj_property>
-         <obj_property name="ObjectShortName">[15]</obj_property>
-      </wvobject>
-      <wvobject type="array" fp_name="/cc_nway_tb/kuuga_inst/kuuga_cc_nway_sim_i/enokida_nway_wrapper_0/inst/tac/trace_repo/cache_tracker[14]">
-         <obj_property name="ElementShortName">[14]</obj_property>
-         <obj_property name="ObjectShortName">[14]</obj_property>
-      </wvobject>
-      <wvobject type="array" fp_name="/cc_nway_tb/kuuga_inst/kuuga_cc_nway_sim_i/enokida_nway_wrapper_0/inst/tac/trace_repo/cache_tracker[13]">
-         <obj_property name="ElementShortName">[13]</obj_property>
-         <obj_property name="ObjectShortName">[13]</obj_property>
-      </wvobject>
-      <wvobject type="array" fp_name="/cc_nway_tb/kuuga_inst/kuuga_cc_nway_sim_i/enokida_nway_wrapper_0/inst/tac/trace_repo/cache_tracker[12]">
-         <obj_property name="ElementShortName">[12]</obj_property>
-         <obj_property name="ObjectShortName">[12]</obj_property>
-      </wvobject>
-      <wvobject type="array" fp_name="/cc_nway_tb/kuuga_inst/kuuga_cc_nway_sim_i/enokida_nway_wrapper_0/inst/tac/trace_repo/cache_tracker[11]">
-         <obj_property name="ElementShortName">[11]</obj_property>
-         <obj_property name="ObjectShortName">[11]</obj_property>
-      </wvobject>
-      <wvobject type="array" fp_name="/cc_nway_tb/kuuga_inst/kuuga_cc_nway_sim_i/enokida_nway_wrapper_0/inst/tac/trace_repo/cache_tracker[10]">
-         <obj_property name="ElementShortName">[10]</obj_property>
-         <obj_property name="ObjectShortName">[10]</obj_property>
-      </wvobject>
-      <wvobject type="array" fp_name="/cc_nway_tb/kuuga_inst/kuuga_cc_nway_sim_i/enokida_nway_wrapper_0/inst/tac/trace_repo/cache_tracker[9]">
-         <obj_property name="ElementShortName">[9]</obj_property>
-         <obj_property name="ObjectShortName">[9]</obj_property>
-      </wvobject>
-      <wvobject type="array" fp_name="/cc_nway_tb/kuuga_inst/kuuga_cc_nway_sim_i/enokida_nway_wrapper_0/inst/tac/trace_repo/cache_tracker[8]">
-         <obj_property name="ElementShortName">[8]</obj_property>
-         <obj_property name="ObjectShortName">[8]</obj_property>
-      </wvobject>
-      <wvobject type="array" fp_name="/cc_nway_tb/kuuga_inst/kuuga_cc_nway_sim_i/enokida_nway_wrapper_0/inst/tac/trace_repo/cache_tracker[7]">
-         <obj_property name="ElementShortName">[7]</obj_property>
-         <obj_property name="ObjectShortName">[7]</obj_property>
-      </wvobject>
-      <wvobject type="array" fp_name="/cc_nway_tb/kuuga_inst/kuuga_cc_nway_sim_i/enokida_nway_wrapper_0/inst/tac/trace_repo/cache_tracker[6]">
-         <obj_property name="ElementShortName">[6]</obj_property>
-         <obj_property name="ObjectShortName">[6]</obj_property>
-      </wvobject>
-      <wvobject type="array" fp_name="/cc_nway_tb/kuuga_inst/kuuga_cc_nway_sim_i/enokida_nway_wrapper_0/inst/tac/trace_repo/cache_tracker[5]">
-         <obj_property name="ElementShortName">[5]</obj_property>
-         <obj_property name="ObjectShortName">[5]</obj_property>
-      </wvobject>
-      <wvobject type="array" fp_name="/cc_nway_tb/kuuga_inst/kuuga_cc_nway_sim_i/enokida_nway_wrapper_0/inst/tac/trace_repo/cache_tracker[4]">
-         <obj_property name="ElementShortName">[4]</obj_property>
-         <obj_property name="ObjectShortName">[4]</obj_property>
-      </wvobject>
-      <wvobject type="array" fp_name="/cc_nway_tb/kuuga_inst/kuuga_cc_nway_sim_i/enokida_nway_wrapper_0/inst/tac/trace_repo/cache_tracker[3]">
-         <obj_property name="ElementShortName">[3]</obj_property>
-         <obj_property name="ObjectShortName">[3]</obj_property>
-      </wvobject>
-      <wvobject type="array" fp_name="/cc_nway_tb/kuuga_inst/kuuga_cc_nway_sim_i/enokida_nway_wrapper_0/inst/tac/trace_repo/cache_tracker[2]">
-         <obj_property name="ElementShortName">[2]</obj_property>
-         <obj_property name="ObjectShortName">[2]</obj_property>
-      </wvobject>
-      <wvobject type="array" fp_name="/cc_nway_tb/kuuga_inst/kuuga_cc_nway_sim_i/enokida_nway_wrapper_0/inst/tac/trace_repo/cache_tracker[1]">
-         <obj_property name="ElementShortName">[1]</obj_property>
-         <obj_property name="ObjectShortName">[1]</obj_property>
-      </wvobject>
-      <wvobject type="array" fp_name="/cc_nway_tb/kuuga_inst/kuuga_cc_nway_sim_i/enokida_nway_wrapper_0/inst/tac/trace_repo/cache_tracker[0]">
-         <obj_property name="ElementShortName">[0]</obj_property>
-         <obj_property name="ObjectShortName">[0]</obj_property>
-      </wvobject>
-   </wvobject>
-   <wvobject type="array" fp_name="/cc_nway_tb/kuuga_inst/kuuga_cc_nway_sim_i/enokida_nway_wrapper_0/inst/tac/trace_repo/fifo_tracker">
+   <wvobject type="group" fp_name="group844">
+      <obj_property name="label">Signal Delay Element (Data)</obj_property>
       <obj_property name="DisplayName">label</obj_property>
-      <obj_property name="ElementShortName">fifo_tracker[15:0][2:0]</obj_property>
-      <obj_property name="ObjectShortName">fifo_tracker[15:0][2:0]</obj_property>
-      <obj_property name="label">FIFO Tracker (Repo)</obj_property>
+      <obj_property name="isExpanded"></obj_property>
+      <wvobject type="array" fp_name="/cc_nway_tb/kuuga_inst/new_kuuga_cc_nway_sim_i/delay_module_wrapper_1/inst/inst/signal_in">
+         <obj_property name="ElementShortName">signal_in[0:0]</obj_property>
+         <obj_property name="ObjectShortName">signal_in[0:0]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/cc_nway_tb/kuuga_inst/new_kuuga_cc_nway_sim_i/delay_module_wrapper_1/inst/inst/marker_signal">
+         <obj_property name="ElementShortName">marker_signal</obj_property>
+         <obj_property name="ObjectShortName">marker_signal</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/cc_nway_tb/kuuga_inst/new_kuuga_cc_nway_sim_i/delay_module_wrapper_1/inst/inst/signal_out">
+         <obj_property name="ElementShortName">signal_out[0:0]</obj_property>
+         <obj_property name="ObjectShortName">signal_out[0:0]</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/cc_nway_tb/kuuga_inst/new_kuuga_cc_nway_sim_i/delay_module_wrapper_1/inst/inst/prev_signal">
+         <obj_property name="ElementShortName">prev_signal[0:0]</obj_property>
+         <obj_property name="ObjectShortName">prev_signal[0:0]</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/cc_nway_tb/kuuga_inst/new_kuuga_cc_nway_sim_i/delay_module_wrapper_1/inst/inst/cached_signal">
+         <obj_property name="ElementShortName">cached_signal[0:0]</obj_property>
+         <obj_property name="ObjectShortName">cached_signal[0:0]</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/cc_nway_tb/kuuga_inst/new_kuuga_cc_nway_sim_i/delay_module_wrapper_1/inst/inst/delay_counter">
+         <obj_property name="ElementShortName">delay_counter[5:0]</obj_property>
+         <obj_property name="ObjectShortName">delay_counter[5:0]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/cc_nway_tb/kuuga_inst/new_kuuga_cc_nway_sim_i/delay_module_wrapper_1/inst/inst/begin_count">
+         <obj_property name="ElementShortName">begin_count</obj_property>
+         <obj_property name="ObjectShortName">begin_count</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/cc_nway_tb/kuuga_inst/new_kuuga_cc_nway_sim_i/delay_module_wrapper_1/inst/inst/state">
+         <obj_property name="ElementShortName">state[0:1]</obj_property>
+         <obj_property name="ObjectShortName">state[0:1]</obj_property>
+      </wvobject>
+   </wvobject>
+   <wvobject type="group" fp_name="group1259">
+      <obj_property name="label">Signal Delay Element (Inst)</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <obj_property name="isExpanded"></obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/cc_nway_tb/kuuga_inst/new_kuuga_cc_nway_sim_i/gouram_wrapper_0/counter">
+      <obj_property name="ElementShortName">counter[31:0]</obj_property>
+      <obj_property name="ObjectShortName">counter[31:0]</obj_property>
    </wvobject>
 </wave_config>

@@ -20,8 +20,8 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 import axi_vip_pkg::*;
-import kuuga_cc_dm_sim_axi_vip_0_0_pkg::*;
-import kuuga_cc_dm_sim_axi_vip_1_0_pkg::*;
+import new_kuuga_cc_dm_sim_axi_vip_0_0_pkg::*;
+import new_kuuga_cc_dm_sim_axi_vip_1_0_pkg::*;
 import gouram_datatypes::*;
 
 module cc_dm_tb;
@@ -42,10 +42,10 @@ module cc_dm_tb;
     int miss_count;
     int instr_count;
     
-    kuuga_cc_dm_sim_axi_vip_0_0_slv_mem_t instr_agent;
-    kuuga_cc_dm_sim_axi_vip_1_0_slv_mem_t data_agent;
+    new_kuuga_cc_dm_sim_axi_vip_0_0_slv_mem_t instr_agent;
+    new_kuuga_cc_dm_sim_axi_vip_1_0_slv_mem_t data_agent;
     
-    kuuga_cc_dm_sim_wrapper kuuga_inst(
+    new_kuuga_cc_dm_sim_wrapper kuuga_inst(
         .rst_n(reset),
         .clk(clk)
     );
@@ -54,25 +54,25 @@ module cc_dm_tb;
    begin
         #5 clk = ~clk;
         if (clk) sim_counter++;
-        if (clk && kuuga_inst.kuuga_cc_dm_sim_i.gouram_wrapper_0.lock) $stop;
-        if (clk && kuuga_inst.kuuga_cc_dm_sim_i.enokida_dm_wrapper_0.inst.tac.processing_complete) $finish;
+        if (clk && sim_counter == 32'hd00a) $stop;
+       // if (clk && kuuga_inst.kuuga_cc_dm_sim_i.enokida_dm_wrapper_0.inst.tac.processing_complete) $finish;
    end
    
    initial 
        begin
            // Build up a set of agents to control the AXI VIP Blocks
-           instr_agent = new("InstructionVIP",cc_dm_tb.kuuga_inst.kuuga_cc_dm_sim_i.axi_vip_0.inst.IF);
+           instr_agent = new("InstructionVIP",cc_dm_tb.kuuga_inst.new_kuuga_cc_dm_sim_i.axi_vip_0.inst.IF);
            instr_agent.set_agent_tag("Instruction Memory Agent");
            instr_agent.set_verbosity(0);  
-           data_agent = new("DataVIP", cc_dm_tb.kuuga_inst.kuuga_cc_dm_sim_i.axi_vip_1.inst.IF);
+           data_agent = new("DataVIP", cc_dm_tb.kuuga_inst.new_kuuga_cc_dm_sim_i.axi_vip_1.inst.IF);
            data_agent.set_agent_tag("Data Memory Agent");
            data_agent.set_verbosity(0);
            instr_agent.start_slave();
            data_agent.start_slave();
            // Do some backdoor memory access to set up the program that will be accessed throughout the 
            // test
-           $readmemh("lms_cc_dm_instruction_memory.mem", mem);
-           $readmemh("lms_cc_dm_data_memory.mem", data_mem);
+           $readmemh("select-int_cc_dm_instruction_memory.mem", mem);
+           $readmemh("select-int_cc_dm_data_memory.mem", data_mem);
            for (int i = 0; i < MEM_SIZE; i++) 
            begin
                 if (mem[i] != 32'b0) backdoor_instr_mem_write(i*4, mem[i], 4'b1111);
@@ -80,8 +80,8 @@ module cc_dm_tb;
            end
            for (int i = 0; i < MEM_SIZE; i++) 
            begin
-               if (data_mem[i] != 32'b0) backdoor_data_mem_write(i*4, data_mem[i], 4'b1111);
-               else backdoor_data_mem_write(i*4, i, 4'b1111);
+                if (data_mem[i] != 32'b0) backdoor_data_mem_write(i*4 + 24'h100000, data_mem[i], 4'b1111);
+                else backdoor_data_mem_write(i*4 + 24'h100000, i, 4'b1111);
            end 
            // Set up the device to run
            clk = 0;

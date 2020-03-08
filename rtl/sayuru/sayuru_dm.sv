@@ -1,5 +1,7 @@
 `timescale 1ns / 1ps
 
+import dm_cache_def::*;
+
 module sayuru_dm
 #(
     ADDR_WIDTH = 16,
@@ -33,7 +35,7 @@ module sayuru_dm
 
     // Performance Counter
     
-    output int req_count,
+    output int trans_count,
     output int hit_count,
     output int miss_count
 );
@@ -96,7 +98,6 @@ module sayuru_dm
                         cpu_req.rw <= 1'b0;
                     end
                     cpu_req.valid <= 1'b1;
-                    req_count <= req_count + 1;
                     state <= CACHE_HIT_GNT;     
                 end
             end
@@ -129,7 +130,8 @@ module sayuru_dm
             end
             CACHE_HIT_DATA:
             begin
-		hit_count <= hit_count + 1;
+                hit_count <= hit_count + 1;
+                trans_count <= trans_count + 1;
                 in_data_gnt_o <= 1'b0;
                 in_data_rvalid_o <= 1'b1;
                 if (cpu_req.rw) in_data_rdata_o <= 32'h00000000;
@@ -166,6 +168,7 @@ module sayuru_dm
                     out_data_we_o <= in_data_we_i;
                     out_data_be_o <= in_data_be_i;
                     out_data_wdata_o <= in_data_wdata_i;
+                    trans_count <= trans_count + 1;
                     state <= SERVICE_CACHE_MISS;
                 end
             end
@@ -190,7 +193,8 @@ module sayuru_dm
                     out_data_be_o <= 1'b0;
                     in_data_rdata_o <= out_data_rdata_i;
                     out_data_wdata_o <= 32'b0;
-		    miss_count <= miss_count + 1;
+		            miss_count <= miss_count + 1;
+		            trans_count <= trans_count + 1;
                     state <= WAIT_ON_REQ;
                 end
             end

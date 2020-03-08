@@ -16,15 +16,15 @@
       </db_ref>
    </db_ref_list>
    <zoom_setting>
-      <ZoomStartTime time="27884154524fs"></ZoomStartTime>
-      <ZoomEndTime time="55017169096fs"></ZoomEndTime>
-      <Cursor1Time time="43575001000fs"></Cursor1Time>
+      <ZoomStartTime time="503798355800fs"></ZoomStartTime>
+      <ZoomEndTime time="518588355801fs"></ZoomEndTime>
+      <Cursor1Time time="516675000000fs"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
       <NameColumnWidth column_width="295"></NameColumnWidth>
-      <ValueColumnWidth column_width="84"></ValueColumnWidth>
+      <ValueColumnWidth column_width="384"></ValueColumnWidth>
    </column_width_setting>
-   <WVObjectSize size="4" />
+   <WVObjectSize size="7" />
    <wvobject type="group" fp_name="group7">
       <obj_property name="label">Generic Signals</obj_property>
       <obj_property name="DisplayName">label</obj_property>
@@ -139,6 +139,11 @@
          <obj_property name="ObjectShortName">instr_count_o[31:0]</obj_property>
          <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
       </wvobject>
+      <wvobject type="array" fp_name="/nc_tb/kuuga_inst/kuuga_nc_sim_i/godai_wrapper_0/mem_req_count_o">
+         <obj_property name="ElementShortName">mem_req_count_o[31:0]</obj_property>
+         <obj_property name="ObjectShortName">mem_req_count_o[31:0]</obj_property>
+         <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+      </wvobject>
    </wvobject>
    <wvobject type="group" fp_name="group54">
       <obj_property name="label">Gouram</obj_property>
@@ -216,10 +221,268 @@
          <obj_property name="ElementShortName">counter[31:0]</obj_property>
          <obj_property name="ObjectShortName">counter[31:0]</obj_property>
       </wvobject>
-      <wvobject type="array" fp_name="/nc_tb/kuuga_inst/kuuga_nc_sim_i/gouram_wrapper_0/mem_req_count">
-         <obj_property name="ElementShortName">mem_req_count[31:0]</obj_property>
-         <obj_property name="ObjectShortName">mem_req_count[31:0]</obj_property>
-         <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+      <wvobject type="array" fp_name="/nc_tb/kuuga_inst/kuuga_nc_sim_i/gouram_wrapper_0/mem_trans_count">
+         <obj_property name="ElementShortName">mem_trans_count[31:0]</obj_property>
+         <obj_property name="ObjectShortName">mem_trans_count[31:0]</obj_property>
+      </wvobject>
+   </wvobject>
+   <wvobject type="array" fp_name="/nc_tb/kuuga_inst/kuuga_nc_sim_i/godai_wrapper_0/inst/core/id_stage_i/registers_i/rf_reg">
+      <obj_property name="DisplayName">label</obj_property>
+      <obj_property name="ElementShortName">rf_reg[31:0][31:0]</obj_property>
+      <obj_property name="ObjectShortName">rf_reg[31:0][31:0]</obj_property>
+      <obj_property name="label">Registers</obj_property>
+   </wvobject>
+   <wvobject type="group" fp_name="group971">
+      <obj_property name="label">Core2AXI - Data</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <wvobject type="logic" fp_name="/nc_tb/kuuga_inst/kuuga_nc_sim_i/Core2AXI_Data/M_AXI_ACLK">
+         <obj_property name="ElementShortName">M_AXI_ACLK</obj_property>
+         <obj_property name="ObjectShortName">M_AXI_ACLK</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/nc_tb/kuuga_inst/kuuga_nc_sim_i/Core2AXI_Data/M_AXI_ARESETN">
+         <obj_property name="ElementShortName">M_AXI_ARESETN</obj_property>
+         <obj_property name="ObjectShortName">M_AXI_ARESETN</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/nc_tb/kuuga_inst/kuuga_nc_sim_i/Core2AXI_Data/data_req_i">
+         <obj_property name="ElementShortName">data_req_i</obj_property>
+         <obj_property name="ObjectShortName">data_req_i</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/nc_tb/kuuga_inst/kuuga_nc_sim_i/Core2AXI_Data/data_gnt_o">
+         <obj_property name="ElementShortName">data_gnt_o</obj_property>
+         <obj_property name="ObjectShortName">data_gnt_o</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/nc_tb/kuuga_inst/kuuga_nc_sim_i/Core2AXI_Data/data_rvalid_o">
+         <obj_property name="ElementShortName">data_rvalid_o</obj_property>
+         <obj_property name="ObjectShortName">data_rvalid_o</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/nc_tb/kuuga_inst/kuuga_nc_sim_i/Core2AXI_Data/data_addr_i">
+         <obj_property name="ElementShortName">data_addr_i[31:0]</obj_property>
+         <obj_property name="ObjectShortName">data_addr_i[31:0]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/nc_tb/kuuga_inst/kuuga_nc_sim_i/Core2AXI_Data/data_we_i">
+         <obj_property name="ElementShortName">data_we_i</obj_property>
+         <obj_property name="ObjectShortName">data_we_i</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/nc_tb/kuuga_inst/kuuga_nc_sim_i/Core2AXI_Data/data_be_i">
+         <obj_property name="ElementShortName">data_be_i[3:0]</obj_property>
+         <obj_property name="ObjectShortName">data_be_i[3:0]</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/nc_tb/kuuga_inst/kuuga_nc_sim_i/Core2AXI_Data/data_rdata_o">
+         <obj_property name="ElementShortName">data_rdata_o[31:0]</obj_property>
+         <obj_property name="ObjectShortName">data_rdata_o[31:0]</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/nc_tb/kuuga_inst/kuuga_nc_sim_i/Core2AXI_Data/data_wdata_i">
+         <obj_property name="ElementShortName">data_wdata_i[31:0]</obj_property>
+         <obj_property name="ObjectShortName">data_wdata_i[31:0]</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/nc_tb/kuuga_inst/kuuga_nc_sim_i/Core2AXI_Data/M_AXI_AWID">
+         <obj_property name="ElementShortName">M_AXI_AWID[0:0]</obj_property>
+         <obj_property name="ObjectShortName">M_AXI_AWID[0:0]</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/nc_tb/kuuga_inst/kuuga_nc_sim_i/Core2AXI_Data/M_AXI_AWADDR">
+         <obj_property name="ElementShortName">M_AXI_AWADDR[31:0]</obj_property>
+         <obj_property name="ObjectShortName">M_AXI_AWADDR[31:0]</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/nc_tb/kuuga_inst/kuuga_nc_sim_i/Core2AXI_Data/M_AXI_AWLEN">
+         <obj_property name="ElementShortName">M_AXI_AWLEN[7:0]</obj_property>
+         <obj_property name="ObjectShortName">M_AXI_AWLEN[7:0]</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/nc_tb/kuuga_inst/kuuga_nc_sim_i/Core2AXI_Data/M_AXI_AWSIZE">
+         <obj_property name="ElementShortName">M_AXI_AWSIZE[2:0]</obj_property>
+         <obj_property name="ObjectShortName">M_AXI_AWSIZE[2:0]</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/nc_tb/kuuga_inst/kuuga_nc_sim_i/Core2AXI_Data/M_AXI_AWBURST">
+         <obj_property name="ElementShortName">M_AXI_AWBURST[1:0]</obj_property>
+         <obj_property name="ObjectShortName">M_AXI_AWBURST[1:0]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/nc_tb/kuuga_inst/kuuga_nc_sim_i/Core2AXI_Data/M_AXI_AWLOCK">
+         <obj_property name="ElementShortName">M_AXI_AWLOCK</obj_property>
+         <obj_property name="ObjectShortName">M_AXI_AWLOCK</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/nc_tb/kuuga_inst/kuuga_nc_sim_i/Core2AXI_Data/M_AXI_AWCACHE">
+         <obj_property name="ElementShortName">M_AXI_AWCACHE[3:0]</obj_property>
+         <obj_property name="ObjectShortName">M_AXI_AWCACHE[3:0]</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/nc_tb/kuuga_inst/kuuga_nc_sim_i/Core2AXI_Data/M_AXI_AWPROT">
+         <obj_property name="ElementShortName">M_AXI_AWPROT[2:0]</obj_property>
+         <obj_property name="ObjectShortName">M_AXI_AWPROT[2:0]</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/nc_tb/kuuga_inst/kuuga_nc_sim_i/Core2AXI_Data/M_AXI_AWUSER">
+         <obj_property name="ElementShortName">M_AXI_AWUSER[0:0]</obj_property>
+         <obj_property name="ObjectShortName">M_AXI_AWUSER[0:0]</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/nc_tb/kuuga_inst/kuuga_nc_sim_i/Core2AXI_Data/M_AXI_AWQOS">
+         <obj_property name="ElementShortName">M_AXI_AWQOS[3:0]</obj_property>
+         <obj_property name="ObjectShortName">M_AXI_AWQOS[3:0]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/nc_tb/kuuga_inst/kuuga_nc_sim_i/Core2AXI_Data/M_AXI_AWVALID">
+         <obj_property name="ElementShortName">M_AXI_AWVALID</obj_property>
+         <obj_property name="ObjectShortName">M_AXI_AWVALID</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/nc_tb/kuuga_inst/kuuga_nc_sim_i/Core2AXI_Data/M_AXI_AWREADY">
+         <obj_property name="ElementShortName">M_AXI_AWREADY</obj_property>
+         <obj_property name="ObjectShortName">M_AXI_AWREADY</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/nc_tb/kuuga_inst/kuuga_nc_sim_i/Core2AXI_Data/M_AXI_WDATA">
+         <obj_property name="ElementShortName">M_AXI_WDATA[31:0]</obj_property>
+         <obj_property name="ObjectShortName">M_AXI_WDATA[31:0]</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/nc_tb/kuuga_inst/kuuga_nc_sim_i/Core2AXI_Data/M_AXI_WSTRB">
+         <obj_property name="ElementShortName">M_AXI_WSTRB[3:0]</obj_property>
+         <obj_property name="ObjectShortName">M_AXI_WSTRB[3:0]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/nc_tb/kuuga_inst/kuuga_nc_sim_i/Core2AXI_Data/M_AXI_WLAST">
+         <obj_property name="ElementShortName">M_AXI_WLAST</obj_property>
+         <obj_property name="ObjectShortName">M_AXI_WLAST</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/nc_tb/kuuga_inst/kuuga_nc_sim_i/Core2AXI_Data/M_AXI_WUSER">
+         <obj_property name="ElementShortName">M_AXI_WUSER[0:0]</obj_property>
+         <obj_property name="ObjectShortName">M_AXI_WUSER[0:0]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/nc_tb/kuuga_inst/kuuga_nc_sim_i/Core2AXI_Data/M_AXI_WVALID">
+         <obj_property name="ElementShortName">M_AXI_WVALID</obj_property>
+         <obj_property name="ObjectShortName">M_AXI_WVALID</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/nc_tb/kuuga_inst/kuuga_nc_sim_i/Core2AXI_Data/M_AXI_WREADY">
+         <obj_property name="ElementShortName">M_AXI_WREADY</obj_property>
+         <obj_property name="ObjectShortName">M_AXI_WREADY</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/nc_tb/kuuga_inst/kuuga_nc_sim_i/Core2AXI_Data/M_AXI_BID">
+         <obj_property name="ElementShortName">M_AXI_BID[0:0]</obj_property>
+         <obj_property name="ObjectShortName">M_AXI_BID[0:0]</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/nc_tb/kuuga_inst/kuuga_nc_sim_i/Core2AXI_Data/M_AXI_BRESP">
+         <obj_property name="ElementShortName">M_AXI_BRESP[1:0]</obj_property>
+         <obj_property name="ObjectShortName">M_AXI_BRESP[1:0]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/nc_tb/kuuga_inst/kuuga_nc_sim_i/Core2AXI_Data/M_AXI_BVALID">
+         <obj_property name="ElementShortName">M_AXI_BVALID</obj_property>
+         <obj_property name="ObjectShortName">M_AXI_BVALID</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/nc_tb/kuuga_inst/kuuga_nc_sim_i/Core2AXI_Data/M_AXI_BUSER">
+         <obj_property name="ElementShortName">M_AXI_BUSER[0:0]</obj_property>
+         <obj_property name="ObjectShortName">M_AXI_BUSER[0:0]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/nc_tb/kuuga_inst/kuuga_nc_sim_i/Core2AXI_Data/M_AXI_BREADY">
+         <obj_property name="ElementShortName">M_AXI_BREADY</obj_property>
+         <obj_property name="ObjectShortName">M_AXI_BREADY</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/nc_tb/kuuga_inst/kuuga_nc_sim_i/Core2AXI_Data/M_AXI_ARID">
+         <obj_property name="ElementShortName">M_AXI_ARID[0:0]</obj_property>
+         <obj_property name="ObjectShortName">M_AXI_ARID[0:0]</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/nc_tb/kuuga_inst/kuuga_nc_sim_i/Core2AXI_Data/M_AXI_ARADDR">
+         <obj_property name="ElementShortName">M_AXI_ARADDR[31:0]</obj_property>
+         <obj_property name="ObjectShortName">M_AXI_ARADDR[31:0]</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/nc_tb/kuuga_inst/kuuga_nc_sim_i/Core2AXI_Data/M_AXI_ARLEN">
+         <obj_property name="ElementShortName">M_AXI_ARLEN[7:0]</obj_property>
+         <obj_property name="ObjectShortName">M_AXI_ARLEN[7:0]</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/nc_tb/kuuga_inst/kuuga_nc_sim_i/Core2AXI_Data/M_AXI_ARSIZE">
+         <obj_property name="ElementShortName">M_AXI_ARSIZE[2:0]</obj_property>
+         <obj_property name="ObjectShortName">M_AXI_ARSIZE[2:0]</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/nc_tb/kuuga_inst/kuuga_nc_sim_i/Core2AXI_Data/M_AXI_ARBURST">
+         <obj_property name="ElementShortName">M_AXI_ARBURST[1:0]</obj_property>
+         <obj_property name="ObjectShortName">M_AXI_ARBURST[1:0]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/nc_tb/kuuga_inst/kuuga_nc_sim_i/Core2AXI_Data/M_AXI_ARLOCK">
+         <obj_property name="ElementShortName">M_AXI_ARLOCK</obj_property>
+         <obj_property name="ObjectShortName">M_AXI_ARLOCK</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/nc_tb/kuuga_inst/kuuga_nc_sim_i/Core2AXI_Data/M_AXI_ARCACHE">
+         <obj_property name="ElementShortName">M_AXI_ARCACHE[3:0]</obj_property>
+         <obj_property name="ObjectShortName">M_AXI_ARCACHE[3:0]</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/nc_tb/kuuga_inst/kuuga_nc_sim_i/Core2AXI_Data/M_AXI_ARPROT">
+         <obj_property name="ElementShortName">M_AXI_ARPROT[2:0]</obj_property>
+         <obj_property name="ObjectShortName">M_AXI_ARPROT[2:0]</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/nc_tb/kuuga_inst/kuuga_nc_sim_i/Core2AXI_Data/M_AXI_ARUSER">
+         <obj_property name="ElementShortName">M_AXI_ARUSER[0:0]</obj_property>
+         <obj_property name="ObjectShortName">M_AXI_ARUSER[0:0]</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/nc_tb/kuuga_inst/kuuga_nc_sim_i/Core2AXI_Data/M_AXI_ARQOS">
+         <obj_property name="ElementShortName">M_AXI_ARQOS[3:0]</obj_property>
+         <obj_property name="ObjectShortName">M_AXI_ARQOS[3:0]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/nc_tb/kuuga_inst/kuuga_nc_sim_i/Core2AXI_Data/M_AXI_ARVALID">
+         <obj_property name="ElementShortName">M_AXI_ARVALID</obj_property>
+         <obj_property name="ObjectShortName">M_AXI_ARVALID</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/nc_tb/kuuga_inst/kuuga_nc_sim_i/Core2AXI_Data/M_AXI_ARREADY">
+         <obj_property name="ElementShortName">M_AXI_ARREADY</obj_property>
+         <obj_property name="ObjectShortName">M_AXI_ARREADY</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/nc_tb/kuuga_inst/kuuga_nc_sim_i/Core2AXI_Data/M_AXI_RID">
+         <obj_property name="ElementShortName">M_AXI_RID[0:0]</obj_property>
+         <obj_property name="ObjectShortName">M_AXI_RID[0:0]</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/nc_tb/kuuga_inst/kuuga_nc_sim_i/Core2AXI_Data/M_AXI_RDATA">
+         <obj_property name="ElementShortName">M_AXI_RDATA[31:0]</obj_property>
+         <obj_property name="ObjectShortName">M_AXI_RDATA[31:0]</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/nc_tb/kuuga_inst/kuuga_nc_sim_i/Core2AXI_Data/M_AXI_RRESP">
+         <obj_property name="ElementShortName">M_AXI_RRESP[1:0]</obj_property>
+         <obj_property name="ObjectShortName">M_AXI_RRESP[1:0]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/nc_tb/kuuga_inst/kuuga_nc_sim_i/Core2AXI_Data/M_AXI_RLAST">
+         <obj_property name="ElementShortName">M_AXI_RLAST</obj_property>
+         <obj_property name="ObjectShortName">M_AXI_RLAST</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/nc_tb/kuuga_inst/kuuga_nc_sim_i/Core2AXI_Data/M_AXI_RUSER">
+         <obj_property name="ElementShortName">M_AXI_RUSER[0:0]</obj_property>
+         <obj_property name="ObjectShortName">M_AXI_RUSER[0:0]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/nc_tb/kuuga_inst/kuuga_nc_sim_i/Core2AXI_Data/M_AXI_RVALID">
+         <obj_property name="ElementShortName">M_AXI_RVALID</obj_property>
+         <obj_property name="ObjectShortName">M_AXI_RVALID</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/nc_tb/kuuga_inst/kuuga_nc_sim_i/Core2AXI_Data/M_AXI_RREADY">
+         <obj_property name="ElementShortName">M_AXI_RREADY</obj_property>
+         <obj_property name="ObjectShortName">M_AXI_RREADY</obj_property>
+      </wvobject>
+   </wvobject>
+   <wvobject type="group" fp_name="group991">
+      <obj_property name="label">Delay Unit</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <obj_property name="isExpanded"></obj_property>
+      <wvobject type="array" fp_name="/nc_tb/kuuga_inst/kuuga_nc_sim_i/delay_module_wrapper_1/inst/inst/signal_in">
+         <obj_property name="ElementShortName">signal_in[0:0]</obj_property>
+         <obj_property name="ObjectShortName">signal_in[0:0]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/nc_tb/kuuga_inst/kuuga_nc_sim_i/delay_module_wrapper_1/inst/inst/feedback_signal">
+         <obj_property name="ElementShortName">feedback_signal</obj_property>
+         <obj_property name="ObjectShortName">feedback_signal</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/nc_tb/kuuga_inst/kuuga_nc_sim_i/delay_module_wrapper_1/inst/inst/marker_signal">
+         <obj_property name="ElementShortName">marker_signal</obj_property>
+         <obj_property name="ObjectShortName">marker_signal</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/nc_tb/kuuga_inst/kuuga_nc_sim_i/delay_module_wrapper_1/inst/inst/signal_out">
+         <obj_property name="ElementShortName">signal_out[0:0]</obj_property>
+         <obj_property name="ObjectShortName">signal_out[0:0]</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/nc_tb/kuuga_inst/kuuga_nc_sim_i/delay_module_wrapper_1/inst/inst/prev_signal">
+         <obj_property name="ElementShortName">prev_signal[0:0]</obj_property>
+         <obj_property name="ObjectShortName">prev_signal[0:0]</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/nc_tb/kuuga_inst/kuuga_nc_sim_i/delay_module_wrapper_1/inst/inst/cached_signal">
+         <obj_property name="ElementShortName">cached_signal[0:0]</obj_property>
+         <obj_property name="ObjectShortName">cached_signal[0:0]</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/nc_tb/kuuga_inst/kuuga_nc_sim_i/delay_module_wrapper_1/inst/inst/delay_counter">
+         <obj_property name="ElementShortName">delay_counter[5:0]</obj_property>
+         <obj_property name="ObjectShortName">delay_counter[5:0]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/nc_tb/kuuga_inst/kuuga_nc_sim_i/delay_module_wrapper_1/inst/inst/begin_count">
+         <obj_property name="ElementShortName">begin_count</obj_property>
+         <obj_property name="ObjectShortName">begin_count</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/nc_tb/kuuga_inst/kuuga_nc_sim_i/delay_module_wrapper_1/inst/inst/state">
+         <obj_property name="ElementShortName">state[0:1]</obj_property>
+         <obj_property name="ObjectShortName">state[0:1]</obj_property>
       </wvobject>
    </wvobject>
 </wave_config>

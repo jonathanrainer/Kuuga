@@ -3,7 +3,7 @@ package dm_trace_repository_datatypes;
 import gouram_datatypes::*;
 import dm_cache_def::*;
 
-    parameter int TRACE_ENTRIES = 65536;
+    parameter int TRACE_ENTRIES = 131072;
 
     typedef struct packed {
 	bit [INSTR_DATA_WIDTH-1:0] instruction;

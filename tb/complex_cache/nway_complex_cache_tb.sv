@@ -20,8 +20,8 @@
 //////////////////////////////////////////////////////////////////////////////////
 
 import axi_vip_pkg::*;
-import kuuga_cc_nway_sim_axi_vip_0_0_pkg::*;
-import kuuga_cc_nway_sim_axi_vip_1_0_pkg::*;
+import new_kuuga_cc_nway_sim_axi_vip_0_0_pkg::*;
+import new_kuuga_cc_nway_sim_axi_vip_1_0_pkg::*;
 import gouram_datatypes::*;
 
 module cc_nway_tb;
@@ -42,10 +42,10 @@ module cc_nway_tb;
     int miss_count = 0;
     int instr_count = 0;
     
-    kuuga_cc_nway_sim_axi_vip_0_0_slv_mem_t instr_agent;
-    kuuga_cc_nway_sim_axi_vip_1_0_slv_mem_t data_agent;
+    new_kuuga_cc_nway_sim_axi_vip_0_0_slv_mem_t instr_agent;
+    new_kuuga_cc_nway_sim_axi_vip_1_0_slv_mem_t data_agent;
     
-    kuuga_cc_nway_sim_wrapper kuuga_inst(
+    new_kuuga_cc_nway_sim_wrapper kuuga_inst(
         .rst_n(reset),
         .clk(clk)
     );
@@ -55,7 +55,7 @@ module cc_nway_tb;
         #5 clk = ~clk;
         if (clk) sim_counter++;
         //if (sim_counter == 32'h30000) $finish;
-        if (clk && sim_counter == 32'hb901) $stop;
+        if (clk && sim_counter == 32'h85) $stop;
         
    end
    
@@ -63,18 +63,18 @@ module cc_nway_tb;
    initial 
        begin
            // Build up a set of agents to control the AXI VIP Blocks
-           instr_agent = new("InstructionVIP", cc_nway_tb.kuuga_inst.kuuga_cc_nway_sim_i.axi_vip_0.inst.IF);
+           instr_agent = new("InstructionVIP", cc_nway_tb.kuuga_inst.new_kuuga_cc_nway_sim_i.axi_vip_0.inst.IF);
            instr_agent.set_agent_tag("Instruction Memory Agent");
            instr_agent.set_verbosity(0);  
-           data_agent = new("DataVIP", cc_nway_tb.kuuga_inst.kuuga_cc_nway_sim_i.axi_vip_1.inst.IF);
+           data_agent = new("DataVIP", cc_nway_tb.kuuga_inst.new_kuuga_cc_nway_sim_i.axi_vip_1.inst.IF);
            data_agent.set_agent_tag("Data Memory Agent");
            data_agent.set_verbosity(0);
            instr_agent.start_slave();
            data_agent.start_slave();
            // Do some backdoor memory access to set up the program that will be accessed throughout the 
            // test
-           $readmemh("insertsort_cc_nway_instruction_memory.mem", mem);
-           $readmemh("insertsort_cc_nway_data_memory.mem", data_mem);
+           $readmemh("fac_cc_nway_instruction_memory.mem", mem);
+           $readmemh("fac_cc_nway_data_memory.mem", data_mem);
            for (int i = 0; i < MEM_SIZE; i++) 
            begin
                 if (mem[i] != 32'b0) backdoor_instr_mem_write(i*4, mem[i], 4'b1111);

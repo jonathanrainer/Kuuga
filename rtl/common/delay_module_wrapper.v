@@ -29,9 +29,11 @@ module delay_module_wrapper
     input clk,
     input rst_n,
     input [INPUT_SIGNAL_WIDTH-1:0] signal_in,   
+    input feedback_signal,
+    input marker_signal,
     output [INPUT_SIGNAL_WIDTH-1:0] signal_out
 );
 
-   delay_module #(INPUT_SIGNAL_WIDTH, CYCLES_TO_ADD) inst (clk, rst_n, signal_in, signal_out);
+   delay_module #(INPUT_SIGNAL_WIDTH, CYCLES_TO_ADD) inst (clk, rst_n, signal_in, feedback_signal, marker_signal, signal_out);
 
 endmodule

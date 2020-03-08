@@ -64,7 +64,7 @@ module nway_cache_tag
         if (tag_req.we) 
         begin
             tag_mem[tag_write.cache_index] <= tag_write;
-            fifo_tracker[tag_write.cache_index % 2**(SETMSB)] <= (fifo_tracker[tag_write.cache_index % 2**(SETMSB)] + 1) % 2**(SETMSB);
+            fifo_tracker[tag_write.cache_index / 2**(SETMSB)] <= (fifo_tracker[tag_write.cache_index / 2**(SETMSB)] + 1) % 2**(SETMSB);
         end
     end
     

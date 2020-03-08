@@ -59,7 +59,7 @@ module enokida_nway_wrapper
     input                       lock,
     input                       trace_ready,
 
-    output [31:0] req_count,
+    output [31:0] trans_count,
     output [31:0] hit_count,
     output [31:0] miss_count,
     
@@ -81,7 +81,7 @@ module enokida_nway_wrapper
         cache_mem_data_gnt_i, cache_mem_data_rvalid_i, cache_mem_data_rdata_i,
         cache_mem_data_req_o, cache_mem_data_addr_o, cache_mem_data_we_o,
         cache_mem_data_be_o, cache_mem_data_wdata_o, trace_in,
-        trace_capture_enable, lock, trace_ready, req_count, hit_count, miss_count,
+        trace_capture_enable, lock, trace_ready, trans_count, hit_count, miss_count,
         index_affected, data_read_o, data_write_o, index_done_o, cache_index_o, mark_done_o,
         processing_flag_o, mark_done_valid_o, mem_trace_flag_o
     );

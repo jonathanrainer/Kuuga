@@ -1,5 +1,7 @@
 `timescale 1ns / 1ps
 
+import nway_cache_def::*;
+
 module sayuru_nway
 #(
     ADDR_WIDTH = 16,
@@ -33,7 +35,7 @@ module sayuru_nway
     
     // Performance Counter
     
-    output int req_count,
+    output int trans_count,
     output int hit_count,
     output int miss_count
 );
@@ -42,6 +44,10 @@ module sayuru_nway
     mem_data_type mem_data;
     mem_req_type mem_req;
     cpu_result_type cpu_res;
+    bit recheck_necessary;
+    bit [$clog2(CACHE_BLOCKS)-1:0] index_affected;
+    bit [31:0] data_read_o;
+    bit [31:0] data_write_o;
 
     nway_cache_fsm cache_imp (.clk(clk_i),  .*);
 
@@ -95,7 +101,6 @@ module sayuru_nway
                         cpu_req.rw <= 1'b0;
                     end
                     cpu_req.valid <= 1'b1;
-                    req_count <= req_count + 1;
                     state <= CACHE_HIT_GNT;     
                 end
             end
@@ -129,6 +134,7 @@ module sayuru_nway
             CACHE_HIT_DATA:
             begin
                 hit_count <= hit_count + 1;
+                trans_count <= trans_count + 1;
                 in_data_gnt_o <= 1'b0;
                 in_data_rvalid_o <= 1'b1;
                 if (cpu_req.rw) in_data_rdata_o <= 32'h00000000;
@@ -165,6 +171,7 @@ module sayuru_nway
                     out_data_we_o <= in_data_we_i;
                     out_data_be_o <= in_data_be_i;
                     out_data_wdata_o <= in_data_wdata_i;
+                    trans_count <= trans_count + 1;
                     state <= SERVICE_CACHE_MISS;
                 end
             end
@@ -190,6 +197,7 @@ module sayuru_nway
                     in_data_rdata_o <= out_data_rdata_i;
                     out_data_wdata_o <= 32'b0;
                     miss_count <= miss_count + 1;
+                    trans_count <= trans_count + 1;
                     state <= WAIT_ON_REQ;
                 end
             end
