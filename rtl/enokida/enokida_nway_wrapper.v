@@ -62,9 +62,6 @@ module enokida_nway_wrapper
     output [31:0] cache_trans_count,
     output [31:0] cache_hit_count,
     output [31:0] cache_miss_count,
-    output [31:0] cache_trans_count,
-    output [31:0] cache_hit_count,
-    output [31:0] cache_miss_count,
     output [31:0] h_l_counter,
     output [31:0] hph_l_counter,
     output [31:0] hpm_l_counter,
@@ -76,7 +73,7 @@ module enokida_nway_wrapper
     output [31:0] wb_l_counter,
     output [31:0] wb_s_counter,
     output [31:0] pwb_l_counter,
-    output [31:0] pwb_s_counter
+    output [31:0] pwb_s_counter,
 
     output [6:0] index_affected,
     output [31:0] data_read_o,

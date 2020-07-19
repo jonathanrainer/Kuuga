@@ -19,7 +19,7 @@ import nway_cache_def::*;
     typedef struct packed {
 	bit [$clog2(TRACE_ENTRIES)-1:0] trace_index;
   	bit [DATA_ADDR_WIDTH-1:0] mem_addr;
-    bit trace_hit_miss_flag
+    bit trace_hit_miss_flag;
     } active_set_entry;
 
     typedef struct packed {

@@ -18,12 +18,12 @@
       </db_ref>
    </db_ref_list>
    <zoom_setting>
-      <ZoomStartTime time="684664257785fs"></ZoomStartTime>
-      <ZoomEndTime time="684881148443fs"></ZoomEndTime>
-      <Cursor1Time time="684845000000fs"></Cursor1Time>
+      <ZoomStartTime time="659604550988fs"></ZoomStartTime>
+      <ZoomEndTime time="659787245063fs"></ZoomEndTime>
+      <Cursor1Time time="659735000000fs"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
-      <NameColumnWidth column_width="176"></NameColumnWidth>
+      <NameColumnWidth column_width="249"></NameColumnWidth>
       <ValueColumnWidth column_width="222"></ValueColumnWidth>
    </column_width_setting>
    <WVObjectSize size="6" />
@@ -369,50 +369,62 @@
       <wvobject type="array" fp_name="/cc_dm_tb/kuuga_inst/h_l_counter_0">
          <obj_property name="ElementShortName">h_l_counter_0[31:0]</obj_property>
          <obj_property name="ObjectShortName">h_l_counter_0[31:0]</obj_property>
+         <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
       </wvobject>
       <wvobject type="array" fp_name="/cc_dm_tb/kuuga_inst/h_s_counter_0">
          <obj_property name="ElementShortName">h_s_counter_0[31:0]</obj_property>
          <obj_property name="ObjectShortName">h_s_counter_0[31:0]</obj_property>
+         <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
       </wvobject>
       <wvobject type="array" fp_name="/cc_dm_tb/kuuga_inst/hph_l_counter_0">
          <obj_property name="ElementShortName">hph_l_counter_0[31:0]</obj_property>
          <obj_property name="ObjectShortName">hph_l_counter_0[31:0]</obj_property>
+         <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
       </wvobject>
       <wvobject type="array" fp_name="/cc_dm_tb/kuuga_inst/hph_s_counter_0">
          <obj_property name="ElementShortName">hph_s_counter_0[31:0]</obj_property>
          <obj_property name="ObjectShortName">hph_s_counter_0[31:0]</obj_property>
+         <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
       </wvobject>
       <wvobject type="array" fp_name="/cc_dm_tb/kuuga_inst/hpm_l_counter_0">
          <obj_property name="ElementShortName">hpm_l_counter_0[31:0]</obj_property>
          <obj_property name="ObjectShortName">hpm_l_counter_0[31:0]</obj_property>
+         <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
       </wvobject>
       <wvobject type="array" fp_name="/cc_dm_tb/kuuga_inst/hpm_s_counter_0">
          <obj_property name="ElementShortName">hpm_s_counter_0[31:0]</obj_property>
          <obj_property name="ObjectShortName">hpm_s_counter_0[31:0]</obj_property>
+         <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
       </wvobject>
       <wvobject type="array" fp_name="/cc_dm_tb/kuuga_inst/m_l_counter_0">
          <obj_property name="ElementShortName">m_l_counter_0[31:0]</obj_property>
          <obj_property name="ObjectShortName">m_l_counter_0[31:0]</obj_property>
+         <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
       </wvobject>
       <wvobject type="array" fp_name="/cc_dm_tb/kuuga_inst/m_s_counter_0">
          <obj_property name="ElementShortName">m_s_counter_0[31:0]</obj_property>
          <obj_property name="ObjectShortName">m_s_counter_0[31:0]</obj_property>
+         <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
       </wvobject>
       <wvobject type="array" fp_name="/cc_dm_tb/kuuga_inst/pwb_l_counter">
          <obj_property name="ElementShortName">pwb_l_counter[31:0]</obj_property>
          <obj_property name="ObjectShortName">pwb_l_counter[31:0]</obj_property>
+         <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
       </wvobject>
       <wvobject type="array" fp_name="/cc_dm_tb/kuuga_inst/pwb_s_counter">
          <obj_property name="ElementShortName">pwb_s_counter[31:0]</obj_property>
          <obj_property name="ObjectShortName">pwb_s_counter[31:0]</obj_property>
+         <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
       </wvobject>
       <wvobject type="array" fp_name="/cc_dm_tb/kuuga_inst/wb_l_counter">
          <obj_property name="ElementShortName">wb_l_counter[31:0]</obj_property>
          <obj_property name="ObjectShortName">wb_l_counter[31:0]</obj_property>
+         <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
       </wvobject>
       <wvobject type="array" fp_name="/cc_dm_tb/kuuga_inst/wb_s_counter">
          <obj_property name="ElementShortName">wb_s_counter[31:0]</obj_property>
          <obj_property name="ObjectShortName">wb_s_counter[31:0]</obj_property>
+         <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
       </wvobject>
    </wvobject>
 </wave_config>

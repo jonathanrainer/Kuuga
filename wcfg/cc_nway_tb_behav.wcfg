@@ -18,15 +18,15 @@
       </db_ref>
    </db_ref_list>
    <zoom_setting>
-      <ZoomStartTime time="21626420000000fs"></ZoomStartTime>
-      <ZoomEndTime time="21635800000001fs"></ZoomEndTime>
-      <Cursor1Time time="21630300000000fs"></Cursor1Time>
+      <ZoomStartTime time="11901522242207fs"></ZoomStartTime>
+      <ZoomEndTime time="11907342565949fs"></ZoomEndTime>
+      <Cursor1Time time="11903700000000fs"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
       <NameColumnWidth column_width="285"></NameColumnWidth>
-      <ValueColumnWidth column_width="107"></ValueColumnWidth>
+      <ValueColumnWidth column_width="248"></ValueColumnWidth>
    </column_width_setting>
-   <WVObjectSize size="11" />
+   <WVObjectSize size="13" />
    <wave_markers>
       <marker label="" time="16485000000" />
       <marker label="" time="21632500000000" />
@@ -46,7 +46,7 @@
       <wvobject type="array" fp_name="/cc_nway_tb/sim_counter">
          <obj_property name="ElementShortName">sim_counter[31:0]</obj_property>
          <obj_property name="ObjectShortName">sim_counter[31:0]</obj_property>
-         <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+         <obj_property name="Radix">HEXRADIX</obj_property>
       </wvobject>
    </wvobject>
    <wvobject type="group" fp_name="group32">
@@ -316,21 +316,6 @@
          <obj_property name="ElementShortName">trace_ready</obj_property>
          <obj_property name="ObjectShortName">trace_ready</obj_property>
       </wvobject>
-      <wvobject type="array" fp_name="/cc_nway_tb/kuuga_inst/new_kuuga_cc_nway_sim_i/enokida_nway_wrapper_0/inst/trans_count">
-         <obj_property name="ElementShortName">trans_count[31:0]</obj_property>
-         <obj_property name="ObjectShortName">trans_count[31:0]</obj_property>
-         <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
-      </wvobject>
-      <wvobject type="array" fp_name="/cc_nway_tb/kuuga_inst/new_kuuga_cc_nway_sim_i/enokida_nway_wrapper_0/hit_count">
-         <obj_property name="ElementShortName">hit_count[31:0]</obj_property>
-         <obj_property name="ObjectShortName">hit_count[31:0]</obj_property>
-         <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
-      </wvobject>
-      <wvobject type="array" fp_name="/cc_nway_tb/kuuga_inst/new_kuuga_cc_nway_sim_i/enokida_nway_wrapper_0/miss_count">
-         <obj_property name="ElementShortName">miss_count[31:0]</obj_property>
-         <obj_property name="ObjectShortName">miss_count[31:0]</obj_property>
-         <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
-      </wvobject>
       <wvobject type="array" fp_name="/cc_nway_tb/kuuga_inst/new_kuuga_cc_nway_sim_i/enokida_nway_wrapper_0/index_affected">
          <obj_property name="ElementShortName">index_affected[6:0]</obj_property>
          <obj_property name="ObjectShortName">index_affected[6:0]</obj_property>
@@ -392,8 +377,8 @@
          <obj_property name="ObjectShortName">cached_signal[0:0]</obj_property>
       </wvobject>
       <wvobject type="array" fp_name="/cc_nway_tb/kuuga_inst/new_kuuga_cc_nway_sim_i/delay_module_wrapper_1/inst/inst/delay_counter">
-         <obj_property name="ElementShortName">delay_counter[6:0]</obj_property>
-         <obj_property name="ObjectShortName">delay_counter[6:0]</obj_property>
+         <obj_property name="ElementShortName">delay_counter[5:0]</obj_property>
+         <obj_property name="ObjectShortName">delay_counter[5:0]</obj_property>
       </wvobject>
       <wvobject type="logic" fp_name="/cc_nway_tb/kuuga_inst/new_kuuga_cc_nway_sim_i/delay_module_wrapper_1/inst/inst/begin_count">
          <obj_property name="ElementShortName">begin_count</obj_property>
@@ -432,5 +417,90 @@
    <wvobject type="logic" fp_name="/cc_nway_tb/kuuga_inst/new_kuuga_cc_nway_sim_i/enokida_nway_wrapper_0/inst/tac/trace_repo/entry_valid">
       <obj_property name="ElementShortName">entry_valid</obj_property>
       <obj_property name="ObjectShortName">entry_valid</obj_property>
+   </wvobject>
+   <wvobject type="group" fp_name="group514">
+      <obj_property name="label">New Counters</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <obj_property name="isExpanded"></obj_property>
+      <wvobject type="array" fp_name="/cc_nway_tb/kuuga_inst/h_l_counter_0">
+         <obj_property name="ElementShortName">h_l_counter_0[31:0]</obj_property>
+         <obj_property name="ObjectShortName">h_l_counter_0[31:0]</obj_property>
+         <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/cc_nway_tb/kuuga_inst/h_s_counter_0">
+         <obj_property name="ElementShortName">h_s_counter_0[31:0]</obj_property>
+         <obj_property name="ObjectShortName">h_s_counter_0[31:0]</obj_property>
+         <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/cc_nway_tb/kuuga_inst/hph_l_counter_0">
+         <obj_property name="ElementShortName">hph_l_counter_0[31:0]</obj_property>
+         <obj_property name="ObjectShortName">hph_l_counter_0[31:0]</obj_property>
+         <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/cc_nway_tb/kuuga_inst/hph_s_counter_0">
+         <obj_property name="ElementShortName">hph_s_counter_0[31:0]</obj_property>
+         <obj_property name="ObjectShortName">hph_s_counter_0[31:0]</obj_property>
+         <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/cc_nway_tb/kuuga_inst/hpm_l_counter_0">
+         <obj_property name="ElementShortName">hpm_l_counter_0[31:0]</obj_property>
+         <obj_property name="ObjectShortName">hpm_l_counter_0[31:0]</obj_property>
+         <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/cc_nway_tb/kuuga_inst/hpm_s_counter_0">
+         <obj_property name="ElementShortName">hpm_s_counter_0[31:0]</obj_property>
+         <obj_property name="ObjectShortName">hpm_s_counter_0[31:0]</obj_property>
+         <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/cc_nway_tb/kuuga_inst/m_l_counter_0">
+         <obj_property name="ElementShortName">m_l_counter_0[31:0]</obj_property>
+         <obj_property name="ObjectShortName">m_l_counter_0[31:0]</obj_property>
+         <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/cc_nway_tb/kuuga_inst/m_s_counter_0">
+         <obj_property name="ElementShortName">m_s_counter_0[31:0]</obj_property>
+         <obj_property name="ObjectShortName">m_s_counter_0[31:0]</obj_property>
+         <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/cc_nway_tb/kuuga_inst/pwb_l_counter_0">
+         <obj_property name="ElementShortName">pwb_l_counter_0[31:0]</obj_property>
+         <obj_property name="ObjectShortName">pwb_l_counter_0[31:0]</obj_property>
+         <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/cc_nway_tb/kuuga_inst/pwb_s_counter_0">
+         <obj_property name="ElementShortName">pwb_s_counter_0[31:0]</obj_property>
+         <obj_property name="ObjectShortName">pwb_s_counter_0[31:0]</obj_property>
+         <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/cc_nway_tb/kuuga_inst/wb_l_counter_0">
+         <obj_property name="ElementShortName">wb_l_counter_0[31:0]</obj_property>
+         <obj_property name="ObjectShortName">wb_l_counter_0[31:0]</obj_property>
+         <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/cc_nway_tb/kuuga_inst/wb_s_counter_0">
+         <obj_property name="ElementShortName">wb_s_counter_0[31:0]</obj_property>
+         <obj_property name="ObjectShortName">wb_s_counter_0[31:0]</obj_property>
+         <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+      </wvobject>
+   </wvobject>
+   <wvobject type="group" fp_name="group515">
+      <obj_property name="label">Old Counters</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <obj_property name="isExpanded"></obj_property>
+      <wvobject type="array" fp_name="/cc_nway_tb/kuuga_inst/cache_hit_count_0">
+         <obj_property name="ElementShortName">cache_hit_count_0[31:0]</obj_property>
+         <obj_property name="ObjectShortName">cache_hit_count_0[31:0]</obj_property>
+         <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/cc_nway_tb/kuuga_inst/cache_miss_count_0">
+         <obj_property name="ElementShortName">cache_miss_count_0[31:0]</obj_property>
+         <obj_property name="ObjectShortName">cache_miss_count_0[31:0]</obj_property>
+         <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/cc_nway_tb/kuuga_inst/cache_trans_count_0">
+         <obj_property name="ElementShortName">cache_trans_count_0[31:0]</obj_property>
+         <obj_property name="ObjectShortName">cache_trans_count_0[31:0]</obj_property>
+         <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+      </wvobject>
    </wvobject>
 </wave_config>

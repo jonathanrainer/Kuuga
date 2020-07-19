@@ -55,7 +55,7 @@ module cc_nway_tb;
         #100 clk = ~clk;
         if (clk) sim_counter++;
         if (kuuga_inst.new_kuuga_cc_nway_sim_i.enokida_nway_wrapper_0.inst.tac.processing_complete) $finish;
-//        if (clk && sim_counter == 32'h85) $stop;
+        if (clk && sim_counter == 32'he87f) $stop;
         
    end
    

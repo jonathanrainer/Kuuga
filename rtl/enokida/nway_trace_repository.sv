@@ -42,7 +42,7 @@ module nway_trace_repository
     input bit [DATA_ADDR_WIDTH-1:0] addr_in,
     input bit get_index,
     output bit signed [$clog2(TRACE_ENTRIES)-1:0] index_o,
-    output bit index_valid
+    output bit index_valid,
 
     // Tracking Outputs
     output integer h_l_counter,

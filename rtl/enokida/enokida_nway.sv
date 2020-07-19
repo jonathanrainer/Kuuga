@@ -101,6 +101,8 @@ module enokida_nway
     bit [$clog2(CACHE_BLOCKS)-1:0] cache_index;
     bit mark_done;
     bit processing_flag;
+    bit hit_miss_in;
+    bit load_store_in;
     bit mark_done_valid;
     bit mem_trace_flag;
     bit [ADDR_WIDTH-1:0] mem_addr;
@@ -249,6 +251,7 @@ module enokida_nway
                             cpu_req.data <= (proc_cache_data_we_i) ? proc_cache_data_wdata_i : 0;
                             cpu_req.valid <= 1'b1;
                             mem_trace_flag <= 1'b0;
+                            load_store_in <= proc_cache_data_we_i;
                         end
                         else
                         begin
@@ -257,6 +260,7 @@ module enokida_nway
                             cpu_req.data <= 32'b0;
                             cpu_req.valid <= 1'b1;
                             mem_trace_flag <= 1'b1;
+                            load_store_in <= check_store(trace_out.instruction);
                         end
                         state <= CACHE_HIT_GNT;
                     end
@@ -321,6 +325,7 @@ module enokida_nway
                     proc_cache_data_rvalid_o <= 1'b1;
                     proc_cache_data_rdata_o <= (cpu_req.rw) ? 32'h00000000 : cpu_res.data;
                     processing_flag <= 1'b0;
+                    hit_miss_in <= 1'b0;
                     state <= (mem_trace_flag) ? UPDATE_TRACE_REPO : UPDATE_MAPPING;
                 end
                 UPDATE_MAPPING:
@@ -437,6 +442,7 @@ module enokida_nway
                         mapping_cache_to_trace_index[cached_cache_index] <= index_o;
 			            cache_miss_count <= cache_miss_count + 1;
 			            cache_trans_count <= cache_trans_count + 1;
+			            hit_miss_in <= 1'b1;
                         state <= UPDATE_TRACE_REPO;
                     end
                 end
@@ -460,6 +466,7 @@ module enokida_nway
                         processing_flag <= 1'b0;
 			            cache_miss_count <= cache_miss_count + 1;
 			            cache_trans_count <= cache_trans_count + 1;
+			            hit_miss_in <= 1'b1;
                         state <= UPDATE_TRACE_REPO;
                     end
                 end
@@ -493,11 +500,13 @@ module enokida_nway
                         processing_flag <= 1'b1;
                         mapping_cache_to_trace_index[cached_cache_index] <= trace_index_o;
                         cache_trans_count <= cache_trans_count + 1;
+                        hit_miss_in <= 1'b1;
                         state <= UPDATE_TRACE_REPO;
                     end
                 end
                 SERVICE_CACHE_MISS_TRACE_STORE:
                 begin
+                    hit_miss_in <= 1'b1;
                     // This may look esoteric but it was an oversight on my part where only on word length stores can you disregard what's
                     // actually in memory already
                     if (trace_out.instruction[14:12] != 3'b010)
