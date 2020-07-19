@@ -18,15 +18,15 @@
       </db_ref>
    </db_ref_list>
    <zoom_setting>
-      <ZoomStartTime time="803025001000fs"></ZoomStartTime>
-      <ZoomEndTime time="809325001001fs"></ZoomEndTime>
-      <Cursor1Time time="808275001000fs"></Cursor1Time>
+      <ZoomStartTime time="684664257785fs"></ZoomStartTime>
+      <ZoomEndTime time="684881148443fs"></ZoomEndTime>
+      <Cursor1Time time="684845000000fs"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
-      <NameColumnWidth column_width="295"></NameColumnWidth>
-      <ValueColumnWidth column_width="106"></ValueColumnWidth>
+      <NameColumnWidth column_width="176"></NameColumnWidth>
+      <ValueColumnWidth column_width="222"></ValueColumnWidth>
    </column_width_setting>
-   <WVObjectSize size="4" />
+   <WVObjectSize size="6" />
    <wave_markers>
       <marker label="" time="162675000000" />
       <marker label="" time="842035000000" />
@@ -225,6 +225,7 @@
       <wvobject type="array" fp_name="/cc_dm_tb/kuuga_inst/new_kuuga_cc_dm_sim_i/gouram_wrapper_0/counter">
          <obj_property name="ElementShortName">counter[31:0]</obj_property>
          <obj_property name="ObjectShortName">counter[31:0]</obj_property>
+         <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
       </wvobject>
    </wvobject>
    <wvobject type="group" fp_name="group170">
@@ -315,20 +316,103 @@
          <obj_property name="ElementShortName">processing_complete</obj_property>
          <obj_property name="ObjectShortName">processing_complete</obj_property>
       </wvobject>
-      <wvobject type="array" fp_name="/cc_dm_tb/kuuga_inst/new_kuuga_cc_dm_sim_i/enokida_dm_wrapper_0/trans_count">
-         <obj_property name="ElementShortName">trans_count[31:0]</obj_property>
-         <obj_property name="ObjectShortName">trans_count[31:0]</obj_property>
+   </wvobject>
+   <wvobject type="group" fp_name="group6047">
+      <obj_property name="label">Overhead Calculations</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <wvobject type="logic" fp_name="/cc_dm_tb/kuuga_inst/new_kuuga_cc_dm_sim_i/enokida_dm_wrapper_0/inst/tac/processing_flag">
+         <obj_property name="ElementShortName">processing_flag</obj_property>
+         <obj_property name="ObjectShortName">processing_flag</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/cc_dm_tb/kuuga_inst/new_kuuga_cc_dm_sim_i/enokida_dm_wrapper_0/inst/tac/mem_trace_flag">
+         <obj_property name="ElementShortName">mem_trace_flag</obj_property>
+         <obj_property name="ObjectShortName">mem_trace_flag</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/cc_dm_tb/kuuga_inst/new_kuuga_cc_dm_sim_i/enokida_dm_wrapper_0/inst/tac/cpu_req">
+         <obj_property name="ElementShortName">cpu_req</obj_property>
+         <obj_property name="ObjectShortName">cpu_req</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/cc_dm_tb/kuuga_inst/new_kuuga_cc_dm_sim_i/enokida_dm_wrapper_0/inst/tac/state">
+         <obj_property name="DisplayName">label</obj_property>
+         <obj_property name="ElementShortName">state[4:0]</obj_property>
+         <obj_property name="ObjectShortName">state[4:0]</obj_property>
+         <obj_property name="label">cache_state</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/cc_dm_tb/kuuga_inst/new_kuuga_cc_dm_sim_i/enokida_dm_wrapper_0/inst/tac/trace_repo/trace_req">
+         <obj_property name="ElementShortName">trace_req</obj_property>
+         <obj_property name="ObjectShortName">trace_req</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/cc_dm_tb/kuuga_inst/new_kuuga_cc_dm_sim_i/enokida_dm_wrapper_0/inst/tac/trace_repo/entry_valid">
+         <obj_property name="ElementShortName">entry_valid</obj_property>
+         <obj_property name="ObjectShortName">entry_valid</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/cc_dm_tb/kuuga_inst/new_kuuga_cc_dm_sim_i/enokida_dm_wrapper_0/inst/tac/trace_repo/state">
+         <obj_property name="DisplayName">label</obj_property>
+         <obj_property name="ElementShortName">state[1:0]</obj_property>
+         <obj_property name="ObjectShortName">state[1:0]</obj_property>
+         <obj_property name="label">repo_state</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/cc_dm_tb/kuuga_inst/new_kuuga_cc_dm_sim_i/gouram_wrapper_0/counter">
+         <obj_property name="ElementShortName">counter[31:0]</obj_property>
+         <obj_property name="ObjectShortName">counter[31:0]</obj_property>
          <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
       </wvobject>
-      <wvobject type="array" fp_name="/cc_dm_tb/kuuga_inst/new_kuuga_cc_dm_sim_i/enokida_dm_wrapper_0/hit_count">
-         <obj_property name="ElementShortName">hit_count[31:0]</obj_property>
-         <obj_property name="ObjectShortName">hit_count[31:0]</obj_property>
-         <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+      <wvobject type="array" fp_name="/cc_dm_tb/kuuga_inst/new_kuuga_cc_dm_sim_i/enokida_dm_wrapper_0/inst/tac/trace_repo/trace_out">
+         <obj_property name="ElementShortName">trace_out</obj_property>
+         <obj_property name="ObjectShortName">trace_out</obj_property>
       </wvobject>
-      <wvobject type="array" fp_name="/cc_dm_tb/kuuga_inst/new_kuuga_cc_dm_sim_i/enokida_dm_wrapper_0/miss_count">
-         <obj_property name="ElementShortName">miss_count[31:0]</obj_property>
-         <obj_property name="ObjectShortName">miss_count[31:0]</obj_property>
-         <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject type="group" fp_name="group501">
+      <obj_property name="label">Extra Counters</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <obj_property name="isExpanded"></obj_property>
+      <wvobject type="array" fp_name="/cc_dm_tb/kuuga_inst/h_l_counter_0">
+         <obj_property name="ElementShortName">h_l_counter_0[31:0]</obj_property>
+         <obj_property name="ObjectShortName">h_l_counter_0[31:0]</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/cc_dm_tb/kuuga_inst/h_s_counter_0">
+         <obj_property name="ElementShortName">h_s_counter_0[31:0]</obj_property>
+         <obj_property name="ObjectShortName">h_s_counter_0[31:0]</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/cc_dm_tb/kuuga_inst/hph_l_counter_0">
+         <obj_property name="ElementShortName">hph_l_counter_0[31:0]</obj_property>
+         <obj_property name="ObjectShortName">hph_l_counter_0[31:0]</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/cc_dm_tb/kuuga_inst/hph_s_counter_0">
+         <obj_property name="ElementShortName">hph_s_counter_0[31:0]</obj_property>
+         <obj_property name="ObjectShortName">hph_s_counter_0[31:0]</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/cc_dm_tb/kuuga_inst/hpm_l_counter_0">
+         <obj_property name="ElementShortName">hpm_l_counter_0[31:0]</obj_property>
+         <obj_property name="ObjectShortName">hpm_l_counter_0[31:0]</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/cc_dm_tb/kuuga_inst/hpm_s_counter_0">
+         <obj_property name="ElementShortName">hpm_s_counter_0[31:0]</obj_property>
+         <obj_property name="ObjectShortName">hpm_s_counter_0[31:0]</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/cc_dm_tb/kuuga_inst/m_l_counter_0">
+         <obj_property name="ElementShortName">m_l_counter_0[31:0]</obj_property>
+         <obj_property name="ObjectShortName">m_l_counter_0[31:0]</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/cc_dm_tb/kuuga_inst/m_s_counter_0">
+         <obj_property name="ElementShortName">m_s_counter_0[31:0]</obj_property>
+         <obj_property name="ObjectShortName">m_s_counter_0[31:0]</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/cc_dm_tb/kuuga_inst/pwb_l_counter">
+         <obj_property name="ElementShortName">pwb_l_counter[31:0]</obj_property>
+         <obj_property name="ObjectShortName">pwb_l_counter[31:0]</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/cc_dm_tb/kuuga_inst/pwb_s_counter">
+         <obj_property name="ElementShortName">pwb_s_counter[31:0]</obj_property>
+         <obj_property name="ObjectShortName">pwb_s_counter[31:0]</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/cc_dm_tb/kuuga_inst/wb_l_counter">
+         <obj_property name="ElementShortName">wb_l_counter[31:0]</obj_property>
+         <obj_property name="ObjectShortName">wb_l_counter[31:0]</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/cc_dm_tb/kuuga_inst/wb_s_counter">
+         <obj_property name="ElementShortName">wb_s_counter[31:0]</obj_property>
+         <obj_property name="ObjectShortName">wb_s_counter[31:0]</obj_property>
       </wvobject>
    </wvobject>
 </wave_config>

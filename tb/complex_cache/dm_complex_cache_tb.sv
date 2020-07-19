@@ -54,8 +54,7 @@ module cc_dm_tb;
    begin
         #5 clk = ~clk;
         if (clk) sim_counter++;
-        if (clk && sim_counter == 32'hd00a) $stop;
-       // if (clk && kuuga_inst.kuuga_cc_dm_sim_i.enokida_dm_wrapper_0.inst.tac.processing_complete) $finish;
+        if (clk && kuuga_inst.new_kuuga_cc_dm_sim_i.enokida_dm_wrapper_0.inst.tac.processing_complete) $finish;
    end
    
    initial 
@@ -71,8 +70,8 @@ module cc_dm_tb;
            data_agent.start_slave();
            // Do some backdoor memory access to set up the program that will be accessed throughout the 
            // test
-           $readmemh("select-int_cc_dm_instruction_memory.mem", mem);
-           $readmemh("select-int_cc_dm_data_memory.mem", data_mem);
+           $readmemh("insertsort_cc_dm_instruction_memory.mem", mem);
+           $readmemh("insertsort_cc_dm_data_memory.mem", data_mem);
            for (int i = 0; i < MEM_SIZE; i++) 
            begin
                 if (mem[i] != 32'b0) backdoor_instr_mem_write(i*4, mem[i], 4'b1111);

@@ -59,9 +59,21 @@ module enokida_dm_wrapper
     input                       trace_capture_enable,
     input                       lock,
 
-    output [31:0] trans_count,
-    output [31:0] hit_count,
-    output [31:0] miss_count
+    output [31:0] cache_trans_count,
+    output [31:0] cache_hit_count,
+    output [31:0] cache_miss_count,
+    output [31:0] h_l_counter,
+    output [31:0] hph_l_counter,
+    output [31:0] hpm_l_counter,
+    output [31:0] h_s_counter,
+    output [31:0] hph_s_counter,
+    output [31:0] hpm_s_counter,
+    output [31:0] m_l_counter,
+    output [31:0] m_s_counter,
+    output [31:0] wb_l_counter,
+    output [31:0] wb_s_counter,
+    output [31:0] pwb_l_counter,
+    output [31:0] pwb_s_counter
 );
 
     enokida_dm #(ADDR_WIDTH, DATA_WIDTH) tac(
@@ -71,7 +83,9 @@ module enokida_dm_wrapper
         cache_mem_data_gnt_i, cache_mem_data_rvalid_i, cache_mem_data_rdata_i,
         cache_mem_data_req_o, cache_mem_data_addr_o, cache_mem_data_we_o,
         cache_mem_data_be_o, cache_mem_data_wdata_o, trace_in, trace_ready,
-        trace_capture_enable, lock, trans_count, hit_count, miss_count
-    );
-
-endmodule
+        trace_capture_enable, lock, cache_trans_count,cache_hit_count, cache_miss_count,
+        h_l_counter,  hph_l_counter, hpm_l_counter, h_s_counter, hph_s_counter, hpm_s_counter, m_l_counter, m_s_counter,
+        wb_l_counter, wb_s_counter, pwb_l_counter, pwb_s_counter
+   );
+        
+ endmodule

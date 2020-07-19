@@ -33,15 +33,26 @@ module dm_trace_repository
     input bit processing_flag,
     input bit mem_trace_flag,
     input bit [DATA_ADDR_WIDTH-1:0] mem_addr,
+    input bit hit_miss_in,
+    input bit load_store_in,
     output bit mark_done_valid,
     
     // Requests to find a trace entry from an address
     input bit [DATA_ADDR_WIDTH-1:0] addr_in,
     input bit get_index,
     output bit signed [$clog2(TRACE_ENTRIES)-1:0] index_o,
-    output bit index_valid
+    output bit index_valid,
     
-   
+    // Tracking Outputs
+    output integer h_l_counter,
+    output integer hph_l_counter,
+    output integer hpm_l_counter,
+    output integer h_s_counter,
+    output integer hph_s_counter,
+    output integer hpm_s_counter,
+    output integer m_l_counter,
+    output integer m_s_counter
+  
 );
 
     bit [DATA_ADDR_WIDTH + DATA_DATA_WIDTH-1:0] trace_entries_data_o;
@@ -221,6 +232,7 @@ module dm_trace_repository
                 begin
                     active_set[(active_set_processing_pointer + 1) % ACTIVE_SET_ENTRIES].trace_index <= index_done;
                     active_set[(active_set_processing_pointer + 1) % ACTIVE_SET_ENTRIES].mem_addr <= mem_addr;
+                    active_set[(active_set_processing_pointer + 1) % ACTIVE_SET_ENTRIES].trace_hit_miss_flag <= hit_miss_in;
                     active_set_processing_pointer <= (active_set_processing_pointer + 1) % ACTIVE_SET_ENTRIES;
                 end
                 // Case 2 (Trace already done and now system completes it)
@@ -229,6 +241,39 @@ module dm_trace_repository
                     if (active_set_processing_pointer == active_set_retired_pointer) active_set_processing_pointer <= (active_set_processing_pointer + 1) % ACTIVE_SET_ENTRIES;
                     active_set_retired_pointer <= (active_set_retired_pointer + 1) % ACTIVE_SET_ENTRIES;
                     committed_counter <= committed_counter + 1;
+                    // Update appropriate counter now the memory operation is complete
+                    if (hit_miss_in) 
+                    begin
+                        // The system sees a hit in the cache
+                        automatic active_set_entry entry = active_set[(active_set_retired_pointer + 1) % ACTIVE_SET_ENTRIES];
+                        // Check if the corresponding trace entry in the active set hit or missed
+                        if (entry.trace_hit_miss_flag)
+                        begin
+                            // If it's a load then update the Hit + Pre-Emptive Hit Load Counter 
+                            if (load_store_in) 
+                            begin
+                                hpm_s_counter <= hpm_s_counter + 1;
+                            end
+                            // Otherwise update the Hit + Pre-Emptive Hit Store Counter
+                            else 
+                                hpm_l_counter <= hpm_l_counter + 1;
+                            end
+                        end
+                        else
+                        begin
+                            // If it's a load then update the Hit + Pre-Emptive Miss Load Counter 
+                            if (load_store_in) 
+                            begin
+                                hph_s_counter <= hph_s_counter + 1;
+                            end
+                            // If it's a store then update the Hit + Pre-Emptive Miss Stire Counter 
+                            else 
+                            begin
+                                hph_l_counter <= hph_l_counter + 1;
+                            end  
+                        end
+                    // No need for an else clause here because if something happened pre-emptively it should be impossible for the 
+                    // cache to miss.
                 end
                 // Case 3 (Trace not done by the processing 
                 else
@@ -238,6 +283,28 @@ module dm_trace_repository
                     active_set_retired_pointer <= (active_set_retired_pointer + 1) % ACTIVE_SET_ENTRIES;
                     if (active_set_retired_pointer == active_set_processing_pointer) active_set_processing_pointer <= (active_set_processing_pointer + 1) % ACTIVE_SET_ENTRIES;
                     committed_counter <= committed_counter + 1;
+                    if (hit_miss_in) 
+                    begin
+                        if (load_store_in)
+                        begin
+                            m_s_counter <= m_s_counter + 1;
+                        end
+                        else
+                        begin
+                            m_l_counter <= m_l_counter + 1;
+                        end
+                    end
+                    else
+                    begin
+                        if (load_store_in)
+                        begin
+                            h_s_counter <= h_s_counter + 1;
+                        end
+                        else
+                            h_l_counter <= h_l_counter + 1;
+                        begin
+                        end
+                    end
                 end
                 cache_tracker[mem_addr[INDEXMSB:INDEXLSB]].trace_index <= index_done;
                 cache_tracker[mem_addr[INDEXMSB:INDEXLSB]].mem_addr <= mem_addr;
@@ -284,6 +351,14 @@ module dm_trace_repository
         active_set_processing_pointer <= -1;
         active_set_retired_pointer <= -1;
         trace_valid <= 1'b0;
+        h_l_counter <= 0;
+        hph_l_counter <= 0;
+        hpm_l_counter <= 0;
+        h_s_counter  <= 0;
+        hph_s_counter <= 0;
+        hpm_s_counter <= 0;
+        m_l_counter  <= 0;
+        m_s_counter   <= 0;
     endtask
 
 endmodule

@@ -17,13 +17,13 @@
       </db_ref>
    </db_ref_list>
    <zoom_setting>
-      <ZoomStartTime time="220118743815fs"></ZoomStartTime>
-      <ZoomEndTime time="305602251238fs"></ZoomEndTime>
-      <Cursor1Time time="247595000000fs"></Cursor1Time>
+      <ZoomStartTime time="113792600000fs"></ZoomStartTime>
+      <ZoomEndTime time="113888800001fs"></ZoomEndTime>
+      <Cursor1Time time="113825000000fs"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
       <NameColumnWidth column_width="295"></NameColumnWidth>
-      <ValueColumnWidth column_width="89"></ValueColumnWidth>
+      <ValueColumnWidth column_width="85"></ValueColumnWidth>
    </column_width_setting>
    <WVObjectSize size="6" />
    <wvobject type="group" fp_name="group7">
@@ -41,6 +41,7 @@
       <wvobject type="array" fp_name="/sc_dm_tb/sim_counter">
          <obj_property name="ElementShortName">sim_counter[31:0]</obj_property>
          <obj_property name="ObjectShortName">sim_counter[31:0]</obj_property>
+         <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
       </wvobject>
       <wvobject type="array" fp_name="/sc_dm_tb/trace_out">
          <obj_property name="ElementShortName">trace_out</obj_property>
@@ -225,6 +226,7 @@
       <wvobject type="array" fp_name="/sc_dm_tb/kuuga_inst/kuuga_sc_dm_sim_i/gouram_wrapper_0/inst/counter">
          <obj_property name="ElementShortName">counter[31:0]</obj_property>
          <obj_property name="ObjectShortName">counter[31:0]</obj_property>
+         <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
       </wvobject>
    </wvobject>
    <wvobject type="group" fp_name="group170">

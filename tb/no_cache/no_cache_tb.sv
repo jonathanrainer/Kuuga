@@ -69,8 +69,8 @@ module nc_tb;
            data_agent.start_slave();
            // Do some backdoor memory access to set up the program that will be accessed throughout the 
            // test
-           $readmemh("select-int_nc_instruction_memory.mem", mem);
-           $readmemh("select-int_nc_data_memory.mem", data_mem);
+           $readmemh("fibcall_nc_instruction_memory.mem", mem);
+           $readmemh("fibcall_nc_data_memory.mem", data_mem);
            for (int i = 0; i < MEM_SIZE; i++) 
            begin
                 if (mem[i] != 32'b0) backdoor_instr_mem_write(i*4, mem[i], 4'b1111);

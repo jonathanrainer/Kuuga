@@ -52,10 +52,10 @@ module cc_nway_tb;
        
    always
    begin
-        #5 clk = ~clk;
+        #100 clk = ~clk;
         if (clk) sim_counter++;
-        //if (sim_counter == 32'h30000) $finish;
-        if (clk && sim_counter == 32'h85) $stop;
+        if (kuuga_inst.new_kuuga_cc_nway_sim_i.enokida_nway_wrapper_0.inst.tac.processing_complete) $finish;
+//        if (clk && sim_counter == 32'h85) $stop;
         
    end
    
@@ -73,8 +73,8 @@ module cc_nway_tb;
            data_agent.start_slave();
            // Do some backdoor memory access to set up the program that will be accessed throughout the 
            // test
-           $readmemh("fac_cc_nway_instruction_memory.mem", mem);
-           $readmemh("fac_cc_nway_data_memory.mem", data_mem);
+           $readmemh("insertsort_cc_nway_instruction_memory.mem", mem);
+           $readmemh("insertsort_cc_nway_data_memory.mem", data_mem);
            for (int i = 0; i < MEM_SIZE; i++) 
            begin
                 if (mem[i] != 32'b0) backdoor_instr_mem_write(i*4, mem[i], 4'b1111);
