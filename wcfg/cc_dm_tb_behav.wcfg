@@ -18,15 +18,15 @@
       </db_ref>
    </db_ref_list>
    <zoom_setting>
-      <ZoomStartTime time="659604550988fs"></ZoomStartTime>
-      <ZoomEndTime time="659787245063fs"></ZoomEndTime>
-      <Cursor1Time time="659735000000fs"></Cursor1Time>
+      <ZoomStartTime time="1881009000000fs"></ZoomStartTime>
+      <ZoomEndTime time="1883813000001fs"></ZoomEndTime>
+      <Cursor1Time time="1881905000000fs"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
-      <NameColumnWidth column_width="249"></NameColumnWidth>
-      <ValueColumnWidth column_width="222"></ValueColumnWidth>
+      <NameColumnWidth column_width="221"></NameColumnWidth>
+      <ValueColumnWidth column_width="246"></ValueColumnWidth>
    </column_width_setting>
-   <WVObjectSize size="6" />
+   <WVObjectSize size="8" />
    <wave_markers>
       <marker label="" time="162675000000" />
       <marker label="" time="842035000000" />
@@ -264,6 +264,10 @@
          <obj_property name="ElementShortName">proc_cache_data_rdata_o[31:0]</obj_property>
          <obj_property name="ObjectShortName">proc_cache_data_rdata_o[31:0]</obj_property>
       </wvobject>
+      <wvobject type="logic" fp_name="/cc_dm_tb/kuuga_inst/new_kuuga_cc_dm_sim_i/enokida_dm_wrapper_0/cache_mem_data_req_o">
+         <obj_property name="ElementShortName">cache_mem_data_req_o</obj_property>
+         <obj_property name="ObjectShortName">cache_mem_data_req_o</obj_property>
+      </wvobject>
       <wvobject type="logic" fp_name="/cc_dm_tb/kuuga_inst/new_kuuga_cc_dm_sim_i/enokida_dm_wrapper_0/cache_mem_data_gnt_i">
          <obj_property name="ElementShortName">cache_mem_data_gnt_i</obj_property>
          <obj_property name="ObjectShortName">cache_mem_data_gnt_i</obj_property>
@@ -275,10 +279,6 @@
       <wvobject type="array" fp_name="/cc_dm_tb/kuuga_inst/new_kuuga_cc_dm_sim_i/enokida_dm_wrapper_0/cache_mem_data_rdata_i">
          <obj_property name="ElementShortName">cache_mem_data_rdata_i[31:0]</obj_property>
          <obj_property name="ObjectShortName">cache_mem_data_rdata_i[31:0]</obj_property>
-      </wvobject>
-      <wvobject type="logic" fp_name="/cc_dm_tb/kuuga_inst/new_kuuga_cc_dm_sim_i/enokida_dm_wrapper_0/cache_mem_data_req_o">
-         <obj_property name="ElementShortName">cache_mem_data_req_o</obj_property>
-         <obj_property name="ObjectShortName">cache_mem_data_req_o</obj_property>
       </wvobject>
       <wvobject type="array" fp_name="/cc_dm_tb/kuuga_inst/new_kuuga_cc_dm_sim_i/enokida_dm_wrapper_0/cache_mem_data_addr_o">
          <obj_property name="ElementShortName">cache_mem_data_addr_o[31:0]</obj_property>
@@ -295,6 +295,14 @@
       <wvobject type="array" fp_name="/cc_dm_tb/kuuga_inst/new_kuuga_cc_dm_sim_i/enokida_dm_wrapper_0/cache_mem_data_wdata_o">
          <obj_property name="ElementShortName">cache_mem_data_wdata_o[31:0]</obj_property>
          <obj_property name="ObjectShortName">cache_mem_data_wdata_o[31:0]</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/cc_dm_tb/kuuga_inst/new_kuuga_cc_dm_sim_i/enokida_dm_wrapper_0/inst/tac/state">
+         <obj_property name="ElementShortName">state[4:0]</obj_property>
+         <obj_property name="ObjectShortName">state[4:0]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/cc_dm_tb/kuuga_inst/new_kuuga_cc_dm_sim_i/enokida_dm_wrapper_0/inst/tac/mem_trace_flag">
+         <obj_property name="ElementShortName">mem_trace_flag</obj_property>
+         <obj_property name="ObjectShortName">mem_trace_flag</obj_property>
       </wvobject>
       <wvobject type="array" fp_name="/cc_dm_tb/kuuga_inst/new_kuuga_cc_dm_sim_i/enokida_dm_wrapper_0/trace_in">
          <obj_property name="ElementShortName">trace_in[159:0]</obj_property>
@@ -320,6 +328,7 @@
    <wvobject type="group" fp_name="group6047">
       <obj_property name="label">Overhead Calculations</obj_property>
       <obj_property name="DisplayName">label</obj_property>
+      <obj_property name="isExpanded"></obj_property>
       <wvobject type="logic" fp_name="/cc_dm_tb/kuuga_inst/new_kuuga_cc_dm_sim_i/enokida_dm_wrapper_0/inst/tac/processing_flag">
          <obj_property name="ElementShortName">processing_flag</obj_property>
          <obj_property name="ObjectShortName">processing_flag</obj_property>
@@ -426,5 +435,35 @@
          <obj_property name="ObjectShortName">wb_s_counter[31:0]</obj_property>
          <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
       </wvobject>
+   </wvobject>
+   <wvobject type="group" fp_name="group1637">
+      <obj_property name="label">Gap Calculation</obj_property>
+      <obj_property name="DisplayName">label</obj_property>
+      <wvobject type="array" fp_name="/cc_dm_tb/kuuga_inst/new_kuuga_cc_dm_sim_i/memory_gap_counter_w_0/inst/memory_gap">
+         <obj_property name="ElementShortName">memory_gap[31:0]</obj_property>
+         <obj_property name="ObjectShortName">memory_gap[31:0]</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/cc_dm_tb/kuuga_inst/new_kuuga_cc_dm_sim_i/enokida_dm_wrapper_0/cache_mem_data_req_o">
+         <obj_property name="ElementShortName">cache_mem_data_req_o</obj_property>
+         <obj_property name="ObjectShortName">cache_mem_data_req_o</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/cc_dm_tb/kuuga_inst/new_kuuga_cc_dm_sim_i/enokida_dm_wrapper_0/cache_mem_data_gnt_i">
+         <obj_property name="ElementShortName">cache_mem_data_gnt_i</obj_property>
+         <obj_property name="ObjectShortName">cache_mem_data_gnt_i</obj_property>
+      </wvobject>
+      <wvobject type="logic" fp_name="/cc_dm_tb/kuuga_inst/new_kuuga_cc_dm_sim_i/enokida_dm_wrapper_0/cache_mem_data_rvalid_i">
+         <obj_property name="ElementShortName">cache_mem_data_rvalid_i</obj_property>
+         <obj_property name="ObjectShortName">cache_mem_data_rvalid_i</obj_property>
+      </wvobject>
+      <wvobject type="array" fp_name="/cc_dm_tb/kuuga_inst/new_kuuga_cc_dm_sim_i/gouram_wrapper_0/counter">
+         <obj_property name="ElementShortName">counter[31:0]</obj_property>
+         <obj_property name="ObjectShortName">counter[31:0]</obj_property>
+         <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+      </wvobject>
+   </wvobject>
+   <wvobject type="array" fp_name="/cc_dm_tb/kuuga_inst/new_kuuga_cc_dm_sim_i/enokida_dm_wrapper_0/inst/tac/dm_cache/ctag/tag_mem">
+      <obj_property name="ElementShortName">tag_mem[0:127]</obj_property>
+      <obj_property name="ObjectShortName">tag_mem[0:127]</obj_property>
+      <obj_property name="isExpanded"></obj_property>
    </wvobject>
 </wave_config>

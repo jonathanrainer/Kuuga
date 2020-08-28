@@ -9,38 +9,38 @@ module enokida_dm
 (
     input bit clk,
     input bit rst_n,
-    
+
     // RI5CY Protocol Input (Processor -> Cache)
-    
+
     input bit                       proc_cache_data_req_i,
     input bit   [ADDR_WIDTH-1:0]    proc_cache_data_addr_i,
     input bit                       proc_cache_data_we_i,
     input bit   [DATA_WIDTH/8-1:0]  proc_cache_data_be_i,
     input bit   [DATA_WIDTH-1:0]    proc_cache_data_wdata_i,
-    
+
     output bit                      proc_cache_data_gnt_o,
     output bit                      proc_cache_data_rvalid_o,
     output bit  [DATA_WIDTH-1:0]    proc_cache_data_rdata_o,
-    
+
     // RI5CY Protocol Output (Cache -> Memory (Reserved for Cache Miss))
-    
+
     input bit                       cache_mem_data_gnt_i,
     input bit                       cache_mem_data_rvalid_i,
     input bit   [DATA_WIDTH-1:0]    cache_mem_data_rdata_i,
-    
+
     output bit                      cache_mem_data_req_o,
     output bit  [ADDR_WIDTH-1:0]    cache_mem_data_addr_o,
     output bit                      cache_mem_data_we_o,
     output bit  [DATA_WIDTH/8-1:0]  cache_mem_data_be_o,
     output bit  [DATA_WIDTH-1:0]    cache_mem_data_wdata_o,
-    
+
     // Trace Input
     input trace_format              trace_in,
     input bit                       trace_ready,
     input bit                       trace_capture_enable,
     input bit                       lock,
 
-    output int cache_trans_count,
+    output int memory_trans_count,
     output int cache_hit_count,
     output int cache_miss_count,
     output integer h_l_counter,
@@ -59,31 +59,31 @@ module enokida_dm
 
     bit rst;
     assign rst = !rst_n;
-    
+
     cpu_req_type cpu_req;
     mem_data_type mem_data;
     mem_req_type mem_req;
     cpu_result_type cpu_res;
-    
+
     bit [ADDR_WIDTH-1:0] cached_addr;
     bit [DATA_WIDTH-1:0] cached_data;
-    
+
     bit [ADDR_WIDTH-1:0] addr_to_check;
     bit wb_necessary;
     bit indexed_cache_entry_valid;
-    
+
     dm_cache_fsm #() dm_cache(
         .clk(clk),
         .*
     );
-    
+
     trace_repo_data_entry trace_out;
     bit processing_complete;
     bit req;
     bit cancel;
     bit cancelled;
     bit entry_valid;
-    
+
     bit [$clog2(TRACE_ENTRIES)-1:0] index_done;
     bit mark_done;
     bit processing_flag;
@@ -91,20 +91,20 @@ module enokida_dm
     bit load_store_in;
     bit mark_done_valid;
     bit mem_trace_flag;
-    bit [ADDR_WIDTH-1:0] mem_addr; 
-    
+    bit [ADDR_WIDTH-1:0] mem_addr;
+
     bit [$clog2(TRACE_ENTRIES)-1:0] trace_index_o;
-    
+
     bit [ADDR_WIDTH-1:0] addr_in;
     bit signed [$clog2(TRACE_ENTRIES)-1:0] index_o;
     bit get_index;
     bit index_valid;
-  
+
     dm_trace_repository #(DATA_ADDR_WIDTH, DATA_WIDTH, 32) trace_repo(
         .trace_req(req),
         .*
     );
-    
+
     enum bit [4:0] {
         IDLE,
         CAPTURE_PHASE_GNT,
@@ -124,22 +124,22 @@ module enokida_dm
         UPDATE_TRACE_REPO,
         SLEEP
      } state;
-    
+
      bit wb_necessary_temp = 0;
      bit prev_signals_saught = 0;
      bit cached_rvalid = 0;
      bit [DATA_WIDTH-1:0] cached_rdata = 32'b0;
-     
+
      bit signed [$clog2(TRACE_ENTRIES)-1:0] mapping_cache_to_trace_index [0 : 2**(INDEXMSB-INDEXLSB + 1) - 1];
      bit first_stage_activity_ended;
-     
+
     initial
     begin
          initialise_device();
-    end 
- 
+    end
+
     // Trace Executing Part
-    
+
     always_ff @(posedge clk)
     begin
         if (!rst_n) initialise_device();
@@ -180,10 +180,10 @@ module enokida_dm
                 end
                 CAPTURE_PHASE_GNT:
                 begin
-                    if (cache_mem_data_gnt_i) 
+                    if (cache_mem_data_gnt_i)
                     begin
                         if (cache_mem_data_addr_o == 0 && cache_mem_data_wdata_o == 0) first_stage_activity_ended <= 1'b1;
-                        cache_mem_data_req_o <= 1'b0; 
+                        cache_mem_data_req_o <= 1'b0;
                         proc_cache_data_gnt_o <= 1'b1;
                         state <= CAPTURE_PHASE_RVALID;
                         if (cache_mem_data_rvalid_i)
@@ -243,27 +243,29 @@ module enokida_dm
                             mem_trace_flag <= 1'b1;
                             load_store_in <= check_store(trace_out.instruction);
                         end
+                        hit_miss_in <= 1'b0;
                         state <= CACHE_HIT_GNT;
                     end
                 end
                 CACHE_HIT_GNT:
                 begin
                     if (cancelled) cancel <= 1'b0;
-                    if (wb_necessary && !proc_cache_data_req_i) 
+                    if (wb_necessary && !proc_cache_data_req_i)
                     begin
-                        addr_to_check <= cpu_req.addr;                        
+                        addr_to_check <= cpu_req.addr;
                         state <= SLEEP;
                     end
-                    if (!cpu_req.rw && indexed_cache_entry_valid && mem_trace_flag && !wb_necessary) 
+                    if (!cpu_req.rw && indexed_cache_entry_valid && mem_trace_flag && !wb_necessary)
                     begin
                         processing_flag <= 1'b1;
-                        if (cpu_res.checked) 
+                        if (cpu_res.checked)
                         begin
                             state <= UPDATE_TRACE_REPO;
                         end
                     end
                     else
                     begin
+
                         if (cpu_res.checked)
                         begin
                             cpu_req.valid <= 1'b0;
@@ -272,8 +274,7 @@ module enokida_dm
                                 if (!mem_trace_flag)
                                 begin
                                     proc_cache_data_gnt_o <= 1'b1;
-				                    cache_hit_count <= cache_hit_count + 1;
-				                    cache_trans_count <= cache_trans_count + 1;
+				    cache_hit_count <= cache_hit_count + 1;
                                     state <= CACHE_HIT_DATA;
                                 end
                                 else
@@ -283,33 +284,39 @@ module enokida_dm
                                     state <= UPDATE_TRACE_REPO;
                                 end
                             end
-                            else if (mem_req.rw) 
+                            else if (mem_req.rw)
                             begin
                                 cached_addr <= mem_req.addr;
                                 cached_data <= mem_req.data;
                                 state <= SERVICE_WRITE_BACK_WAIT_GNT;
                             end
-                            else 
+                            else
                             begin
                                 if (mem_trace_flag) state <= (check_store(trace_out.instruction)) ? SERVICE_CACHE_MISS_TRACE_STORE : SERVICE_CACHE_MISS_TRACE_LOAD_WAIT_GNT;
                                 else state <= (proc_cache_data_we_i) ? SERVICE_CACHE_MISS_MEM_STORE : SERVICE_CACHE_MISS_MEM_LOAD_WAIT_GNT;
                             end
                         end
                     end
-                end  
+                end
                 CACHE_HIT_DATA:
                 begin
                     proc_cache_data_gnt_o <= 1'b0;
                     proc_cache_data_rvalid_o <= 1'b1;
                     proc_cache_data_rdata_o <= (cpu_req.rw) ? 32'h00000000 : cpu_res.data;
                     processing_flag <= 1'b0;
-                    hit_miss_in <= 1'b0;
-                    state <= (mem_trace_flag) ? UPDATE_TRACE_REPO : UPDATE_MAPPING;
+                    if (mem_trace_flag) 
+                    begin
+                        state <= UPDATE_TRACE_REPO;
+                    end
+                    else
+                    begin
+                        state <= UPDATE_MAPPING;
+                    end
                 end
                 UPDATE_MAPPING:
                 begin
                     proc_cache_data_rvalid_o <= 1'b0;
-                    if (!get_index && !index_valid) 
+                    if (!get_index && !index_valid)
                     begin
                         get_index <= 1'b1;
                         addr_in <= mem_req.addr;
@@ -346,16 +353,16 @@ module enokida_dm
                      if(cache_mem_data_rvalid_i)
                      begin
                         mem_data.ready <= 1'b1;
-                        cache_trans_count <= cache_trans_count + 1;
+                        memory_trans_count <= memory_trans_count + 1;
                         if (mem_trace_flag)
                         begin
                             if (load_store_in)
                             begin
-                                 wb_s_counter <= wb_s_counter + 1;
+                                 pwb_s_counter <= pwb_s_counter + 1;
                             end
                             else
                             begin
-                                wb_l_counter <= wb_l_counter + 1;
+                                pwb_l_counter <= pwb_l_counter + 1;
                             end
                         end
                         else
@@ -367,7 +374,7 @@ module enokida_dm
                             else
                             begin
                                 wb_l_counter <= wb_l_counter + 1;
-                            end 
+                            end
                         end
                         if (mem_trace_flag) state <= (cpu_req.rw) ? SERVICE_CACHE_MISS_TRACE_STORE : SERVICE_CACHE_MISS_TRACE_LOAD_WAIT_GNT;
                         else state <= (cpu_req.rw) ? SERVICE_CACHE_MISS_MEM_STORE : SERVICE_CACHE_MISS_MEM_LOAD_WAIT_GNT;
@@ -376,7 +383,7 @@ module enokida_dm
                 SERVICE_CACHE_MISS_MEM_LOAD_WAIT_GNT:
                 begin
                     mem_data.ready <= 1'b0;
-                    if(!cache_mem_data_gnt_i && !cache_mem_data_req_o) 
+                    if(!cache_mem_data_gnt_i && !cache_mem_data_req_o)
                     begin
                         cache_mem_data_req_o <= proc_cache_data_req_i;
                         proc_cache_data_gnt_o <= cache_mem_data_gnt_i;
@@ -388,7 +395,7 @@ module enokida_dm
                         cache_mem_data_wdata_o <= proc_cache_data_wdata_i;
                         get_index <= 1'b1;
                         addr_in <= proc_cache_data_addr_i;
-                    end 
+                    end
                     else if (cache_mem_data_gnt_i)
                     begin
                         cache_mem_data_req_o <= 1'b0;
@@ -397,12 +404,12 @@ module enokida_dm
                         cache_mem_data_we_o <= 1'b0;
                         cache_mem_data_be_o <= 1'b0;
                         state <= SERVICE_CACHE_MISS_MEM_LOAD_WAIT_RVALID;
-                    end 
+                    end
                 end
                 SERVICE_CACHE_MISS_MEM_LOAD_WAIT_RVALID:
                 begin
                     proc_cache_data_gnt_o <= 1'b0;
-                    if (cache_mem_data_rvalid_i) 
+                    if (cache_mem_data_rvalid_i)
                     begin
                         cached_rvalid <= 1'b1;
                         cached_rdata <= cache_mem_data_rdata_i;
@@ -419,21 +426,21 @@ module enokida_dm
                         mem_data.ready <= 1'b1;
                         mapping_cache_to_trace_index[mem_req.addr[INDEXMSB:INDEXLSB]] <= index_o;
                         cache_miss_count <= cache_miss_count + 1;
-                        cache_trans_count <= cache_trans_count + 1;
+                        memory_trans_count <= memory_trans_count + 1;
                         hit_miss_in <= 1'b1;
                         state <= UPDATE_TRACE_REPO;
                     end
                 end
                 SERVICE_CACHE_MISS_MEM_STORE:
                 begin
-                    if (!get_index && !index_valid) 
+                    if (!get_index && !index_valid)
                     begin
                         if (!proc_cache_data_gnt_o) proc_cache_data_gnt_o <= 1'b1;
                         get_index <= 1'b1;
                         addr_in <= proc_cache_data_addr_i;
                     end
                     else if (get_index && !index_valid) proc_cache_data_gnt_o <= 1'b0;
-                    else 
+                    else
                     begin
                         proc_cache_data_gnt_o <= 1'b0;
                         proc_cache_data_rvalid_o <= 1'b1;
@@ -443,11 +450,10 @@ module enokida_dm
                         get_index <= 1'b0;
                         processing_flag <= 1'b0;
 		                cache_miss_count <= cache_miss_count + 1;
-		                cache_trans_count <= cache_trans_count + 1;
 		                hit_miss_in <= 1'b1;
                         state <= UPDATE_TRACE_REPO;
                     end
-                end  
+                end
                 SERVICE_CACHE_MISS_TRACE_LOAD_WAIT_GNT:
                 begin
                     mem_data.ready <= 1'b0;
@@ -476,7 +482,7 @@ module enokida_dm
                         mem_data.data <= cache_mem_data_rdata_i;
                         mem_data.ready <= 1'b1;
                         processing_flag <= 1'b1;
-                        cache_trans_count <= cache_trans_count + 1;
+                        memory_trans_count <= memory_trans_count + 1;
                         hit_miss_in <= 1'b1;
                         state <= UPDATE_TRACE_REPO;
                     end
@@ -492,7 +498,7 @@ module enokida_dm
                 UPDATE_TRACE_REPO:
                 begin
                     proc_cache_data_rvalid_o <= 1'b0;
-                    if(mem_trace_flag) 
+                    if(mem_trace_flag)
                     begin
                         index_done <= trace_index_o;
                     end
@@ -505,7 +511,7 @@ module enokida_dm
             if (mark_done && mark_done_valid) mark_done <= 1'b0;
         end
     end
-    
+
     task initialise_device();
         begin
             state <= IDLE;
@@ -513,7 +519,7 @@ module enokida_dm
             mark_done <= 0;
 	        cache_hit_count <= 0;
             cache_miss_count <= 0;
-            cache_trans_count <= 0;
+            memory_trans_count <= 0;
             wb_l_counter <= 0;
             wb_s_counter <= 0;
             pwb_l_counter <= 0;
@@ -521,7 +527,7 @@ module enokida_dm
             first_stage_activity_ended <= 0;
         end
     endtask
-    
+
     function bit check_store(input bit[INSTR_DATA_WIDTH-1:0] instruction);
         return !(instruction ==? 32'h??????83 || instruction ==? 32'h??????03);
         endfunction

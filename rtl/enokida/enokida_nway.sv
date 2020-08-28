@@ -41,7 +41,7 @@ module enokida_nway
     input bit                       lock,
     input bit                       trace_ready,
 
-    output int cache_trans_count,
+    output int memory_trans_count,
     output int cache_hit_count,
     output int cache_miss_count,
     output integer h_l_counter,
@@ -262,6 +262,7 @@ module enokida_nway
                             mem_trace_flag <= 1'b1;
                             load_store_in <= check_store(trace_out.instruction);
                         end
+                        hit_miss_in <= 1'b0;
                         state <= CACHE_HIT_GNT;
                     end
                 end
@@ -295,7 +296,6 @@ module enokida_nway
                                 begin
                                     proc_cache_data_gnt_o <= 1'b1;
                                     cache_hit_count <= cache_hit_count + 1;
-                                    cache_trans_count <= cache_trans_count + 1;
                                     state <= CACHE_HIT_DATA;
                                 end
                                 else
@@ -325,8 +325,14 @@ module enokida_nway
                     proc_cache_data_rvalid_o <= 1'b1;
                     proc_cache_data_rdata_o <= (cpu_req.rw) ? 32'h00000000 : cpu_res.data;
                     processing_flag <= 1'b0;
-                    hit_miss_in <= 1'b0;
-                    state <= (mem_trace_flag) ? UPDATE_TRACE_REPO : UPDATE_MAPPING;
+                    if (mem_trace_flag) 
+                    begin
+                        state <= UPDATE_TRACE_REPO;
+                    end
+                    else
+                    begin
+                        state <= UPDATE_MAPPING;
+                    end
                 end
                 UPDATE_MAPPING:
                 begin
@@ -368,16 +374,16 @@ module enokida_nway
                      if(cache_mem_data_rvalid_i)
                      begin
                         mem_data.ready <= 1'b1;
-                        cache_trans_count <= cache_trans_count + 1;
+                        memory_trans_count <= memory_trans_count + 1;
                         if (mem_trace_flag)
                         begin
                             if (load_store_in)
                             begin
-                                 wb_s_counter <= wb_s_counter + 1;
+                                 pwb_s_counter <= pwb_s_counter + 1;
                             end
                             else
                             begin
-                                wb_l_counter <= wb_l_counter + 1;
+                                pwb_l_counter <= pwb_l_counter + 1;
                             end
                         end
                         else
@@ -441,7 +447,7 @@ module enokida_nway
                         mem_data.ready <= 1'b1;
                         mapping_cache_to_trace_index[cached_cache_index] <= index_o;
 			            cache_miss_count <= cache_miss_count + 1;
-			            cache_trans_count <= cache_trans_count + 1;
+			            memory_trans_count <= memory_trans_count + 1;
 			            hit_miss_in <= 1'b1;
                         state <= UPDATE_TRACE_REPO;
                     end
@@ -465,7 +471,6 @@ module enokida_nway
                         get_index <= 1'b0;
                         processing_flag <= 1'b0;
 			            cache_miss_count <= cache_miss_count + 1;
-			            cache_trans_count <= cache_trans_count + 1;
 			            hit_miss_in <= 1'b1;
                         state <= UPDATE_TRACE_REPO;
                     end
@@ -499,7 +504,7 @@ module enokida_nway
                         mem_data.ready <= 1'b1;
                         processing_flag <= 1'b1;
                         mapping_cache_to_trace_index[cached_cache_index] <= trace_index_o;
-                        cache_trans_count <= cache_trans_count + 1;
+                        memory_trans_count <= memory_trans_count + 1;
                         hit_miss_in <= 1'b1;
                         state <= UPDATE_TRACE_REPO;
                     end
@@ -548,6 +553,8 @@ module enokida_nway
                         mem_data.ready <= 1'b1;
                         mem_data.data <= cache_mem_data_rdata_i;
                         processing_flag <= 1'b1;
+                        cache_miss_count <= cache_miss_count + 1;
+                        memory_trans_count <= memory_trans_count + 1;
                         state <= UPDATE_TRACE_REPO;
                     end
                 end
@@ -565,7 +572,10 @@ module enokida_nway
                     state <= IDLE;
                 end
             endcase
-            if (mark_done && mark_done_valid) mark_done <= 1'b0;
+            if (mark_done && mark_done_valid)
+            begin 
+                mark_done <= 1'b0;
+            end
         end
     end
 
@@ -576,7 +586,7 @@ module enokida_nway
             mark_done <= 0;
 	        cache_hit_count <= 0;
             cache_miss_count <= 0;
-            cache_trans_count <= 0;
+            memory_trans_count <= 0;
             wb_l_counter <= 0;
             wb_s_counter <= 0;
             pwb_l_counter <= 0;

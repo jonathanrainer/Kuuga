@@ -241,9 +241,9 @@ module nway_trace_repository
                 begin
                     if (active_set_processing_pointer == active_set_retired_pointer) active_set_processing_pointer <= (active_set_processing_pointer + 1) % ACTIVE_SET_ENTRIES;
                     active_set_retired_pointer <= (active_set_retired_pointer + 1) % ACTIVE_SET_ENTRIES;
-                    committed_counter <= committed_counter+1;
+                    committed_counter <= committed_counter + 1;
                     // Update appropriate counter now the memory operation is complete
-                    if (hit_miss_in)
+                    if (!hit_miss_in)
                     begin
                         // The system sees a hit in the cache
                         automatic active_set_entry entry = active_set[(active_set_retired_pointer + 1) % ACTIVE_SET_ENTRIES];
@@ -257,6 +257,7 @@ module nway_trace_repository
                             end
                             // Otherwise update the Hit + Pre-Emptive Hit Store Counter
                             else
+                            begin
                                 hpm_l_counter <= hpm_l_counter + 1;
                             end
                         end
@@ -273,6 +274,7 @@ module nway_trace_repository
                                 hph_l_counter <= hph_l_counter + 1;
                             end
                         end
+                   end
                     // No need for an else clause here because if something happened pre-emptively it should be impossible for the
                     // cache to miss.
                 end
@@ -302,8 +304,8 @@ module nway_trace_repository
                             h_s_counter <= h_s_counter + 1;
                         end
                         else
-                            h_l_counter <= h_l_counter + 1;
                         begin
+                            h_l_counter <= h_l_counter + 1;
                         end
                     end
                 end
@@ -325,7 +327,10 @@ module nway_trace_repository
                 // TODO; There's another situation whereby the committed counter needs to catch up as stuff is actually committed,
                 mark_done_valid <= 1'b1;
             end
-            else mark_done_valid <= 1'b0;
+            else
+            begin
+                mark_done_valid <= 1'b0;
+            end
             if (get_index && !index_valid)
             begin
                 automatic bit index_found = 1'b0;

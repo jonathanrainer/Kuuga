@@ -59,7 +59,7 @@ module enokida_nway_wrapper
     input                       lock,
     input                       trace_ready,
 
-    output [31:0] cache_trans_count,
+    output [31:0] memory_trans_count,
     output [31:0] cache_hit_count,
     output [31:0] cache_miss_count,
     output [31:0] h_l_counter,
@@ -93,7 +93,7 @@ module enokida_nway_wrapper
         cache_mem_data_gnt_i, cache_mem_data_rvalid_i, cache_mem_data_rdata_i,
         cache_mem_data_req_o, cache_mem_data_addr_o, cache_mem_data_we_o,
         cache_mem_data_be_o, cache_mem_data_wdata_o, trace_in,
-        trace_capture_enable, lock, trace_ready, cache_trans_count, cache_hit_count, cache_miss_count,
+        trace_capture_enable, lock, trace_ready, memory_trans_count, cache_hit_count, cache_miss_count,
         h_l_counter,  hph_l_counter, hpm_l_counter, h_s_counter, hph_s_counter, hpm_s_counter, m_l_counter, m_s_counter,
         wb_l_counter, wb_s_counter, pwb_l_counter, pwb_s_counter,
         index_affected, data_read_o, data_write_o, index_done_o, cache_index_o, mark_done_o,

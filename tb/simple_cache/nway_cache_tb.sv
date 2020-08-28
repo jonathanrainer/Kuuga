@@ -69,8 +69,8 @@ module sc_nway_tb;
            data_agent.start_slave();
            // Do some backdoor memory access to set up the program that will be accessed throughout the 
            // test
-           $readmemh("insertsort_sc_nway_instruction_memory.mem", mem);
-           $readmemh("insertsort_sc_nway_data_memory.mem", data_mem);
+           $readmemh("janne_complex_sc_nway_instruction_memory.mem", mem);
+           $readmemh("janne_complex_sc_nway_data_memory.mem", data_mem);
            for (int i = 0; i < MEM_SIZE; i++) 
            begin
                 if (mem[i] != 32'b0) backdoor_instr_mem_write(i*4, mem[i], 4'b1111);

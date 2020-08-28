@@ -36,8 +36,12 @@ module sayuru_dm
     // Performance Counter
     
     output int trans_count,
-    output int hit_count,
-    output int miss_count
+    output int hit_load_count,
+    output int hit_store_count,
+    output int miss_load_count,
+    output int miss_store_count,
+    output int writeback_load_count,
+    output int writeback_store_count
 );
 
     bit rst;
@@ -66,8 +70,11 @@ module sayuru_dm
         CACHE_HIT_DATA,
         SERVICE_WRITE_BACK_WAIT_GNT,
         SERVICE_WRITE_BACK_WAIT_RVALID,
-        SERVICE_CACHE_MISS
+        SERVICE_CACHE_MISS_LOAD,
+        SERVICE_CACHE_MISS_STORE
     } state;
+    
+    bit load_store_flag;
     
     initial
     begin
@@ -84,6 +91,7 @@ module sayuru_dm
                 mem_data.ready <= 1'b0;
                 in_data_rvalid_o <= 1'b0;
                 in_data_rdata_o <= 32'b0;
+                load_store_flag <= in_data_we_i;
                 if(in_data_req_i)
                 begin
                     cpu_req.addr <= in_data_addr_i;
@@ -119,18 +127,27 @@ module sayuru_dm
                     end
                     else 
                     begin
-                        out_data_req_o <= in_data_req_i;
-                        out_data_addr_o <= in_data_addr_i;
-                        out_data_we_o <= in_data_we_i;
-                        out_data_be_o <= in_data_be_i;
-                        out_data_wdata_o <= in_data_wdata_i;
-                        state <= SERVICE_CACHE_MISS;
+                        if (load_store_flag)
+                        begin
+                            in_data_gnt_o <= 1'b1;
+                            state <= SERVICE_CACHE_MISS_STORE;
+                        end
+                        else 
+                        begin
+                            out_data_req_o <= in_data_req_i;
+                            out_data_addr_o <= in_data_addr_i;
+                            out_data_we_o <= in_data_we_i;
+                            out_data_be_o <= in_data_be_i;
+                            out_data_wdata_o <= in_data_wdata_i;
+                            state <= SERVICE_CACHE_MISS_LOAD;
+                        end
                     end
                 end
             end
             CACHE_HIT_DATA:
             begin
-                hit_count <= hit_count + 1;
+                if(load_store_flag) hit_store_count <= hit_store_count + 1;
+                else hit_load_count <= hit_load_count + 1;
                 trans_count <= trans_count + 1;
                 in_data_gnt_o <= 1'b0;
                 in_data_rvalid_o <= 1'b1;
@@ -162,17 +179,27 @@ module sayuru_dm
             begin
                 if(out_data_rvalid_i) 
                 begin
-                    mem_data.ready <= 1'b1;
-                    out_data_req_o <= in_data_req_i;
-                    out_data_addr_o <= in_data_addr_i;
-                    out_data_we_o <= in_data_we_i;
-                    out_data_be_o <= in_data_be_i;
-                    out_data_wdata_o <= in_data_wdata_i;
                     trans_count <= trans_count + 1;
-                    state <= SERVICE_CACHE_MISS;
+		    mem_data.ready <=1'b1;
+                    if(load_store_flag) 
+                    begin
+			in_data_gnt_o <= 1'b1;
+                       writeback_store_count <= writeback_store_count + 1;
+                       state <= SERVICE_CACHE_MISS_STORE;
+                    end 
+                    else 
+                    begin
+			out_data_req_o <= in_data_req_i;
+                    	out_data_addr_o <= in_data_addr_i;
+                    	out_data_we_o <= in_data_we_i;
+                   	out_data_be_o <= in_data_be_i;
+                    	out_data_wdata_o <= in_data_wdata_i;
+                        writeback_load_count <= writeback_load_count + 1;
+                        state <= SERVICE_CACHE_MISS_LOAD;
+                    end                            
                 end
             end
-            SERVICE_CACHE_MISS:
+            SERVICE_CACHE_MISS_LOAD:
             begin
                 mem_data.ready <= 1'b0;
                 if(!out_data_rvalid_i) 
@@ -180,10 +207,11 @@ module sayuru_dm
                     in_data_gnt_o <= out_data_gnt_i;
                     in_data_rvalid_o <= out_data_rvalid_i;
                     in_data_rdata_o <= out_data_rdata_i;
+                    if (out_data_gnt_i) out_data_req_o <= 1'b0;
                 end
                 else
                 begin
-                    mem_data.data <= (!out_data_we_o) ? out_data_rdata_i : out_data_wdata_o;
+                    mem_data.data <= out_data_rdata_i;
                     mem_data.ready <= 1'b1;
                     out_data_req_o <= 1'b0;
                     in_data_gnt_o <= 1'b0;
@@ -193,10 +221,19 @@ module sayuru_dm
                     out_data_be_o <= 1'b0;
                     in_data_rdata_o <= out_data_rdata_i;
                     out_data_wdata_o <= 32'b0;
-		            miss_count <= miss_count + 1;
+                    miss_load_count <= miss_load_count + 1;
 		            trans_count <= trans_count + 1;
                     state <= WAIT_ON_REQ;
                 end
+            end
+            SERVICE_CACHE_MISS_STORE:
+            begin
+                in_data_gnt_o <= 1'b0;
+                in_data_rvalid_o <= 1'b1;
+                mem_data.data <= in_data_wdata_i;
+                mem_data.ready <= 1'b1;
+                miss_store_count <= miss_store_count + 1;
+                state <= WAIT_ON_REQ;
             end
         endcase
         addr_to_check <= '0;        
@@ -212,6 +249,12 @@ module sayuru_dm
         out_data_we_o <= 1'b0;
         out_data_be_o <= 1'b0;
         out_data_wdata_o <= 32'b0;
+        hit_load_count <= 0;
+        hit_store_count <= 0;
+        miss_load_count <= 0;
+        miss_store_count <= 0;
+        writeback_load_count <= 0;
+        writeback_store_count <= 0;
     endtask
 
 endmodule

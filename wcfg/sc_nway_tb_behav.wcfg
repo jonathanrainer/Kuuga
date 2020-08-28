@@ -17,15 +17,15 @@
       </db_ref>
    </db_ref_list>
    <zoom_setting>
-      <ZoomStartTime time="0fs"></ZoomStartTime>
-      <ZoomEndTime time="4790000001fs"></ZoomEndTime>
-      <Cursor1Time time="1085000000fs"></Cursor1Time>
+      <ZoomStartTime time="20070000000fs"></ZoomStartTime>
+      <ZoomEndTime time="22249000001fs"></ZoomEndTime>
+      <Cursor1Time time="20580000000fs"></Cursor1Time>
    </zoom_setting>
    <column_width_setting>
       <NameColumnWidth column_width="293"></NameColumnWidth>
-      <ValueColumnWidth column_width="89"></ValueColumnWidth>
+      <ValueColumnWidth column_width="77"></ValueColumnWidth>
    </column_width_setting>
-   <WVObjectSize size="4" />
+   <WVObjectSize size="14" />
    <wvobject type="group" fp_name="group7">
       <obj_property name="label">Generic Signals</obj_property>
       <obj_property name="DisplayName">label</obj_property>
@@ -296,15 +296,55 @@
          <obj_property name="ElementShortName">trans_count[31:0]</obj_property>
          <obj_property name="ObjectShortName">trans_count[31:0]</obj_property>
       </wvobject>
-      <wvobject type="array" fp_name="/sc_nway_tb/kuuga_inst/new_kuuga_sc_nway_sim_i/sayuru_nway_wrapper_0/hit_count">
-         <obj_property name="ElementShortName">hit_count[31:0]</obj_property>
-         <obj_property name="ObjectShortName">hit_count[31:0]</obj_property>
-         <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
-      </wvobject>
-      <wvobject type="array" fp_name="/sc_nway_tb/kuuga_inst/new_kuuga_sc_nway_sim_i/sayuru_nway_wrapper_0/miss_count">
-         <obj_property name="ElementShortName">miss_count[31:0]</obj_property>
-         <obj_property name="ObjectShortName">miss_count[31:0]</obj_property>
-         <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
-      </wvobject>
+   </wvobject>
+   <wvobject type="logic" fp_name="/sc_nway_tb/kuuga_inst/new_kuuga_sc_nway_sim_i/sayuru_nway_wrapper_0/inst/sayuru/mem_req.rw">
+      <obj_property name="DisplayName">label</obj_property>
+      <obj_property name="ElementShortName">.rw</obj_property>
+      <obj_property name="ObjectShortName">.rw</obj_property>
+      <obj_property name="label">Writeback Necessary</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/sc_nway_tb/kuuga_inst/new_kuuga_sc_nway_sim_i/sayuru_nway_wrapper_0/inst/sayuru/cache_imp/ctag/tag_mem">
+      <obj_property name="DisplayName">label</obj_property>
+      <obj_property name="ElementShortName">tag_mem[0:127]</obj_property>
+      <obj_property name="ObjectShortName">tag_mem[0:127]</obj_property>
+      <obj_property name="label">Cache Tags</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/sc_nway_tb/kuuga_inst/new_kuuga_sc_nway_sim_i/sayuru_nway_wrapper_0/inst/sayuru/hit_load_count">
+      <obj_property name="ElementShortName">hit_load_count[31:0]</obj_property>
+      <obj_property name="ObjectShortName">hit_load_count[31:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/sc_nway_tb/kuuga_inst/new_kuuga_sc_nway_sim_i/sayuru_nway_wrapper_0/inst/sayuru/hit_store_count">
+      <obj_property name="ElementShortName">hit_store_count[31:0]</obj_property>
+      <obj_property name="ObjectShortName">hit_store_count[31:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/sc_nway_tb/kuuga_inst/new_kuuga_sc_nway_sim_i/sayuru_nway_wrapper_0/inst/sayuru/miss_load_count">
+      <obj_property name="ElementShortName">miss_load_count[31:0]</obj_property>
+      <obj_property name="ObjectShortName">miss_load_count[31:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/sc_nway_tb/kuuga_inst/new_kuuga_sc_nway_sim_i/sayuru_nway_wrapper_0/inst/sayuru/miss_store_count">
+      <obj_property name="ElementShortName">miss_store_count[31:0]</obj_property>
+      <obj_property name="ObjectShortName">miss_store_count[31:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/sc_nway_tb/kuuga_inst/new_kuuga_sc_nway_sim_i/sayuru_nway_wrapper_0/inst/sayuru/writeback_load_count">
+      <obj_property name="ElementShortName">writeback_load_count[31:0]</obj_property>
+      <obj_property name="ObjectShortName">writeback_load_count[31:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/sc_nway_tb/kuuga_inst/new_kuuga_sc_nway_sim_i/sayuru_nway_wrapper_0/inst/sayuru/writeback_store_count">
+      <obj_property name="ElementShortName">writeback_store_count[31:0]</obj_property>
+      <obj_property name="ObjectShortName">writeback_store_count[31:0]</obj_property>
+      <obj_property name="Radix">UNSIGNEDDECRADIX</obj_property>
+   </wvobject>
+   <wvobject type="array" fp_name="/sc_nway_tb/kuuga_inst/new_kuuga_sc_nway_sim_i/memory_gap_counter_w_0/memory_gap">
+      <obj_property name="ElementShortName">memory_gap[31:0]</obj_property>
+      <obj_property name="ObjectShortName">memory_gap[31:0]</obj_property>
+   </wvobject>
+   <wvobject type="logic" fp_name="/sc_nway_tb/kuuga_inst/new_kuuga_sc_nway_sim_i/memory_gap_counter_w_0/memory_gap_valid">
+      <obj_property name="ElementShortName">memory_gap_valid</obj_property>
+      <obj_property name="ObjectShortName">memory_gap_valid</obj_property>
    </wvobject>
 </wave_config>

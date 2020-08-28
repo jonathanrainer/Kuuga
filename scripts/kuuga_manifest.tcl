@@ -1,6 +1,8 @@
 set KuugaRTLFiles {
 	common/delay_module.sv
 	common/delay_module_wrapper.v
+	common/memory_gap_counter.sv
+	common/memory_gap_counter_wrapper.v
 	dm_cache/dm_cache.sv
 	enokida/enokida_dm.sv
 	enokida/enokida_dm_wrapper.v

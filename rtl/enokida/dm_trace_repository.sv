@@ -17,7 +17,7 @@ module dm_trace_repository
     input bit trace_capture_enable,
     input bit trace_ready,
     input bit lock,
-    
+
     // Requests from Enokida
     input bit trace_req,
     input bit cancel,
@@ -26,7 +26,7 @@ module dm_trace_repository
     output bit entry_valid,
     output bit cancelled,
     output bit processing_complete,
-    
+
     // Requests to Mark Entries Done
     input bit [$clog2(TRACE_ENTRIES)-1:0] index_done,
     input bit mark_done,
@@ -36,13 +36,13 @@ module dm_trace_repository
     input bit hit_miss_in,
     input bit load_store_in,
     output bit mark_done_valid,
-    
+
     // Requests to find a trace entry from an address
     input bit [DATA_ADDR_WIDTH-1:0] addr_in,
     input bit get_index,
     output bit signed [$clog2(TRACE_ENTRIES)-1:0] index_o,
     output bit index_valid,
-    
+
     // Tracking Outputs
     output integer h_l_counter,
     output integer hph_l_counter,
@@ -52,7 +52,7 @@ module dm_trace_repository
     output integer hpm_s_counter,
     output integer m_l_counter,
     output integer m_s_counter
-  
+
 );
 
     bit [DATA_ADDR_WIDTH + DATA_DATA_WIDTH-1:0] trace_entries_data_o;
@@ -60,7 +60,7 @@ module dm_trace_repository
     bit [$clog2(TRACE_ENTRIES)-1:0] trace_entries_addr_i;
     bit trace_entries_ena_i;
     bit trace_entries_wea_i;
-       
+
     localparam READ_LATENCY = 1;
 
    xpm_memory_spram #(
@@ -110,7 +110,7 @@ module dm_trace_repository
       .injectsbiterra(1'b0),
       .injectdbiterra(1'b0)
    );
-    
+
     bit [$clog2(TRACE_ENTRIES)-1:0] last_addr;
     (* dont_touch = "yes" *) integer signed capture_pointer;
     (* dont_touch = "yes" *) integer signed action_pointer;
@@ -119,30 +119,30 @@ module dm_trace_repository
     (* dont_touch = "yes" *) trace_repo_data_entry trace;
     bit trace_valid;
     bit [$clog2(READ_LATENCY):0] latency_counter;
-    
+
     enum bit [1:0] {
         LISTEN_FOR_REQ,
         WAIT_FOR_VALID,
         GET_TRACE_FROM_MEMORY
     } state;
-        
+
     (* dont_touch = "yes" *) active_set_entry active_set [ACTIVE_SET_ENTRIES-1:0];
     (* dont_touch = "yes" *) bit signed [$clog2(ACTIVE_SET_ENTRIES):0] active_set_processing_pointer;
     (* dont_touch = "yes" *) bit signed [$clog2(ACTIVE_SET_ENTRIES):0] active_set_retired_pointer;
-    
+
     (* dont_touch = "yes" *) cache_tracker_t cache_tracker [CACHE_BLOCKS-1:0];
-    
+
     initial
     begin
         initialise_device();
     end
-    
+
     always_ff @(posedge clk)
     begin
         if (!rst_n) initialise_device();
         else if (!lock)
         begin
-            if (trace_capture_enable && trace_ready) 
+            if (trace_capture_enable && trace_ready)
             begin
                 trace_entries_addr_i <= capture_pointer+1;
                 trace_entries_wea_i <= 1'b1;
@@ -156,13 +156,13 @@ module dm_trace_repository
                 trace_entries_ena_i <= 1'b0;
             end
         end
-        else 
+        else
         begin
             unique case (state)
                 LISTEN_FOR_REQ:
                 begin
                     automatic bit next_trace_ready = (action_pointer + 1 == last_addr) && trace_valid;
-                    if (next_trace_ready && trace_req) 
+                    if (next_trace_ready && trace_req)
                     begin
                         if (committed_counter == capture_pointer + 1) processing_complete <= 1'b1;
                         else
@@ -242,40 +242,42 @@ module dm_trace_repository
                     active_set_retired_pointer <= (active_set_retired_pointer + 1) % ACTIVE_SET_ENTRIES;
                     committed_counter <= committed_counter + 1;
                     // Update appropriate counter now the memory operation is complete
-                    if (hit_miss_in) 
+                    if (!hit_miss_in)
                     begin
                         // The system sees a hit in the cache
                         automatic active_set_entry entry = active_set[(active_set_retired_pointer + 1) % ACTIVE_SET_ENTRIES];
                         // Check if the corresponding trace entry in the active set hit or missed
                         if (entry.trace_hit_miss_flag)
                         begin
-                            // If it's a load then update the Hit + Pre-Emptive Hit Load Counter 
-                            if (load_store_in) 
+                            // If it's a load then update the Hit + Pre-Emptive Hit Load Counter
+                            if (load_store_in)
                             begin
                                 hpm_s_counter <= hpm_s_counter + 1;
                             end
                             // Otherwise update the Hit + Pre-Emptive Hit Store Counter
-                            else 
+                            else
+                            begin
                                 hpm_l_counter <= hpm_l_counter + 1;
                             end
                         end
                         else
                         begin
-                            // If it's a load then update the Hit + Pre-Emptive Miss Load Counter 
-                            if (load_store_in) 
+                            // If it's a load then update the Hit + Pre-Emptive Miss Load Counter
+                            if (load_store_in)
                             begin
                                 hph_s_counter <= hph_s_counter + 1;
                             end
-                            // If it's a store then update the Hit + Pre-Emptive Miss Stire Counter 
-                            else 
+                            // If it's a store then update the Hit + Pre-Emptive Miss Stire Counter
+                            else
                             begin
                                 hph_l_counter <= hph_l_counter + 1;
-                            end  
+                            end
                         end
-                    // No need for an else clause here because if something happened pre-emptively it should be impossible for the 
+                    end
+                    // No need for an else clause here because if something happened pre-emptively it should be impossible for the
                     // cache to miss.
                 end
-                // Case 3 (Trace not done by the processing 
+                // Case 3 (Trace not done by the processing
                 else
                 begin
                     active_set[(active_set_retired_pointer + 1) % ACTIVE_SET_ENTRIES].trace_index <= index_done;
@@ -283,7 +285,7 @@ module dm_trace_repository
                     active_set_retired_pointer <= (active_set_retired_pointer + 1) % ACTIVE_SET_ENTRIES;
                     if (active_set_retired_pointer == active_set_processing_pointer) active_set_processing_pointer <= (active_set_processing_pointer + 1) % ACTIVE_SET_ENTRIES;
                     committed_counter <= committed_counter + 1;
-                    if (hit_miss_in) 
+                    if (hit_miss_in)
                     begin
                         if (load_store_in)
                         begin
@@ -301,8 +303,8 @@ module dm_trace_repository
                             h_s_counter <= h_s_counter + 1;
                         end
                         else
-                            h_l_counter <= h_l_counter + 1;
                         begin
+                            h_l_counter <= h_l_counter + 1;
                         end
                     end
                 end
@@ -322,7 +324,7 @@ module dm_trace_repository
                 begin
                     automatic bit [$clog2(ACTIVE_SET_ENTRIES)-1:0] active_set_index = ((active_set_retired_pointer == -1) ? 0 : active_set_retired_pointer) + i % ACTIVE_SET_ENTRIES;
                     if (active_set_index == active_set_processing_pointer + 1 || active_set_processing_pointer == active_set_retired_pointer) break;
-                    if (active_set[active_set_index].mem_addr == addr_in) 
+                    if (active_set[active_set_index].mem_addr == addr_in)
                     begin
                         index_o <= active_set[active_set_index].trace_index;
                         index_found = 1'b1;
@@ -335,14 +337,14 @@ module dm_trace_repository
             else index_valid <= 1'b0;
        end
     end
-    
-    
+
+
     function can_next_available_be_executed(input bit [DATA_ADDR_WIDTH-1:0] mem_addr);
         automatic cache_tracker_t cache_tracker_entry = cache_tracker[mem_addr[INDEXMSB:INDEXLSB]];
         if (!cache_tracker_entry.occupied) return 1'b1;
         else return mem_addr == cache_tracker_entry.mem_addr && !cache_tracker_entry.processing;
     endfunction
-    
+
     task initialise_device();
         capture_pointer <= -1;
         action_pointer <= -1;

@@ -388,20 +388,21 @@ proc create_root_design { parentCell } {
    CONFIG.ALL_PROBE_SAME_MU {false} \
    CONFIG.ALL_PROBE_SAME_MU_CNT {2} \
    CONFIG.C_ADV_TRIGGER {true} \
-   CONFIG.C_BRAM_CNT {172} \
+   CONFIG.C_BRAM_CNT {215} \
    CONFIG.C_DATA_DEPTH {16384} \
    CONFIG.C_EN_STRG_QUAL {1} \
    CONFIG.C_MON_TYPE {NATIVE} \
-   CONFIG.C_NUM_OF_PROBES {11} \
+   CONFIG.C_NUM_OF_PROBES {14} \
    CONFIG.C_PROBE0_MU_CNT {2} \
    CONFIG.C_PROBE0_WIDTH {160} \
    CONFIG.C_PROBE10_MU_CNT {2} \
    CONFIG.C_PROBE10_WIDTH {32} \
-   CONFIG.C_PROBE11_MU_CNT {1} \
-   CONFIG.C_PROBE12_MU_CNT {1} \
-   CONFIG.C_PROBE12_WIDTH {1} \
-   CONFIG.C_PROBE13_MU_CNT {1} \
-   CONFIG.C_PROBE13_WIDTH {1} \
+   CONFIG.C_PROBE11_MU_CNT {2} \
+   CONFIG.C_PROBE11_WIDTH {32} \
+   CONFIG.C_PROBE12_MU_CNT {2} \
+   CONFIG.C_PROBE12_WIDTH {32} \
+   CONFIG.C_PROBE13_MU_CNT {2} \
+   CONFIG.C_PROBE13_WIDTH {32} \
    CONFIG.C_PROBE14_MU_CNT {1} \
    CONFIG.C_PROBE14_WIDTH {1} \
    CONFIG.C_PROBE15_MU_CNT {1} \
@@ -499,24 +500,27 @@ proc create_root_design { parentCell } {
   connect_bd_net -net godai_wrapper_0_data_wdata_o [get_bd_pins godai_wrapper_0/data_wdata_o] [get_bd_pins sayuru_nway_wrapper_0/in_data_wdata_i]
   connect_bd_net -net godai_wrapper_0_data_we_o [get_bd_pins godai_wrapper_0/data_we_o] [get_bd_pins sayuru_nway_wrapper_0/in_data_we_i]
   connect_bd_net -net godai_wrapper_0_id_ready_o [get_bd_pins godai_wrapper_0/id_ready_o] [get_bd_pins gouram_wrapper_0/id_ready]
-  connect_bd_net -net godai_wrapper_0_instr_count_o [get_bd_pins godai_wrapper_0/instr_count_o] [get_bd_pins system_ila_0/probe9]
+  connect_bd_net -net godai_wrapper_0_instr_count_o [get_bd_pins godai_wrapper_0/instr_count_o] [get_bd_pins system_ila_0/probe7]
   connect_bd_net -net godai_wrapper_0_is_decoding_o [get_bd_pins godai_wrapper_0/is_decoding_o] [get_bd_pins gouram_wrapper_0/is_decoding]
   connect_bd_net -net godai_wrapper_0_pc_set_o [get_bd_pins godai_wrapper_0/pc_set_o] [get_bd_pins gouram_wrapper_0/pc_set]
   connect_bd_net -net gouram_wrapper_0_counter [get_bd_pins gouram_wrapper_0/counter] [get_bd_pins system_ila_0/probe3]
   connect_bd_net -net gouram_wrapper_0_trace_data_o [get_bd_pins gouram_wrapper_0/trace_data_o] [get_bd_pins system_ila_0/probe0]
   connect_bd_net -net proc_sys_reset_0_peripheral_aresetn [get_bd_pins Core2AXI_Data/M_AXI_ARESETN] [get_bd_pins Core2AXI_Instruction/M_AXI_ARESETN] [get_bd_pins axi_bram_ctrl_0/s_axi_aresetn] [get_bd_pins axi_bram_ctrl_1/s_axi_aresetn] [get_bd_pins delay_module_wrapper_0/rst_n] [get_bd_pins godai_wrapper_0/rst_n] [get_bd_pins gouram_wrapper_0/rst_n] [get_bd_pins proc_sys_reset_0/peripheral_aresetn] [get_bd_pins sayuru_nway_wrapper_0/rst_n]
   connect_bd_net -net reset_1 [get_bd_ports reset] [get_bd_pins clk_wiz_0/reset] [get_bd_pins proc_sys_reset_0/ext_reset_in]
-  connect_bd_net -net sayuru_nway_wrapper_0_hit_count [get_bd_pins sayuru_nway_wrapper_0/hit_count] [get_bd_pins system_ila_0/probe7]
+  connect_bd_net -net sayuru_nway_wrapper_0_hit_load_count [get_bd_pins sayuru_nway_wrapper_0/hit_load_count] [get_bd_pins system_ila_0/probe8]
+  connect_bd_net -net sayuru_nway_wrapper_0_hit_store_count [get_bd_pins sayuru_nway_wrapper_0/hit_store_count] [get_bd_pins system_ila_0/probe9]
   connect_bd_net -net sayuru_nway_wrapper_0_in_data_gnt_o [get_bd_pins godai_wrapper_0/data_gnt_i] [get_bd_pins sayuru_nway_wrapper_0/in_data_gnt_o]
   connect_bd_net -net sayuru_nway_wrapper_0_in_data_rdata_o [get_bd_pins godai_wrapper_0/data_rdata_i] [get_bd_pins sayuru_nway_wrapper_0/in_data_rdata_o]
-  connect_bd_net -net sayuru_nway_wrapper_0_miss_count [get_bd_pins sayuru_nway_wrapper_0/miss_count] [get_bd_pins system_ila_0/probe8]
+  connect_bd_net -net sayuru_nway_wrapper_0_miss_load_count [get_bd_pins sayuru_nway_wrapper_0/miss_load_count] [get_bd_pins system_ila_0/probe10]
+  connect_bd_net -net sayuru_nway_wrapper_0_miss_store_count [get_bd_pins sayuru_nway_wrapper_0/miss_store_count] [get_bd_pins system_ila_0/probe11]
   connect_bd_net -net sayuru_nway_wrapper_0_out_data_addr_o [get_bd_pins Core2AXI_Data/data_addr_i] [get_bd_pins sayuru_nway_wrapper_0/out_data_addr_o]
   connect_bd_net -net sayuru_nway_wrapper_0_out_data_be_o [get_bd_pins Core2AXI_Data/data_be_i] [get_bd_pins sayuru_nway_wrapper_0/out_data_be_o]
   connect_bd_net -net sayuru_nway_wrapper_0_out_data_req_o [get_bd_pins delay_module_wrapper_0/signal_in] [get_bd_pins sayuru_nway_wrapper_0/out_data_req_o]
   connect_bd_net -net sayuru_nway_wrapper_0_out_data_wdata_o [get_bd_pins Core2AXI_Data/data_wdata_i] [get_bd_pins sayuru_nway_wrapper_0/out_data_wdata_o]
   connect_bd_net -net sayuru_nway_wrapper_0_out_data_we_o [get_bd_pins Core2AXI_Data/data_we_i] [get_bd_pins sayuru_nway_wrapper_0/out_data_we_o]
   connect_bd_net -net sayuru_nway_wrapper_0_req_count [get_bd_pins godai_wrapper_0/mem_req_count_o] [get_bd_pins system_ila_0/probe6]
-  connect_bd_net -net sayuru_nway_wrapper_0_trans_count [get_bd_pins sayuru_nway_wrapper_0/trans_count] [get_bd_pins system_ila_0/probe10]
+  connect_bd_net -net sayuru_nway_wrapper_0_writeback_load_count [get_bd_pins sayuru_nway_wrapper_0/writeback_load_count] [get_bd_pins system_ila_0/probe12]
+  connect_bd_net -net sayuru_nway_wrapper_0_writeback_store_count [get_bd_pins sayuru_nway_wrapper_0/writeback_store_count] [get_bd_pins system_ila_0/probe13]
   connect_bd_net -net xlconstant_0_dout [get_bd_pins Core2AXI_Instruction/data_we_i] [get_bd_pins godai_wrapper_0/data_err_i] [get_bd_pins xlconstant_0/dout]
   connect_bd_net -net xlconstant_1_dout [get_bd_pins Core2AXI_Instruction/data_be_i] [get_bd_pins xlconstant_1/dout]
   connect_bd_net -net xlconstant_2_dout [get_bd_pins Core2AXI_Instruction/data_wdata_i] [get_bd_pins godai_wrapper_0/irq_i] [get_bd_pins xlconstant_2/dout]
@@ -540,4 +544,6 @@ proc create_root_design { parentCell } {
 
 create_root_design ""
 
+
+common::send_msg_id "BD_TCL-1000" "WARNING" "This Tcl script was generated from a block design that has not been validated. It is possible that design <$design_name> may result in errors during validation."
 
